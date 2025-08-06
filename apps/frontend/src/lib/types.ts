@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // Core data types for the Nepal travel website
 
 export interface Destination {
@@ -83,4 +84,91 @@ export interface PaginatedResponse<T> {
   page: number;
   limit: number;
   totalPages: number;
+}
+
+// Hotel-related types
+export interface HotelSearchParams {
+  cityCode: string;
+  checkInDate: string;
+  checkOutDate: string;
+  adults: number;
+  rooms?: number;
+  radius?: number;
+  radiusUnit?: "KM" | "MILE";
+  currency?: string;
+}
+
+export interface Hotel {
+  hotelId: string;
+  name: string;
+  rating?: number;
+  contact?: {
+    phone?: string;
+    fax?: string;
+  };
+  address: {
+    lines: string[];
+    postalCode: string;
+    cityName: string;
+    countryCode: string;
+  };
+  geoCode: {
+    latitude: number;
+    longitude: number;
+  };
+  amenities?: string[];
+  media?: Array<{
+    uri: string;
+    category: string;
+  }>;
+  description?: {
+    text: string;
+    lang: string;
+  };
+}
+
+export interface HotelOffer {
+  id: string;
+  hotelId: string;
+  checkInDate: string;
+  checkOutDate: string;
+  roomQuantity: number;
+  adults: number;
+  price: {
+    total: string;
+    base: string;
+    currency: string;
+    taxes?: any[];
+  };
+  room: {
+    type: string;
+    typeEstimated?: {
+      category: string;
+      beds: number;
+      bedType: string;
+    };
+    description?: {
+      text: string;
+      lang: string;
+    };
+  };
+  guests: {
+    adults: number;
+  };
+  policies: {
+    cancellations?: any[];
+    guarantee?: any;
+    deposit?: any;
+  };
+}
+
+export interface HotelSearchResponse {
+  hotels: Hotel[];
+  offers: HotelOffer[];
+}
+
+export interface CityCode {
+  code: string;
+  name: string;
+  countryCode: string;
 }

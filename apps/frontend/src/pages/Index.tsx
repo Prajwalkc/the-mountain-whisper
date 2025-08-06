@@ -1,8 +1,8 @@
-
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import FeaturedDestinations from "@/components/FeaturedDestinations";
 import PopularTours from "@/components/PopularTours";
+import FeaturedHotels from "@/components/FeaturedHotels";
 import TravelTips from "@/components/TravelTips";
 import Testimonials from "@/components/Testimonials";
 import CTA from "@/components/CTA";
@@ -15,6 +15,7 @@ const Index = () => {
       <Hero />
       <FeaturedDestinations />
       <PopularTours />
+      <FeaturedHotels />
       <TravelTips />
       <Testimonials />
       <CTA />

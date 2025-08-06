@@ -17,12 +17,14 @@ const auth_module_1 = require("./auth/auth.module");
 const users_module_1 = require("./users/users.module");
 const tours_module_1 = require("./tours/tours.module");
 const destinations_module_1 = require("./destinations/destinations.module");
+const hotels_module_1 = require("./hotels/hotels.module");
 const bookings_module_1 = require("./bookings/bookings.module");
 const payments_module_1 = require("./payments/payments.module");
 const reviews_module_1 = require("./reviews/reviews.module");
 const database_config_1 = require("./config/database.config");
 const jwt_config_1 = require("./config/jwt.config");
 const app_config_1 = require("./config/app.config");
+const amadeus_config_1 = require("./config/amadeus.config");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -31,7 +33,7 @@ exports.AppModule = AppModule = __decorate([
         imports: [
             config_1.ConfigModule.forRoot({
                 isGlobal: true,
-                load: [database_config_1.default, jwt_config_1.default, app_config_1.default],
+                load: [database_config_1.default, jwt_config_1.default, app_config_1.default, amadeus_config_1.default],
                 envFilePath: [".env.local", ".env"],
             }),
             throttler_1.ThrottlerModule.forRootAsync({
@@ -53,6 +55,7 @@ exports.AppModule = AppModule = __decorate([
             users_module_1.UsersModule,
             tours_module_1.ToursModule,
             destinations_module_1.DestinationsModule,
+            hotels_module_1.HotelsModule,
             bookings_module_1.BookingsModule,
             payments_module_1.PaymentsModule,
             reviews_module_1.ReviewsModule,

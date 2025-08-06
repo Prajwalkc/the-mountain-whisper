@@ -3,7 +3,7 @@ import { ValidationPipe } from "@nestjs/common";
 import { SwaggerModule, DocumentBuilder } from "@nestjs/swagger";
 import { ConfigService } from "@nestjs/config";
 import helmet from "helmet";
-import compression from "compression";
+import * as compression from "compression";
 import { AppModule } from "./app.module";
 
 async function bootstrap() {
@@ -21,7 +21,13 @@ async function bootstrap() {
 
   // CORS
   app.enableCors({
-    origin: configService.get<string>("FRONTEND_URL", "http://localhost:5173"),
+    origin: [
+      configService.get<string>("FRONTEND_URL", "http://localhost:8082"),
+      "http://localhost:8082", // Current frontend port
+      "http://localhost:8080", // Alternative frontend port
+      "http://localhost:5173", // Vite default port
+      "http://localhost:3000", // React default port
+    ],
     credentials: true,
   });
 
@@ -51,6 +57,7 @@ async function bootstrap() {
       .addTag("users", "User management")
       .addTag("tours", "Tour management")
       .addTag("destinations", "Destination management")
+      .addTag("hotels", "Hotel search and booking")
       .addTag("bookings", "Booking management")
       .addTag("payments", "Payment processing")
       .addTag("reviews", "Review system")

@@ -34,14 +34,9 @@ const Hero = () => {
       navigate(`/destinations?${searchParams.toString()}`);
     } else if (searchType === "tours") {
       navigate(`/tours?${searchParams.toString()}`);
-    } else {
-      // For hotels, redirect to external booking site or show message
-      window.open(
-        `https://booking.com/searchresults.html?ss=${encodeURIComponent(
-          searchData.where + " Nepal"
-        )}`,
-        "_blank"
-      );
+    } else if (searchType === "hotels") {
+      // Navigate to our internal hotels page with search parameters
+      navigate(`/hotels?${searchParams.toString()}`);
     }
   };
 
@@ -138,8 +133,8 @@ const Hero = () => {
                       searchType === "destination"
                         ? "Search destinations"
                         : searchType === "tours"
-                        ? "Search tours"
-                        : "Search hotels"
+                          ? "Search tours"
+                          : "Search hotels"
                     }
                     className="nepal-input pl-10 w-full"
                     value={searchData.where}

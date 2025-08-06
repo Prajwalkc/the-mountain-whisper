@@ -5,7 +5,7 @@ const common_1 = require("@nestjs/common");
 const swagger_1 = require("@nestjs/swagger");
 const config_1 = require("@nestjs/config");
 const helmet_1 = require("helmet");
-const compression_1 = require("compression");
+const compression = require("compression");
 const app_module_1 = require("./app.module");
 async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule, {
@@ -15,9 +15,15 @@ async function bootstrap() {
     const port = configService.get("PORT", 3001);
     const nodeEnv = configService.get("NODE_ENV", "development");
     app.use((0, helmet_1.default)());
-    app.use((0, compression_1.default)());
+    app.use(compression());
     app.enableCors({
-        origin: configService.get("FRONTEND_URL", "http://localhost:5173"),
+        origin: [
+            configService.get("FRONTEND_URL", "http://localhost:8082"),
+            "http://localhost:8082",
+            "http://localhost:8080",
+            "http://localhost:5173",
+            "http://localhost:3000",
+        ],
         credentials: true,
     });
     app.setGlobalPrefix("api/v1");
@@ -39,6 +45,7 @@ async function bootstrap() {
             .addTag("users", "User management")
             .addTag("tours", "Tour management")
             .addTag("destinations", "Destination management")
+            .addTag("hotels", "Hotel search and booking")
             .addTag("bookings", "Booking management")
             .addTag("payments", "Payment processing")
             .addTag("reviews", "Review system")

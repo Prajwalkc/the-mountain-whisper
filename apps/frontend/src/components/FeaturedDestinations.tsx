@@ -2,13 +2,17 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Link } from "react-router-dom";
-import { getFeaturedDestinations } from "@/lib/data";
+import { useFeaturedDestinations } from "@/hooks/useApi";
 import type { Destination } from "@/lib/types";
 
 const FeaturedDestinations = () => {
-  const destinations = getFeaturedDestinations();
+  const {
+    data: destinations = [],
+    isLoading,
+    error,
+  } = useFeaturedDestinations();
 
-  if (destinations.length === 0) {
+  if (isLoading || destinations.length === 0) {
     return (
       <section className="py-16 bg-nepal-light-gray">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

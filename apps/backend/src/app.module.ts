@@ -9,6 +9,7 @@ import { AuthModule } from "./auth/auth.module";
 import { UsersModule } from "./users/users.module";
 import { ToursModule } from "./tours/tours.module";
 import { DestinationsModule } from "./destinations/destinations.module";
+import { HotelsModule } from "./hotels/hotels.module";
 import { BookingsModule } from "./bookings/bookings.module";
 import { PaymentsModule } from "./payments/payments.module";
 import { ReviewsModule } from "./reviews/reviews.module";
@@ -16,13 +17,14 @@ import { ReviewsModule } from "./reviews/reviews.module";
 import databaseConfig from "./config/database.config";
 import jwtConfig from "./config/jwt.config";
 import appConfig from "./config/app.config";
+import amadeusConfig from "./config/amadeus.config";
 
 @Module({
   imports: [
     // Configuration
     ConfigModule.forRoot({
       isGlobal: true,
-      load: [databaseConfig, jwtConfig, appConfig],
+      load: [databaseConfig, jwtConfig, appConfig, amadeusConfig],
       envFilePath: [".env.local", ".env"],
     }),
 
@@ -50,6 +52,7 @@ import appConfig from "./config/app.config";
     UsersModule,
     ToursModule,
     DestinationsModule,
+    HotelsModule,
     BookingsModule,
     PaymentsModule,
     ReviewsModule,
