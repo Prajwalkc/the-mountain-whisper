@@ -5,52 +5,6 @@ import { Link } from "react-router-dom";
 import { useFeaturedTours } from "@/hooks/useApi";
 import type { Tour } from "@/lib/types";
 
-// Mock data as fallback
-const mockTours: Tour[] = [
-  {
-    id: "everest-base-camp",
-    name: "Everest Base Camp Trek",
-    image:
-      "https://images.unsplash.com/photo-1501554728187-ce583db33af7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1973&q=80",
-    duration: "14 Days",
-    groupSize: "2-12 People",
-    season: "Mar-May, Sep-Nov",
-    price: 1499,
-    rating: 4.9,
-    description:
-      "Trek to the base of the world's tallest mountain through stunning Sherpa villages and breathtaking landscapes.",
-    category: ["Trekking", "Adventure"],
-  },
-  {
-    id: "annapurna-circuit",
-    name: "Annapurna Circuit Trek",
-    image:
-      "https://images.unsplash.com/photo-1575311373937-040b8e1fd115?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2088&q=80",
-    duration: "12-18 Days",
-    groupSize: "2-10 People",
-    season: "Mar-May, Sep-Dec",
-    price: 1299,
-    rating: 4.8,
-    description:
-      "A classic Himalayan trek through diverse landscapes and traditional mountain communities.",
-    category: ["Trekking", "Cultural"],
-  },
-  {
-    id: "langtang-valley",
-    name: "Langtang Valley Trek",
-    image:
-      "https://images.unsplash.com/photo-1432958576632-8a39f6b97dc7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2053&q=80",
-    duration: "7 Days",
-    groupSize: "1-8 People",
-    season: "Year-round (Best: Mar-May, Sep-Nov)",
-    price: 799,
-    rating: 4.7,
-    description:
-      "Explore the beautiful Langtang Valley with views of snow-capped peaks and rich local culture.",
-    category: ["Trekking", "Nature"],
-  },
-];
-
 const PopularTours = () => {
   const { data: tours = [], isLoading, error } = useFeaturedTours();
 
@@ -86,8 +40,8 @@ const PopularTours = () => {
     );
   }
 
-  // Use API data if available, otherwise fall back to mock data
-  const displayTours = tours.length > 0 ? tours : mockTours;
+  // Use API data from backend
+  const displayTours = tours;
 
   return (
     <section className="py-16">

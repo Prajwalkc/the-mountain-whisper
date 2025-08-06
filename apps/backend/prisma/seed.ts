@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 async function main() {
   console.log("🌱 Starting database seeding...");
 
-  // Create sample destinations
+  // Create sample destinations with working images
   const destinations = await Promise.all([
     prisma.destination.create({
       data: {
@@ -14,7 +14,7 @@ async function main() {
         description:
           "Explore the ancient temples and bustling markets of Nepal's capital city.",
         image:
-          "https://images.unsplash.com/photo-1588733103629-b77afe0b4342?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80",
+          "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop&auto=format&q=80",
         activities: ["Cultural Tours", "Temple Visits", "Local Cuisine"],
         region: "Central Nepal",
         bestTime: "Sep-Nov, Mar-May",
@@ -28,7 +28,7 @@ async function main() {
         description:
           "Experience the serene lakes and stunning mountain views in this peaceful city.",
         image:
-          "https://images.unsplash.com/photo-1605146969463-896c33cd8eb4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+          "https://images.unsplash.com/photo-1464822759844-d150ad6d1dff?w=800&h=600&fit=crop&auto=format&q=80",
         activities: ["Boating", "Paragliding", "Mountain Viewing"],
         region: "Western Nepal",
         bestTime: "Oct-Apr",
@@ -42,7 +42,7 @@ async function main() {
         description:
           "Challenge yourself with a trek to the base of the world's tallest mountain.",
         image:
-          "https://images.unsplash.com/photo-1501854140801-50d01698950b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1875&q=80",
+          "https://images.unsplash.com/photo-1464822759844-d150ad6d1dff?w=800&h=600&fit=crop&auto=format&q=80",
         activities: ["Trekking", "Mountain Climbing", "Photography"],
         region: "Eastern Nepal",
         elevation: "3,440m to 5,545m",
@@ -57,7 +57,7 @@ async function main() {
         description:
           "Encounter wildlife including rhinos and tigers in this lush national park.",
         image:
-          "https://images.unsplash.com/photo-1544735716-ea9a274df10b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+          "https://images.unsplash.com/photo-1549366021-9f761d040a94?w=800&h=600&fit=crop&auto=format&q=80",
         activities: ["Safari", "Bird Watching", "Canoeing"],
         region: "Southern Nepal",
         bestTime: "Oct-Mar",
@@ -66,7 +66,7 @@ async function main() {
     }),
   ]);
 
-  // Create sample tours
+  // Create sample tours with working images
   const tours = await Promise.all([
     prisma.tour.create({
       data: {
@@ -75,7 +75,7 @@ async function main() {
         description:
           "Experience the ultimate adventure with our 14-day trek to Everest Base Camp. Walk in the footsteps of legendary mountaineers and witness breathtaking Himalayan vistas.",
         image:
-          "https://images.unsplash.com/photo-1501854140801-50d01698950b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1875&q=80",
+          "https://images.unsplash.com/photo-1464822759844-d150ad6d1dff?w=800&h=600&fit=crop&auto=format&q=80",
         duration: "14 days",
         groupSize: "2-12 people",
         season: "Mar-May, Sep-Nov",
@@ -100,7 +100,7 @@ async function main() {
         description:
           "Embark on one of the world's most diverse treks, crossing the Thorong La Pass and experiencing incredible mountain scenery.",
         image:
-          "https://images.unsplash.com/photo-1544966503-7cc5ac882d5f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80",
+          "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop&auto=format&q=80",
         duration: "12 days",
         groupSize: "2-15 people",
         season: "Mar-May, Sep-Nov",
@@ -125,7 +125,7 @@ async function main() {
         description:
           "Discover the rich heritage of Kathmandu Valley with visits to UNESCO World Heritage sites and traditional markets.",
         image:
-          "https://images.unsplash.com/photo-1588733103629-b77afe0b4342?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80",
+          "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop&auto=format&q=80",
         duration: "3 days",
         groupSize: "1-20 people",
         season: "Year-round",
@@ -150,7 +150,7 @@ async function main() {
         description:
           "Experience Nepal's incredible wildlife in Chitwan National Park with jungle safaris, canoe rides, and cultural programs.",
         image:
-          "https://images.unsplash.com/photo-1544735716-ea9a274df10b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+          "https://images.unsplash.com/photo-1549366021-9f761d040a94?w=800&h=600&fit=crop&auto=format&q=80",
         duration: "4 days",
         groupSize: "2-16 people",
         season: "Oct-Mar",
@@ -175,7 +175,7 @@ async function main() {
         description:
           "Relax by the serene Phewa Lake while enjoying panoramic views of the Annapurna range in Nepal's adventure capital.",
         image:
-          "https://images.unsplash.com/photo-1605146969463-896c33cd8eb4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+          "https://images.unsplash.com/photo-1464822759844-d150ad6d1dff?w=800&h=600&fit=crop&auto=format&q=80",
         duration: "5 days",
         groupSize: "1-12 people",
         season: "Year-round",
@@ -195,7 +195,7 @@ async function main() {
     }),
   ]);
 
-  // Create sample users
+  // Create sample users with working avatar URLs
   const users = await Promise.all([
     prisma.user.create({
       data: {
@@ -205,6 +205,8 @@ async function main() {
           "$2b$10$rKjWnQvJz7P.kZ4xGjYvAOu0hO1L2XqF4gN5MwPvTcRbSdUeVhWxO", // password: 'password123'
         phone: "+1-555-0123",
         country: "United States",
+        avatar:
+          "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face&auto=format&q=80",
         role: "USER",
       },
     }),
@@ -216,6 +218,21 @@ async function main() {
           "$2b$10$rKjWnQvJz7P.kZ4xGjYvAOu0hO1L2XqF4gN5MwPvTcRbSdUeVhWxO", // password: 'password123'
         phone: "+44-20-7946-0958",
         country: "United Kingdom",
+        avatar:
+          "https://images.unsplash.com/photo-1494790108755-2616b612b47c?w=150&h=150&fit=crop&crop=face&auto=format&q=80",
+        role: "USER",
+      },
+    }),
+    prisma.user.create({
+      data: {
+        email: "marco.rossi@example.com",
+        name: "Marco Rossi",
+        password:
+          "$2b$10$rKjWnQvJz7P.kZ4xGjYvAOu0hO1L2XqF4gN5MwPvTcRbSdUeVhWxO", // password: 'password123'
+        phone: "+39-06-12345678",
+        country: "Italy",
+        avatar:
+          "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face&auto=format&q=80",
         role: "USER",
       },
     }),
@@ -227,12 +244,14 @@ async function main() {
           "$2b$10$rKjWnQvJz7P.kZ4xGjYvAOu0hO1L2XqF4gN5MwPvTcRbSdUeVhWxO", // password: 'password123'
         phone: "+977-1-4444444",
         country: "Nepal",
+        avatar:
+          "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=150&h=150&fit=crop&crop=face&auto=format&q=80",
         role: "ADMIN",
       },
     }),
   ]);
 
-  // Create sample reviews
+  // Create sample reviews/testimonials
   const reviews = await Promise.all([
     prisma.review.create({
       data: {
@@ -256,12 +275,131 @@ async function main() {
     }),
     prisma.review.create({
       data: {
-        userId: users[0].id,
+        userId: users[2].id,
         tourId: tours[2].id,
         rating: 4,
         title: "Rich Cultural Experience",
         comment:
           "Loved exploring the temples and learning about Nepalese culture. The local food was fantastic!",
+      },
+    }),
+    prisma.review.create({
+      data: {
+        userId: users[0].id,
+        tourId: tours[3].id,
+        rating: 5,
+        title: "Wildlife Paradise",
+        comment:
+          "Chitwan was amazing! We saw rhinos, elephants, and so many birds. The Tharu cultural program was a highlight.",
+      },
+    }),
+    prisma.review.create({
+      data: {
+        userId: users[1].id,
+        tourId: tours[4].id,
+        rating: 4,
+        title: "Peaceful Retreat",
+        comment:
+          "Pokhara is such a beautiful and peaceful place. The sunrise from Sarangkot was unforgettable.",
+      },
+    }),
+    prisma.review.create({
+      data: {
+        userId: users[2].id,
+        tourId: tours[0].id,
+        rating: 5,
+        title: "Dream Come True",
+        comment:
+          "Reaching Everest Base Camp was a dream come true. The entire team was professional and supportive throughout the journey.",
+      },
+    }),
+  ]);
+
+  // Create blog posts
+  const blogPosts = await Promise.all([
+    prisma.blogPost.create({
+      data: {
+        title: "Complete Guide to Nepal Travel Visa",
+        slug: "travel-visa-guide",
+        excerpt:
+          "Everything you need to know about obtaining a travel visa for Nepal, including requirements and application process.",
+        image:
+          "https://images.unsplash.com/photo-1566642303870-fdce92046018?w=800&h=600&fit=crop&auto=format&q=80",
+        category: "Travel Tips",
+        readTime: "5 min",
+        featured: true,
+        content:
+          "Detailed guide about Nepal travel visa requirements, application process, fees, and tips for a smooth application experience.",
+      },
+    }),
+    prisma.blogPost.create({
+      data: {
+        title: "What to Pack for Himalayan Trekking",
+        slug: "packing-for-trek",
+        excerpt:
+          "A comprehensive packing list for your Himalayan trek, from clothing to gadgets and emergency supplies.",
+        image:
+          "https://images.unsplash.com/photo-1575221052072-6a4f4d7b8d8a?w=800&h=600&fit=crop&auto=format&q=80",
+        category: "Trekking",
+        readTime: "7 min",
+        featured: true,
+        content:
+          "Essential packing guide for Himalayan trekking including clothing layers, equipment, first aid, and emergency supplies.",
+      },
+    }),
+    prisma.blogPost.create({
+      data: {
+        title: "Best Time to Visit Nepal - Season Guide",
+        slug: "best-time-visit",
+        excerpt:
+          "Discover the best time to visit Nepal for different activities, from trekking to wildlife safaris.",
+        image:
+          "https://images.unsplash.com/photo-1554968756-7090276281d7?w=800&h=600&fit=crop&auto=format&q=80",
+        category: "Weather",
+        readTime: "6 min",
+        featured: true,
+        content:
+          "Comprehensive seasonal guide to Nepal covering weather patterns, best times for trekking, wildlife viewing, and cultural experiences.",
+      },
+    }),
+  ]);
+
+  // Create featured hotels
+  const featuredHotels = await Promise.all([
+    prisma.featuredHotel.create({
+      data: {
+        name: "Hotel Yak & Yeti",
+        location: "Kathmandu",
+        image:
+          "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&h=600&fit=crop&auto=format&q=80",
+        rating: 5,
+        price: "USD 150",
+        description: "Luxury heritage hotel in the heart of Kathmandu",
+        featured: true,
+      },
+    }),
+    prisma.featuredHotel.create({
+      data: {
+        name: "Pokhara Grande",
+        location: "Pokhara",
+        image:
+          "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&h=600&fit=crop&auto=format&q=80",
+        rating: 4,
+        price: "USD 120",
+        description: "Stunning lake views with mountain backdrop",
+        featured: true,
+      },
+    }),
+    prisma.featuredHotel.create({
+      data: {
+        name: "Chitwan Safari Lodge",
+        location: "Chitwan",
+        image:
+          "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&h=600&fit=crop&auto=format&q=80",
+        rating: 4,
+        price: "USD 90",
+        description: "Jungle lodge perfect for wildlife enthusiasts",
+        featured: true,
       },
     }),
   ]);
@@ -287,7 +425,9 @@ async function main() {
   console.log(`   - ${destinations.length} destinations`);
   console.log(`   - ${tours.length} tours`);
   console.log(`   - ${users.length} users`);
-  console.log(`   - ${reviews.length} reviews`);
+  console.log(`   - ${reviews.length} reviews/testimonials`);
+  console.log(`   - ${blogPosts.length} blog posts`);
+  console.log(`   - ${featuredHotels.length} featured hotels`);
   console.log(`   - 2 newsletter subscriptions`);
 }
 

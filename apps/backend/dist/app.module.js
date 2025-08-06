@@ -21,6 +21,8 @@ const hotels_module_1 = require("./hotels/hotels.module");
 const bookings_module_1 = require("./bookings/bookings.module");
 const payments_module_1 = require("./payments/payments.module");
 const reviews_module_1 = require("./reviews/reviews.module");
+const blog_module_1 = require("./blog/blog.module");
+const featured_hotels_module_1 = require("./featured-hotels/featured-hotels.module");
 const database_config_1 = require("./config/database.config");
 const jwt_config_1 = require("./config/jwt.config");
 const app_config_1 = require("./config/app.config");
@@ -59,6 +61,8 @@ exports.AppModule = AppModule = __decorate([
             bookings_module_1.BookingsModule,
             payments_module_1.PaymentsModule,
             reviews_module_1.ReviewsModule,
+            blog_module_1.BlogModule,
+            featured_hotels_module_1.FeaturedHotelsModule,
         ],
         controllers: [],
         providers: [],

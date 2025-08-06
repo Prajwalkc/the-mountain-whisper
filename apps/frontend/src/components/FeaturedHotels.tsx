@@ -1,41 +1,13 @@
 import { Star, MapPin, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
 import { Link } from "react-router-dom";
+import { useFeaturedHotelsForHomepage } from "@/hooks/useApi";
 
 const FeaturedHotels = () => {
-  const featuredHotels = [
-    {
-      id: "1",
-      name: "Hotel Yak & Yeti",
-      location: "Kathmandu",
-      image:
-        "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
-      rating: 5,
-      price: "USD 150",
-      description: "Luxury heritage hotel in the heart of Kathmandu",
-    },
-    {
-      id: "2",
-      name: "Pokhara Grande",
-      location: "Pokhara",
-      image:
-        "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-      rating: 4,
-      price: "USD 120",
-      description: "Stunning lake views with mountain backdrop",
-    },
-    {
-      id: "3",
-      name: "Chitwan Safari Lodge",
-      location: "Chitwan",
-      image:
-        "https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2080&q=80",
-      rating: 4,
-      price: "USD 90",
-      description: "Jungle lodge perfect for wildlife enthusiasts",
-    },
-  ];
+  const { data: featuredHotels = [], isLoading } =
+    useFeaturedHotelsForHomepage();
 
   const renderStars = (rating: number) => {
     return Array.from({ length: 5 }, (_, i) => (
@@ -45,6 +17,41 @@ const FeaturedHotels = () => {
       />
     ));
   };
+
+  if (isLoading) {
+    return (
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center mb-12">
+            <div>
+              <Skeleton className="h-10 w-48 mb-2" />
+              <Skeleton className="h-6 w-80" />
+            </div>
+            <Skeleton className="h-8 w-32" />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {Array.from({ length: 3 }).map((_, index) => (
+              <Card key={index} className="nepal-card overflow-hidden">
+                <Skeleton className="h-48 w-full" />
+                <CardContent className="p-6">
+                  <Skeleton className="h-4 w-20 mb-2" />
+                  <Skeleton className="h-6 w-full mb-2" />
+                  <Skeleton className="h-4 w-24 mb-3" />
+                  <Skeleton className="h-4 w-full mb-4" />
+                  <Skeleton className="h-10 w-full" />
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <Skeleton className="h-10 w-48 mx-auto" />
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="py-16 bg-gray-50">

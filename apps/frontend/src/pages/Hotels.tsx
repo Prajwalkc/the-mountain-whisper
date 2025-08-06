@@ -2,9 +2,14 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import HotelSearch from "@/components/HotelSearch";
 import { Card, CardContent } from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
 import { MapPin, Star, Shield, Phone } from "lucide-react";
+import { useFeaturedDestinations } from "@/hooks/useApi";
 
 const Hotels = () => {
+  const { data: destinations = [], isLoading: destinationsLoading } =
+    useFeaturedDestinations();
+
   const benefits = [
     {
       icon: <Star className="h-8 w-8 text-nepal-orange" />,
@@ -26,34 +31,6 @@ const Hotels = () => {
       icon: <Phone className="h-8 w-8 text-nepal-orange" />,
       title: "24/7 Support",
       description: "Round-the-clock customer support for your peace of mind.",
-    },
-  ];
-
-  const popularDestinations = [
-    {
-      name: "Kathmandu",
-      code: "KTM",
-      description:
-        "Explore ancient temples and vibrant markets in Nepal's capital",
-      image:
-        "https://images.unsplash.com/photo-1588733103629-b77afe0b4342?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80",
-      hotels: "200+",
-    },
-    {
-      name: "Pokhara",
-      code: "PKR",
-      description: "Serene lakes and stunning mountain views await you",
-      image:
-        "https://images.unsplash.com/photo-1605146969463-896c33cd8eb4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-      hotels: "150+",
-    },
-    {
-      name: "Chitwan",
-      code: "BWA",
-      description: "Wildlife adventures in Nepal's famous national park",
-      image:
-        "https://images.unsplash.com/photo-1544735716-ea9a274df10b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-      hotels: "80+",
     },
   ];
 
@@ -119,40 +96,49 @@ const Hotels = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {popularDestinations.map((destination, index) => (
-              <Card
-                key={index}
-                className="nepal-card overflow-hidden group cursor-pointer hover:shadow-xl transition-all"
-              >
-                <div className="relative h-48">
-                  <img
-                    src={destination.image}
-                    alt={destination.name}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                  <div className="absolute bottom-4 left-4 text-white">
-                    <h3 className="text-xl font-bold mb-1">
-                      {destination.name}
-                    </h3>
-                    <p className="text-sm opacity-90">
-                      {destination.hotels} hotels available
-                    </p>
-                  </div>
-                </div>
-                <CardContent className="p-6">
-                  <p className="text-gray-600 text-sm mb-4">
-                    {destination.description}
-                  </p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-nepal-purple font-medium">
-                      Explore Hotels
-                    </span>
-                    <MapPin className="h-4 w-4 text-nepal-purple" />
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+            {destinationsLoading
+              ? Array.from({ length: 3 }).map((_, index) => (
+                  <Card key={index} className="overflow-hidden">
+                    <Skeleton className="h-48 w-full" />
+                    <CardContent className="p-6">
+                      <Skeleton className="h-4 w-3/4 mb-2" />
+                      <Skeleton className="h-4 w-full mb-4" />
+                      <Skeleton className="h-4 w-1/2" />
+                    </CardContent>
+                  </Card>
+                ))
+              : destinations.slice(0, 3).map((destination, index) => (
+                  <Card
+                    key={destination.id}
+                    className="nepal-card overflow-hidden group cursor-pointer hover:shadow-xl transition-all"
+                  >
+                    <div className="relative h-48">
+                      <img
+                        src={destination.image}
+                        alt={destination.name}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                      <div className="absolute bottom-4 left-4 text-white">
+                        <h3 className="text-xl font-bold mb-1">
+                          {destination.name}
+                        </h3>
+                        <p className="text-sm opacity-90">Hotels available</p>
+                      </div>
+                    </div>
+                    <CardContent className="p-6">
+                      <p className="text-gray-600 text-sm mb-4">
+                        {destination.description}
+                      </p>
+                      <div className="flex items-center justify-between">
+                        <span className="text-nepal-purple font-medium">
+                          Explore Hotels
+                        </span>
+                        <MapPin className="h-4 w-4 text-nepal-purple" />
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
           </div>
         </div>
       </section>

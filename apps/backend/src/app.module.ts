@@ -13,6 +13,8 @@ import { HotelsModule } from "./hotels/hotels.module";
 import { BookingsModule } from "./bookings/bookings.module";
 import { PaymentsModule } from "./payments/payments.module";
 import { ReviewsModule } from "./reviews/reviews.module";
+import { BlogModule } from "./blog/blog.module";
+import { FeaturedHotelsModule } from "./featured-hotels/featured-hotels.module";
 
 import databaseConfig from "./config/database.config";
 import jwtConfig from "./config/jwt.config";
@@ -56,6 +58,8 @@ import amadeusConfig from "./config/amadeus.config";
     BookingsModule,
     PaymentsModule,
     ReviewsModule,
+    BlogModule,
+    FeaturedHotelsModule,
   ],
   controllers: [],
   providers: [],

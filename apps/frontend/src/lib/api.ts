@@ -126,6 +126,61 @@ class ApiClient {
     return this.request(`/destinations/search?q=${encodeURIComponent(query)}`);
   }
 
+  // Reviews API
+  async getReviews(): Promise<any[]> {
+    return this.request("/reviews");
+  }
+
+  async getFeaturedReviews(): Promise<any[]> {
+    return this.request("/reviews/featured");
+  }
+
+  async getReview(id: string): Promise<any> {
+    return this.request(`/reviews/${id}`);
+  }
+
+  async getReviewsByTourId(tourId: string): Promise<any[]> {
+    return this.request(`/reviews/tour/${tourId}`);
+  }
+
+  // Blog API
+  async getBlogPosts(): Promise<any[]> {
+    return this.request("/blog");
+  }
+
+  async getFeaturedBlogPosts(): Promise<any[]> {
+    return this.request("/blog/featured");
+  }
+
+  async getBlogPost(id: string): Promise<any> {
+    return this.request(`/blog/${id}`);
+  }
+
+  async getBlogPostBySlug(slug: string): Promise<any> {
+    return this.request(`/blog/slug/${slug}`);
+  }
+
+  async getBlogPostsByCategory(category: string): Promise<any[]> {
+    return this.request(`/blog/category/${category}`);
+  }
+
+  // Featured Hotels API
+  async getFeaturedHotelsData(): Promise<any[]> {
+    return this.request("/featured-hotels");
+  }
+
+  async getFeaturedHotelsForHomepage(): Promise<any[]> {
+    return this.request("/featured-hotels/featured");
+  }
+
+  async getFeaturedHotel(id: string): Promise<any> {
+    return this.request(`/featured-hotels/${id}`);
+  }
+
+  async getFeaturedHotelsByLocation(location: string): Promise<any[]> {
+    return this.request(`/featured-hotels/location/${location}`);
+  }
+
   // Hotels API
   async searchHotels(params: {
     cityCode: string;
@@ -260,4 +315,28 @@ export const hotelsApi = {
     apiClient.createHotelBooking(bookingData),
   getBooking: (bookingReference: string) =>
     apiClient.getHotelBooking(bookingReference),
+};
+
+export const reviewsApi = {
+  getAll: () => apiClient.getReviews(),
+  getFeatured: () => apiClient.getFeaturedReviews(),
+  getById: (id: string) => apiClient.getReview(id),
+  getByTourId: (tourId: string) => apiClient.getReviewsByTourId(tourId),
+};
+
+export const blogApi = {
+  getAll: () => apiClient.getBlogPosts(),
+  getFeatured: () => apiClient.getFeaturedBlogPosts(),
+  getById: (id: string) => apiClient.getBlogPost(id),
+  getBySlug: (slug: string) => apiClient.getBlogPostBySlug(slug),
+  getByCategory: (category: string) =>
+    apiClient.getBlogPostsByCategory(category),
+};
+
+export const featuredHotelsApi = {
+  getAll: () => apiClient.getFeaturedHotelsData(),
+  getFeatured: () => apiClient.getFeaturedHotelsForHomepage(),
+  getById: (id: string) => apiClient.getFeaturedHotel(id),
+  getByLocation: (location: string) =>
+    apiClient.getFeaturedHotelsByLocation(location),
 };

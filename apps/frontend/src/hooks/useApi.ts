@@ -1,5 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
-import { toursApi, destinationsApi, hotelsApi } from "@/lib/api";
+import {
+  toursApi,
+  destinationsApi,
+  hotelsApi,
+  reviewsApi,
+  blogApi,
+  featuredHotelsApi,
+} from "@/lib/api";
 
 // Tours hooks
 export const useTours = (params?: Parameters<typeof toursApi.getAll>[0]) => {
@@ -143,5 +150,119 @@ export const useNepalCities = () => {
     queryKey: ["hotels", "cities", "nepal"],
     queryFn: () => hotelsApi.getNepalCities(),
     staleTime: 60 * 60 * 1000, // 1 hour
+  });
+};
+
+// Reviews hooks
+export const useReviews = () => {
+  return useQuery({
+    queryKey: ["reviews"],
+    queryFn: reviewsApi.getAll,
+    staleTime: 5 * 60 * 1000, // 5 minutes
+  });
+};
+
+export const useFeaturedReviews = () => {
+  return useQuery({
+    queryKey: ["reviews", "featured"],
+    queryFn: reviewsApi.getFeatured,
+    staleTime: 10 * 60 * 1000, // 10 minutes
+  });
+};
+
+export const useReview = (id: string) => {
+  return useQuery({
+    queryKey: ["reviews", id],
+    queryFn: () => reviewsApi.getById(id),
+    enabled: !!id,
+    staleTime: 10 * 60 * 1000,
+  });
+};
+
+export const useReviewsByTourId = (tourId: string) => {
+  return useQuery({
+    queryKey: ["reviews", "tour", tourId],
+    queryFn: () => reviewsApi.getByTourId(tourId),
+    enabled: !!tourId,
+    staleTime: 5 * 60 * 1000,
+  });
+};
+
+// Blog hooks
+export const useBlogPosts = () => {
+  return useQuery({
+    queryKey: ["blog"],
+    queryFn: blogApi.getAll,
+    staleTime: 10 * 60 * 1000, // 10 minutes
+  });
+};
+
+export const useFeaturedBlogPosts = () => {
+  return useQuery({
+    queryKey: ["blog", "featured"],
+    queryFn: blogApi.getFeatured,
+    staleTime: 15 * 60 * 1000, // 15 minutes
+  });
+};
+
+export const useBlogPost = (id: string) => {
+  return useQuery({
+    queryKey: ["blog", id],
+    queryFn: () => blogApi.getById(id),
+    enabled: !!id,
+    staleTime: 15 * 60 * 1000,
+  });
+};
+
+export const useBlogPostBySlug = (slug: string) => {
+  return useQuery({
+    queryKey: ["blog", "slug", slug],
+    queryFn: () => blogApi.getBySlug(slug),
+    enabled: !!slug,
+    staleTime: 15 * 60 * 1000,
+  });
+};
+
+export const useBlogPostsByCategory = (category: string) => {
+  return useQuery({
+    queryKey: ["blog", "category", category],
+    queryFn: () => blogApi.getByCategory(category),
+    enabled: !!category,
+    staleTime: 10 * 60 * 1000,
+  });
+};
+
+// Featured Hotels hooks
+export const useFeaturedHotelsData = () => {
+  return useQuery({
+    queryKey: ["featured-hotels"],
+    queryFn: featuredHotelsApi.getAll,
+    staleTime: 15 * 60 * 1000, // 15 minutes
+  });
+};
+
+export const useFeaturedHotelsForHomepage = () => {
+  return useQuery({
+    queryKey: ["featured-hotels", "featured"],
+    queryFn: featuredHotelsApi.getFeatured,
+    staleTime: 20 * 60 * 1000, // 20 minutes
+  });
+};
+
+export const useFeaturedHotel = (id: string) => {
+  return useQuery({
+    queryKey: ["featured-hotels", id],
+    queryFn: () => featuredHotelsApi.getById(id),
+    enabled: !!id,
+    staleTime: 15 * 60 * 1000,
+  });
+};
+
+export const useFeaturedHotelsByLocation = (location: string) => {
+  return useQuery({
+    queryKey: ["featured-hotels", "location", location],
+    queryFn: () => featuredHotelsApi.getByLocation(location),
+    enabled: !!location,
+    staleTime: 10 * 60 * 1000,
   });
 };

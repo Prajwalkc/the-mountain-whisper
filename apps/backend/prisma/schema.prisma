@@ -188,4 +188,37 @@ enum PaymentStatus {
   COMPLETED
   FAILED
   REFUNDED
+}
+
+model BlogPost {
+  id        String   @id @default(uuid())
+  title     String
+  slug      String   @unique
+  content   String?  @db.Text
+  excerpt   String
+  image     String
+  category  String
+  readTime  String
+  isActive  Boolean  @default(true)
+  featured  Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("blog_posts")
+}
+
+model FeaturedHotel {
+  id          String   @id @default(uuid())
+  name        String
+  location    String
+  image       String
+  rating      Int      @db.SmallInt
+  price       String
+  description String
+  isActive    Boolean  @default(true)
+  featured    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("featured_hotels")
 } 

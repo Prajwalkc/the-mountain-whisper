@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/pagination";
 import { Star, Clock, Users, Calendar, Filter } from "lucide-react";
 import { Link } from "react-router-dom";
-import { tours, filterToursByCategory, searchTours } from "@/lib/data";
+import { useTours, useSearchTours } from "@/hooks/useApi";
 import type { Tour } from "@/lib/types";
 
 const categories = [
@@ -31,47 +31,32 @@ const categories = [
 const Tours = () => {
   const [searchParams] = useSearchParams();
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const [filteredTours, setFilteredTours] = useState<Tour[]>(tours);
   const [currentPage, setCurrentPage] = useState(1);
-  const [isLoading, setIsLoading] = useState(false);
   const toursPerPage = 6;
 
   const searchQuery = searchParams.get("q") || "";
 
+  // Use API hooks based on search query
+  const { data: allTours = [], isLoading: isLoadingAll } = useTours({
+    category: selectedCategory !== "All" ? selectedCategory : undefined,
+  });
+
+  const { data: searchResults = [], isLoading: isSearching } =
+    useSearchTours(searchQuery);
+
+  // Determine which data to use
+  const tours = searchQuery ? searchResults : allTours;
+  const isLoading = searchQuery ? isSearching : isLoadingAll;
+
+  // Reset page when filters change
   useEffect(() => {
-    setIsLoading(true);
-
-    // Simulate loading delay for better UX
-    const timer = setTimeout(() => {
-      let result = tours;
-
-      // Apply search filter if query exists
-      if (searchQuery) {
-        result = searchTours(searchQuery);
-      }
-
-      // Apply category filter
-      result = filterToursByCategory(selectedCategory);
-
-      // If both search and category filters are applied
-      if (searchQuery && selectedCategory !== "All") {
-        result = searchTours(searchQuery).filter((tour) =>
-          tour.category.includes(selectedCategory.toLowerCase())
-        );
-      }
-
-      setFilteredTours(result);
-      setCurrentPage(1);
-      setIsLoading(false);
-    }, 300);
-
-    return () => clearTimeout(timer);
+    setCurrentPage(1);
   }, [selectedCategory, searchQuery]);
 
   const indexOfLastTour = currentPage * toursPerPage;
   const indexOfFirstTour = indexOfLastTour - toursPerPage;
-  const currentTours = filteredTours.slice(indexOfFirstTour, indexOfLastTour);
-  const totalPages = Math.ceil(filteredTours.length / toursPerPage);
+  const currentTours = tours.slice(indexOfFirstTour, indexOfLastTour);
+  const totalPages = Math.ceil(tours.length / toursPerPage);
 
   const LoadingSkeleton = () => (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -145,9 +130,7 @@ const Tours = () => {
           <div className="flex justify-between items-center mb-8">
             <div>
               <h2 className="text-2xl font-bold text-gray-900">
-                {isLoading
-                  ? "Loading tours..."
-                  : `${filteredTours.length} Tours Found`}
+                {isLoading ? "Loading tours..." : `${tours.length} Tours Found`}
               </h2>
               {searchQuery && (
                 <p className="text-gray-600 mt-1">
@@ -226,10 +209,10 @@ const Tours = () => {
                               tour.difficulty === "Easy"
                                 ? "bg-green-500"
                                 : tour.difficulty === "Moderate"
-                                ? "bg-yellow-500"
-                                : tour.difficulty === "Challenging"
-                                ? "bg-orange-500"
-                                : "bg-red-500"
+                                  ? "bg-yellow-500"
+                                  : tour.difficulty === "Challenging"
+                                    ? "bg-orange-500"
+                                    : "bg-red-500"
                             }`}
                           >
                             {tour.difficulty}
