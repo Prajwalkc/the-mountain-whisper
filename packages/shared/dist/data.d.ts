@@ -1,0 +1,15 @@
+import type { Destination, Tour, Testimonial, TravelTip, FAQ } from "./types";
+export declare const destinations: Destination[];
+export declare const tours: Tour[];
+export declare const testimonials: Testimonial[];
+export declare const travelTips: TravelTip[];
+export declare const faqs: FAQ[];
+export declare const getFeaturedDestinations: () => Destination[];
+export declare const getFeaturedTours: () => Tour[];
+export declare const getFeaturedTravelTips: () => TravelTip[];
+export declare const getDestinationById: (id: string) => Destination | undefined;
+export declare const getTourById: (id: string) => Tour | undefined;
+export declare const filterToursByCategory: (category: string) => Tour[];
+export declare const filterDestinationsByRegion: (region: string) => Destination[];
+export declare const searchTours: (query: string) => Tour[];
+export declare const searchDestinations: (query: string) => Destination[];
