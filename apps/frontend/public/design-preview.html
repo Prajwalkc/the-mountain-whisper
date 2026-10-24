@@ -47,15 +47,23 @@ a{color:inherit} strong{font-weight:600}
 .wrap{max-width:1460px;margin:0 auto;min-width:0}
 
 /* ---------- sticky bar ---------- */
+/* The bar rides over the photograph while the hero is on screen, then settles
+   into ink once you are past it — so the opening frame stays uninterrupted. */
 .bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;height:var(--bar);
-  display:flex;align-items:center;background:rgba(21,32,42,.9);
-  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
-  border-bottom:1.5px solid var(--rule-soft)}
-.bar .in{display:flex;align-items:center;justify-content:space-between;gap:1rem;width:100%}
-.bar .id{display:flex;align-items:center;gap:.7rem;min-width:0}
-.bar .id svg{width:clamp(26px,2.6vw,34px);height:auto;stroke:var(--cream);flex:none}
+  display:flex;align-items:center;background:transparent;border-bottom:1.5px solid transparent;
+  transition:background .55s cubic-bezier(.16,1,.3,1),border-color .55s,backdrop-filter .55s}
+.bar.solid{background:rgba(21,32,42,.92);border-bottom-color:var(--rule-soft);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.bar .in{display:flex;align-items:center;justify-content:space-between;gap:clamp(1rem,3vw,2.5rem);width:100%}
+.bar .id{display:flex;align-items:center;gap:.7rem;min-width:0;text-decoration:none}
+.bar .id svg{width:clamp(24px,2.4vw,32px);height:auto;stroke:var(--cream);flex:none}
 .bar .id span{font-size:var(--label);letter-spacing:.28em;text-transform:uppercase;
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar nav{display:flex;align-items:center;gap:clamp(1rem,2.4vw,2.2rem);margin-left:auto}
+.bar nav a{font-size:.63rem;font-weight:500;letter-spacing:.24em;text-transform:uppercase;
+  text-decoration:none;opacity:.72;white-space:nowrap;transition:opacity .35s}
+.bar nav a:hover{opacity:1}
+@media (max-width:860px){.bar nav{display:none}}
 .bar .go{flex:none;padding:.6rem 1.3rem;border:1.5px solid rgba(245,241,234,.75);text-decoration:none;
   font-size:.6rem;font-weight:600;letter-spacing:.26em;text-transform:uppercase;
   transition:background .4s,color .4s}
@@ -84,7 +92,9 @@ a{color:inherit} strong{font-weight:600}
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
 
 /* ---------- hero ---------- */
-.hero{position:relative;min-height:clamp(500px,76svh,820px);display:flex;align-items:flex-end;overflow:hidden}
+/* pulled up so the photograph runs behind the transparent bar */
+.hero{position:relative;margin-top:calc(-1 * var(--bar));
+  min-height:clamp(560px,82svh,880px);display:flex;align-items:flex-end;overflow:hidden}
 .hero .shot{position:absolute;inset:0;z-index:0}
 .hero .shot img{width:100%;height:100%;object-fit:cover;filter:var(--grade);transform:scale(1.03)}
 .hero .tint{position:absolute;inset:0;z-index:1;background:linear-gradient(to bottom,
@@ -103,6 +113,19 @@ a{color:inherit} strong{font-weight:600}
   transition:background .5s cubic-bezier(.16,1,.3,1),color .5s}
 .btn:hover{background:var(--cream);color:var(--blue-deep)}
 .price{font-family:var(--serif);font-style:italic;font-size:clamp(.95rem,1.28vw,1.22rem);opacity:.85}
+
+/* the two editions, named in the opening frame — a chapter index, like the films */
+.index{margin-top:clamp(2rem,4.4vw,3.2rem);border-top:1.5px solid rgba(245,241,234,.35);
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr))}
+.index a{display:block;padding:clamp(1rem,1.9vw,1.4rem) 0;text-decoration:none;min-width:0;
+  border-bottom:1.5px solid transparent;transition:border-color .45s}
+.index a + a{border-left:1.5px solid rgba(245,241,234,.22);
+  padding-left:clamp(1rem,2.4vw,2.2rem)}
+.index a:hover{border-bottom-color:rgba(245,241,234,.7)}
+.index .k{font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;opacity:.65}
+.index .t{margin-top:.45rem;font-family:var(--serif);font-size:clamp(1.05rem,1.55vw,1.42rem);line-height:1.2}
+@media (max-width:620px){.index a + a{border-left:0;padding-left:0;
+  border-top:1.5px solid rgba(245,241,234,.22)}}
 
 /* ---------- chapters ---------- */
 .ch{padding-block:clamp(3.6rem,10vh,8rem)}
@@ -292,27 +315,49 @@ a{color:inherit} strong{font-weight:600}
 .end .line{font-family:var(--serif);font-style:italic;font-size:clamp(.98rem,1.7vw,1.5rem);opacity:.95}
 .end .handle{margin-top:clamp(1.9rem,4vw,2.8rem);font-size:var(--label);font-weight:600;letter-spacing:.3em}
 
-footer{padding-block:2.1rem;border-top:1.5px solid rgba(245,241,234,.14);
-  display:grid;gap:.9rem;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;opacity:.5;line-height:1.9}
-footer .row{display:flex;justify-content:space-between;gap:.75rem;flex-wrap:wrap}
-footer .cr{text-transform:none;letter-spacing:.04em;opacity:.8;max-width:82ch}
+footer{background:#141F29;padding-block:clamp(2.8rem,6vw,4.5rem) 2rem}
+.fgrid{display:grid;gap:clamp(2rem,4.5vw,3.5rem);
+  grid-template-columns:minmax(0,1.5fr) repeat(auto-fit,minmax(min(100%,160px),1fr))}
+.fcol{min-width:0}
+.fcol .mk{display:flex;align-items:center;gap:.7rem;margin-bottom:1rem}
+.fcol .mk svg{width:30px;height:auto;stroke:var(--cream);flex:none}
+.fcol .mk span{font-size:var(--label);letter-spacing:.28em;text-transform:uppercase}
+.fcol .blurb{font-size:var(--body);font-weight:400;line-height:1.8;opacity:.7;max-width:36ch}
+.fcol h5{font-size:.6rem;font-weight:600;letter-spacing:.28em;text-transform:uppercase;
+  opacity:.55;margin-bottom:1.1rem}
+.fcol ul{list-style:none;display:grid;gap:.7rem}
+.fcol li a,.fcol li span{font-size:var(--body);font-weight:400;text-decoration:none;opacity:.78;
+  transition:opacity .35s;line-height:1.5}
+.fcol li a:hover{opacity:1}
+.fcol .sel{user-select:all;-webkit-user-select:all;word-break:break-word}
+.fbot{margin-top:clamp(2.4rem,5vw,3.6rem);padding-top:1.5rem;
+  border-top:1.5px solid rgba(245,241,234,.14);display:grid;gap:.9rem}
+.fbot .row{display:flex;justify-content:space-between;gap:.75rem;flex-wrap:wrap;
+  font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;opacity:.5;line-height:1.9}
+.fbot .cr{font-size:.66rem;font-weight:400;letter-spacing:.02em;line-height:1.75;opacity:.42;max-width:86ch}
 </style>
 
-<nav class="bar pad" aria-label="Primary">
+<div class="bar pad" id="bar">
   <div class="in wrap">
-    <span class="id">
+    <a class="id" href="#top">
       <svg viewBox="0 0 220 150" fill="none" stroke="currentColor" stroke-width="9"
            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M14 120 L78 36 L112 80 L140 50 L206 120"/>
         <path d="M30 140 C 70 122, 110 150, 150 132 S 200 128, 210 136" stroke-width="6" opacity="0.75"/>
       </svg>
       <span>Mountain Whisper</span>
-    </span>
+    </a>
+    <nav aria-label="Sections">
+      <a href="#stays">The stays</a>
+      <a href="#village">Village Edition</a>
+      <a href="#pricing">How long</a>
+      <a href="#faq">Questions</a>
+    </nav>
     <a class="go" href="#enquire">Enquire</a>
   </div>
-</nav>
+</div>
 
-<header class="hero">
+<header class="hero" id="top">
   <div class="shot">
     <img src="img/wide.jpg" alt="Himalayan peaks above Pokhara at first light"
          srcset="img/wide-800.jpg 800w, img/wide-1600.jpg 1600w, img/wide.jpg 3840w"
@@ -330,10 +375,16 @@ footer .cr{text-transform:none;letter-spacing:.04em;opacity:.8;max-width:82ch}
       <a class="btn" href="#enquire">Enquire</a>
       <span class="price">from $1,490 a month</span>
     </div>
+    <div class="index rv d2">
+      <a href="#stays"><span class="k">The city · 1, 3 or 5 months</span>
+        <span class="t">Lakeside in Pokhara</span></a>
+      <a href="#village"><span class="k">The Village Edition · 3 or 5 months</span>
+        <span class="t">A room with a family</span></a>
+    </div>
   </div></div>
 </header>
 
-<section class="ch pad"><div class="wrap">
+<section class="ch pad" id="stays"><div class="wrap">
   <div class="head">
     <p class="chapter rv">N° 01</p>
     <div class="kicker rv"><span class="r"></span><span class="t">Choosing your stay</span></div>
@@ -429,7 +480,7 @@ footer .cr{text-transform:none;letter-spacing:.04em;opacity:.8;max-width:82ch}
   </div>
 </div></section>
 
-<section class="ch blue pad">
+<section class="ch blue pad" id="village">
   <div class="grain"></div>
   <div class="wrap">
     <div class="head">
@@ -523,7 +574,7 @@ footer .cr{text-transform:none;letter-spacing:.04em;opacity:.8;max-width:82ch}
     Nobody should commit five months to a way of living they have not tried.</p>
 </div></section>
 
-<section class="ch pad"><div class="wrap">
+<section class="ch pad" id="pricing"><div class="wrap">
   <div class="head">
     <p class="chapter rv">N° 08</p>
     <div class="kicker rv"><span class="r"></span><span class="t">How long you stay</span></div>
@@ -567,7 +618,7 @@ footer .cr{text-transform:none;letter-spacing:.04em;opacity:.8;max-width:82ch}
   </div>
 </div></section>
 
-<section class="ch pad"><div class="wrap">
+<section class="ch pad" id="faq"><div class="wrap">
   <div class="head">
     <p class="chapter rv">N° 10</p>
     <div class="kicker rv"><span class="r"></span><span class="t">Before you ask</span></div>
@@ -699,20 +750,78 @@ footer .cr{text-transform:none;letter-spacing:.04em;opacity:.8;max-width:82ch}
 </section>
 
 <footer class="pad">
-  <div class="row">
-    <span>Mountain Whisper · Registered travel agency, Nepal</span>
-    <span>Design preview — placeholder copy</span>
+  <div class="wrap">
+    <div class="fgrid">
+      <div class="fcol">
+        <span class="mk">
+          <svg viewBox="0 0 220 150" fill="none" stroke="currentColor" stroke-width="9"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M14 120 L78 36 L112 80 L140 50 L206 120"/>
+            <path d="M30 140 C 70 122, 110 150, 150 132 S 200 128, 210 136" stroke-width="6" opacity="0.75"/>
+          </svg>
+          <span>Mountain Whisper</span>
+        </span>
+        <p class="blurb">All-inclusive remote-work stays in Nepal. Lakeside in Pokhara for one, three
+          or five months, or with a village family for three or five.</p>
+      </div>
+
+      <div class="fcol">
+        <h5>The stays</h5>
+        <ul>
+          <li><a href="#stays">Village or city</a></li>
+          <li><a href="#village">The Village Edition</a></li>
+          <li><a href="#pricing">How long, and what it costs</a></li>
+          <li><a href="#faq">Questions</a></li>
+        </ul>
+      </div>
+
+      <div class="fcol">
+        <h5>Talk to us</h5>
+        <ul>
+          <li><span class="sel">hello@mountainwhisper.com</span></li>
+          <li><span class="sel">WhatsApp · +977 number to add</span></li>
+          <li><span class="sel">@mountainwhisper</span></li>
+          <li><a href="#enquire">Send an enquiry</a></li>
+        </ul>
+      </div>
+
+      <div class="fcol">
+        <h5>The company</h5>
+        <ul>
+          <li><span>Registered travel agency, Nepal</span></li>
+          <li><span>Registration no. to add</span></li>
+          <li><span>Licensed trekking guide</span></li>
+          <li><span>Based in Pokhara</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="fbot">
+      <div class="row">
+        <span>© 2026 Mountain Whisper</span>
+        <span>Design preview — placeholder copy</span>
+      </div>
+      <p class="cr">Stills: Mangalam Bhargava, Bibek Adhikari Chhetri, shiva rijal, Anil Prasad Shrestha,
+        Ivan S / Pexels. Film excerpts: Sajal Niraula, Saugatt Bastakotii, SHVETS production,
+        Shital Khadgi, TheHybriddesigner.np, Peter Smit, Tanita Lupa / Pexels. Used under the Pexels
+        Licence, which does not require credit — we give it anyway. Imagery is atmospheric: it does not
+        show a specific room, homestay or host family, and no one pictured is connected with
+        Mountain Whisper.</p>
+    </div>
   </div>
-  <p class="cr">Stills: Mangalam Bhargava, Bibek Adhikari Chhetri, shiva rijal, Anil Prasad Shrestha,
-    Ivan S / Pexels. Film excerpts: Sajal Niraula, Saugatt Bastakotii, SHVETS production, Shital Khadgi,
-    TheHybriddesigner.np, Peter Smit, Tanita Lupa / Pexels. Used under the Pexels Licence, which does not
-    require credit — we give it anyway. Imagery is atmospheric: it does not show a specific room, homestay
-    or host family, and no one pictured is connected with Mountain Whisper.</p>
 </footer>
 
 <script>
 (function(){
   document.documentElement.classList.add('anim');
+
+  /* bar goes solid once the hero is behind you */
+  var bar=document.getElementById('bar'), hero=document.getElementById('top');
+  if(bar&&hero&&'IntersectionObserver' in window){
+    new IntersectionObserver(function(es){
+      es.forEach(function(e){ bar.classList.toggle('solid', !e.isIntersecting); });
+    },{rootMargin:'-70% 0px 0px 0px'}).observe(hero);
+  } else if(bar){ bar.classList.add('solid'); }
   var els = document.querySelectorAll('.rv');
   if('IntersectionObserver' in window){
     var io = new IntersectionObserver(function(es){
