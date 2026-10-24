@@ -147,26 +147,32 @@ a{color:inherit} strong{font-weight:600;color:var(--cream)}
   border-top:1px solid var(--line)}
 .fr{position:relative;display:block;padding:0;border:0;background:none;cursor:pointer;
   min-width:0;text-align:left;font-family:var(--sans)}
-.fr .im{position:relative;overflow:hidden;aspect-ratio:16/10;background:var(--ink)}
-.fr img{width:100%;height:100%;object-fit:cover;filter:saturate(.95) contrast(1.04);
-  opacity:.62;transition:opacity .6s cubic-bezier(.16,1,.3,1),transform 6s linear;
-  transform:scale(1.01)}
-.fr .im::after{content:"";position:absolute;inset:0;
+.fr .im{position:relative;overflow:hidden;aspect-ratio:16/10;background:var(--ink);
+  box-shadow:inset 0 0 0 1px rgba(245,241,234,0);transition:box-shadow .5s ease}
+.fr .im::before{content:"";position:absolute;inset:0;z-index:1;background:var(--ink);
+  opacity:.66;transition:opacity .55s cubic-bezier(.16,1,.3,1)}
+.fr:hover .im::before{opacity:.42}
+.fr[aria-selected="true"] .im::before{opacity:0}
+.fr img{width:100%;height:100%;object-fit:cover;
+  filter:saturate(.25) contrast(1.02);transform:scale(1.01);
+  transition:filter .6s cubic-bezier(.16,1,.3,1),transform 6s linear}
+.fr .im::after{content:"";position:absolute;inset:0;z-index:2;
   background:linear-gradient(to top,rgba(26,39,51,.82) 0%,rgba(26,39,51,.25) 46%,rgba(26,39,51,0) 78%)}
-.fr .lb{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:.6rem .7rem;
+.fr .lb{position:absolute;left:0;right:0;bottom:0;z-index:3;padding:.6rem .7rem;
   display:flex;gap:.5rem;align-items:baseline;flex-wrap:wrap;
   font-size:.57rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
-  color:rgba(245,241,234,.8);transition:color .4s}
+  color:rgba(245,241,234,.45);transition:color .4s}
 .fr .lb i{font-family:var(--serif);font-style:italic;letter-spacing:0;text-transform:none;
-  font-size:.8rem;color:rgba(220,229,236,.85);transition:color .4s}
-.fr::after{content:"";position:absolute;left:0;right:0;top:-1px;height:2px;z-index:3;
+  font-size:.8rem;color:rgba(220,229,236,.5);transition:color .4s}
+.fr::after{content:"";position:absolute;left:0;right:0;top:-2px;height:3px;z-index:4;
   background:var(--cream);transform:scaleX(0);transform-origin:left center;
   transition:transform .6s cubic-bezier(.16,1,.3,1)}
 .fr[aria-selected="true"]::after{transform:scaleX(1)}
-.fr[aria-selected="true"] img{opacity:1;transform:scale(1.07)}
+.fr[aria-selected="true"] img{filter:saturate(1) contrast(1.05) brightness(1);transform:scale(1.07)}
+.fr[aria-selected="true"] .im{box-shadow:inset 0 0 0 1px rgba(245,241,234,.55)}
 .fr[aria-selected="true"] .lb{color:var(--cream)}
 .fr[aria-selected="true"] .lb i{color:var(--cream)}
-.fr:hover img{opacity:.85}
+.fr:hover img{filter:saturate(.65) contrast(1.02)}
 /* On a phone the hero must still show the ask. The timetable is the first
    thing to go: section N° 03 carries the same day in full. */
 @media (max-width:760px){.hday{display:none}}
@@ -175,7 +181,7 @@ a{color:inherit} strong{font-weight:600;color:var(--cream)}
   .fr .lb{font-size:.55rem;letter-spacing:.16em}
 }
 @media (prefers-reduced-motion:reduce){
-  .fr img{transition:opacity .2s linear;transform:none}
+  .fr img{transition:filter .2s linear;transform:none}
   .fr[aria-selected="true"] img{transform:none}
   .hcopy{transition:none}
 }
