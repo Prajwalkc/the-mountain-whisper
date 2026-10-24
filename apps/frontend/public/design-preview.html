@@ -117,6 +117,8 @@ a{color:inherit} strong{font-weight:600;color:var(--cream)}
 .btn.ghost:hover{background:var(--cream);color:var(--ink);border-color:var(--cream)}
 .btn.light{background:var(--cream);color:var(--blue-deep);border-color:var(--cream)}
 .price{font-family:var(--serif);font-style:italic;font-size:clamp(.98rem,1.22vw,1.18rem);color:var(--soft)}
+.trust{margin-top:clamp(1.1rem,2vw,1.6rem);padding-top:clamp(.9rem,1.6vw,1.2rem);
+  border-top:1px solid var(--line);max-width:40ch;font-size:.8rem;line-height:1.7;color:var(--softer)}
 .hero .pic{min-width:0}
 .hero .pic .shot{aspect-ratio:4/5}
 
@@ -125,9 +127,9 @@ a{color:inherit} strong{font-weight:600;color:var(--cream)}
    surface rather than as changing pictures. */
 .slides{position:absolute;inset:0}
 .slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;
-  filter:var(--grade);opacity:0;transform:scale(1.015);
-  transition:opacity 1.5s cubic-bezier(.4,0,.2,1),transform 7s linear}
-.slide.on{opacity:1;transform:scale(1.07)}
+  filter:var(--grade);opacity:0;transform:scale(1.02);
+  transition:opacity .9s cubic-bezier(.4,0,.2,1),transform 3.8s linear}
+.slide.on{opacity:1;transform:scale(1.09)}
 @media (prefers-reduced-motion:reduce){
   .slide{transition:opacity .35s linear;transform:none}
   .slide.on{transform:none}
@@ -381,16 +383,18 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
 
 <header class="hero pad" id="top"><div class="grid wrap">
   <div class="txt">
-    <div class="kicker rv"><span class="r"></span><span class="t">Pokhara, Nepal</span></div>
-    <h1 class="rv">Some offices<em>have a view.</em></h1>
-    <p class="lede rv d1">Live and work from the Himalayas. We arrange the stay, the workspace, the SIM,
-      the visa help, the airport welcome and a licensed guide — you choose the kind of life you want
-      around it.</p>
+    <div class="kicker rv"><span class="r"></span><span class="t">Pokhara and the hill villages · Nepal</span></div>
+    <h1 class="rv">Same work.<em>Different life.</em></h1>
+    <p class="lede rv d1">One, three or five months in the Himalayas. A private room on internet we
+      test ourselves, a desk that is yours, your visa handled, and a licensed guide for the weekends.
+      You bring the laptop.</p>
     <div class="actions rv d2">
       <a class="btn" href="#enquire">Enquire</a>
       <a class="btn ghost" href="#editions">See the editions</a>
       <span class="price">from $1,490 a month</span>
     </div>
+    <p class="trust rv d2">A registered Nepali travel agency. Every enquiry answered by a person,
+      usually within a day.</p>
   </div>
   <figure class="pic rv d1">
     <div class="shot" id="carousel" aria-roledescription="carousel" aria-label="Scenes from a Mountain Whisper stay">
@@ -513,8 +517,8 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
 <section class="ch band pad"><div class="wrap">
   <div class="head">
     <p class="chapter rv">N° 03</p>
-    <div class="kicker rv"><span class="r"></span><span class="t">A day, either way</span></div>
-    <h2 class="rv d1">Same work.<em>Different life.</em></h2>
+    <div class="kicker rv"><span class="r"></span><span class="t">First light to lamplight</span></div>
+    <h2 class="rv d1">A day,<em>either way.</em></h2>
   </div>
   <div class="tabs rv" role="tablist" aria-label="Choose a day">
     <button class="tab" id="tab-city" role="tab" aria-selected="true" aria-controls="day-city" type="button">Lake Edition</button>
@@ -813,7 +817,7 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
     if(slides.length<2){ if(dotsBox) dotsBox.remove(); return; }
     var i=0, timer=null, paused=false;
     var still=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var HOLD=5200;
+    var HOLD=2800;
 
     var dots=slides.map(function(s,k){
       var b=document.createElement('button');
@@ -842,8 +846,8 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
     function stop(){ if(timer){ clearInterval(timer); timer=null; } }
     function restart(){ stop(); start(); }
 
-    root.addEventListener('mouseenter',function(){ paused=true; stop(); });
-    root.addEventListener('mouseleave',function(){ paused=false; start(); });
+    /* deliberately no hover pause: the cursor lands on the hero exactly when
+       someone is watching it, and stopping then looks like it is broken */
     root.addEventListener('focusin',function(){ paused=true; stop(); });
     root.addEventListener('focusout',function(){ paused=false; start(); });
     document.addEventListener('visibilitychange',function(){
