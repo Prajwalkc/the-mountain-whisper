@@ -262,11 +262,14 @@ a{color:inherit} strong{font-weight:600;color:var(--cream)}
 .sublab{font-size:var(--label);font-weight:500;letter-spacing:.3em;text-transform:uppercase;
   color:var(--mist);padding-bottom:var(--s2);border-bottom:1px solid var(--line)}
 .steps-n{list-style:none;counter-reset:n;margin-top:var(--s2)}
-.steps-n li{counter-increment:n;display:grid;grid-template-columns:2.2rem 1fr;gap:var(--s2);
-  align-items:baseline;padding-block:var(--s2);border-bottom:1px solid var(--line);
-  font-size:var(--body);line-height:1.7;color:var(--soft)}
+/* The li is a grid, so its children are grid items. Leaving <b> and the text
+   after it as siblings put the text in the counter column, one word per line. */
+.steps-n li{counter-increment:n;display:grid;grid-template-columns:2.2rem minmax(0,1fr);
+  gap:var(--s2);align-items:baseline;padding-block:var(--s2);
+  border-bottom:1px solid var(--line)}
 .steps-n li::before{content:counter(n);font-family:var(--serif);font-style:italic;
-  font-size:1.15rem;color:var(--mist)}
+  font-size:1.15rem;color:var(--mist);line-height:1.5}
+.steps-n li > span{min-width:0;font-size:var(--body);line-height:1.7;color:var(--soft)}
 .steps-n b{font-weight:600;color:var(--cream)}
 .arrive{margin-top:var(--s4);font-family:var(--serif);font-style:italic;
   font-size:clamp(1.05rem,1.5vw,1.35rem);color:var(--mist)}
@@ -782,18 +785,18 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
 
 <section class="ch band pad"><div class="wrap">
   <div class="head">
-    <div class="kicker rv"><span class="r"></span><span class="t">From enquiry to arrival</span></div>
+    <div class="kicker rv"><span class="r"></span><span class="t">Enquiry to arrival</span></div>
     <h2 class="rv d1">How it works.</h2>
   </div>
   <div class="two-col">
     <div>
       <p class="sublab rv">Before you come</p>
       <ol class="steps-n">
-        <li class="rv"><b>Tell us about you.</b> When you would like to come, how long, and what work you do.</li>
-        <li class="rv"><b>A quick video call.</b> Fifteen minutes to answer your questions and check what your work needs.</li>
-        <li class="rv d1"><b>Your plan and quote.</b> Dates, room, workspace, what is included, the price and the cancellation terms — in writing.</li>
-        <li class="rv d1"><b>Secure your dates.</b> A deposit by card through Stripe.</li>
-        <li class="rv d2"><b>We prepare everything.</b> Room, workspace, SIM, visa guidance, pickup, trek dates.</li>
+        <li class="rv"><span><b>Tell us about you.</b> When you would like to come, how long, and what work you do.</span></li>
+        <li class="rv"><span><b>A quick video call.</b> Fifteen minutes to answer your questions and check what your work needs.</span></li>
+        <li class="rv d1"><span><b>Your plan and quote.</b> Dates, room, workspace, what is included, the price and the cancellation terms — in writing.</span></li>
+        <li class="rv d1"><span><b>Secure your dates.</b> A deposit by card through Stripe.</span></li>
+        <li class="rv d2"><span><b>We prepare everything.</b> Room, workspace, SIM, visa guidance, pickup, trek dates.</span></li>
       </ol>
       <p class="note rv d2">Suggested terms, to be confirmed: 25% deposit to hold your dates, balance due 30 days
         before arrival, deposit refundable up to 60 days before minus anything already paid to partners.</p>
@@ -801,11 +804,11 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
     <div>
       <p class="sublab rv">Your first 24 hours</p>
       <ol class="steps-n">
-        <li class="rv"><b>We meet you at arrivals</b> in Kathmandu.</li>
-        <li class="rv"><b>Your SIM is set up</b> on the spot.</li>
-        <li class="rv d1"><b>Transfer to Pokhara</b>, or on to your village.</li>
-        <li class="rv d1"><b>Check in</b> to your room.</li>
-        <li class="rv d2"><b>Welcome dinner</b>, and you meet the team.</li>
+        <li class="rv"><span><b>We meet you at arrivals</b> in Kathmandu.</span></li>
+        <li class="rv"><span><b>Your SIM is set up</b> on the spot.</span></li>
+        <li class="rv d1"><span><b>Transfer to Pokhara</b>, or on to your village.</span></li>
+        <li class="rv d1"><span><b>Check in</b> to your room.</span></li>
+        <li class="rv d2"><span><b>Welcome dinner</b>, and you meet the team.</span></li>
       </ol>
       <p class="arrive rv d2">From the airport to your desk. We have got you.</p>
     </div>
