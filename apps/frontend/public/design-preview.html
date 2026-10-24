@@ -119,9 +119,29 @@ a{color:inherit} strong{font-weight:600;color:var(--cream)}
 .price{font-family:var(--serif);font-style:italic;font-size:clamp(.98rem,1.22vw,1.18rem);color:var(--soft)}
 .hero .pic{min-width:0}
 .hero .pic .shot{aspect-ratio:4/5}
-.hero .pic .shot img{object-position:center}
+
+/* Hero carousel: slow crossfades with a drift, the pace the films move at.
+   Every frame sits under the same brand wash, so the sequence reads as one
+   surface rather than as changing pictures. */
+.slides{position:absolute;inset:0}
+.slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;
+  filter:var(--grade);opacity:0;transform:scale(1.015);
+  transition:opacity 1.5s cubic-bezier(.4,0,.2,1),transform 7s linear}
+.slide.on{opacity:1;transform:scale(1.07)}
+@media (prefers-reduced-motion:reduce){
+  .slide{transition:opacity .35s linear;transform:none}
+  .slide.on{transform:none}
+}
+.dots{position:absolute;left:0;right:0;bottom:clamp(.9rem,2vw,1.4rem);z-index:5;
+  display:flex;justify-content:center;gap:.5rem}
+.dot{width:26px;height:2px;border:0;padding:0;cursor:pointer;background:rgba(245,241,234,.35);
+  transition:background .4s}
+.dot[aria-selected="true"]{background:var(--cream)}
+.dot:hover{background:rgba(245,241,234,.7)}
 .hero .pic figcaption{margin-top:.65rem;font-size:.64rem;font-weight:500;letter-spacing:.2em;
-  text-transform:uppercase;color:var(--softer)}
+  text-transform:uppercase;color:var(--softer);min-height:1.4em;
+  transition:opacity .5s ease}
+.hero .pic figcaption.fade{opacity:0}
 
 /* sections — blue is the contrast band inside the ink */
 .ch{padding-block:clamp(3.2rem,8vw,6.5rem)}
@@ -373,13 +393,33 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
     </div>
   </div>
   <figure class="pic rv d1">
-    <div class="shot">
-      <img src="img/hero-ridge.jpg" alt="A small wooden hut on a ridge facing the Annapurna snow peaks, prayer-flag poles along the path"
-           srcset="img/hero-ridge-600.jpg 600w, img/hero-ridge.jpg 1200w"
-           sizes="(min-width:940px) 48vw, 100vw" fetchpriority="high">
+    <div class="shot" id="carousel" aria-roledescription="carousel" aria-label="Scenes from a Mountain Whisper stay">
+      <div class="slides">
+        <img class="slide on" src="img/hero-ridge.jpg" srcset="img/hero-ridge-600.jpg 600w, img/hero-ridge.jpg 1200w"
+             sizes="(min-width:940px) 48vw, 100vw" fetchpriority="high"
+             data-cap="A hut on the ridge, facing the Annapurnas"
+             alt="A small wooden hut on a ridge facing the Annapurna snow peaks">
+        <img class="slide" src="img/hero-window.jpg" srcset="img/hero-window-600.jpg 600w, img/hero-window.jpg 1200w"
+             sizes="(min-width:940px) 48vw, 100vw" loading="lazy"
+             data-cap="Coffee, and the peaks through the window"
+             alt="A desk by a window with coffee and flowers, snow peaks outside">
+        <img class="slide" src="img/hero-dawn.jpg" srcset="img/hero-dawn-600.jpg 600w, img/hero-dawn.jpg 1200w"
+             sizes="(min-width:940px) 48vw, 100vw" loading="lazy"
+             data-cap="First light on the Himalaya"
+             alt="A snow peak catching the first light above dark forested hills">
+        <img class="slide" src="img/hero-fly.jpg" srcset="img/hero-fly-600.jpg 600w, img/hero-fly.jpg 1200w"
+             sizes="(min-width:940px) 48vw, 100vw" loading="lazy"
+             data-cap="Above the Pokhara valley"
+             alt="A paraglider over the Pokhara valley seen from the launch">
+        <img class="slide" src="img/hero-lake.jpg" srcset="img/hero-lake-600.jpg 600w, img/hero-lake.jpg 1200w"
+             sizes="(min-width:940px) 48vw, 100vw" loading="lazy"
+             data-cap="Phewa Lake, end of the day"
+             alt="Painted wooden boats on Phewa Lake at sunset">
+      </div>
       <span class="grain"></span>
+      <div class="dots" role="tablist" aria-label="Choose a scene"></div>
     </div>
-    <figcaption>A hut on the ridge, facing the Annapurnas</figcaption>
+    <figcaption id="cap">A hut on the ridge, facing the Annapurnas</figcaption>
   </figure>
 </div></header>
 
@@ -763,6 +803,60 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
     },{threshold:.12,rootMargin:'0px 0px -5% 0px'});
     els.forEach(function(e){ io.observe(e); });
   } else { els.forEach(function(e){ e.classList.add('in'); }); }
+
+  /* hero carousel */
+  (function(){
+    var root=document.getElementById('carousel');
+    if(!root) return;
+    var slides=[].slice.call(root.querySelectorAll('.slide'));
+    var dotsBox=root.querySelector('.dots'), cap=document.getElementById('cap');
+    if(slides.length<2){ if(dotsBox) dotsBox.remove(); return; }
+    var i=0, timer=null, paused=false;
+    var still=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var HOLD=5200;
+
+    var dots=slides.map(function(s,k){
+      var b=document.createElement('button');
+      b.className='dot'; b.type='button'; b.setAttribute('role','tab');
+      b.setAttribute('aria-label','Scene '+(k+1)+': '+(s.dataset.cap||''));
+      b.setAttribute('aria-selected', k===0?'true':'false');
+      b.addEventListener('click',function(){ show(k); restart(); });
+      dotsBox.appendChild(b);
+      return b;
+    });
+
+    function show(n){
+      if(n===i) return;
+      slides[i].classList.remove('on');
+      dots[i].setAttribute('aria-selected','false');
+      i=n;
+      slides[i].classList.add('on');
+      dots[i].setAttribute('aria-selected','true');
+      if(cap){
+        cap.classList.add('fade');
+        setTimeout(function(){ cap.textContent=slides[i].dataset.cap||''; cap.classList.remove('fade'); },450);
+      }
+    }
+    function next(){ show((i+1)%slides.length); }
+    function start(){ if(still||paused||timer) return; timer=setInterval(next,HOLD); }
+    function stop(){ if(timer){ clearInterval(timer); timer=null; } }
+    function restart(){ stop(); start(); }
+
+    root.addEventListener('mouseenter',function(){ paused=true; stop(); });
+    root.addEventListener('mouseleave',function(){ paused=false; start(); });
+    root.addEventListener('focusin',function(){ paused=true; stop(); });
+    root.addEventListener('focusout',function(){ paused=false; start(); });
+    document.addEventListener('visibilitychange',function(){
+      if(document.hidden){ stop(); } else if(!paused){ start(); }
+    });
+    dotsBox.addEventListener('keydown',function(e){
+      if(e.key!=='ArrowRight'&&e.key!=='ArrowLeft') return;
+      e.preventDefault();
+      var n=(i+(e.key==='ArrowRight'?1:slides.length-1))%slides.length;
+      show(n); dots[n].focus(); restart();
+    });
+    start();
+  })();
 
   var tabs=[document.getElementById('tab-city'),document.getElementById('tab-village')];
   var panels=[document.getElementById('day-city'),document.getElementById('day-village')];
