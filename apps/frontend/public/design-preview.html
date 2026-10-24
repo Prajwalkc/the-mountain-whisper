@@ -33,7 +33,7 @@
   --h2:clamp(1.8rem,3.8vw,3.2rem);
   --h3:clamp(1.25rem,2.1vw,1.9rem);
   --li-t:clamp(1.08rem,1.85vw,1.65rem);
-  --label:clamp(.64rem,.77vw,.73rem);
+  --label:clamp(.72rem,.8vw,.78rem);
   --body:clamp(.86rem,.96vw,.94rem);
 
   --gut:clamp(1.25rem,5vw,5rem);
@@ -77,12 +77,12 @@ a{color:inherit} strong{font-weight:600;color:var(--cream)}
 .bar .id span{font-size:var(--label);font-weight:600;letter-spacing:.26em;text-transform:uppercase;
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .bar nav{display:flex;align-items:center;gap:clamp(1rem,2.2vw,1.9rem);margin-left:auto}
-.bar nav a{font-size:.66rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;
+.bar nav a{font-size:.74rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;
   text-decoration:none;color:var(--soft);white-space:nowrap;transition:color .3s}
 .bar nav a:hover{color:var(--cream)}
 @media (max-width:900px){.bar nav{display:none}.bar .go{margin-left:auto}}
-.bar .go{flex:none;padding:.62rem 1.3rem;background:var(--blue);color:var(--cream);
-  border:1px solid var(--blue);text-decoration:none;font-size:.62rem;font-weight:600;
+.bar .go{flex:none;padding:.66rem 1.35rem;background:var(--blue);color:var(--cream);
+  border:1px solid var(--blue);text-decoration:none;font-size:.72rem;font-weight:600;
   letter-spacing:.22em;text-transform:uppercase;transition:background .3s}
 .bar .go:hover{background:var(--blue-mid)}
 
@@ -113,7 +113,7 @@ a{color:inherit} strong{font-weight:600;color:var(--cream)}
 
 .rail{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;
   padding-bottom:clamp(.8rem,1.6vw,1.1rem);border-bottom:1px solid var(--line);
-  font-size:.62rem;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:var(--softer)}
+  font-size:.72rem;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:var(--softer)}
 .rail .mid{display:none}
 @media (min-width:720px){.rail .mid{display:inline}}
 .rail .num{font-family:var(--serif);font-style:italic;letter-spacing:0;
@@ -132,7 +132,7 @@ a{color:inherit} strong{font-weight:600;color:var(--cream)}
 
 /* the day, as a timetable — the most particular thing this business owns */
 .hday{min-width:0;padding-top:clamp(.2rem,1vw,2.4rem)}
-.dlab{font-size:.6rem;font-weight:500;letter-spacing:.3em;text-transform:uppercase;
+.dlab{font-size:.72rem;font-weight:500;letter-spacing:.3em;text-transform:uppercase;
   color:var(--softer);padding-bottom:.7rem;border-bottom:1px solid var(--line)}
 .hday dl{display:grid}
 .hday dl > div{display:grid;grid-template-columns:4.6rem 1fr;gap:1rem;align-items:baseline;
@@ -158,12 +158,12 @@ a{color:inherit} strong{font-weight:600;color:var(--cream)}
   transition:filter .6s cubic-bezier(.16,1,.3,1),transform 6s linear}
 .fr .im::after{content:"";position:absolute;inset:0;z-index:2;
   background:linear-gradient(to top,rgba(26,39,51,.82) 0%,rgba(26,39,51,.25) 46%,rgba(26,39,51,0) 78%)}
-.fr .lb{position:absolute;left:0;right:0;bottom:0;z-index:3;padding:.6rem .7rem;
+.fr .lb{position:absolute;left:0;right:0;bottom:0;z-index:3;padding:.65rem .75rem;
   display:flex;gap:.5rem;align-items:baseline;flex-wrap:wrap;
-  font-size:.57rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
+  font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
   color:rgba(245,241,234,.45);transition:color .4s}
 .fr .lb i{font-family:var(--serif);font-style:italic;letter-spacing:0;text-transform:none;
-  font-size:.8rem;color:rgba(220,229,236,.5);transition:color .4s}
+  font-size:.88rem;color:rgba(220,229,236,.5);transition:color .4s}
 .fr::after{content:"";position:absolute;left:0;right:0;top:-2px;height:3px;z-index:4;
   background:var(--cream);transform:scaleX(0);transform-origin:left center;
   transition:transform .6s cubic-bezier(.16,1,.3,1)}
@@ -178,7 +178,7 @@ a{color:inherit} strong{font-weight:600;color:var(--cream)}
 @media (max-width:760px){.hday{display:none}}
 @media (max-width:620px){
   .strip{grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem}
-  .fr .lb{font-size:.55rem;letter-spacing:.16em}
+  .fr .lb{font-size:.68rem;letter-spacing:.14em}
 }
 @media (prefers-reduced-motion:reduce){
   .fr img{transition:filter .2s linear;transform:none}
@@ -197,7 +197,7 @@ a{color:inherit} strong{font-weight:600;color:var(--cream)}
 .btn.ghost-btn:hover{background:var(--cream);color:var(--ink);border-color:var(--cream)}
 .btn.light{background:var(--cream);color:var(--blue-deep);border-color:var(--cream)}
 .price{font-family:var(--serif);font-style:italic;font-size:clamp(.98rem,1.22vw,1.18rem);color:var(--soft)}
-.trust{margin-top:clamp(.8rem,1.4vw,1.1rem);max-width:58ch;font-size:.78rem;
+.trust{margin-top:clamp(.8rem,1.4vw,1.1rem);max-width:58ch;font-size:.85rem;
   line-height:1.65;color:var(--softer)}
 
 /* sections — blue is the contrast band inside the ink */
@@ -224,22 +224,22 @@ a{color:inherit} strong{font-weight:600;color:var(--cream)}
   font-size:var(--body);line-height:1.6;color:var(--soft)}
 .edc li::before{content:"";width:12px;height:1px;background:var(--mist);opacity:.8;transform:translateY(-.35em)}
 .edc .meta{margin-top:auto;padding-top:1rem;border-top:1px solid var(--line);
-  font-size:.64rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--mist)}
+  font-size:.74rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--mist)}
 
 .more{margin-top:clamp(1.2rem,2.6vw,2rem);display:grid;gap:1px;background:var(--line);
   border:1px solid var(--line);grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr))}
 .mi{background:var(--ink);padding:clamp(1.2rem,2.2vw,1.7rem);min-width:0}
 .ch.band .mi{background:var(--ink-2)}
-.mi .st{font-size:.58rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
+.mi .st{font-size:.72rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
   color:var(--softer);margin-bottom:.6rem}
 .mi h4{font-family:var(--serif);font-weight:500;font-size:clamp(1.08rem,1.5vw,1.35rem);line-height:1.2}
 .mi p{margin-top:.5rem;font-size:.85rem;line-height:1.65;color:var(--soft)}
-.mi .ln{margin-top:.8rem;font-size:.6rem;font-weight:600;letter-spacing:.2em;
+.mi .ln{margin-top:.8rem;font-size:.73rem;font-weight:600;letter-spacing:.2em;
   text-transform:uppercase;color:var(--mist)}
 
 .addons{margin-top:clamp(1.2rem,2.6vw,2rem);display:flex;gap:.6rem;flex-wrap:wrap;align-items:center}
 .addons .lbl{font-size:var(--label);font-weight:500;letter-spacing:.26em;text-transform:uppercase;color:var(--softer)}
-.chip{border:1px solid var(--line-2);padding:.5rem 1rem;font-size:.68rem;font-weight:500;
+.chip{border:1px solid var(--line-2);padding:.55rem 1rem;font-size:.75rem;font-weight:500;
   letter-spacing:.14em;text-transform:uppercase;color:var(--cream)}
 
 .statement{margin-top:clamp(2rem,4.2vw,3.2rem);text-align:center}
@@ -280,14 +280,14 @@ a{color:inherit} strong{font-weight:600;color:var(--cream)}
   color:var(--mist);margin-bottom:.7rem}
 .card .a{font-family:var(--serif);font-size:clamp(1.05rem,1.42vw,1.3rem);line-height:1.3;margin-bottom:.65rem}
 .card p{font-size:var(--body);line-height:1.7;color:var(--soft)}
-.ph{margin-top:.85rem;border:1px dashed var(--line-2);padding:.75rem;font-size:.56rem;
+.ph{margin-top:.85rem;border:1px dashed var(--line-2);padding:.8rem;font-size:.7rem;
   font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--softer);text-align:center}
 
 .vpics{margin-top:clamp(1rem,2.1vw,1.5rem);display:grid;gap:clamp(1rem,2.1vw,1.5rem);
   grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr))}
 .vpic{min-width:0}
 .vpic .shot{aspect-ratio:9/13}
-.vpic figcaption{margin-top:.55rem;font-size:.6rem;font-weight:600;letter-spacing:.2em;
+.vpic figcaption{margin-top:.55rem;font-size:.72rem;font-weight:600;letter-spacing:.2em;
   text-transform:uppercase;color:var(--cream);opacity:.85}
 
 .steps{margin-top:clamp(1rem,2.1vw,1.5rem);display:grid;gap:clamp(1rem,2.1vw,1.5rem);
@@ -306,7 +306,7 @@ a{color:inherit} strong{font-weight:600;color:var(--cream)}
 .phone video{width:100%;height:100%;object-fit:cover}
 .phone figcaption{margin-top:.8rem;text-align:center}
 .phone figcaption .t{font-family:var(--serif);font-size:clamp(1rem,1.22vw,1.12rem)}
-.phone figcaption .s{margin-top:.22rem;font-size:.6rem;font-weight:600;letter-spacing:.22em;
+.phone figcaption .s{margin-top:.25rem;font-size:.72rem;font-weight:600;letter-spacing:.22em;
   text-transform:uppercase;color:var(--softer)}
 
 /* right in misty blue, wrong struck through in stone grey — brand rule 4 */
@@ -330,7 +330,7 @@ a{color:inherit} strong{font-weight:600;color:var(--cream)}
   text-transform:uppercase;color:var(--softer)}
 .len .r{width:46px;height:1px;background:var(--mist);opacity:.7;margin:1rem auto}
 .len .n{font-family:var(--serif);font-size:clamp(.9rem,1.06vw,1rem)}
-.len .ed-tag{margin-top:.6rem;font-size:.56rem;font-weight:600;letter-spacing:.2em;
+.len .ed-tag{margin-top:.65rem;font-size:.71rem;font-weight:600;letter-spacing:.2em;
   text-transform:uppercase;color:var(--softer)}
 .note{margin-top:clamp(1.5rem,2.9vw,2.2rem);padding-left:clamp(.9rem,1.4vw,1.2rem);
   border-left:1px solid var(--mist);max-width:58ch;font-size:var(--body);line-height:1.8;color:var(--soft)}
@@ -339,7 +339,7 @@ a{color:inherit} strong{font-weight:600;color:var(--cream)}
   grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr))}
 .person{background:var(--surface);border:1px solid var(--line);padding:clamp(1.3rem,2.2vw,1.9rem);min-width:0}
 .person .slot{aspect-ratio:1;max-width:140px;border:1px dashed var(--line-2);display:grid;
-  place-items:center;text-align:center;padding:1rem;font-size:.56rem;font-weight:600;
+  place-items:center;text-align:center;padding:1rem;font-size:.7rem;font-weight:600;
   letter-spacing:.18em;text-transform:uppercase;color:var(--softer);margin-bottom:1rem}
 .person .nm{font-family:var(--serif);font-size:var(--h3);line-height:1.2}
 .person .ro{margin-top:.25rem;font-size:var(--label);font-weight:500;letter-spacing:.26em;
@@ -368,17 +368,17 @@ a{color:inherit} strong{font-weight:600;color:var(--cream)}
   font-size:var(--body);transition:border-color .3s}
 .field textarea{resize:vertical;min-height:105px;line-height:1.6}
 .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--mist);outline:none}
-.field .hint{font-size:.72rem;color:var(--softer)}
+.field .hint{font-size:.78rem;color:var(--softer)}
 .two{display:grid;gap:1.05rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr))}
 .check{display:grid;grid-template-columns:auto 1fr;gap:.6rem;align-items:start;
   font-size:var(--body);line-height:1.6;color:var(--soft);cursor:pointer}
 .check input{width:1.05rem;height:1.05rem;margin-top:.2rem;accent-color:var(--blue-mid)}
-.err{font-size:.78rem;color:var(--mist);font-weight:600}
+.err{font-size:.82rem;color:var(--mist);font-weight:600}
 .sent{background:var(--surface);border:1px solid var(--mist);padding:clamp(1.4rem,2.4vw,2rem)}
 .sent p{margin-top:.65rem;font-size:var(--body);line-height:1.75;color:var(--soft)}
 .aside p{font-size:var(--body);line-height:1.8;color:var(--soft);max-width:44ch}
 .aside .direct{margin-top:1.4rem;padding-top:1.1rem;border-top:1px solid var(--line);display:grid;gap:.75rem}
-.aside .direct .k{font-size:.61rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--mist)}
+.aside .direct .k{font-size:.73rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--mist)}
 .aside .direct .v{font-family:var(--serif);font-size:clamp(1rem,1.22vw,1.15rem);
   user-select:all;-webkit-user-select:all;word-break:break-word}
 
@@ -415,7 +415,7 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
 .fcol .mk svg{width:27px;height:auto;stroke:var(--cream);flex:none}
 .fcol .mk span{font-size:var(--label);font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--cream)}
 .fcol .blurb{font-size:var(--body);line-height:1.8;max-width:34ch}
-.fcol h5{font-size:.6rem;font-weight:600;letter-spacing:.26em;text-transform:uppercase;
+.fcol h5{font-size:.73rem;font-weight:600;letter-spacing:.26em;text-transform:uppercase;
   color:var(--softer);margin-bottom:.95rem}
 .fcol ul{list-style:none;display:grid;gap:.6rem}
 .fcol li a,.fcol li span{font-size:var(--body);text-decoration:none;line-height:1.5;transition:color .3s}
@@ -424,8 +424,8 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
 .fbot{margin-top:clamp(2.1rem,4.2vw,3rem);padding-top:1.3rem;border-top:1px solid var(--line);
   display:grid;gap:.75rem}
 .fbot .row{display:flex;justify-content:space-between;gap:.75rem;flex-wrap:wrap;
-  font-size:.62rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--softer)}
-.fbot .cr{font-size:.65rem;line-height:1.75;color:rgba(245,241,234,.42);max-width:86ch}
+  font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--softer)}
+.fbot .cr{font-size:.75rem;line-height:1.75;color:rgba(245,241,234,.42);max-width:86ch}
 </style>
 
 <div class="bar pad" id="bar"><div class="in wrap">
@@ -490,7 +490,7 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
   <div class="head">
     <p class="chapter rv">N° 01</p>
     <div class="kicker rv"><span class="r"></span><span class="t">One promise, a few ways to live it</span></div>
-    <h2 class="rv d1">Choose<em>your edition.</em></h2>
+    <h2 class="rv d1">Choose your edition.</h2>
   </div>
 
   <div class="core">
@@ -542,7 +542,7 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
   <div class="head">
     <p class="chapter rv">N° 02</p>
     <div class="kicker rv"><span class="r"></span><span class="t">Every edition includes</span></div>
-    <h2 class="rv d1">You bring the laptop.<em>We arrange everything else.</em></h2>
+    <h2 class="rv d1">You bring the laptop. We arrange everything else.</h2>
   </div>
   <div class="list">
     <div class="li rv"><span class="n">01</span><div class="b"><p class="t">Private room, fibre wifi</p>
@@ -577,7 +577,7 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
   <div class="head">
     <p class="chapter rv">N° 03</p>
     <div class="kicker rv"><span class="r"></span><span class="t">First light to lamplight</span></div>
-    <h2 class="rv d1">A day,<em>either way.</em></h2>
+    <h2 class="rv d1">A day, either way.</h2>
   </div>
   <div class="tabs rv" role="tablist" aria-label="Choose a day">
     <button class="tab" id="tab-city" role="tab" aria-selected="true" aria-controls="day-city" type="button">Lake Edition</button>
@@ -636,7 +636,7 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
   <div class="head">
     <p class="chapter rv">N° 05</p>
     <div class="kicker rv"><span class="r"></span><span class="t">Honest answers</span></div>
-    <h2 class="rv d1">Yes, the wifi works.<em>Here is the proof.</em></h2>
+    <h2 class="rv d1">Yes, the wifi works. Here is the proof.</h2>
   </div>
   <div class="cards">
     <div class="card rv"><p class="q">How we test it</p><p class="a">Speed tests, morning and evening</p>
@@ -656,7 +656,7 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
   <div class="head">
     <p class="chapter rv">N° 06</p>
     <div class="kicker rv"><span class="r"></span><span class="t">See it for yourself</span></div>
-    <h2 class="rv d1">We film it<em>as it is.</em></h2>
+    <h2 class="rv d1">We film it as it is.</h2>
   </div>
   <div class="films">
     <figure class="phone rv"><div class="screen">
@@ -676,7 +676,7 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
   <div class="head">
     <p class="chapter rv">N° 07</p>
     <div class="kicker rv"><span class="r"></span><span class="t">Honestly</span></div>
-    <h2 class="rv d1">Is it<em>for you?</em></h2>
+    <h2 class="rv d1">Is it for you?</h2>
   </div>
   <div class="fit">
     <div class="col yes rv"><h4>It's for you if</h4><ul>
@@ -692,7 +692,7 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
   <div class="head">
     <p class="chapter rv">N° 08</p>
     <div class="kicker rv"><span class="r"></span><span class="t">How long you stay</span></div>
-    <h2 class="rv d1">One season,<em>or most of a year.</em></h2>
+    <h2 class="rv d1">One season, or most of a year.</h2>
   </div>
   <div class="lengths">
     <div class="len rv"><p class="num">1</p><p class="u">Month</p><span class="r"></span>
@@ -711,7 +711,7 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
   <div class="head">
     <p class="chapter rv">N° 09</p>
     <div class="kicker rv"><span class="r"></span><span class="t">Who you'll meet</span></div>
-    <h2 class="rv d1">People, not<em>a booking system.</em></h2>
+    <h2 class="rv d1">People, not a booking system.</h2>
   </div>
   <div class="people">
     <div class="person rv"><div class="slot">Founder portrait<br>to add</div>
@@ -731,7 +731,7 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
   <div class="head">
     <p class="chapter rv">N° 10</p>
     <div class="kicker rv"><span class="r"></span><span class="t">Before you ask</span></div>
-    <h2 class="rv d1">The questions<em>everybody asks.</em></h2>
+    <h2 class="rv d1">The questions everybody asks.</h2>
   </div>
   <div class="faq rv">
     <details><summary>Which edition should I pick?</summary>
@@ -786,7 +786,7 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
       <button class="btn" type="submit" style="justify-self:start">Send enquiry</button>
     </form>
     <div class="sent rv" id="sent" hidden>
-      <h3>Thank you.<em>We'll write back.</em></h3>
+      <h3>Thank you. We'll write back.</h3>
       <p>Prajwal answers enquiries himself, usually within a day. You'll get a real reply from a person —
         what's included, what it costs for your dates, and anything we can't promise yet. No deposit is
         taken until you've seen all of that in writing.</p>
