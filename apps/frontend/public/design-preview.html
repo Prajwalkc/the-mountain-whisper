@@ -126,7 +126,13 @@ a{color:inherit} strong{font-weight:600;color:var(--cream)}
 /* sections — blue is the contrast band inside the ink */
 .ch{padding-block:clamp(3.2rem,8vw,6.5rem)}
 .ch.band{background:var(--ink-2)}
-.ch.dark{background:linear-gradient(180deg,var(--blue-deep),var(--blue) 48%,var(--blue-deep))}
+/* same treatment for the Village Edition band: ink at both edges, blue in the body */
+.ch.dark{padding-block:clamp(4.2rem,9.5vw,7.5rem);
+  background:
+    linear-gradient(to bottom,
+      rgba(26,39,51,1) 0%, rgba(26,39,51,0) 20%,
+      rgba(26,39,51,0) 80%, rgba(26,39,51,1) 100%),
+    linear-gradient(180deg,var(--blue-deep),var(--blue) 50%,var(--blue-deep))}
 .head{max-width:21ch}
 
 .core{margin-top:clamp(2rem,4.2vw,3.2rem);display:grid;gap:clamp(1.2rem,2.6vw,2rem);
@@ -299,8 +305,16 @@ a{color:inherit} strong{font-weight:600;color:var(--cream)}
 .aside .direct .v{font-family:var(--serif);font-size:clamp(1rem,1.22vw,1.15rem);
   user-select:all;-webkit-user-select:all;word-break:break-word}
 
-.close{padding-block:clamp(3.6rem,8.5vw,6.5rem);text-align:center;color:var(--cream);
-  background:radial-gradient(circle at 50% 42%,var(--blue-mid) 0%,var(--blue) 45%,var(--blue-deep) 100%)}
+/* The end-card gradient, but fading out of the ink at the top and into the
+   footer at the bottom, so the band emerges from the page instead of being
+   dropped on it. The brand gradient still does the work in the middle. */
+.close{padding-block:clamp(4.5rem,10vw,8rem);text-align:center;color:var(--cream);
+  background:
+    linear-gradient(to bottom,
+      rgba(26,39,51,1) 0%, rgba(26,39,51,0) 26%,
+      rgba(21,30,39,0) 76%, rgba(21,30,39,1) 100%),
+    radial-gradient(circle at 50% 44%,
+      var(--blue-mid) 0%, var(--blue) 42%, var(--blue-deep) 78%, var(--ink) 100%)}
 .close .mark{width:clamp(78px,7.5vw,125px);margin:0 auto clamp(1.2rem,2.1vw,1.8rem)}
 .close .mark svg{width:100%;height:auto;stroke:var(--cream)}
 .close p{margin-top:.85rem;font-size:var(--body);line-height:1.8;color:var(--soft);
