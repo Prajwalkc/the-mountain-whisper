@@ -120,7 +120,10 @@ a{color:inherit} strong{font-weight:600;color:var(--cream)}
 .trust{margin-top:clamp(1.1rem,2vw,1.6rem);padding-top:clamp(.9rem,1.6vw,1.2rem);
   border-top:1px solid var(--line);max-width:40ch;font-size:.8rem;line-height:1.7;color:var(--softer)}
 .hero .pic{min-width:0}
-.hero .pic .shot{aspect-ratio:4/5}
+/* Landscape, and capped. At 4:5 this rendered 864px tall on a 1440px screen —
+   taller than the viewport. That aspect came from the 9:16 clips; a page wants
+   landscape. The cap stops it ballooning again on wide displays. */
+.hero .pic .shot{aspect-ratio:4/3;max-height:min(60vh,540px)}
 
 /* Hero carousel: slow crossfades with a drift, the pace the films move at.
    Every frame sits under the same brand wash, so the sequence reads as one
@@ -402,23 +405,23 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
   <figure class="pic rv d1">
     <div class="shot" id="carousel" aria-roledescription="carousel" aria-label="Scenes from a Mountain Whisper stay">
       <div class="slides">
-        <img class="slide on" src="img/hero-ridge.jpg" srcset="img/hero-ridge-600.jpg 600w, img/hero-ridge.jpg 1200w"
+        <img class="slide on" src="img/hero-ridge.jpg" srcset="img/hero-ridge-700.jpg 700w, img/hero-ridge.jpg 1400w"
              sizes="(min-width:940px) 48vw, 100vw" fetchpriority="high"
              data-cap="A hut on the ridge, facing the Annapurnas"
-             alt="A small wooden hut on a ridge facing the Annapurna snow peaks">
-        <img class="slide" src="img/hero-window.jpg" srcset="img/hero-window-600.jpg 600w, img/hero-window.jpg 1200w"
+             alt="A wooden hut on a ridge below the Annapurna snow peaks, prayer-flag poles along the path">
+        <img class="slide" src="img/hero-village.jpg" srcset="img/hero-village-700.jpg 700w, img/hero-village.jpg 1400w"
              sizes="(min-width:940px) 48vw, 100vw" loading="lazy"
-             data-cap="Coffee, and the peaks through the window"
-             alt="A desk by a window with coffee and flowers, snow peaks outside">
-        <img class="slide" src="img/hero-dawn.jpg" srcset="img/hero-dawn-600.jpg 600w, img/hero-dawn.jpg 1200w"
+             data-cap="A hill village under the clouds"
+             alt="A Nepali hill village of tiled roofs on a green ridge, cloud-wrapped peaks behind">
+        <img class="slide" src="img/hero-dawn.jpg" srcset="img/hero-dawn-700.jpg 700w, img/hero-dawn.jpg 1400w"
              sizes="(min-width:940px) 48vw, 100vw" loading="lazy"
              data-cap="First light on the Himalaya"
-             alt="A snow peak catching the first light above dark forested hills">
-        <img class="slide" src="img/hero-fly.jpg" srcset="img/hero-fly-600.jpg 600w, img/hero-fly.jpg 1200w"
+             alt="A snow peak catching first light above layered forested hills">
+        <img class="slide" src="img/hero-fly.jpg" srcset="img/hero-fly-700.jpg 700w, img/hero-fly.jpg 1400w"
              sizes="(min-width:940px) 48vw, 100vw" loading="lazy"
              data-cap="Above the Pokhara valley"
              alt="A paraglider over the Pokhara valley seen from the launch">
-        <img class="slide" src="img/hero-lake.jpg" srcset="img/hero-lake-600.jpg 600w, img/hero-lake.jpg 1200w"
+        <img class="slide" src="img/hero-lake.jpg" srcset="img/hero-lake-700.jpg 700w, img/hero-lake.jpg 1400w"
              sizes="(min-width:940px) 48vw, 100vw" loading="lazy"
              data-cap="Phewa Lake, end of the day"
              alt="Painted wooden boats on Phewa Lake at sunset">
@@ -794,8 +797,8 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
   </div>
   <div class="fbot">
     <div class="row"><span>© 2026 Mountain Whisper</span><span>Design preview — placeholder copy</span></div>
-    <p class="cr">Stills: Shital Khadgi, Bibek Adhikari Chhetri, shiva rijal, Anil Prasad Shrestha,
-      Ivan S / Pexels. Film excerpts: Sajal Niraula, Saugatt Bastakotii, SHVETS production, Shital Khadgi,
+    <p class="cr">Stills: Shital Khadgi, Niroz Shrestha, Sajal Niraula, Turgut Gül, Dilip Gautam,
+      Bibek Adhikari Chhetri, shiva rijal, Anil Prasad Shrestha, Ivan S / Pexels. Film excerpts: Sajal Niraula, Saugatt Bastakotii, SHVETS production, Shital Khadgi,
       TheHybriddesigner.np, Peter Smit, Tanita Lupa / Pexels. Used under the Pexels Licence, which does
       not require credit — we give it anyway. Imagery is atmospheric: it does not show a specific room,
       homestay or host family, and no one pictured is connected with Mountain Whisper.</p>
