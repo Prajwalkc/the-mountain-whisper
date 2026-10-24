@@ -1,0 +1,266 @@
+<title>Mountain Whisper Directions</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;1,400&family=Montserrat:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Work+Sans:wght@400;500;600&family=Spectral:ital,wght@0,400;0,500;1,400&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Three directions for the same page, switchable live.
+   Each changes palette, type pairing AND layout treatment — not just colour. */
+
+/* ===== A · DAYLIGHT — off-white, misty blue, airy and calm (default) ===== */
+:root{
+  --bg:#FAF7F2; --bg-2:#F1EBE1; --fg:#22303C; --fg-soft:#5A6B79;
+  --accent:#3E5C76; --accent-2:#B07D4F; --line:rgba(34,48,60,.16); --line-2:rgba(34,48,60,.3);
+  --on-accent:#FAF7F2;
+  --display:"Playfair Display",Georgia,serif; --body:"Montserrat",system-ui,sans-serif;
+  --disp-w:500; --disp-i:400; --track:-.015em;
+  --radius:0; color-scheme:light;
+}
+/* ===== B · CLAY & FLAG — sand, terracotta, prayer-flag marks, bolder blocks ===== */
+:root[data-dir="b"]{
+  --bg:#F4EADC; --bg-2:#E8D9C4; --fg:#2E2520; --fg-soft:#6B5A4C;
+  --accent:#C0553A; --accent-2:#2F6B6E; --line:rgba(46,37,32,.18); --line-2:rgba(46,37,32,.34);
+  --on-accent:#FBF3E8;
+  --display:"Fraunces",Georgia,serif; --body:"Work Sans",system-ui,sans-serif;
+  --disp-w:600; --disp-i:400; --track:-.02em;
+  --radius:0; color-scheme:light;
+}
+/* ===== C · FIRELIGHT — warm dark, amber and ember, centred and cinematic ===== */
+:root[data-dir="c"]{
+  --bg:#1B1613; --bg-2:#241D18; --fg:#F2E7DA; --fg-soft:#B6A392;
+  --accent:#D98324; --accent-2:#7E9A86; --line:rgba(242,231,218,.16); --line-2:rgba(242,231,218,.34);
+  --on-accent:#1B1613;
+  --display:"Spectral",Georgia,serif; --body:"Archivo",system-ui,sans-serif;
+  --disp-w:500; --disp-i:400; --track:-.012em;
+  --radius:0; color-scheme:dark;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-weight:400;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  transition:background .5s ease,color .5s ease}
+img{display:block;max-width:100%}
+h1,h2,h3{font-family:var(--display);font-weight:var(--disp-w);line-height:1.06;
+  letter-spacing:var(--track);text-wrap:balance}
+em{font-style:italic;font-weight:var(--disp-i);display:block}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+.pad{padding-left:max(1.25rem,env(safe-area-inset-left,0px));
+     padding-right:max(1.25rem,env(safe-area-inset-right,0px))}
+@media (min-width:900px){.pad{padding-left:max(4rem,env(safe-area-inset-left,0px));
+  padding-right:max(4rem,env(safe-area-inset-right,0px))}}
+.wrap{max-width:1380px;margin:0 auto;min-width:0}
+.label{font-size:.68rem;font-weight:600;letter-spacing:.28em;text-transform:uppercase}
+
+/* ---------- the switcher ---------- */
+.switch{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:var(--bg-2);
+  border-bottom:1px solid var(--line);transition:background .5s ease}
+.switch .in{display:flex;align-items:center;justify-content:space-between;
+  gap:1rem;flex-wrap:wrap;padding-block:.85rem}
+.switch .ttl{font-size:.68rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--fg-soft)}
+.opts{display:flex;gap:.4rem;flex-wrap:wrap}
+.opt{border:1px solid var(--line-2);background:none;color:var(--fg);cursor:pointer;
+  font-family:var(--body);font-size:.68rem;font-weight:600;letter-spacing:.18em;
+  text-transform:uppercase;padding:.6rem 1.1rem;transition:background .3s,color .3s,border-color .3s}
+.opt[aria-pressed="true"]{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+
+/* ---------- hero: layout differs per direction ---------- */
+.hero{padding-block:clamp(3rem,8vw,6.5rem)}
+.hero .grid{display:grid;gap:clamp(2rem,5vw,4.5rem);align-items:center;
+  grid-template-columns:1fr}
+@media (min-width:920px){.hero .grid{grid-template-columns:1.05fr .95fr}}
+.hero .eyebrow{color:var(--accent);margin-bottom:clamp(1rem,2vw,1.6rem)}
+.hero h1{font-size:clamp(2.5rem,6.2vw,5.2rem)}
+.hero .lede{margin-top:clamp(1.2rem,2.4vw,1.9rem);max-width:44ch;
+  font-size:clamp(.95rem,1.1vw,1.1rem);line-height:1.8;color:var(--fg-soft)}
+.hero .cta{margin-top:clamp(1.8rem,3.4vw,2.6rem);display:flex;gap:1.2rem;align-items:center;flex-wrap:wrap}
+.btn{display:inline-block;padding:1rem 2.2rem;background:var(--accent);color:var(--on-accent);
+  text-decoration:none;font-size:.68rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;
+  border:1px solid var(--accent);transition:filter .3s}
+.btn:hover{filter:brightness(1.12)}
+.btn.ghost{background:none;color:var(--fg);border-color:var(--line-2)}
+.price{font-family:var(--display);font-style:italic;font-size:1.1rem;color:var(--fg-soft)}
+.hero .pic{position:relative;min-width:0}
+.hero .pic img{width:100%;aspect-ratio:4/5;object-fit:cover}
+
+/* B: bolder — colour block behind the image, image bleeds */
+:root[data-dir="b"] .hero{background:var(--bg)}
+:root[data-dir="b"] .hero .pic::before{content:"";position:absolute;inset:auto -3% -4% 10%;
+  height:72%;background:var(--accent-2);z-index:0}
+:root[data-dir="b"] .hero .pic img{position:relative;z-index:1;aspect-ratio:3/4}
+:root[data-dir="b"] .flagbar{display:flex;height:6px;margin-bottom:clamp(1.4rem,2.4vw,2rem);max-width:230px}
+:root[data-dir="b"] .flagbar i{flex:1}
+.flagbar{display:none}
+
+/* C: cinematic — full-bleed image, centred type over it */
+:root[data-dir="c"] .hero{padding:0}
+:root[data-dir="c"] .hero .grid{grid-template-columns:1fr;gap:0;position:relative;
+  min-height:clamp(520px,78svh,800px)}
+:root[data-dir="c"] .hero .pic{position:absolute;inset:0;z-index:0}
+:root[data-dir="c"] .hero .pic img{width:100%;height:100%;aspect-ratio:auto;
+  filter:saturate(.8) contrast(1.06) brightness(.72) sepia(.14)}
+:root[data-dir="c"] .hero .pic::after{content:"";position:absolute;inset:0;
+  background:radial-gradient(ellipse 110% 85% at 50% 50%,rgba(27,22,19,.1),rgba(27,22,19,.86))}
+:root[data-dir="c"] .hero .txt{position:relative;z-index:2;text-align:center;
+  padding:clamp(4rem,10vh,7rem) 0;justify-self:center;max-width:44rem}
+:root[data-dir="c"] .hero .lede{margin-inline:auto}
+:root[data-dir="c"] .hero .cta{justify-content:center}
+
+/* ---------- editions ---------- */
+.sec{padding-block:clamp(3.2rem,8vw,6.5rem);border-top:1px solid var(--line)}
+.sec .eyebrow{color:var(--accent);margin-bottom:1rem}
+.sec h2{font-size:clamp(1.9rem,4.2vw,3.4rem);max-width:20ch}
+.eds{margin-top:clamp(2rem,4.4vw,3.4rem);display:grid;gap:clamp(1.4rem,3vw,2.4rem);
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr))}
+.ed{min-width:0;background:var(--bg-2);transition:background .5s ease}
+.ed img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.ed .in{padding:clamp(1.3rem,2.4vw,2rem)}
+.ed .k{color:var(--accent);margin-bottom:.6rem}
+.ed h3{font-size:clamp(1.3rem,2.2vw,1.9rem)}
+.ed p{margin-top:.8rem;font-size:.92rem;line-height:1.75;color:var(--fg-soft)}
+.ed .meta{margin-top:1.1rem;padding-top:.9rem;border-top:1px solid var(--line);
+  font-size:.68rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--fg-soft)}
+:root[data-dir="b"] .ed{background:none;border:1px solid var(--line-2)}
+:root[data-dir="c"] .ed{background:var(--bg-2)}
+
+/* ---------- included list ---------- */
+.inc{margin-top:clamp(2rem,4.4vw,3.4rem);display:grid;gap:0;
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr));
+  border-top:1px solid var(--line)}
+.inc .it{padding:clamp(1.2rem,2.2vw,1.8rem) 0;border-bottom:1px solid var(--line);
+  padding-right:clamp(1rem,2vw,2rem);min-width:0}
+.inc .n{font-family:var(--display);font-style:italic;font-size:1.5rem;color:var(--accent);
+  line-height:1;margin-bottom:.6rem}
+.inc h4{font-family:var(--display);font-weight:var(--disp-w);font-size:1.12rem;line-height:1.3}
+.inc p{margin-top:.5rem;font-size:.88rem;line-height:1.7;color:var(--fg-soft);max-width:38ch}
+
+/* ---------- closing band ---------- */
+.band{padding-block:clamp(3.4rem,8vw,6rem);background:var(--accent);color:var(--on-accent);
+  text-align:center;transition:background .5s ease}
+.band h2{font-size:clamp(1.8rem,4vw,3.2rem);max-width:none}
+.band p{margin-top:1rem;font-size:.98rem;line-height:1.8;opacity:.9;max-width:46ch;margin-inline:auto}
+.band .btn{margin-top:clamp(1.6rem,3vw,2.4rem);background:var(--on-accent);color:var(--accent);
+  border-color:var(--on-accent)}
+
+.foot{padding-block:2rem;border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+  font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--fg-soft)}
+
+.noteblk{padding-block:clamp(2rem,4vw,3rem);background:var(--bg-2);transition:background .5s ease}
+.noteblk p{font-size:.9rem;line-height:1.8;color:var(--fg-soft);max-width:70ch}
+.noteblk strong{color:var(--fg);font-weight:600}
+</style>
+
+<div class="switch pad">
+  <div class="in wrap">
+    <span class="ttl">Three directions · same page</span>
+    <div class="opts" role="group" aria-label="Design direction">
+      <button class="opt" type="button" data-set="a" aria-pressed="true">A · Daylight</button>
+      <button class="opt" type="button" data-set="b" aria-pressed="false">B · Clay &amp; Flag</button>
+      <button class="opt" type="button" data-set="c" aria-pressed="false">C · Firelight</button>
+    </div>
+  </div>
+</div>
+
+<div class="noteblk pad"><div class="wrap">
+  <p id="blurb"><strong>A · Daylight.</strong> Warm off-white, misty mountain blue, generous air.
+    Calm, premium and honest — the look your launch plan describes. Text left, photograph right.</p>
+</div></div>
+
+<header class="hero pad"><div class="grid wrap">
+  <div class="txt">
+    <div class="flagbar" aria-hidden="true">
+      <i style="background:#C0553A"></i><i style="background:#E0A33E"></i>
+      <i style="background:#5C8A5E"></i><i style="background:#2F6B6E"></i><i style="background:#8A5A8C"></i>
+    </div>
+    <p class="label eyebrow">Pokhara, Nepal</p>
+    <h1>Some offices<em>have a view.</em></h1>
+    <p class="lede">Live and work from the Himalayas — lakeside in Pokhara, or with a village family
+      in the hills. Room, desk, internet, visa and trek arranged end to end, before you land.</p>
+    <div class="cta">
+      <a class="btn" href="#enquire">Enquire</a>
+      <span class="price">from $1,490 a month</span>
+    </div>
+  </div>
+  <div class="pic"><img src="img/wide.jpg" alt="Himalayan peaks above Pokhara at first light"></div>
+</div></header>
+
+<section class="sec pad"><div class="wrap">
+  <p class="label eyebrow">Choosing your stay</p>
+  <h2>Village<em>or city?</em></h2>
+  <div class="eds">
+    <article class="ed">
+      <img src="img/cowork.jpg" alt="A desk and laptop by a window">
+      <div class="in">
+        <p class="label k">1, 3 or 5 months</p>
+        <h3>The city</h3>
+        <p>Lakeside in Pokhara. Cafés and coworking, everything close by, the Annapurnas next door.
+          Busier and louder — and easier if this is your first time in Nepal.</p>
+        <p class="meta">From $1,490 a month</p>
+      </div>
+    </article>
+    <article class="ed">
+      <img src="img/village-alley.jpg" alt="A stone village lane hung with prayer flags">
+      <div class="in">
+        <p class="label k">3 or 5 months</p>
+        <h3>The Village Edition</h3>
+        <p>A private room with a host family in the hills. Silence, space and deep focus, with tested
+          internet and a backup connection — and Pokhara breaks whenever you want the city.</p>
+        <p class="meta">Limited homestays · First group</p>
+      </div>
+    </article>
+  </div>
+</div></section>
+
+<section class="sec pad"><div class="wrap">
+  <p class="label eyebrow">The Mountain Whisper stay</p>
+  <h2>You bring the laptop.<em>We arrange everything else.</em></h2>
+  <div class="inc">
+    <div class="it"><p class="n">01</p><h4>Private room, fibre wifi</h4>
+      <p>A wired connection, tested for video calls before you arrive.</p></div>
+    <div class="it"><p class="n">02</p><h4>A desk that is yours</h4>
+      <p>A reserved coworking seat, so you are not working from the bed.</p></div>
+    <div class="it"><p class="n">03</p><h4>Local SIM on arrival</h4>
+      <p>Handed to you at pickup, and your backup when the power goes.</p></div>
+    <div class="it"><p class="n">04</p><h4>Visa assistance</h4>
+      <p>Paperwork prepared, and the extension walked through with you.</p></div>
+    <div class="it"><p class="n">05</p><h4>Airport welcome</h4>
+      <p>Met at Kathmandu, taken on to Pokhara.</p></div>
+    <div class="it"><p class="n">06</p><h4>A guided trek</h4>
+      <p>Poon Hill over a long weekend, permits included.</p></div>
+  </div>
+</div></section>
+
+<section class="band pad" id="enquire"><div class="wrap">
+  <h2>Tell us your month.<em>We'll do the rest.</em></h2>
+  <p>No deposit and no obligation. Prajwal answers enquiries himself, usually within a day.</p>
+  <a class="btn" href="#enquire">Start an enquiry</a>
+</div></section>
+
+<footer class="foot pad wrap">
+  <span>Mountain Whisper · Registered travel agency, Nepal</span>
+  <span>Direction preview — pick one and I'll build it out</span>
+</footer>
+
+<script>
+(function(){
+  var blurbs={
+    a:'<strong>A · Daylight.</strong> Warm off-white, misty mountain blue, generous air. Calm, premium and honest — the look your launch plan describes. Text left, photograph right.',
+    b:'<strong>B · Clay &amp; Flag.</strong> Sand and terracotta with a teal counterpoint and real prayer-flag colour. Warmer, more Nepali, more human — the village product leading. Bolder blocks, image overlapping a colour panel.',
+    c:'<strong>C · Firelight.</strong> Dark, but warm rather than steel — ember amber on near-black brown, lamplight instead of moonlight. Full-bleed photograph with centred type over it.'
+  };
+  var root=document.documentElement, note=document.getElementById('blurb');
+  var opts=[].slice.call(document.querySelectorAll('.opt'));
+  function set(k){
+    if(k==='a'){ root.removeAttribute('data-dir'); } else { root.setAttribute('data-dir',k); }
+    opts.forEach(function(o){ o.setAttribute('aria-pressed', o.dataset.set===k?'true':'false'); });
+    note.innerHTML=blurbs[k];
+    try{ localStorage.setItem('mw-dir',k); }catch(e){}
+  }
+  opts.forEach(function(o){ o.addEventListener('click',function(){ set(o.dataset.set); }); });
+  var saved=null; try{ saved=localStorage.getItem('mw-dir'); }catch(e){}
+  if(saved&&blurbs[saved]) set(saved);
+})();
+</script>
