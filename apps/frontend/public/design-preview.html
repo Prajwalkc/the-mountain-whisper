@@ -99,26 +99,85 @@ a{color:inherit} strong{font-weight:600;color:var(--cream)}
 .anim .rv.d3.in{transition-delay:.21s}
 @media (prefers-reduced-motion:reduce){.anim .rv{opacity:1;transform:none}.anim .rv.in{transition:none}}
 
-/* Hero: one full-bleed photograph with the words inside it. The brand wash is
-   heaviest at the foot, which is exactly where the type sits — the films' own
-   rule. This is the only genuinely high-resolution image we have (3200px from
-   brand/src), so it is the one frame that can carry full width. */
-.hero{position:relative}
-.heroshot{min-height:clamp(540px,78svh,820px);display:flex;align-items:flex-end}
-.heroshot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-  object-position:62% center}
-.heroshot::after{background:linear-gradient(to bottom,
-  rgba(26,39,51,.62) 0%,rgba(26,39,51,.22) 26%,
-  rgba(62,92,118,.26) 54%,rgba(26,39,51,.88) 100%)}
-.hcopy{position:relative;z-index:5;width:100%;padding-block:0 clamp(2.4rem,6vh,4.2rem)}
-.hero h1{max-width:13ch;font-size:clamp(2.6rem,6.6vw,6rem);
-  text-shadow:0 2px 34px rgba(10,18,26,.45)}
-.lede{margin-top:clamp(1.1rem,2.1vw,1.7rem);max-width:46ch;
-  font-size:clamp(.95rem,1.1vw,1.1rem);line-height:1.8;color:rgba(245,241,234,.86);
-  text-shadow:0 1px 20px rgba(10,18,26,.5)}
+/* Hero: a title card, not a photograph with words on it.
+   A full-bleed hero with a serif headline on a scrim is the default template for
+   every hospitality site, and the only high-res asset here cannot carry one.
+   So the page opens the way the films do: a meta rail, a chapter number, a
+   two-voice headline, the day as a timetable, and a strip of scenes that doubles
+   as the navigation. The frames are small, which is also why they are sharp —
+   520px files shown at ~190px. */
+.hero{position:relative;overflow:hidden;
+  padding-block:clamp(1.6rem,3.6vh,2.6rem) clamp(2.4rem,5vh,3.6rem)}
+.ghost{position:absolute;right:-8%;top:44%;transform:translateY(-50%);
+  width:min(54vw,680px);height:auto;color:var(--cream);opacity:.05;pointer-events:none;z-index:0}
+.hwrap{position:relative;z-index:1}
 
-/* the ask sits below the picture, on the ink */
-.hbar{padding-block:clamp(1.8rem,3.6vw,2.8rem);border-bottom:1px solid var(--line)}
+.rail{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;
+  padding-bottom:clamp(.8rem,1.6vw,1.1rem);border-bottom:1px solid var(--line);
+  font-size:.62rem;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:var(--softer)}
+.rail .mid{display:none}
+@media (min-width:720px){.rail .mid{display:inline}}
+.rail .num{font-family:var(--serif);font-style:italic;letter-spacing:0;
+  text-transform:none;font-size:.95rem;color:var(--mist)}
+
+.hmain{display:grid;gap:clamp(2rem,4vw,3.5rem);align-items:end;
+  padding-block:clamp(2.4rem,6vh,4.5rem) clamp(2rem,4.5vh,3.2rem)}
+@media (min-width:900px){.hmain{grid-template-columns:minmax(0,1.35fr) minmax(0,.65fr)}}
+.hcopy{transition:opacity .4s ease;min-width:0}
+.hcopy.fade{opacity:0}
+.hkick{font-size:var(--label);font-weight:500;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--mist);margin-bottom:clamp(1rem,2vw,1.5rem)}
+.hero h1{max-width:12ch;font-size:clamp(2.7rem,7.4vw,6.6rem);line-height:1.02}
+.lede{margin-top:clamp(1.1rem,2.1vw,1.7rem);max-width:44ch;
+  font-size:clamp(.95rem,1.08vw,1.08rem);line-height:1.8;color:var(--soft)}
+
+/* the day, as a timetable — the most particular thing this business owns */
+.hday{min-width:0;padding-top:.4rem}
+.dlab{font-size:.6rem;font-weight:500;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--softer);padding-bottom:.7rem;border-bottom:1px solid var(--line)}
+.hday dl{display:grid}
+.hday dl > div{display:grid;grid-template-columns:4.6rem 1fr;gap:1rem;align-items:baseline;
+  padding-block:.62rem;border-bottom:1px solid var(--line)}
+.hday dt{font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--mist);
+  font-variant-numeric:tabular-nums}
+.hday dd{font-family:var(--serif);font-size:1rem;line-height:1.3;color:var(--cream);opacity:.9}
+
+/* scene strip — the frames are the navigation */
+.strip{display:grid;gap:clamp(.6rem,1.4vw,1rem);
+  grid-template-columns:repeat(4,minmax(0,1fr));padding-top:clamp(1.4rem,3vw,2.2rem);
+  border-top:1px solid var(--line)}
+.fr{position:relative;display:block;padding:0;border:0;background:none;cursor:pointer;
+  min-width:0;text-align:left;font-family:var(--sans)}
+.fr .im{position:relative;overflow:hidden;aspect-ratio:3/2;background:var(--ink)}
+.fr img{width:100%;height:100%;object-fit:cover;filter:var(--grade);
+  opacity:.38;transition:opacity .6s cubic-bezier(.16,1,.3,1),transform 6s linear;
+  transform:scale(1.01)}
+.fr .im::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(26,39,51,.75),rgba(26,39,51,.1))}
+.fr .lb{margin-top:.6rem;display:flex;gap:.55rem;align-items:baseline;
+  font-size:.59rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--softer);transition:color .4s}
+.fr .lb i{font-family:var(--serif);font-style:italic;letter-spacing:0;text-transform:none;
+  font-size:.82rem;color:var(--stone);transition:color .4s}
+.fr::after{content:"";position:absolute;left:0;right:0;top:-1px;height:1px;
+  background:var(--cream);transform:scaleX(0);transform-origin:left center;
+  transition:transform .6s cubic-bezier(.16,1,.3,1)}
+.fr[aria-selected="true"]::after{transform:scaleX(1)}
+.fr[aria-selected="true"] img{opacity:1;transform:scale(1.08)}
+.fr[aria-selected="true"] .lb{color:var(--cream)}
+.fr[aria-selected="true"] .lb i{color:var(--mist)}
+.fr:hover img{opacity:.72}
+@media (max-width:620px){
+  .strip{grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem}
+  .fr .lb{font-size:.55rem;letter-spacing:.16em}
+}
+@media (prefers-reduced-motion:reduce){
+  .fr img{transition:opacity .2s linear;transform:none}
+  .fr[aria-selected="true"] img{transform:none}
+  .hcopy{transition:none}
+}
+
+.hbar{padding-top:clamp(1.8rem,3.6vw,2.6rem)}
 .actions{display:flex;align-items:center;gap:clamp(.9rem,2vw,1.7rem);flex-wrap:wrap}
 .btn{display:inline-block;padding:1rem 2.3rem;background:var(--blue);color:var(--cream);
   border:1px solid var(--blue);font-family:var(--sans);cursor:pointer;text-decoration:none;
@@ -368,30 +427,51 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
   <a class="go" href="#enquire">Enquire</a>
 </div></div>
 
-<header class="hero" id="top">
-  <div class="shot heroshot">
-    <img src="img/hero-1600.jpg"
-         srcset="img/hero-1000.jpg 1000w, img/hero-1600.jpg 1600w, img/hero-2400.jpg 2400w, img/hero.jpg 3200w"
-         sizes="100vw" fetchpriority="high"
-         alt="Prayer banners along a trail high above Pokhara, snow peaks beyond">
-    <span class="grain"></span>
-    <div class="hcopy pad"><div class="wrap">
-      <div class="kicker rv"><span class="r"></span><span class="t">Pokhara and the hill villages · Nepal</span></div>
-      <h1 class="rv">Same work.<em>Different life.</em></h1>
-      <p class="lede rv d1">One, three or five months in the Himalayas. A private room on internet we
-        test ourselves, a desk that is yours, your visa handled, and a licensed guide for the weekends.
-        You bring the laptop.</p>
-    </div></div>
-  </div>
-  <div class="hbar pad"><div class="wrap">
-    <div class="actions rv">
-      <a class="btn" href="#enquire">Enquire</a>
-      <a class="btn ghost-btn" href="#editions">See the editions</a>
-      <span class="price">from $1,490 a month</span>
+<header class="hero pad" id="top">
+  <svg class="ghost" viewBox="0 0 220 150" fill="none" stroke="currentColor" stroke-width="3.2"
+       stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M14 120 L78 36 L112 80 L140 50 L206 120"/>
+    <path d="M30 140 C 70 122, 110 150, 150 132 S 200 128, 210 136" stroke-width="2.4" opacity="0.8"/>
+  </svg>
+
+  <div class="wrap hwrap">
+    <div class="rail">
+      <span>Mountain Whisper</span>
+      <span class="mid">Pokhara · Nepal</span>
+      <span class="num" id="h-num">N° 01</span>
     </div>
-    <p class="trust rv d1">A registered Nepali travel agency. Every enquiry answered by a person,
-      usually within a day.</p>
-  </div></div>
+
+    <div class="hmain">
+      <div class="hcopy" id="h-swap">
+        <p class="hkick" id="h-kick">The Lake Edition · 1, 3 or 5 months</p>
+        <h1><span id="h-a">Some offices</span><em id="h-b">have a view.</em></h1>
+        <p class="lede" id="h-l">Lakeside in Pokhara: a private room on fibre, a coworking desk that is
+          yours, and the Annapurnas at the end of the street.</p>
+      </div>
+
+      <div class="hday" aria-hidden="true">
+        <p class="dlab">A day, roughly</p>
+        <dl id="h-day">
+          <div><dt>06:30</dt><dd>First light.</dd></div>
+          <div><dt>09:30</dt><dd>Open the laptop.</dd></div>
+          <div><dt>13:00</dt><dd>Paragliders at lunch.</dd></div>
+          <div><dt>17:30</dt><dd>Log off. Row out.</dd></div>
+        </dl>
+      </div>
+    </div>
+
+    <div class="strip" id="strip" role="tablist" aria-label="Choose a scene"></div>
+
+    <div class="hbar">
+      <div class="actions">
+        <a class="btn" href="#enquire">Enquire</a>
+        <a class="btn ghost-btn" href="#editions">See the editions</a>
+        <span class="price">from $1,490 a month</span>
+      </div>
+      <p class="trust">A registered Nepali travel agency. Every enquiry answered by a person,
+        usually within a day.</p>
+    </div>
+  </div>
 </header>
 
 <section class="ch band pad" id="editions"><div class="wrap">
@@ -773,6 +853,137 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
     },{threshold:.12,rootMargin:'0px 0px -5% 0px'});
     els.forEach(function(e){ io.observe(e); });
   } else { els.forEach(function(e){ e.classList.add('in'); }); }
+
+  /* hero: scene and words change together */
+  (function(){
+    var root=document.getElementById('carousel'); if(!root) return;
+    var slides=[].slice.call(root.querySelectorAll('.slide'));
+    var dotsBox=root.querySelector('.dots'), swap=document.getElementById('h-swap');
+    var A=document.getElementById('h-a'), B=document.getElementById('h-b'),
+        L=document.getElementById('h-l'), K=document.getElementById('h-kick');
+    var copy=[
+      {k:'Pokhara and the hill villages · Nepal', a:'Same work.', b:'Different life.',
+       l:'One, three or five months in the Himalayas. A private room on internet we test ourselves, a desk that is yours, your visa handled, and a licensed guide for the weekends. You bring the laptop.'},
+      {k:'The Lake Edition · Pokhara', a:'Some offices', b:'have a view.',
+       l:'Lakeside in Pokhara: a private room on fibre, a coworking desk that is yours, and the Annapurnas at the end of the street. One, three or five months.'},
+      {k:'The Village Edition · 3 or 5 months', a:'Live with', b:'a local family.',
+       l:'A private room in a hill village home, with tested internet and a backup line — and Pokhara whenever you want the city back.'},
+      {k:'Every edition · arranged end to end', a:'Arrive, plug in,', b:'we handle the rest.',
+       l:'Stay, workspace, SIM, visa help, airport welcome and a licensed guide. You choose the kind of life you want around it.'}
+    ];
+    if(slides.length<2){ if(dotsBox) dotsBox.remove(); return; }
+    var i=0, timer=null, paused=false;
+    var still=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var HOLD=5000;
+
+    var dots=slides.map(function(s,k){
+      var b=document.createElement('button');
+      b.className='dot'; b.type='button'; b.setAttribute('role','tab');
+      b.setAttribute('aria-label','Scene '+(k+1)+': '+copy[k].a+' '+copy[k].b);
+      b.setAttribute('aria-selected', k===0?'true':'false');
+      b.addEventListener('click',function(){ show(k); restart(); });
+      dotsBox.appendChild(b); return b;
+    });
+
+    function show(n){
+      if(n===i) return;
+      slides[i].classList.remove('on'); dots[i].setAttribute('aria-selected','false');
+      i=n;
+      slides[i].classList.add('on'); dots[i].setAttribute('aria-selected','true');
+      swap.classList.add('fade');
+      setTimeout(function(){
+        var c=copy[i]; K.textContent=c.k; A.textContent=c.a; B.textContent=c.b; L.textContent=c.l;
+        swap.classList.remove('fade');
+      },420);
+    }
+    function next(){ show((i+1)%slides.length); }
+    function start(){ if(still||paused||timer) return; timer=setInterval(next,HOLD); }
+    function stop(){ if(timer){ clearInterval(timer); timer=null; } }
+    function restart(){ stop(); start(); }
+    root.addEventListener('focusin',function(){ paused=true; stop(); });
+    root.addEventListener('focusout',function(){ paused=false; start(); });
+    document.addEventListener('visibilitychange',function(){
+      if(document.hidden){ stop(); } else if(!paused){ start(); } });
+    dotsBox.addEventListener('keydown',function(e){
+      if(e.key!=='ArrowRight'&&e.key!=='ArrowLeft') return;
+      e.preventDefault();
+      var n=(i+(e.key==='ArrowRight'?1:slides.length-1))%slides.length;
+      show(n); dots[n].focus(); restart(); });
+    start();
+  })();
+
+  /* hero: the strip is the navigation; scene, words and day change together */
+  (function(){
+    var strip=document.getElementById('strip'); if(!strip) return;
+    var swap=document.getElementById('h-swap'), dayEl=document.getElementById('h-day');
+    var A=document.getElementById('h-a'), B=document.getElementById('h-b'),
+        L=document.getElementById('h-l'), K=document.getElementById('h-kick'),
+        N=document.getElementById('h-num');
+    var scenes=[
+      {img:'fr-trail', n:'N° 01', lab:'The trail', sub:'Above Pokhara',
+       k:'The Lake Edition · 1, 3 or 5 months', a:'Some offices', b:'have a view.',
+       l:'Lakeside in Pokhara: a private room on fibre, a coworking desk that is yours, and the Annapurnas at the end of the street.',
+       day:[['06:30','First light.'],['09:30','Open the laptop.'],['13:00','Paragliders at lunch.'],['17:30','Log off. Row out.']]},
+      {img:'fr-ridge', n:'N° 02', lab:'The ridge', sub:'Annapurna',
+       k:'Every edition · a licensed guide', a:'Weekends', b:'above the clouds.',
+       l:'Four or five days to Poon Hill with our guide, permits included, over a long weekend — so you do not lose a week of work.',
+       day:[['Thu','Log off early.'],['Fri','Walk to Ghorepani.'],['Sat','Poon Hill at dawn.'],['Mon','Back at the desk.']]},
+      {img:'fr-village', n:'N° 03', lab:'The village', sub:'3 or 5 months',
+       k:'The Village Edition · homestay', a:'Live with', b:'a local family.',
+       l:'A private room in a hill village home, with internet we test ourselves and a backup line — and Pokhara whenever you want the city back.',
+       day:[['06:00','Sunrise over the peaks.'],['07:00','Tea by the fire.'],['09:00','Deep work.'],['20:00','Dal bhat and lamplight.']]},
+      {img:'fr-lake', n:'N° 04', lab:'The lake', sub:'Phewa, dusk',
+       k:'Every edition · arranged end to end', a:'Arrive, plug in,', b:'we handle the rest.',
+       l:'Stay, workspace, SIM, visa help, airport welcome and someone to call. You choose the kind of life you want around it.',
+       day:[['Day 1','Met at Kathmandu.'],['Day 1','Driven to Pokhara.'],['Day 2','Desk, SIM, keys.'],['Day 3','Welcome dinner.']]}
+    ];
+    var i=0, timer=null, paused=false;
+    var still=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    var btns=scenes.map(function(s,k){
+      var b=document.createElement('button');
+      b.className='fr'; b.type='button'; b.setAttribute('role','tab');
+      b.setAttribute('aria-selected', k===0?'true':'false');
+      b.setAttribute('aria-label', s.n+' '+s.lab+': '+s.a+' '+s.b);
+      b.innerHTML='<span class="im"><img src="img/'+s.img+'.jpg" alt="" loading="'+(k?'lazy':'eager')+'"></span>'+
+                  '<span class="lb">'+s.n+' <i>'+s.lab+'</i></span>';
+      b.addEventListener('click',function(){ show(k); restart(); });
+      strip.appendChild(b); return b;
+    });
+
+    function paintDay(s){
+      var h='';
+      for(var k=0;k<s.day.length;k++){ h+='<div><dt>'+s.day[k][0]+'</dt><dd>'+s.day[k][1]+'</dd></div>'; }
+      dayEl.innerHTML=h;
+    }
+    function show(n){
+      if(n===i) return;
+      btns[i].setAttribute('aria-selected','false');
+      i=n;
+      btns[i].setAttribute('aria-selected','true');
+      swap.classList.add('fade');
+      setTimeout(function(){
+        var s=scenes[i];
+        K.textContent=s.k; A.textContent=s.a; B.textContent=s.b; L.textContent=s.l;
+        N.textContent=s.n; paintDay(s);
+        swap.classList.remove('fade');
+      },380);
+    }
+    function next(){ show((i+1)%scenes.length); }
+    function start(){ if(still||paused||timer) return; timer=setInterval(next,6000); }
+    function stop(){ if(timer){ clearInterval(timer); timer=null; } }
+    function restart(){ stop(); start(); }
+    strip.addEventListener('focusin',function(){ paused=true; stop(); });
+    strip.addEventListener('focusout',function(){ paused=false; start(); });
+    document.addEventListener('visibilitychange',function(){
+      if(document.hidden){ stop(); } else if(!paused){ start(); } });
+    strip.addEventListener('keydown',function(e){
+      if(e.key!=='ArrowRight'&&e.key!=='ArrowLeft') return;
+      e.preventDefault();
+      var n=(i+(e.key==='ArrowRight'?1:scenes.length-1))%scenes.length;
+      show(n); btns[n].focus(); restart(); });
+    start();
+  })();
 
   var tabs=[document.getElementById('tab-city'),document.getElementById('tab-village')];
   var panels=[document.getElementById('day-city'),document.getElementById('day-village')];
