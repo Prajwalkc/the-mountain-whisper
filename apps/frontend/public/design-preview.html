@@ -99,57 +99,38 @@ a{color:inherit} strong{font-weight:600;color:var(--cream)}
 .anim .rv.d3.in{transition-delay:.21s}
 @media (prefers-reduced-motion:reduce){.anim .rv{opacity:1;transform:none}.anim .rv.in{transition:none}}
 
-/* hero */
-.hero{padding-block:clamp(2.6rem,6vw,5rem) clamp(2rem,4.5vw,3.6rem)}
-.hero .grid{display:grid;gap:clamp(2rem,4.5vw,4rem);align-items:center;grid-template-columns:1fr}
-@media (min-width:940px){.hero .grid{grid-template-columns:1.02fr .98fr}}
-.hero h1{max-width:15ch}
-.lede{margin-top:clamp(1.1rem,2vw,1.6rem);max-width:44ch;
-  font-size:clamp(.93rem,1.06vw,1.05rem);line-height:1.8;color:var(--soft)}
-.actions{margin-top:clamp(1.5rem,2.7vw,2.2rem);display:flex;align-items:center;
-  gap:clamp(.9rem,2vw,1.7rem);flex-wrap:wrap}
+/* Hero: one full-bleed photograph with the words inside it. The brand wash is
+   heaviest at the foot, which is exactly where the type sits — the films' own
+   rule. This is the only genuinely high-resolution image we have (3200px from
+   brand/src), so it is the one frame that can carry full width. */
+.hero{position:relative}
+.heroshot{min-height:clamp(540px,78svh,820px);display:flex;align-items:flex-end}
+.heroshot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  object-position:62% center}
+.heroshot::after{background:linear-gradient(to bottom,
+  rgba(26,39,51,.62) 0%,rgba(26,39,51,.22) 26%,
+  rgba(62,92,118,.26) 54%,rgba(26,39,51,.88) 100%)}
+.hcopy{position:relative;z-index:5;width:100%;padding-block:0 clamp(2.4rem,6vh,4.2rem)}
+.hero h1{max-width:13ch;font-size:clamp(2.6rem,6.6vw,6rem);
+  text-shadow:0 2px 34px rgba(10,18,26,.45)}
+.lede{margin-top:clamp(1.1rem,2.1vw,1.7rem);max-width:46ch;
+  font-size:clamp(.95rem,1.1vw,1.1rem);line-height:1.8;color:rgba(245,241,234,.86);
+  text-shadow:0 1px 20px rgba(10,18,26,.5)}
+
+/* the ask sits below the picture, on the ink */
+.hbar{padding-block:clamp(1.8rem,3.6vw,2.8rem);border-bottom:1px solid var(--line)}
+.actions{display:flex;align-items:center;gap:clamp(.9rem,2vw,1.7rem);flex-wrap:wrap}
 .btn{display:inline-block;padding:1rem 2.3rem;background:var(--blue);color:var(--cream);
   border:1px solid var(--blue);font-family:var(--sans);cursor:pointer;text-decoration:none;
   font-size:var(--label);font-weight:600;letter-spacing:.24em;text-transform:uppercase;
   transition:background .35s,color .35s,border-color .35s}
 .btn:hover{background:var(--blue-mid);border-color:var(--blue-mid)}
-.btn.ghost{background:none;color:var(--cream);border-color:var(--line-2)}
-.btn.ghost:hover{background:var(--cream);color:var(--ink);border-color:var(--cream)}
+.btn.ghost-btn{background:none;color:var(--cream);border-color:var(--line-2)}
+.btn.ghost-btn:hover{background:var(--cream);color:var(--ink);border-color:var(--cream)}
 .btn.light{background:var(--cream);color:var(--blue-deep);border-color:var(--cream)}
 .price{font-family:var(--serif);font-style:italic;font-size:clamp(.98rem,1.22vw,1.18rem);color:var(--soft)}
-.trust{margin-top:clamp(1.1rem,2vw,1.6rem);padding-top:clamp(.9rem,1.6vw,1.2rem);
-  border-top:1px solid var(--line);max-width:40ch;font-size:.8rem;line-height:1.7;color:var(--softer)}
-.hero .pic{min-width:0}
-/* Landscape, and capped. At 4:5 this rendered 864px tall on a 1440px screen —
-   taller than the viewport. That aspect came from the 9:16 clips; a page wants
-   landscape. The cap stops it ballooning again on wide displays. */
-.hero .pic .shot{aspect-ratio:4/3;max-height:min(60vh,540px)}
-
-/* Hero carousel: slow crossfades with a drift, the pace the films move at.
-   Every frame sits under the same brand wash, so the sequence reads as one
-   surface rather than as changing pictures. */
-.slides{position:absolute;inset:0}
-.slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;
-  filter:var(--grade);opacity:0;transform:scale(1.02);
-  transition:opacity 1.15s cubic-bezier(.4,0,.2,1),transform 5.2s linear}
-.slide.on{opacity:1;transform:scale(1.09)}
-@media (prefers-reduced-motion:reduce){
-  .slide{transition:opacity .35s linear;transform:none}
-  .slide.on{transform:none}
-}
-/* caption and dots live inside the frame, on the dark foot of the wash */
-.capbar{position:absolute;left:0;right:0;bottom:0;z-index:5;display:flex;align-items:center;
-  justify-content:space-between;gap:1rem;flex-wrap:wrap;
-  padding:clamp(.9rem,2.2vw,1.5rem)}
-.hero .pic figcaption{font-size:clamp(.6rem,.75vw,.7rem);font-weight:600;letter-spacing:.2em;
-  text-transform:uppercase;color:var(--cream);min-width:0;
-  text-shadow:0 1px 14px rgba(10,18,26,.7);transition:opacity .5s ease}
-.hero .pic figcaption.fade{opacity:0}
-.dots{display:flex;gap:.45rem;flex:none}
-.dot{width:24px;height:2px;border:0;padding:0;cursor:pointer;background:rgba(245,241,234,.4);
-  transition:background .4s}
-.dot[aria-selected="true"]{background:var(--cream)}
-.dot:hover{background:rgba(245,241,234,.75)}
+.trust{margin-top:clamp(1rem,1.8vw,1.4rem);max-width:52ch;font-size:.82rem;
+  line-height:1.7;color:var(--softer)}
 
 /* sections — blue is the contrast band inside the ink */
 .ch{padding-block:clamp(3.2rem,8vw,6.5rem)}
@@ -166,7 +147,7 @@ a{color:inherit} strong{font-weight:600;color:var(--cream)}
 .core{margin-top:clamp(2rem,4.2vw,3.2rem);display:grid;gap:clamp(1.2rem,2.6vw,2rem);
   grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
 .edc{min-width:0;border:1px solid var(--line);background:var(--surface);display:flex;flex-direction:column}
-.edc .shot{aspect-ratio:4/3}
+.edc .shot{aspect-ratio:1/1}
 .edc .in{padding:clamp(1.3rem,2.3vw,1.9rem);flex:1;display:flex;flex-direction:column}
 .edc .k{color:var(--mist);margin-bottom:.5rem}
 .edc p.d{margin-top:.7rem;font-size:var(--body);line-height:1.75;color:var(--soft)}
@@ -387,53 +368,31 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
   <a class="go" href="#enquire">Enquire</a>
 </div></div>
 
-<header class="hero pad" id="top"><div class="grid wrap">
-  <div class="txt">
-    <div class="kicker rv"><span class="r"></span><span class="t">Pokhara and the hill villages · Nepal</span></div>
-    <h1 class="rv">Same work.<em>Different life.</em></h1>
-    <p class="lede rv d1">One, three or five months in the Himalayas. A private room on internet we
-      test ourselves, a desk that is yours, your visa handled, and a licensed guide for the weekends.
-      You bring the laptop.</p>
-    <div class="actions rv d2">
+<header class="hero" id="top">
+  <div class="shot heroshot">
+    <img src="img/hero-1600.jpg"
+         srcset="img/hero-1000.jpg 1000w, img/hero-1600.jpg 1600w, img/hero-2400.jpg 2400w, img/hero.jpg 3200w"
+         sizes="100vw" fetchpriority="high"
+         alt="Prayer banners along a trail high above Pokhara, snow peaks beyond">
+    <span class="grain"></span>
+    <div class="hcopy pad"><div class="wrap">
+      <div class="kicker rv"><span class="r"></span><span class="t">Pokhara and the hill villages · Nepal</span></div>
+      <h1 class="rv">Same work.<em>Different life.</em></h1>
+      <p class="lede rv d1">One, three or five months in the Himalayas. A private room on internet we
+        test ourselves, a desk that is yours, your visa handled, and a licensed guide for the weekends.
+        You bring the laptop.</p>
+    </div></div>
+  </div>
+  <div class="hbar pad"><div class="wrap">
+    <div class="actions rv">
       <a class="btn" href="#enquire">Enquire</a>
-      <a class="btn ghost" href="#editions">See the editions</a>
+      <a class="btn ghost-btn" href="#editions">See the editions</a>
       <span class="price">from $1,490 a month</span>
     </div>
-    <p class="trust rv d2">A registered Nepali travel agency. Every enquiry answered by a person,
+    <p class="trust rv d1">A registered Nepali travel agency. Every enquiry answered by a person,
       usually within a day.</p>
-  </div>
-  <figure class="pic rv d1">
-    <div class="shot" id="carousel" aria-roledescription="carousel" aria-label="Scenes from a Mountain Whisper stay">
-      <div class="slides">
-        <img class="slide on" src="img/hero-ridge.jpg" srcset="img/hero-ridge-700.jpg 700w, img/hero-ridge.jpg 1400w"
-             sizes="(min-width:940px) 48vw, 100vw" fetchpriority="high"
-             data-cap="A hut on the ridge, facing the Annapurnas"
-             alt="A wooden hut on a ridge below the Annapurna snow peaks, prayer-flag poles along the path">
-        <img class="slide" src="img/hero-village.jpg" srcset="img/hero-village-700.jpg 700w, img/hero-village.jpg 1400w"
-             sizes="(min-width:940px) 48vw, 100vw" loading="lazy"
-             data-cap="A hill village under the clouds"
-             alt="A Nepali hill village of tiled roofs on a green ridge, cloud-wrapped peaks behind">
-        <img class="slide" src="img/hero-dawn.jpg" srcset="img/hero-dawn-700.jpg 700w, img/hero-dawn.jpg 1400w"
-             sizes="(min-width:940px) 48vw, 100vw" loading="lazy"
-             data-cap="First light on the Himalaya"
-             alt="A snow peak catching first light above layered forested hills">
-        <img class="slide" src="img/hero-fly.jpg" srcset="img/hero-fly-700.jpg 700w, img/hero-fly.jpg 1400w"
-             sizes="(min-width:940px) 48vw, 100vw" loading="lazy"
-             data-cap="Above the Pokhara valley"
-             alt="A paraglider over the Pokhara valley seen from the launch">
-        <img class="slide" src="img/hero-lake.jpg" srcset="img/hero-lake-700.jpg 700w, img/hero-lake.jpg 1400w"
-             sizes="(min-width:940px) 48vw, 100vw" loading="lazy"
-             data-cap="Phewa Lake, end of the day"
-             alt="Painted wooden boats on Phewa Lake at sunset">
-      </div>
-      <span class="grain"></span>
-      <div class="capbar">
-        <figcaption id="cap">A hut on the ridge, facing the Annapurnas</figcaption>
-        <div class="dots" role="tablist" aria-label="Choose a scene"></div>
-      </div>
-    </div>
-  </figure>
-</div></header>
+  </div></div>
+</header>
 
 <section class="ch band pad" id="editions"><div class="wrap">
   <div class="head">
@@ -444,7 +403,7 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
 
   <div class="core">
     <article class="edc rv">
-      <div class="shot"><img src="img/cowork.jpg" alt="A desk and laptop by a window"><span class="grain"></span></div>
+      <div class="shot"><img src="img/edition-lake.jpg" alt="Painted boats moored on Phewa Lake, hills behind"><span class="grain"></span></div>
       <div class="in">
         <p class="label k">Core · available now</p>
         <h3>Lake Edition</h3>
@@ -456,7 +415,7 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
       </div>
     </article>
     <article class="edc rv d1">
-      <div class="shot"><img src="img/village-alley.jpg" alt="A stone village lane hung with prayer flags"><span class="grain"></span></div>
+      <div class="shot"><img src="img/edition-village.jpg" alt="A stone village lane hung with prayer flags"><span class="grain"></span></div>
       <div class="in">
         <p class="label k">Core · first group forming</p>
         <h3>Village Edition</h3>
@@ -610,11 +569,11 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
   <div class="films">
     <figure class="phone rv"><div class="screen">
       <video src="video/film-city.mp4" muted loop playsinline preload="metadata"
-        poster="img/wide-800.jpg" aria-label="Film: the view from Pokhara"></video></div>
+        poster="img/hero-1000.jpg" aria-label="Film: the view from Pokhara"></video></div>
       <figcaption><p class="t">The View</p><p class="s">Lake Edition</p></figcaption></figure>
     <figure class="phone rv d1"><div class="screen">
       <video src="video/film-village.mp4" muted loop playsinline preload="metadata"
-        poster="img/village-alley.jpg" aria-label="Film: the Village Edition"></video></div>
+        poster="img/edition-village.jpg" aria-label="Film: the Village Edition"></video></div>
       <figcaption><p class="t">The Village Edition</p><p class="s">Homestay</p></figcaption></figure>
   </div>
   <p class="note rv d2">Short, silent excerpts. The full films, with sound, are on Instagram and TikTok —
@@ -797,8 +756,7 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
   </div>
   <div class="fbot">
     <div class="row"><span>© 2026 Mountain Whisper</span><span>Design preview — placeholder copy</span></div>
-    <p class="cr">Stills: Shital Khadgi, Niroz Shrestha, Sajal Niraula, Turgut Gül, Dilip Gautam,
-      Bibek Adhikari Chhetri, shiva rijal, Anil Prasad Shrestha, Ivan S / Pexels. Film excerpts: Sajal Niraula, Saugatt Bastakotii, SHVETS production, Shital Khadgi,
+    <p class="cr">Stills: Saugatt Bastakotii, Bibek Adhikari Chhetri, shiva rijal, Anil Prasad Shrestha / Pexels. Film excerpts: Sajal Niraula, Saugatt Bastakotii, SHVETS production, Shital Khadgi,
       TheHybriddesigner.np, Peter Smit, Tanita Lupa / Pexels. Used under the Pexels Licence, which does
       not require credit — we give it anyway. Imagery is atmospheric: it does not show a specific room,
       homestay or host family, and no one pictured is connected with Mountain Whisper.</p>
@@ -815,60 +773,6 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
     },{threshold:.12,rootMargin:'0px 0px -5% 0px'});
     els.forEach(function(e){ io.observe(e); });
   } else { els.forEach(function(e){ e.classList.add('in'); }); }
-
-  /* hero carousel */
-  (function(){
-    var root=document.getElementById('carousel');
-    if(!root) return;
-    var slides=[].slice.call(root.querySelectorAll('.slide'));
-    var dotsBox=root.querySelector('.dots'), cap=document.getElementById('cap');
-    if(slides.length<2){ if(dotsBox) dotsBox.remove(); return; }
-    var i=0, timer=null, paused=false;
-    var still=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var HOLD=3900;
-
-    var dots=slides.map(function(s,k){
-      var b=document.createElement('button');
-      b.className='dot'; b.type='button'; b.setAttribute('role','tab');
-      b.setAttribute('aria-label','Scene '+(k+1)+': '+(s.dataset.cap||''));
-      b.setAttribute('aria-selected', k===0?'true':'false');
-      b.addEventListener('click',function(){ show(k); restart(); });
-      dotsBox.appendChild(b);
-      return b;
-    });
-
-    function show(n){
-      if(n===i) return;
-      slides[i].classList.remove('on');
-      dots[i].setAttribute('aria-selected','false');
-      i=n;
-      slides[i].classList.add('on');
-      dots[i].setAttribute('aria-selected','true');
-      if(cap){
-        cap.classList.add('fade');
-        setTimeout(function(){ cap.textContent=slides[i].dataset.cap||''; cap.classList.remove('fade'); },450);
-      }
-    }
-    function next(){ show((i+1)%slides.length); }
-    function start(){ if(still||paused||timer) return; timer=setInterval(next,HOLD); }
-    function stop(){ if(timer){ clearInterval(timer); timer=null; } }
-    function restart(){ stop(); start(); }
-
-    /* deliberately no hover pause: the cursor lands on the hero exactly when
-       someone is watching it, and stopping then looks like it is broken */
-    root.addEventListener('focusin',function(){ paused=true; stop(); });
-    root.addEventListener('focusout',function(){ paused=false; start(); });
-    document.addEventListener('visibilitychange',function(){
-      if(document.hidden){ stop(); } else if(!paused){ start(); }
-    });
-    dotsBox.addEventListener('keydown',function(e){
-      if(e.key!=='ArrowRight'&&e.key!=='ArrowLeft') return;
-      e.preventDefault();
-      var n=(i+(e.key==='ArrowRight'?1:slides.length-1))%slides.length;
-      show(n); dots[n].focus(); restart();
-    });
-    start();
-  })();
 
   var tabs=[document.getElementById('tab-city'),document.getElementById('tab-village')];
   var panels=[document.getElementById('day-city'),document.getElementById('day-village')];
