@@ -4,385 +4,404 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,400;1,500&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-/* Layout: sticky mark + ask, a graded photograph, then chaptered editorial bands on ink.
-   The Village Edition takes the brand-blue band so the two products read apart.
-   Tokens from video-factory/premium/premium.css; copy from the films. */
+/* Layout: a warm off-white page the hero sits INSIDE rather than on top of —
+   text left, photograph right, both on the same ground. Two deep-blue bands
+   (the Village Edition, and the close) give contrast without going cold.
+   Palette is the launch plan's own: misty mountain blue, warm wood brown,
+   off-white, small prayer-flag accents. Type stays Playfair + Montserrat,
+   as the films use, so site and social read as one brand. */
 :root{
-  --ink:#1A2733; --ink-2:#1E2C39;
-  --blue:#3E5C76; --blue-light:#4A6B88; --blue-deep:#2C4358;
-  --cream:#F5F1EA; --pale:#DCE5EC;
-  --rule:rgba(245,241,234,.45);
-  --rule-soft:rgba(245,241,234,.2);
-  --rule-strong:rgba(245,241,234,.75);
+  --bg:#FAF6F0;          /* warm off-white */
+  --bg-2:#F1E8DB;        /* sand band */
+  --fg:#22303C;          /* deep blue-black */
+  --fg-soft:#5E6E7B;
+  --blue:#3E5C76;        /* brand */
+  --blue-deep:#2C4358;
+  --blue-light:#4A6B88;
+  --wood:#B07D4F;        /* warm wood brown */
+  --clay:#C0553A;
+  --cream:#FAF6F0;
+  --line:rgba(34,48,60,.14);
+  --line-2:rgba(34,48,60,.3);
+  --on-dark:rgba(250,246,240,.74);
+  --line-dark:rgba(250,246,240,.26);
 
   --serif:"Playfair Display",Georgia,"Times New Roman",serif;
   --sans:"Montserrat",system-ui,-apple-system,"Helvetica Neue",sans-serif;
 
-  --h1:clamp(2.25rem,5.5vw,5rem);
-  --h2:clamp(1.85rem,4vw,3.4rem);
-  --h3:clamp(1.3rem,2.3vw,2rem);
-  --li-t:clamp(1.12rem,2vw,1.8rem);
-  --label:clamp(.63rem,.78vw,.74rem);
-  --body:clamp(.84rem,.96vw,.93rem);
+  --h1:clamp(2.35rem,5.4vw,4.9rem);
+  --h2:clamp(1.85rem,3.9vw,3.3rem);
+  --h3:clamp(1.28rem,2.2vw,1.95rem);
+  --li-t:clamp(1.1rem,1.9vw,1.7rem);
+  --label:clamp(.64rem,.78vw,.74rem);
+  --body:clamp(.86rem,.97vw,.95rem);
 
-  --gut:clamp(1.25rem,5vw,5.5rem);
-  --bar:clamp(52px,6vh,66px);
-  --grade:saturate(.88) contrast(1.08) brightness(.98);
-  color-scheme:dark;
+  --gut:clamp(1.25rem,5vw,5rem);
+  --bar:clamp(54px,6vh,68px);
+  --grade:saturate(.92) contrast(1.04);
+  color-scheme:light;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--ink);color:var(--cream);font-family:var(--sans);font-weight:500;
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-weight:400;
   -webkit-font-smoothing:antialiased;overflow-x:hidden}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);
-  z-index:60;background:rgba(21,32,42,.96)}
+  z-index:60;background:var(--bg)}
 img,svg,video{display:block;max-width:100%}
-h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.05;letter-spacing:-.015em;text-wrap:balance}
+h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.06;letter-spacing:-.015em;text-wrap:balance}
 h1{font-size:var(--h1)} h2{font-size:var(--h2)} h3{font-size:var(--h3)}
-em{font-style:italic;font-weight:400;color:var(--pale);display:block}
+em{font-style:italic;font-weight:400;color:var(--blue);display:block}
 a{color:inherit} strong{font-weight:600}
-:focus-visible{outline:2px solid var(--cream);outline-offset:3px}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+.label{font-size:var(--label);font-weight:600;letter-spacing:.28em;text-transform:uppercase}
 
 .pad{padding-left:max(var(--gut),env(safe-area-inset-left,0px));
      padding-right:max(var(--gut),env(safe-area-inset-right,0px))}
-.wrap{max-width:1460px;margin:0 auto;min-width:0}
+.wrap{max-width:1420px;margin:0 auto;min-width:0}
 
-/* ---------- sticky bar ---------- */
-/* The bar rides over the photograph while the hero is on screen, then settles
-   into ink once you are past it — so the opening frame stays uninterrupted. */
+/* ---------- bar ---------- */
 .bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;height:var(--bar);
-  display:flex;align-items:center;background:transparent;border-bottom:1.5px solid transparent;
-  transition:background .55s cubic-bezier(.16,1,.3,1),border-color .55s,backdrop-filter .55s}
-.bar.solid{background:rgba(21,32,42,.92);border-bottom-color:var(--rule-soft);
-  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
-.bar .in{display:flex;align-items:center;justify-content:space-between;gap:clamp(1rem,3vw,2.5rem);width:100%}
-.bar .id{display:flex;align-items:center;gap:.7rem;min-width:0;text-decoration:none}
-.bar .id svg{width:clamp(24px,2.4vw,32px);height:auto;stroke:var(--cream);flex:none}
-.bar .id span{font-size:var(--label);letter-spacing:.28em;text-transform:uppercase;
+  display:flex;align-items:center;background:rgba(250,246,240,.88);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line)}
+.bar .in{display:flex;align-items:center;gap:clamp(1rem,3vw,2.5rem);width:100%}
+.bar .id{display:flex;align-items:center;gap:.65rem;min-width:0;text-decoration:none}
+.bar .id svg{width:clamp(24px,2.4vw,31px);height:auto;stroke:var(--blue);flex:none}
+.bar .id span{font-size:var(--label);font-weight:600;letter-spacing:.26em;text-transform:uppercase;
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.bar nav{display:flex;align-items:center;gap:clamp(1rem,2.4vw,2.2rem);margin-left:auto}
-.bar nav a{font-size:.63rem;font-weight:500;letter-spacing:.24em;text-transform:uppercase;
-  text-decoration:none;opacity:.72;white-space:nowrap;transition:opacity .35s}
-.bar nav a:hover{opacity:1}
-@media (max-width:860px){.bar nav{display:none}}
-.bar .go{flex:none;padding:.6rem 1.3rem;border:1.5px solid rgba(245,241,234,.75);text-decoration:none;
-  font-size:.6rem;font-weight:600;letter-spacing:.26em;text-transform:uppercase;
-  transition:background .4s,color .4s}
-.bar .go:hover{background:var(--cream);color:var(--blue-deep)}
+.bar nav{display:flex;align-items:center;gap:clamp(1rem,2.2vw,2rem);margin-left:auto}
+.bar nav a{font-size:.66rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;
+  text-decoration:none;color:var(--fg-soft);white-space:nowrap;transition:color .3s}
+.bar nav a:hover{color:var(--fg)}
+@media (max-width:880px){.bar nav{display:none}.bar .go{margin-left:auto}}
+.bar .go{flex:none;padding:.62rem 1.3rem;background:var(--blue);color:var(--cream);
+  border:1px solid var(--blue);text-decoration:none;font-size:.62rem;font-weight:600;
+  letter-spacing:.22em;text-transform:uppercase;transition:background .3s}
+.bar .go:hover{background:var(--blue-deep)}
 
-/* ---------- devices ---------- */
-.corner{position:absolute;width:clamp(26px,3.2vw,56px);height:clamp(26px,3.2vw,56px);
-  border-color:rgba(245,241,234,.55);border-style:solid;border-width:0;pointer-events:none;z-index:4}
-.corner.tl{left:var(--gut);top:var(--gut);border-left-width:2px;border-top-width:2px}
-.corner.tr{right:var(--gut);top:var(--gut);border-right-width:2px;border-top-width:2px}
-.corner.bl{left:var(--gut);bottom:var(--gut);border-left-width:2px;border-bottom-width:2px}
-.corner.br{right:var(--gut);bottom:var(--gut);border-right-width:2px;border-bottom-width:2px}
-.kicker{display:flex;align-items:center;gap:clamp(11px,1.5vw,26px);margin-bottom:clamp(1rem,2vw,1.8rem)}
-.kicker .r{width:clamp(30px,4.4vw,70px);height:1.5px;background:rgba(245,241,234,.7);flex:none}
-.kicker .t{font-size:var(--label);letter-spacing:.34em;text-transform:uppercase;opacity:.9}
-.chapter{font-family:var(--serif);font-style:italic;font-size:clamp(.86rem,1.15vw,1.05rem);
-  opacity:.6;margin-bottom:.75rem}
-.anim .rv{opacity:0;transform:translateY(18px)}
+/* ---------- shared ---------- */
+.kicker{display:flex;align-items:center;gap:clamp(10px,1.4vw,22px);margin-bottom:clamp(.9rem,1.8vw,1.5rem)}
+.kicker .r{width:clamp(26px,3.6vw,54px);height:1px;background:var(--wood);flex:none}
+.kicker .t{font-size:var(--label);font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--wood)}
+.chapter{font-family:var(--serif);font-style:italic;font-size:clamp(.86rem,1.1vw,1rem);
+  color:var(--fg-soft);margin-bottom:.6rem}
+.anim .rv{opacity:0;transform:translateY(16px)}
 .anim .rv.in{opacity:1;transform:none;
-  transition:opacity 1.05s cubic-bezier(.16,1,.3,1),transform 1.05s cubic-bezier(.16,1,.3,1)}
-.anim .rv.d1.in{transition-delay:.08s}
-.anim .rv.d2.in{transition-delay:.16s}
-.anim .rv.d3.in{transition-delay:.24s}
+  transition:opacity .95s cubic-bezier(.16,1,.3,1),transform .95s cubic-bezier(.16,1,.3,1)}
+.anim .rv.d1.in{transition-delay:.07s}
+.anim .rv.d2.in{transition-delay:.14s}
+.anim .rv.d3.in{transition-delay:.21s}
 @media (prefers-reduced-motion:reduce){.anim .rv{opacity:1;transform:none}.anim .rv.in{transition:none}}
-.grain{position:absolute;inset:0;pointer-events:none;opacity:.1;mix-blend-mode:overlay;z-index:3;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
 
-/* ---------- hero ---------- */
-/* pulled up so the photograph runs behind the transparent bar */
-.hero{position:relative;margin-top:calc(-1 * var(--bar));
-  min-height:clamp(560px,82svh,880px);display:flex;align-items:flex-end;overflow:hidden}
-.hero .shot{position:absolute;inset:0;z-index:0}
-.hero .shot img{width:100%;height:100%;object-fit:cover;filter:var(--grade);transform:scale(1.03)}
-.hero .tint{position:absolute;inset:0;z-index:1;background:linear-gradient(to bottom,
-  rgba(26,39,51,.55) 0%,rgba(26,39,51,.12) 28%,rgba(62,92,118,.18) 55%,rgba(26,39,51,.82) 100%)}
-.hero .vig{position:absolute;inset:0;z-index:2;
-  background:radial-gradient(ellipse 120% 95% at 50% 45%,transparent 38%,rgba(12,20,28,.22) 100%)}
-.hero .inner{position:relative;z-index:5;width:100%;padding-block:clamp(3rem,8vh,5rem) clamp(2.6rem,6vh,5rem)}
-.hero h1{max-width:18ch;text-shadow:0 2px 30px rgba(10,18,26,.35)}
-.lede{margin-top:clamp(1.1rem,2.1vw,1.8rem);max-width:48ch;font-size:clamp(.91rem,1.06vw,1.04rem);
-  font-weight:400;line-height:1.75;opacity:.9}
-.actions{margin-top:clamp(1.5rem,2.9vw,2.4rem);display:flex;align-items:center;
-  gap:clamp(.9rem,2.2vw,2rem);flex-wrap:wrap}
-.btn{display:inline-block;padding:1rem 2.4rem;border:1.5px solid rgba(245,241,234,.8);
-  background:none;color:var(--cream);font-family:var(--sans);cursor:pointer;text-decoration:none;
-  font-size:var(--label);font-weight:600;letter-spacing:.3em;text-transform:uppercase;
-  transition:background .5s cubic-bezier(.16,1,.3,1),color .5s}
-.btn:hover{background:var(--cream);color:var(--blue-deep)}
-.price{font-family:var(--serif);font-style:italic;font-size:clamp(.95rem,1.28vw,1.22rem);opacity:.85}
+.flagbar{display:flex;height:5px;width:150px;margin-bottom:clamp(1.2rem,2.2vw,1.8rem)}
+.flagbar i{flex:1}
 
-/* the two editions, named in the opening frame — a chapter index, like the films */
-.index{margin-top:clamp(2rem,4.4vw,3.2rem);border-top:1.5px solid rgba(245,241,234,.35);
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr))}
-.index a{display:block;padding:clamp(1rem,1.9vw,1.4rem) 0;text-decoration:none;min-width:0;
-  border-bottom:1.5px solid transparent;transition:border-color .45s}
-.index a + a{border-left:1.5px solid rgba(245,241,234,.22);
-  padding-left:clamp(1rem,2.4vw,2.2rem)}
-.index a:hover{border-bottom-color:rgba(245,241,234,.7)}
-.index .k{font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;opacity:.65}
-.index .t{margin-top:.45rem;font-family:var(--serif);font-size:clamp(1.05rem,1.55vw,1.42rem);line-height:1.2}
-@media (max-width:620px){.index a + a{border-left:0;padding-left:0;
-  border-top:1.5px solid rgba(245,241,234,.22)}}
+/* ---------- hero: text left, photo right, same ground ---------- */
+.hero{padding-block:clamp(2.6rem,6.5vw,5.5rem) clamp(2rem,5vw,4rem)}
+.hero .grid{display:grid;gap:clamp(2rem,4.5vw,4rem);align-items:center;grid-template-columns:1fr}
+@media (min-width:940px){.hero .grid{grid-template-columns:1.02fr .98fr}}
+.hero h1{max-width:15ch}
+.lede{margin-top:clamp(1.1rem,2.1vw,1.7rem);max-width:44ch;
+  font-size:clamp(.93rem,1.07vw,1.06rem);line-height:1.8;color:var(--fg-soft)}
+.actions{margin-top:clamp(1.5rem,2.8vw,2.3rem);display:flex;align-items:center;
+  gap:clamp(.9rem,2vw,1.8rem);flex-wrap:wrap}
+.btn{display:inline-block;padding:1rem 2.3rem;background:var(--blue);color:var(--cream);
+  border:1px solid var(--blue);font-family:var(--sans);cursor:pointer;text-decoration:none;
+  font-size:var(--label);font-weight:600;letter-spacing:.24em;text-transform:uppercase;
+  transition:background .35s,color .35s}
+.btn:hover{background:var(--blue-deep);border-color:var(--blue-deep)}
+.btn.ghost{background:none;color:var(--fg);border-color:var(--line-2)}
+.btn.ghost:hover{background:var(--fg);color:var(--cream);border-color:var(--fg)}
+.btn.light{background:var(--cream);color:var(--blue-deep);border-color:var(--cream)}
+.btn.light:hover{background:#fff;border-color:#fff}
+.price{font-family:var(--serif);font-style:italic;font-size:clamp(.98rem,1.25vw,1.2rem);color:var(--fg-soft)}
+.hero .pic{position:relative;min-width:0}
+.hero .pic img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:68% center;filter:var(--grade)}
+.hero .pic figcaption{margin-top:.7rem;font-size:.66rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--fg-soft)}
 
-/* ---------- chapters ---------- */
-.ch{padding-block:clamp(3.6rem,10vh,8rem)}
-.ch.blue{position:relative;background:linear-gradient(180deg,var(--blue-deep),var(--blue) 45%,var(--blue-deep))}
-.ch.blue>*{position:relative;z-index:2}
-.head{max-width:22ch}
+/* editions index bridging hero into the page */
+.index{background:var(--bg-2);border-block:1px solid var(--line)}
+.index .g{display:grid;grid-template-columns:1fr}
+@media (min-width:700px){.index .g{grid-template-columns:1fr 1fr}}
+.index a{display:block;padding:clamp(1.3rem,2.6vw,2.1rem) 0;text-decoration:none;min-width:0;
+  transition:background .35s}
+.index a + a{border-top:1px solid var(--line)}
+@media (min-width:700px){.index a + a{border-top:0;border-left:1px solid var(--line);
+  padding-left:clamp(1.4rem,3vw,2.6rem)}}
+.index a:hover{background:rgba(62,92,118,.05)}
+.index .k{font-size:.62rem;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--wood)}
+.index .t{margin-top:.4rem;font-family:var(--serif);font-size:clamp(1.08rem,1.5vw,1.4rem);line-height:1.2}
+.index .s{margin-top:.3rem;font-size:.84rem;color:var(--fg-soft);line-height:1.6}
 
-.editions{margin-top:clamp(2rem,4.6vw,3.6rem);display:grid;gap:1.5px;
-  grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));background:var(--rule)}
-.ed{background:var(--ink);min-width:0;display:flex;flex-direction:column}
-.ed .pic{position:relative;aspect-ratio:9/13;overflow:hidden}
-.ed .pic img{width:100%;height:100%;object-fit:cover;filter:var(--grade)}
-.ed .pic .sh{position:absolute;inset:0;background:linear-gradient(180deg,rgba(26,39,51,.18),rgba(26,39,51,.74))}
-.ed .pic .cap{position:absolute;left:0;right:0;bottom:0;padding:clamp(1.1rem,2vw,1.8rem)}
-.ed .pic .cap .t{font-family:var(--serif);font-size:var(--h3);line-height:1.1}
-.ed .pic .cap .s{margin-top:.35rem;font-size:var(--label);letter-spacing:.26em;text-transform:uppercase;opacity:.8}
-.ed .body{padding:clamp(1.3rem,2.3vw,2rem);flex:1}
-.ed ul{list-style:none;display:grid;gap:.7rem}
-.ed li{display:grid;grid-template-columns:auto 1fr;gap:.7rem;align-items:baseline;
-  font-size:var(--body);font-weight:400;line-height:1.6;opacity:.85}
-.ed li::before{content:"";width:16px;height:1.5px;background:var(--rule-strong);transform:translateY(-.35em)}
-.ed .meta{margin-top:1.2rem;padding-top:.9rem;border-top:1.5px solid var(--rule-soft);
-  font-size:var(--label);letter-spacing:.24em;text-transform:uppercase;opacity:.72}
-.statement{margin-top:clamp(2rem,4.6vw,3.4rem);text-align:center}
-.statement h3{font-size:clamp(1.45rem,3vw,2.7rem)}
+/* ---------- sections ---------- */
+.ch{padding-block:clamp(3.4rem,8.5vw,7rem)}
+.ch.sand{background:var(--bg-2)}
+.ch.dark{background:var(--blue-deep);color:var(--cream)}
+.ch.dark em{color:var(--on-dark)}
+.ch.dark .kicker .r{background:var(--on-dark)}
+.ch.dark .kicker .t{color:var(--on-dark)}
+.ch.dark .chapter{color:var(--on-dark)}
+.ch.dark .lede{color:var(--on-dark)}
+.head{max-width:21ch}
 
-.vpics{margin-top:1.5px;display:grid;gap:1.5px;background:var(--rule);
-  grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr))}
-.vpic{position:relative;aspect-ratio:9/13;overflow:hidden;background:var(--blue-deep);min-width:0}
-.vpic img{width:100%;height:100%;object-fit:cover;filter:var(--grade)}
-.vpic .sh{position:absolute;inset:0;background:linear-gradient(180deg,rgba(26,39,51,.1),rgba(26,39,51,.68))}
-.vpic .cp{position:absolute;left:0;right:0;bottom:0;padding:clamp(1rem,1.8vw,1.5rem);
-  font-size:var(--label);letter-spacing:.26em;text-transform:uppercase;opacity:.9}
+.eds{margin-top:clamp(2rem,4.2vw,3.4rem);display:grid;gap:clamp(1.3rem,2.8vw,2.2rem);
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr))}
+.ed{min-width:0;background:var(--bg);border:1px solid var(--line);display:flex;flex-direction:column}
+.ch.sand .ed{background:var(--bg)}
+.ed img{width:100%;aspect-ratio:4/3;object-fit:cover;filter:var(--grade)}
+.ed .in{padding:clamp(1.3rem,2.3vw,1.9rem);flex:1;display:flex;flex-direction:column}
+.ed .k{color:var(--wood);margin-bottom:.55rem}
+.ed ul{list-style:none;display:grid;gap:.55rem;margin-top:.9rem}
+.ed li{display:grid;grid-template-columns:auto 1fr;gap:.6rem;align-items:baseline;
+  font-size:var(--body);line-height:1.6;color:var(--fg-soft)}
+.ed li::before{content:"";width:13px;height:1px;background:var(--wood);transform:translateY(-.35em)}
+.ed .meta{margin-top:auto;padding-top:1rem;border-top:1px solid var(--line);
+  font-size:.64rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--fg-soft)}
 
-.list{margin-top:clamp(2rem,4.6vw,3.6rem);border-top:1.5px solid var(--rule)}
-.li{display:grid;grid-template-columns:clamp(2.4rem,4.6vw,5rem) 1fr;gap:clamp(.5rem,2vw,2rem);
-  align-items:baseline;padding-block:clamp(1rem,2.1vw,1.7rem);border-bottom:1.5px solid var(--rule)}
-.li .n{font-size:var(--label);letter-spacing:.2em;opacity:.75;padding-top:.5em;font-variant-numeric:tabular-nums}
+.statement{margin-top:clamp(2rem,4.2vw,3.2rem);text-align:center}
+.statement h3{font-size:clamp(1.4rem,2.9vw,2.5rem)}
+
+/* numbered list */
+.list{margin-top:clamp(2rem,4.2vw,3.4rem);border-top:1px solid var(--line)}
+.li{display:grid;grid-template-columns:clamp(2.4rem,4.4vw,4.6rem) 1fr;gap:clamp(.5rem,2vw,1.8rem);
+  align-items:baseline;padding-block:clamp(1rem,2vw,1.6rem);border-bottom:1px solid var(--line)}
+.li .n{font-family:var(--serif);font-style:italic;font-size:1.3rem;color:var(--wood);line-height:1}
 .li .b{min-width:0}
-.li .t{font-family:var(--serif);font-size:var(--li-t);line-height:1.22}
-.li .d{margin-top:.38rem;font-size:var(--body);font-weight:400;line-height:1.7;opacity:.72;max-width:54ch}
-.li .tag{display:inline-block;margin-left:.55rem;font-family:var(--sans);font-size:.57rem;
-  letter-spacing:.22em;text-transform:uppercase;opacity:.75;border:1px solid var(--rule);
-  padding:.25em .6em;vertical-align:.25em;white-space:nowrap}
+.li .t{font-family:var(--serif);font-size:var(--li-t);line-height:1.25}
+.li .d{margin-top:.35rem;font-size:var(--body);line-height:1.7;color:var(--fg-soft);max-width:54ch}
+.li .tag{display:inline-block;margin-left:.5rem;font-family:var(--sans);font-size:.56rem;
+  font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);
+  border:1px solid var(--line-2);padding:.25em .55em;vertical-align:.25em;white-space:nowrap}
 
-/* not included */
-.excl{margin-top:clamp(2rem,4.4vw,3.2rem);border:1.5px solid var(--rule-soft);
-  padding:clamp(1.3rem,2.4vw,2.1rem)}
-.excl h4{font-family:var(--serif);font-weight:500;font-size:var(--h3);margin-bottom:1.1rem}
-.excl ul{list-style:none;display:grid;gap:.7rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr))}
-.excl li{display:grid;grid-template-columns:1.3em 1fr;gap:.5rem;align-items:baseline;
-  font-size:var(--body);font-weight:400;line-height:1.6;opacity:.78}
-.excl li::before{content:"✕";opacity:.45}
+.excl{margin-top:clamp(2rem,4vw,3rem);background:var(--bg-2);padding:clamp(1.3rem,2.4vw,2.1rem);
+  border-left:3px solid var(--wood)}
+.ch.sand .excl{background:var(--bg)}
+.excl h4{font-family:var(--serif);font-weight:500;font-size:var(--h3);margin-bottom:1rem}
+.excl ul{list-style:none;display:grid;gap:.65rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr))}
+.excl li{display:grid;grid-template-columns:1.2em 1fr;gap:.45rem;align-items:baseline;
+  font-size:var(--body);line-height:1.6;color:var(--fg-soft)}
+.excl li::before{content:"✕";color:var(--clay);opacity:.75}
 
-/* day toggle */
-.tabs{margin-top:clamp(1.7rem,3.6vw,2.8rem);display:flex;gap:1.5px;background:var(--rule);width:fit-content;max-width:100%}
-.tab{background:var(--ink);border:0;color:var(--cream);cursor:pointer;font-family:var(--sans);
-  padding:.9rem clamp(1rem,2.4vw,2.1rem);font-size:var(--label);font-weight:600;
-  letter-spacing:.24em;text-transform:uppercase;opacity:.55;transition:opacity .4s,background .4s}
-.tab[aria-selected="true"]{opacity:1;background:var(--blue)}
-.day{margin-top:clamp(1.7rem,3.6vw,2.8rem);border-top:1.5px solid var(--rule)}
-.beat{display:grid;grid-template-columns:clamp(4.6rem,12vw,10rem) 1fr;gap:clamp(.8rem,2.4vw,2.4rem);
-  align-items:baseline;padding-block:clamp(.95rem,2.1vw,1.6rem);border-bottom:1.5px solid var(--rule)}
-.beat .tm{font-family:var(--serif);font-style:italic;font-weight:400;
-  font-size:clamp(1.6rem,3.4vw,3rem);line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+/* day */
+.tabs{margin-top:clamp(1.6rem,3.2vw,2.5rem);display:flex;flex-wrap:wrap;gap:.5rem}
+.tab{background:none;border:1px solid var(--line-2);color:var(--fg);cursor:pointer;font-family:var(--sans);
+  padding:.8rem clamp(1rem,2.2vw,1.9rem);font-size:var(--label);font-weight:600;
+  letter-spacing:.22em;text-transform:uppercase;transition:background .35s,color .35s,border-color .35s}
+.tab[aria-selected="true"]{background:var(--blue);color:var(--cream);border-color:var(--blue)}
+.day{margin-top:clamp(1.6rem,3.2vw,2.5rem);border-top:1px solid var(--line)}
+.beat{display:grid;grid-template-columns:clamp(4.4rem,11vw,9rem) 1fr;gap:clamp(.8rem,2.2vw,2.2rem);
+  align-items:baseline;padding-block:clamp(.9rem,2vw,1.5rem);border-bottom:1px solid var(--line)}
+.beat .tm{font-family:var(--serif);font-style:italic;font-size:clamp(1.5rem,3.1vw,2.7rem);
+  line-height:1;color:var(--blue);font-variant-numeric:tabular-nums}
 .beat .tx{font-family:var(--serif);font-size:var(--li-t);line-height:1.25;min-width:0}
 
 /* cards */
-.cards{margin-top:clamp(2rem,4.6vw,3.6rem);display:grid;gap:1.5px;background:var(--rule);
+.cards{margin-top:clamp(2rem,4.2vw,3.4rem);display:grid;gap:clamp(1.1rem,2.2vw,1.6rem);
   grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr))}
-.card{background:var(--ink);padding:clamp(1.4rem,2.4vw,2.1rem);min-width:0}
-.ch.blue .card{background:var(--blue-deep)}
-.card .q{font-size:var(--label);letter-spacing:.26em;text-transform:uppercase;opacity:.7;margin-bottom:.85rem}
-.card .a{font-family:var(--serif);font-size:clamp(1.08rem,1.5vw,1.36rem);line-height:1.3;margin-bottom:.75rem}
-.card p{font-size:var(--body);font-weight:400;line-height:1.7;opacity:.74}
-.ph{margin-top:.95rem;border:1.5px dashed rgba(245,241,234,.3);padding:.85rem;
-  font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;opacity:.55;text-align:center}
+.card{background:var(--bg);border:1px solid var(--line);padding:clamp(1.3rem,2.3vw,2rem);min-width:0}
+.ch.sand .card{background:var(--bg)}
+.ch.dark .card{background:rgba(250,246,240,.07);border-color:var(--line-dark)}
+.card .q{font-size:var(--label);font-weight:600;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--wood);margin-bottom:.75rem}
+.ch.dark .card .q{color:var(--on-dark)}
+.card .a{font-family:var(--serif);font-size:clamp(1.06rem,1.45vw,1.32rem);line-height:1.3;margin-bottom:.7rem}
+.card p{font-size:var(--body);line-height:1.7;color:var(--fg-soft)}
+.ch.dark .card p{color:var(--on-dark)}
+.ph{margin-top:.9rem;border:1px dashed var(--line-2);padding:.8rem;font-size:.57rem;
+  font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--fg-soft);text-align:center}
+.ch.dark .ph{border-color:var(--line-dark);color:var(--on-dark)}
 
-/* films in phone frames */
-.films{margin-top:clamp(2rem,4.6vw,3.6rem);display:grid;gap:clamp(1.6rem,3.4vw,3rem);
-  grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));justify-items:center}
-.phone{width:100%;max-width:290px}
-.phone .screen{position:relative;aspect-ratio:9/16;border:2px solid rgba(245,241,234,.5);
-  border-radius:22px;overflow:hidden;background:#0D161E}
+.vpics{margin-top:clamp(1.1rem,2.2vw,1.6rem);display:grid;gap:clamp(1.1rem,2.2vw,1.6rem);
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr))}
+.vpic{position:relative;min-width:0}
+.vpic img{width:100%;aspect-ratio:9/13;object-fit:cover;filter:var(--grade)}
+.vpic figcaption{margin-top:.6rem;font-size:.62rem;font-weight:600;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--on-dark)}
+
+.steps{margin-top:clamp(1.1rem,2.2vw,1.6rem);display:grid;gap:clamp(1.1rem,2.2vw,1.6rem);
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,195px),1fr))}
+.step{padding-top:1rem;border-top:2px solid var(--line-dark);min-width:0}
+.step .w{font-size:var(--label);font-weight:600;letter-spacing:.26em;text-transform:uppercase;
+  color:var(--on-dark);margin-bottom:.7rem}
+.step .l{font-family:var(--serif);font-size:clamp(1.08rem,1.6vw,1.45rem);line-height:1.2}
+.step .l em{display:inline;color:var(--on-dark)}
+
+/* films */
+.films{margin-top:clamp(2rem,4.2vw,3.4rem);display:grid;gap:clamp(1.6rem,3.2vw,2.8rem);
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));justify-items:center}
+.phone{width:100%;max-width:280px}
+.phone .screen{position:relative;aspect-ratio:9/16;overflow:hidden;background:var(--blue-deep);
+  border:1px solid var(--line-2);border-radius:18px}
 .phone video{width:100%;height:100%;object-fit:cover}
-.phone .cap{margin-top:.95rem;text-align:center}
-.phone .cap .t{font-family:var(--serif);font-size:clamp(1rem,1.3vw,1.2rem)}
-.phone .cap .s{margin-top:.3rem;font-size:.58rem;letter-spacing:.24em;text-transform:uppercase;opacity:.6}
-
-/* steps */
-.steps{margin-top:clamp(2rem,4.6vw,3.6rem);display:grid;gap:1.5px;background:var(--rule);
-  grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr))}
-.step{background:var(--ink);padding:clamp(1.4rem,2.4vw,2.2rem);min-width:0}
-.ch.blue .step{background:var(--blue-deep)}
-.step .w{font-size:var(--label);letter-spacing:.28em;text-transform:uppercase;opacity:.65;margin-bottom:.85rem}
-.step .l{font-family:var(--serif);font-size:clamp(1.1rem,1.7vw,1.5rem);line-height:1.2}
-.step .l em{display:inline}
+.phone figcaption{margin-top:.85rem;text-align:center}
+.phone figcaption .t{font-family:var(--serif);font-size:clamp(1rem,1.25vw,1.15rem)}
+.phone figcaption .s{margin-top:.25rem;font-size:.6rem;font-weight:600;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--fg-soft)}
 
 /* fit */
-.fit{margin-top:clamp(2rem,4.6vw,3.6rem);display:grid;gap:1.5px;background:var(--rule);
+.fit{margin-top:clamp(2rem,4.2vw,3.4rem);display:grid;gap:clamp(1.1rem,2.2vw,1.6rem);
   grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr))}
-.col{background:var(--ink);padding:clamp(1.4rem,2.4vw,2.2rem);min-width:0}
-.col h4{font-family:var(--serif);font-weight:500;font-size:var(--h3);margin-bottom:1.1rem;line-height:1.2}
-.col ul{list-style:none;display:grid;gap:.8rem}
-.col li{display:grid;grid-template-columns:1.4em 1fr;gap:.55rem;align-items:baseline;
-  font-size:clamp(.88rem,1.02vw,.98rem);font-weight:400;line-height:1.6;opacity:.86}
-.col .yes li::before{content:"✓";opacity:.85}
-.col .no li::before{content:"✕";opacity:.5}
+.col{background:var(--bg);border:1px solid var(--line);padding:clamp(1.3rem,2.3vw,2rem);min-width:0}
+.col.no{background:var(--bg-2)}
+.col h4{font-family:var(--serif);font-weight:500;font-size:var(--h3);margin-bottom:1rem;line-height:1.2}
+.col ul{list-style:none;display:grid;gap:.75rem}
+.col li{display:grid;grid-template-columns:1.4em 1fr;gap:.5rem;align-items:baseline;
+  font-size:clamp(.89rem,1.02vw,.98rem);line-height:1.6;color:var(--fg-soft)}
+.col.yes li::before{content:"✓";color:var(--blue);font-weight:600}
+.col.no li::before{content:"✕";color:var(--clay);opacity:.7}
 
 /* lengths */
-.lengths{margin-top:clamp(2rem,4.6vw,3.6rem);display:grid;gap:1.5px;background:var(--rule);
+.lengths{margin-top:clamp(2rem,4.2vw,3.4rem);display:grid;gap:clamp(1.1rem,2.2vw,1.6rem);
   grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr))}
-.len{background:var(--ink);padding:clamp(1.5rem,2.6vw,2.4rem) clamp(1rem,2vw,1.8rem);text-align:center;min-width:0}
-.len .num{font-family:var(--serif);font-style:italic;font-weight:400;
-  font-size:clamp(3rem,6.2vw,5.6rem);line-height:.95;letter-spacing:-.02em}
-.len .u{margin-top:.35rem;font-size:var(--label);letter-spacing:.3em;text-transform:uppercase;opacity:.75}
-.len .r{width:clamp(40px,4.6vw,78px);height:1.5px;background:var(--rule-strong);margin:1.1rem auto}
-.len .n{font-family:var(--serif);font-size:clamp(.88rem,1.08vw,1.02rem);opacity:.85}
-.len .ed-tag{margin-top:.7rem;font-size:.57rem;letter-spacing:.24em;text-transform:uppercase;opacity:.6}
-.note{margin-top:clamp(1.6rem,3.2vw,2.4rem);padding-left:clamp(.9rem,1.5vw,1.3rem);
-  border-left:1.5px solid var(--rule);max-width:58ch;
-  font-size:var(--body);font-weight:400;line-height:1.75;opacity:.74}
+.len{background:var(--bg);border:1px solid var(--line);padding:clamp(1.5rem,2.5vw,2.3rem) 1.2rem;
+  text-align:center;min-width:0}
+.ch.sand .len{background:var(--bg)}
+.len .num{font-family:var(--serif);font-style:italic;font-size:clamp(3rem,6vw,5.4rem);
+  line-height:.95;color:var(--blue)}
+.len .u{margin-top:.3rem;font-size:var(--label);font-weight:600;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--fg-soft)}
+.len .r{width:48px;height:1px;background:var(--wood);margin:1.1rem auto}
+.len .n{font-family:var(--serif);font-size:clamp(.9rem,1.08vw,1.02rem)}
+.len .ed-tag{margin-top:.65rem;font-size:.57rem;font-weight:600;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--fg-soft)}
+.note{margin-top:clamp(1.6rem,3vw,2.3rem);padding-left:clamp(.9rem,1.4vw,1.2rem);
+  border-left:2px solid var(--wood);max-width:58ch;font-size:var(--body);line-height:1.8;color:var(--fg-soft)}
+.ch.dark .note{border-left-color:var(--on-dark);color:var(--on-dark)}
 
 /* people */
-.people{margin-top:clamp(2rem,4.6vw,3.6rem);display:grid;gap:1.5px;background:var(--rule);
-  grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr))}
-.person{background:var(--ink);padding:clamp(1.4rem,2.4vw,2.2rem);min-width:0}
-.person .slot{aspect-ratio:1;border:1.5px dashed rgba(245,241,234,.3);display:grid;place-items:center;
-  text-align:center;padding:1rem;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;
-  opacity:.5;margin-bottom:1.2rem;max-width:160px}
+.people{margin-top:clamp(2rem,4.2vw,3.4rem);display:grid;gap:clamp(1.1rem,2.2vw,1.6rem);
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,255px),1fr))}
+.person{background:var(--bg);border:1px solid var(--line);padding:clamp(1.3rem,2.3vw,2rem);min-width:0}
+.ch.sand .person{background:var(--bg)}
+.person .slot{aspect-ratio:1;max-width:148px;border:1px dashed var(--line-2);display:grid;
+  place-items:center;text-align:center;padding:1rem;font-size:.57rem;font-weight:600;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--fg-soft);margin-bottom:1.1rem}
 .person .nm{font-family:var(--serif);font-size:var(--h3);line-height:1.2}
-.person .ro{margin-top:.35rem;font-size:var(--label);letter-spacing:.26em;text-transform:uppercase;opacity:.7}
-.person p{margin-top:.85rem;font-size:var(--body);font-weight:400;line-height:1.7;opacity:.74}
+.person .ro{margin-top:.3rem;font-size:var(--label);font-weight:600;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--wood)}
+.person p{margin-top:.75rem;font-size:var(--body);line-height:1.7;color:var(--fg-soft)}
 
 /* faq */
-.faq{margin-top:clamp(2rem,4.6vw,3.6rem);border-top:1.5px solid var(--rule)}
-.faq details{border-bottom:1.5px solid var(--rule)}
-.faq summary{list-style:none;cursor:pointer;padding-block:clamp(1rem,2.1vw,1.6rem);
+.faq{margin-top:clamp(2rem,4.2vw,3.4rem);border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;padding-block:clamp(.95rem,2vw,1.5rem);
   display:flex;justify-content:space-between;align-items:baseline;gap:1.5rem;
   font-family:var(--serif);font-size:var(--li-t);line-height:1.25}
 .faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"+";font-family:var(--sans);font-weight:500;opacity:.6;flex:none;
-  font-size:1.1rem;transition:transform .35s cubic-bezier(.16,1,.3,1)}
+.faq summary::after{content:"+";font-family:var(--sans);font-weight:500;color:var(--wood);
+  flex:none;font-size:1.1rem;transition:transform .35s cubic-bezier(.16,1,.3,1)}
 .faq details[open] summary::after{transform:rotate(45deg)}
-.faq .ans{padding-bottom:clamp(1.1rem,2.2vw,1.7rem);max-width:62ch;
-  font-size:var(--body);font-weight:400;line-height:1.8;opacity:.76}
+.faq .ans{padding-bottom:clamp(1rem,2vw,1.6rem);max-width:62ch;font-size:var(--body);
+  line-height:1.8;color:var(--fg-soft)}
 
-/* enquiry form */
-.enq{position:relative;background:var(--ink-2);padding-block:clamp(3.6rem,10vh,7.5rem)}
-.enq .grid{margin-top:clamp(2rem,4.4vw,3.4rem);display:grid;gap:clamp(1.8rem,4vw,3.5rem);
+/* form */
+.enq .grid{margin-top:clamp(2rem,4vw,3.2rem);display:grid;gap:clamp(1.8rem,3.6vw,3.2rem);
   grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));align-items:start}
-.form{display:grid;gap:1.15rem;min-width:0}
-.field{display:grid;gap:.5rem;min-width:0}
-.field label{font-size:var(--label);letter-spacing:.24em;text-transform:uppercase;opacity:.75}
-.field input,.field select,.field textarea{width:100%;background:rgba(10,18,26,.45);color:var(--cream);
-  border:1.5px solid var(--rule-soft);padding:.85rem 1rem;font-family:var(--sans);
-  font-size:var(--body);font-weight:400;transition:border-color .35s}
-.field textarea{resize:vertical;min-height:110px;line-height:1.6}
-.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--rule-strong);outline:none}
-.field .hint{font-size:.68rem;font-weight:400;opacity:.55;letter-spacing:.02em;text-transform:none}
-.two{display:grid;gap:1.15rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr))}
-.check{display:grid;grid-template-columns:auto 1fr;gap:.7rem;align-items:start;
-  font-size:var(--body);font-weight:400;line-height:1.6;opacity:.85;cursor:pointer}
-.check input{width:1.05rem;height:1.05rem;margin-top:.2rem;accent-color:var(--blue-light)}
-.err{font-size:.72rem;font-weight:400;letter-spacing:.02em;opacity:.95;color:#F0C987}
-.sent{border:1.5px solid var(--rule);padding:clamp(1.4rem,2.6vw,2.2rem)}
-.sent h3{margin-bottom:.8rem}
-.sent p{font-size:var(--body);font-weight:400;line-height:1.75;opacity:.8}
+.form{display:grid;gap:1.1rem;min-width:0}
+.field{display:grid;gap:.45rem;min-width:0}
+.field label{font-size:var(--label);font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--fg-soft)}
+.field input,.field select,.field textarea{width:100%;background:var(--bg);color:var(--fg);
+  border:1px solid var(--line-2);padding:.82rem .95rem;font-family:var(--sans);
+  font-size:var(--body);transition:border-color .3s}
+.field textarea{resize:vertical;min-height:108px;line-height:1.6}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--blue);outline:none}
+.field .hint{font-size:.72rem;color:var(--fg-soft)}
+.two{display:grid;gap:1.1rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr))}
+.check{display:grid;grid-template-columns:auto 1fr;gap:.65rem;align-items:start;
+  font-size:var(--body);line-height:1.6;color:var(--fg-soft);cursor:pointer}
+.check input{width:1.05rem;height:1.05rem;margin-top:.2rem;accent-color:var(--blue)}
+.err{font-size:.78rem;color:var(--clay);font-weight:500}
+.sent{background:var(--bg);border:1px solid var(--blue);padding:clamp(1.4rem,2.5vw,2.1rem)}
+.sent p{margin-top:.7rem;font-size:var(--body);line-height:1.75;color:var(--fg-soft)}
 .aside{min-width:0}
-.aside h3{margin-bottom:1rem}
-.aside p{font-size:var(--body);font-weight:400;line-height:1.8;opacity:.78;max-width:46ch}
-.aside .direct{margin-top:1.6rem;padding-top:1.3rem;border-top:1.5px solid var(--rule-soft);display:grid;gap:.85rem}
-.aside .direct .k{font-size:var(--label);letter-spacing:.24em;text-transform:uppercase;opacity:.65}
-.aside .direct .v{font-family:var(--serif);font-size:clamp(1rem,1.3vw,1.2rem);
+.aside p{font-size:var(--body);line-height:1.8;color:var(--fg-soft);max-width:44ch}
+.aside .direct{margin-top:1.5rem;padding-top:1.2rem;border-top:1px solid var(--line);display:grid;gap:.8rem}
+.aside .direct .k{font-size:.62rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--wood)}
+.aside .direct .v{font-family:var(--serif);font-size:clamp(1rem,1.25vw,1.18rem);
   user-select:all;-webkit-user-select:all;word-break:break-word}
 
-/* end */
-.end{position:relative;padding-block:clamp(4rem,11vh,8.5rem);text-align:center;overflow:hidden}
-.end .wash{position:absolute;inset:0;z-index:0;
-  background:radial-gradient(circle at 50% 42%,var(--blue-light) 0%,var(--blue) 45%,var(--blue-deep) 100%)}
-.end .inner{position:relative;z-index:2}
-.end .mark{width:clamp(84px,9vw,152px);margin:0 auto clamp(1.3rem,2.4vw,2.1rem)}
-.end .mark svg{width:100%;height:auto;stroke:var(--cream)}
-.end .name{font-family:var(--serif);font-size:clamp(1.85rem,4vw,3.6rem);letter-spacing:-.01em}
-.end .r{width:clamp(62px,6.8vw,118px);height:1.5px;background:var(--rule-strong);
-  margin:clamp(1.1rem,2.2vw,1.9rem) auto}
-.end .line{font-family:var(--serif);font-style:italic;font-size:clamp(.98rem,1.7vw,1.5rem);opacity:.95}
-.end .handle{margin-top:clamp(1.9rem,4vw,2.8rem);font-size:var(--label);font-weight:600;letter-spacing:.3em}
+/* close */
+.close{background:var(--blue);color:var(--cream);padding-block:clamp(3.6rem,9vw,7rem);text-align:center}
+.close .mark{width:clamp(80px,8vw,130px);margin:0 auto clamp(1.2rem,2.2vw,1.9rem)}
+.close .mark svg{width:100%;height:auto;stroke:var(--cream)}
+.close h2{font-size:clamp(1.8rem,3.8vw,3.2rem)}
+.close h2 em{color:rgba(250,246,240,.8)}
+.close p{margin-top:.9rem;font-size:var(--body);line-height:1.8;color:var(--on-dark);
+  max-width:46ch;margin-inline:auto}
+.close .btn{margin-top:clamp(1.6rem,3vw,2.3rem)}
+.close .handle{margin-top:clamp(1.9rem,3.6vw,2.7rem);font-size:var(--label);font-weight:600;
+  letter-spacing:.28em;text-transform:uppercase;color:var(--on-dark)}
 
-footer{background:#141F29;padding-block:clamp(2.8rem,6vw,4.5rem) 2rem}
-.fgrid{display:grid;gap:clamp(2rem,4.5vw,3.5rem);
-  grid-template-columns:minmax(0,1.5fr) repeat(auto-fit,minmax(min(100%,160px),1fr))}
+/* footer */
+footer{background:var(--fg);color:rgba(250,246,240,.78);padding-block:clamp(2.6rem,5.5vw,4.2rem) 1.8rem}
+.fgrid{display:grid;gap:clamp(1.8rem,4vw,3.2rem);
+  grid-template-columns:minmax(0,1.5fr) repeat(auto-fit,minmax(min(100%,155px),1fr))}
 .fcol{min-width:0}
-.fcol .mk{display:flex;align-items:center;gap:.7rem;margin-bottom:1rem}
-.fcol .mk svg{width:30px;height:auto;stroke:var(--cream);flex:none}
-.fcol .mk span{font-size:var(--label);letter-spacing:.28em;text-transform:uppercase}
-.fcol .blurb{font-size:var(--body);font-weight:400;line-height:1.8;opacity:.7;max-width:36ch}
-.fcol h5{font-size:.6rem;font-weight:600;letter-spacing:.28em;text-transform:uppercase;
-  opacity:.55;margin-bottom:1.1rem}
-.fcol ul{list-style:none;display:grid;gap:.7rem}
-.fcol li a,.fcol li span{font-size:var(--body);font-weight:400;text-decoration:none;opacity:.78;
-  transition:opacity .35s;line-height:1.5}
-.fcol li a:hover{opacity:1}
+.fcol .mk{display:flex;align-items:center;gap:.65rem;margin-bottom:.9rem}
+.fcol .mk svg{width:28px;height:auto;stroke:var(--cream);flex:none}
+.fcol .mk span{font-size:var(--label);font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--cream)}
+.fcol .blurb{font-size:var(--body);line-height:1.8;max-width:34ch}
+.fcol h5{font-size:.6rem;font-weight:600;letter-spacing:.26em;text-transform:uppercase;
+  color:rgba(250,246,240,.5);margin-bottom:1rem}
+.fcol ul{list-style:none;display:grid;gap:.65rem}
+.fcol li a,.fcol li span{font-size:var(--body);text-decoration:none;line-height:1.5;transition:color .3s}
+.fcol li a:hover{color:var(--cream)}
 .fcol .sel{user-select:all;-webkit-user-select:all;word-break:break-word}
-.fbot{margin-top:clamp(2.4rem,5vw,3.6rem);padding-top:1.5rem;
-  border-top:1.5px solid rgba(245,241,234,.14);display:grid;gap:.9rem}
+.fbot{margin-top:clamp(2.2rem,4.5vw,3.2rem);padding-top:1.4rem;
+  border-top:1px solid rgba(250,246,240,.16);display:grid;gap:.8rem}
 .fbot .row{display:flex;justify-content:space-between;gap:.75rem;flex-wrap:wrap;
-  font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;opacity:.5;line-height:1.9}
-.fbot .cr{font-size:.66rem;font-weight:400;letter-spacing:.02em;line-height:1.75;opacity:.42;max-width:86ch}
+  font-size:.62rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(250,246,240,.5)}
+.fbot .cr{font-size:.66rem;line-height:1.75;color:rgba(250,246,240,.4);max-width:86ch}
 </style>
 
-<div class="bar pad" id="bar">
-  <div class="in wrap">
-    <a class="id" href="#top">
-      <svg viewBox="0 0 220 150" fill="none" stroke="currentColor" stroke-width="9"
-           stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M14 120 L78 36 L112 80 L140 50 L206 120"/>
-        <path d="M30 140 C 70 122, 110 150, 150 132 S 200 128, 210 136" stroke-width="6" opacity="0.75"/>
-      </svg>
-      <span>Mountain Whisper</span>
-    </a>
-    <nav aria-label="Sections">
-      <a href="#stays">The stays</a>
-      <a href="#village">Village Edition</a>
-      <a href="#pricing">How long</a>
-      <a href="#faq">Questions</a>
-    </nav>
-    <a class="go" href="#enquire">Enquire</a>
-  </div>
-</div>
+<div class="bar pad" id="bar"><div class="in wrap">
+  <a class="id" href="#top">
+    <svg viewBox="0 0 220 150" fill="none" stroke="currentColor" stroke-width="9"
+         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M14 120 L78 36 L112 80 L140 50 L206 120"/>
+      <path d="M30 140 C 70 122, 110 150, 150 132 S 200 128, 210 136" stroke-width="6" opacity="0.75"/>
+    </svg>
+    <span>Mountain Whisper</span>
+  </a>
+  <nav aria-label="Sections">
+    <a href="#stays">The stays</a><a href="#village">Village Edition</a>
+    <a href="#pricing">How long</a><a href="#faq">Questions</a>
+  </nav>
+  <a class="go" href="#enquire">Enquire</a>
+</div></div>
 
-<header class="hero" id="top">
-  <div class="shot">
-    <img src="img/wide.jpg" alt="Himalayan peaks above Pokhara at first light"
-         srcset="img/wide-800.jpg 800w, img/wide-1600.jpg 1600w, img/wide.jpg 3840w"
-         sizes="100vw" fetchpriority="high">
-  </div>
-  <div class="tint"></div><div class="vig"></div><div class="grain"></div>
-  <span class="corner tl"></span><span class="corner tr"></span>
-  <span class="corner bl"></span><span class="corner br"></span>
-  <div class="inner pad"><div class="wrap">
-    <div class="kicker rv"><span class="r"></span><span class="t">Pokhara, Nepal</span></div>
-    <h1 class="rv d1">Some offices<em>have a view.</em></h1>
-    <p class="lede rv d2">Live and work from the Himalayas — lakeside in Pokhara, or with a village
+<header class="hero pad" id="top"><div class="grid wrap">
+  <div class="txt">
+    <div class="flagbar rv" aria-hidden="true">
+      <i style="background:#C0553A"></i><i style="background:#E0A33E"></i><i style="background:#5C8A5E"></i>
+      <i style="background:#3E5C76"></i><i style="background:#8A5A8C"></i>
+    </div>
+    <h1 class="rv">Some offices<em>have a view.</em></h1>
+    <p class="lede rv d1">Live and work from the Himalayas — lakeside in Pokhara, or with a village
       family in the hills. Room, desk, internet, visa and trek arranged end to end, before you land.</p>
     <div class="actions rv d2">
       <a class="btn" href="#enquire">Enquire</a>
+      <a class="btn ghost" href="#stays">See both stays</a>
       <span class="price">from $1,490 a month</span>
     </div>
-    <div class="index rv d2">
-      <a href="#stays"><span class="k">The city · 1, 3 or 5 months</span>
-        <span class="t">Lakeside in Pokhara</span></a>
-      <a href="#village"><span class="k">The Village Edition · 3 or 5 months</span>
-        <span class="t">A room with a family</span></a>
-    </div>
-  </div></div>
-</header>
+  </div>
+  <figure class="pic rv d1">
+    <img src="img/wide.jpg" alt="Prayer banners along a mountain trail, snow peaks beyond"
+         srcset="img/wide-800.jpg 800w, img/wide-1600.jpg 1600w, img/wide.jpg 3840w"
+         sizes="(min-width:940px) 48vw, 100vw" fetchpriority="high">
+    <figcaption>On the trail above Pokhara</figcaption>
+  </figure>
+</div></header>
+
+<div class="index pad"><div class="g wrap">
+  <a href="#stays"><span class="k">The city · 1, 3 or 5 months</span>
+    <span class="t">Lakeside in Pokhara</span>
+    <span class="s">Coworking, cafés, the Annapurnas next door.</span></a>
+  <a href="#village"><span class="k">The Village Edition · 3 or 5 months</span>
+    <span class="t">A room with a family</span>
+    <span class="s">Silence, deep focus, and Pokhara whenever you want it.</span></a>
+</div></div>
 
 <section class="ch pad" id="stays"><div class="wrap">
   <div class="head">
@@ -390,65 +409,55 @@ footer{background:#141F29;padding-block:clamp(2.8rem,6vw,4.5rem) 2rem}
     <div class="kicker rv"><span class="r"></span><span class="t">Choosing your stay</span></div>
     <h2 class="rv d1">Village<em>or city?</em></h2>
   </div>
-  <div class="editions">
+  <div class="eds">
     <article class="ed rv">
-      <div class="pic"><img src="img/cowork.jpg" alt="A desk and laptop by a window"><span class="sh"></span>
-        <div class="cap"><p class="t">The city</p><p class="s">Pokhara · 1, 3 or 5 months</p></div></div>
-      <div class="body"><ul>
-        <li>Cafés and coworking</li><li>Everything close by</li><li>Busier and louder</li>
-        <li>Lakeside, with the Annapurnas next door</li>
-      </ul><p class="meta">From $1,490 a month</p></div>
+      <img src="img/cowork.jpg" alt="A desk and laptop by a window">
+      <div class="in"><p class="label k">The city</p><h3>Lakeside in Pokhara</h3>
+        <ul><li>Cafés and coworking</li><li>Everything close by</li><li>Busier and louder</li>
+          <li>The Annapurnas next door</li></ul>
+        <p class="meta">1, 3 or 5 months · from $1,490</p></div>
     </article>
     <article class="ed rv d1">
-      <div class="pic"><img src="img/village-alley.jpg" alt="A stone village lane hung with prayer flags, mountains beyond"><span class="sh"></span>
-        <div class="cap"><p class="t">The Village Edition</p><p class="s">Homestay · 3 or 5 months</p></div></div>
-      <div class="body"><ul>
-        <li>Silence and space</li><li>Deep focus</li><li>Real local life, with a host family</li>
-        <li>Pokhara breaks whenever you want the city</li>
-      </ul><p class="meta">Limited homestays · First group</p></div>
+      <img src="img/village-alley.jpg" alt="A stone village lane hung with prayer flags">
+      <div class="in"><p class="label k">The Village Edition</p><h3>A room with a family</h3>
+        <ul><li>Silence and space</li><li>Deep focus</li><li>Real local life, with a host family</li>
+          <li>Pokhara breaks whenever you want the city</li></ul>
+        <p class="meta">3 or 5 months · limited homestays</p></div>
     </article>
   </div>
   <div class="statement rv d2"><h3>Have both.<em>Village and lake.</em></h3></div>
 </div></section>
 
-<section class="ch pad"><div class="wrap">
+<section class="ch sand pad"><div class="wrap">
   <div class="head">
     <p class="chapter rv">N° 02</p>
     <div class="kicker rv"><span class="r"></span><span class="t">The Mountain Whisper stay</span></div>
     <h2 class="rv d1">You bring the laptop.<em>We arrange everything else.</em></h2>
   </div>
   <div class="list">
-    <div class="li rv"><span class="n">01</span><div class="b">
-      <p class="t">Private room, fibre wifi</p>
+    <div class="li rv"><span class="n">01</span><div class="b"><p class="t">Private room, fibre wifi</p>
       <p class="d">Your own room, on a wired connection — not shared hostel wifi. Tested for video calls before you arrive.</p></div></div>
-    <div class="li rv"><span class="n">02</span><div class="b">
-      <p class="t">Coworking desk <span class="tag">City</span></p>
+    <div class="li rv"><span class="n">02</span><div class="b"><p class="t">Coworking desk <span class="tag">City</span></p>
       <p class="d">A reserved seat at a Pokhara coworking space, so you are not working from the bed.</p></div></div>
-    <div class="li rv"><span class="n">03</span><div class="b">
-      <p class="t">A home-cooked table <span class="tag">Village</span></p>
+    <div class="li rv"><span class="n">03</span><div class="b"><p class="t">A home-cooked table <span class="tag">Village</span></p>
       <p class="d">Dal bhat, vegetables picked that morning, handmade roti and chiya all day — eaten with the family you stay with.</p></div></div>
-    <div class="li rv"><span class="n">04</span><div class="b">
-      <p class="t">Local SIM, ready on arrival</p>
+    <div class="li rv"><span class="n">04</span><div class="b"><p class="t">Local SIM, ready on arrival</p>
       <p class="d">Handed to you at pickup. It is also your backup when the power goes.</p></div></div>
-    <div class="li rv"><span class="n">05</span><div class="b">
-      <p class="t">Visa assistance</p>
+    <div class="li rv"><span class="n">05</span><div class="b"><p class="t">Visa assistance</p>
       <p class="d">We prepare the paperwork and walk the extension through immigration with you.</p></div></div>
-    <div class="li rv"><span class="n">06</span><div class="b">
-      <p class="t">Airport welcome</p>
+    <div class="li rv"><span class="n">06</span><div class="b"><p class="t">Airport welcome</p>
       <p class="d">Met at Kathmandu, taken on to Pokhara. No haggling at arrivals after a long flight.</p></div></div>
-    <div class="li rv"><span class="n">07</span><div class="b">
-      <p class="t">Guided Himalayan trek</p>
-      <p class="d">Four to five days to Poon Hill with our licensed guide, permits included, over a long weekend — so you do not lose a week of work.</p></div></div>
+    <div class="li rv"><span class="n">07</span><div class="b"><p class="t">Guided Himalayan trek</p>
+      <p class="d">Four to five days to Poon Hill with our licensed guide, permits included, over a long weekend.</p></div></div>
   </div>
-
   <div class="excl rv">
     <h4>What is not included</h4>
     <ul>
       <li>International flights</li>
-      <li>Travel insurance — required, and you must have it before you arrive</li>
+      <li>Travel insurance — required before you arrive</li>
       <li>The Nepal visa fee itself, paid on arrival</li>
       <li>Food and drink on city stays, beyond the welcome dinner</li>
-      <li>Personal spending, laundry and anything you book yourself</li>
+      <li>Personal spending and laundry</li>
       <li>Extra treks or safaris beyond the one in your stay</li>
     </ul>
   </div>
@@ -480,41 +489,38 @@ footer{background:#141F29;padding-block:clamp(2.8rem,6vw,4.5rem) 2rem}
   </div>
 </div></section>
 
-<section class="ch blue pad" id="village">
-  <div class="grain"></div>
-  <div class="wrap">
-    <div class="head">
-      <p class="chapter rv">N° 04</p>
-      <div class="kicker rv"><span class="r"></span><span class="t">New from Mountain Whisper</span></div>
-      <h2 class="rv d1">Live with<em>a local family.</em></h2>
-      <p class="lede rv d2" style="max-width:52ch">A private room in a Himalayan village home, for three
-        or five months. Mornings of mountain views and home-cooked dal bhat; afternoons in the fields,
-        at the stove, or walking between villages.</p>
-    </div>
-    <div class="cards">
-      <div class="card rv"><p class="q">Your mornings</p><p class="a">Mountain views, dal bhat, fresh air</p>
-        <p>You wake when the family wakes. Tea by the fire before the day starts.</p></div>
-      <div class="card rv d1"><p class="q">Work, uninterrupted</p><p class="a">Tested internet, backup connection</p>
-        <p>The same checklist as the city stays, applied to a village — plus town days in Pokhara whenever the calls matter most.</p></div>
-      <div class="card rv d2"><p class="q">After work</p><p class="a">Farming, festivals, long walks</p>
-        <p>Cooking, the harvest, Dashain and Tihar, and the paths between one village and the next.</p></div>
-      <div class="card rv d2"><p class="q">Travel that gives back</p><p class="a">Fair to families. True to the village.</p>
-        <p>Host families are paid fairly and agree the terms up front. We ask guests to arrive as guests: shoes off indoors, ask before photographing anyone, and accept the tea.</p></div>
-    </div>
-    <div class="vpics">
-      <figure class="vpic rv"><img src="img/rice-harvest.jpg" alt="Carrying cut grass along a path through green rice terraces">
-        <span class="sh"></span><figcaption class="cp">Out in the fields · 16:00</figcaption></figure>
-      <figure class="vpic rv d1"><img src="img/lamps.jpg" alt="Rows of lit butter lamps on blackened stone shelves">
-        <span class="sh"></span><figcaption class="cp">Lamplight · 20:00</figcaption></figure>
-    </div>
-    <div class="steps">
-      <div class="step rv"><p class="w">Week one</p><p class="l">Up with <em>the sun.</em></p></div>
-      <div class="step rv d1"><p class="w">Month one</p><p class="l">Deeper work. <em>Fewer tabs.</em></p></div>
-      <div class="step rv d2"><p class="w">Month two</p><p class="l">Strangers <em>become family.</em></p></div>
-      <div class="step rv d3"><p class="w">Month three</p><p class="l">You won't <em>want to leave.</em></p></div>
-    </div>
+<section class="ch dark pad" id="village"><div class="wrap">
+  <div class="head">
+    <p class="chapter rv">N° 04</p>
+    <div class="kicker rv"><span class="r"></span><span class="t">New from Mountain Whisper</span></div>
+    <h2 class="rv d1">Live with<em>a local family.</em></h2>
+    <p class="lede rv d2" style="max-width:52ch">A private room in a Himalayan village home, for three
+      or five months. Mornings of mountain views and home-cooked dal bhat; afternoons in the fields,
+      at the stove, or walking between villages.</p>
   </div>
-</section>
+  <div class="cards">
+    <div class="card rv"><p class="q">Your mornings</p><p class="a">Mountain views, dal bhat, fresh air</p>
+      <p>You wake when the family wakes. Tea by the fire before the day starts.</p></div>
+    <div class="card rv d1"><p class="q">Work, uninterrupted</p><p class="a">Tested internet, backup connection</p>
+      <p>The same checklist as the city stays, applied to a village — plus town days in Pokhara whenever the calls matter most.</p></div>
+    <div class="card rv d2"><p class="q">After work</p><p class="a">Farming, festivals, long walks</p>
+      <p>Cooking, the harvest, Dashain and Tihar, and the paths between one village and the next.</p></div>
+    <div class="card rv d2"><p class="q">Travel that gives back</p><p class="a">Fair to families. True to the village.</p>
+      <p>Host families are paid fairly and agree the terms up front. We ask guests to arrive as guests: shoes off indoors, ask before photographing anyone, and accept the tea.</p></div>
+  </div>
+  <div class="vpics">
+    <figure class="vpic rv"><img src="img/rice-harvest.jpg" alt="Carrying cut grass through green rice terraces">
+      <figcaption>Out in the fields · 16:00</figcaption></figure>
+    <figure class="vpic rv d1"><img src="img/lamps.jpg" alt="Rows of lit butter lamps on stone shelves">
+      <figcaption>Lamplight · 20:00</figcaption></figure>
+  </div>
+  <div class="steps">
+    <div class="step rv"><p class="w">Week one</p><p class="l">Up with <em>the sun.</em></p></div>
+    <div class="step rv d1"><p class="w">Month one</p><p class="l">Deeper work. <em>Fewer tabs.</em></p></div>
+    <div class="step rv d2"><p class="w">Month two</p><p class="l">Strangers <em>become family.</em></p></div>
+    <div class="step rv d3"><p class="w">Month three</p><p class="l">You won't <em>want to leave.</em></p></div>
+  </div>
+</div></section>
 
 <section class="ch pad"><div class="wrap">
   <div class="head">
@@ -536,7 +542,7 @@ footer{background:#141F29;padding-block:clamp(2.8rem,6vw,4.5rem) 2rem}
   </div>
 </div></section>
 
-<section class="ch pad"><div class="wrap">
+<section class="ch sand pad"><div class="wrap">
   <div class="head">
     <p class="chapter rv">N° 06</p>
     <div class="kicker rv"><span class="r"></span><span class="t">See it for yourself</span></div>
@@ -546,16 +552,16 @@ footer{background:#141F29;padding-block:clamp(2.8rem,6vw,4.5rem) 2rem}
     <figure class="phone rv">
       <div class="screen"><video src="video/film-city.mp4" muted loop playsinline preload="metadata"
         poster="img/wide-800.jpg" aria-label="Film: the view from Pokhara"></video></div>
-      <figcaption class="cap"><p class="t">The View</p><p class="s">Pokhara · N° 01</p></figcaption>
+      <figcaption><p class="t">The View</p><p class="s">Pokhara · N° 01</p></figcaption>
     </figure>
     <figure class="phone rv d1">
       <div class="screen"><video src="video/film-village.mp4" muted loop playsinline preload="metadata"
         poster="img/village-alley.jpg" aria-label="Film: the Village Edition"></video></div>
-      <figcaption class="cap"><p class="t">The Village Edition</p><p class="s">Homestay · N° 14</p></figcaption>
+      <figcaption><p class="t">The Village Edition</p><p class="s">Homestay · N° 14</p></figcaption>
     </figure>
   </div>
   <p class="note rv d2">Short, silent excerpts. The full films, with sound, are on Instagram and TikTok —
-    there are twenty-four of them, covering the visa, the internet, the food, the festivals and the trek.</p>
+    twenty-four of them, covering the visa, the internet, the food, the festivals and the trek.</p>
 </div></section>
 
 <section class="ch pad"><div class="wrap">
@@ -565,16 +571,16 @@ footer{background:#141F29;padding-block:clamp(2.8rem,6vw,4.5rem) 2rem}
     <h2 class="rv d1">Is it<em>for you?</em></h2>
   </div>
   <div class="fit">
-    <div class="col rv"><h4>It's for you if</h4><ul class="yes">
+    <div class="col yes rv"><h4>It's for you if</h4><ul>
       <li>You love deep work</li><li>You love nature</li><li>You want real culture, not a view of it</li></ul></div>
-    <div class="col rv d1"><h4>Not for you if</h4><ul class="no">
+    <div class="col no rv d1"><h4>Not for you if</h4><ul>
       <li>You need nightlife</li><li>You want luxury</li><li>You love a fast pace</li></ul></div>
   </div>
   <p class="note rv d2">Not sure? Start with a month in Pokhara and visit a village from there.
     Nobody should commit five months to a way of living they have not tried.</p>
 </div></section>
 
-<section class="ch pad" id="pricing"><div class="wrap">
+<section class="ch sand pad" id="pricing"><div class="wrap">
   <div class="head">
     <p class="chapter rv">N° 08</p>
     <div class="kicker rv"><span class="r"></span><span class="t">How long you stay</span></div>
@@ -600,25 +606,20 @@ footer{background:#141F29;padding-block:clamp(2.8rem,6vw,4.5rem) 2rem}
     <h2 class="rv d1">People, not<em>a booking system.</em></h2>
   </div>
   <div class="people">
-    <div class="person rv">
-      <div class="slot">Founder portrait<br>to add</div>
+    <div class="person rv"><div class="slot">Founder portrait<br>to add</div>
       <p class="nm">Prajwal</p><p class="ro">Founder</p>
-      <p>Runs Mountain Whisper day to day, and answers the enquiries himself. Nepali, and a remote
+      <p>Runs Mountain Whisper day to day and answers the enquiries himself. Nepali, and a remote
         software engineer — which is why the internet checklist exists.</p></div>
-    <div class="person rv d1">
-      <div class="slot">Guide portrait<br>to add</div>
+    <div class="person rv d1"><div class="slot">Guide portrait<br>to add</div>
       <p class="nm">Our guide</p><p class="ro">Licensed trekking guide</p>
-      <p>Government-licensed, and the person who walks you to Poon Hill. Name and licence number
-        to be added here.</p></div>
-    <div class="person rv d2">
-      <div class="slot">Registration<br>certificate</div>
+      <p>Government-licensed, and the person who walks you to Poon Hill. Name and licence number to be added here.</p></div>
+    <div class="person rv d2"><div class="slot">Registration<br>certificate</div>
       <p class="nm">Registered in Nepal</p><p class="ro">Travel agency</p>
-      <p>A registered Nepali travel agency, not an intermediary. Registration number to be published
-        here so you can check it before you pay anyone anything.</p></div>
+      <p>A registered Nepali travel agency, not an intermediary. Registration number to be published here so you can check it before paying anyone anything.</p></div>
   </div>
 </div></section>
 
-<section class="ch pad" id="faq"><div class="wrap">
+<section class="ch sand pad" id="faq"><div class="wrap">
   <div class="head">
     <p class="chapter rv">N° 10</p>
     <div class="kicker rv"><span class="r"></span><span class="t">Before you ask</span></div>
@@ -626,211 +627,137 @@ footer{background:#141F29;padding-block:clamp(2.8rem,6vw,4.5rem) 2rem}
   </div>
   <div class="faq rv">
     <details><summary>Will I be lonely?</summary>
-      <p class="ans">Honestly, it depends on the month. We are starting out, so early groups are small —
-        you may be the only guest for a while. There is a welcome dinner, a coworking space full of
-        other remote workers in Pokhara, and a host family in the village. If a busy social scene is
-        what you need, Pokhara in high season suits you better than a village in winter.</p></details>
+      <p class="ans">Honestly, it depends on the month. We are starting out, so early groups are small — you may be the only guest for a while. There is a welcome dinner, a coworking space full of other remote workers in Pokhara, and a host family in the village. If a busy social scene is what you need, Pokhara in high season suits you better than a village in winter.</p></details>
     <details><summary>What if I get sick or have an accident?</summary>
-      <p class="ans">Pokhara has hospitals and clinics used to treating travellers. From a village,
-        we plan the route to the nearest clinic before anyone stays there. Travel insurance that covers
-        trekking is required — we will ask to see it, because a helicopter evacuation from the
-        mountains is not something you want to discover you are paying for.</p></details>
+      <p class="ans">Pokhara has hospitals and clinics used to treating travellers. From a village, we plan the route to the nearest clinic before anyone stays there. Travel insurance that covers trekking is required — we will ask to see it, because a helicopter evacuation is not something you want to discover you are paying for.</p></details>
     <details><summary>Can I extend, or leave early?</summary>
-      <p class="ans">Extending is usually possible within the 150-day visa limit, and we handle the
-        immigration side. Leaving early is always allowed — it is your life — but the refund depends on
-        what we have already paid out to the room, the homestay and the guide. We will put the exact
-        terms in writing before you pay.</p></details>
+      <p class="ans">Extending is usually possible within the 150-day visa limit, and we handle the immigration side. Leaving early is always allowed — it is your life — but the refund depends on what we have already paid out to the room, the homestay and the guide. We will put the exact terms in writing before you pay.</p></details>
     <details><summary>Is it safe, including for women travelling alone?</summary>
-      <p class="ans">Nepal is generally safe for solo travellers, and Pokhara particularly so. In a
-        village you are living inside a family home, which is safer than a hotel in most respects and
-        less private in others. We will be straight with you about both, and you can speak to the host
-        family before you commit.</p></details>
+      <p class="ans">Nepal is generally safe for solo travellers, and Pokhara particularly so. In a village you are living inside a family home, which is safer than a hotel in most respects and less private in others. We will be straight with you about both, and you can speak to the host family before you commit.</p></details>
     <details><summary>Do I really need to trek?</summary>
-      <p class="ans">No. The trek is included, not compulsory. Poon Hill is four to five days over a
-        long weekend and is suitable for most reasonably fit people with no mountaineering experience.
-        If you would rather not, say so and we will arrange something else.</p></details>
+      <p class="ans">No. The trek is included, not compulsory. Poon Hill is four to five days over a long weekend and suits most reasonably fit people with no mountaineering experience. If you would rather not, say so and we will arrange something else.</p></details>
     <details><summary>Who is this not for?</summary>
-      <p class="ans">Anyone who needs guaranteed uninterrupted power, same-day deliveries, a gym chain,
-        or a nightlife scene. Also anyone whose work cannot survive an occasional outage. We would
-        rather lose the booking than have you arrive disappointed.</p></details>
+      <p class="ans">Anyone who needs guaranteed uninterrupted power, same-day deliveries, a gym chain or a nightlife scene — and anyone whose work cannot survive an occasional outage. We would rather lose the booking than have you arrive disappointed.</p></details>
   </div>
 </div></section>
 
-<section class="enq pad" id="enquire"><div class="wrap">
+<section class="ch enq pad" id="enquire"><div class="wrap">
   <div class="head">
     <p class="chapter rv">Enquire</p>
     <div class="kicker rv"><span class="r"></span><span class="t">No deposit, no obligation</span></div>
     <h2 class="rv d1">Tell us your month.<em>We'll do the rest.</em></h2>
   </div>
-
   <div class="grid">
     <form class="form rv" id="enquiry" novalidate>
-      <div class="field">
-        <label for="f-name">Your name</label>
-        <input id="f-name" name="name" type="text" autocomplete="name" required>
-      </div>
-      <div class="field">
-        <label for="f-email">Email</label>
-        <input id="f-email" name="email" type="email" autocomplete="email" required>
-      </div>
+      <div class="field"><label for="f-name">Your name</label>
+        <input id="f-name" name="name" type="text" autocomplete="name" required></div>
+      <div class="field"><label for="f-email">Email</label>
+        <input id="f-email" name="email" type="email" autocomplete="email" required></div>
       <div class="two">
-        <div class="field">
-          <label for="f-edition">Which stay</label>
+        <div class="field"><label for="f-edition">Which stay</label>
           <select id="f-edition" name="edition">
-            <option>Not sure yet</option>
-            <option>The city — Pokhara</option>
-            <option>The Village Edition</option>
-            <option>Both, if that's possible</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="f-length">How long</label>
+            <option>Not sure yet</option><option>The city — Pokhara</option>
+            <option>The Village Edition</option><option>Both, if that's possible</option>
+          </select></div>
+        <div class="field"><label for="f-length">How long</label>
           <select id="f-length" name="length">
-            <option>Not sure yet</option>
-            <option>1 month</option>
-            <option>3 months</option>
-            <option>5 months</option>
-          </select>
-        </div>
+            <option>Not sure yet</option><option>1 month</option>
+            <option>3 months</option><option>5 months</option>
+          </select></div>
       </div>
-      <div class="field">
-        <label for="f-when">Roughly when</label>
+      <div class="field"><label for="f-when">Roughly when</label>
         <input id="f-when" name="when" type="month">
-        <span class="hint">An approximate month is fine — nothing is booked by sending this.</span>
-      </div>
-      <div class="field">
-        <label for="f-note">Anything we should know</label>
-        <textarea id="f-note" name="note" placeholder="Your work hours and timezone, dietary needs, whether you'd trek, anything you're worried about."></textarea>
-      </div>
+        <span class="hint">An approximate month is fine — nothing is booked by sending this.</span></div>
+      <div class="field"><label for="f-note">Anything we should know</label>
+        <textarea id="f-note" name="note" placeholder="Your work hours and timezone, dietary needs, whether you'd trek, anything you're worried about."></textarea></div>
       <label class="check" for="f-wait">
         <input id="f-wait" name="waitlist" type="checkbox">
-        <span>I'm not ready to book — just tell me when the first village group opens.</span>
-      </label>
+        <span>I'm not ready to book — just tell me when the first village group opens.</span></label>
       <p class="err" id="f-err" hidden></p>
       <button class="btn" type="submit" style="justify-self:start">Send enquiry</button>
     </form>
-
     <div class="sent rv" id="sent" hidden>
       <h3>Thank you.<em>We'll write back.</em></h3>
-      <p>Prajwal answers enquiries himself, usually within a day. You'll get a real reply from a
-        person — what's included, what it costs for your dates, and anything we can't promise yet.
-        No deposit is taken until you've seen all of that in writing.</p>
+      <p>Prajwal answers enquiries himself, usually within a day. You'll get a real reply from a person —
+        what's included, what it costs for your dates, and anything we can't promise yet. No deposit is
+        taken until you've seen all of that in writing.</p>
     </div>
-
     <aside class="aside rv d1">
       <h3>Or just write to us.</h3>
       <p>A form is not everybody's way of starting a conversation. Mail or message directly and you'll
         reach the same person.</p>
       <div class="direct">
         <div><p class="k">Email</p><p class="v">hello@mountainwhisper.com</p></div>
-        <div><p class="k">WhatsApp</p><p class="v">+977 ·  number to add</p></div>
+        <div><p class="k">WhatsApp</p><p class="v">+977 · number to add</p></div>
         <div><p class="k">Instagram · TikTok</p><p class="v">@mountainwhisper</p></div>
       </div>
-      <p class="note" style="margin-top:1.6rem">Contact details above are placeholders for this preview
-        and need confirming before launch.</p>
+      <p class="note">Contact details are placeholders for this preview and need confirming before launch.</p>
     </aside>
-  </div>
-</div></section>
-
-<section class="end pad">
-  <div class="wash"></div><div class="grain"></div>
-  <div class="inner wrap">
-    <div class="mark rv">
-      <svg viewBox="0 0 220 150" fill="none" stroke="currentColor" stroke-width="7"
-           stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Mountain Whisper">
-        <path d="M14 120 L78 36 L112 80 L140 50 L206 120"/>
-        <path d="M30 140 C 70 122, 110 150, 150 132 S 200 128, 210 136" stroke-width="5" opacity="0.75"/>
-      </svg>
-    </div>
-    <p class="name rv d1">Mountain Whisper</p>
-    <span class="r rv d1"></span>
-    <p class="line rv d2">Work remotely from Nepal</p>
-    <p class="handle rv d2">1 · 3 · 5 month stays</p>
   </div>
 </section>
 
-<footer class="pad">
-  <div class="wrap">
-    <div class="fgrid">
-      <div class="fcol">
-        <span class="mk">
-          <svg viewBox="0 0 220 150" fill="none" stroke="currentColor" stroke-width="9"
-               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M14 120 L78 36 L112 80 L140 50 L206 120"/>
-            <path d="M30 140 C 70 122, 110 150, 150 132 S 200 128, 210 136" stroke-width="6" opacity="0.75"/>
-          </svg>
-          <span>Mountain Whisper</span>
-        </span>
-        <p class="blurb">All-inclusive remote-work stays in Nepal. Lakeside in Pokhara for one, three
-          or five months, or with a village family for three or five.</p>
-      </div>
-
-      <div class="fcol">
-        <h5>The stays</h5>
-        <ul>
-          <li><a href="#stays">Village or city</a></li>
-          <li><a href="#village">The Village Edition</a></li>
-          <li><a href="#pricing">How long, and what it costs</a></li>
-          <li><a href="#faq">Questions</a></li>
-        </ul>
-      </div>
-
-      <div class="fcol">
-        <h5>Talk to us</h5>
-        <ul>
-          <li><span class="sel">hello@mountainwhisper.com</span></li>
-          <li><span class="sel">WhatsApp · +977 number to add</span></li>
-          <li><span class="sel">@mountainwhisper</span></li>
-          <li><a href="#enquire">Send an enquiry</a></li>
-        </ul>
-      </div>
-
-      <div class="fcol">
-        <h5>The company</h5>
-        <ul>
-          <li><span>Registered travel agency, Nepal</span></li>
-          <li><span>Registration no. to add</span></li>
-          <li><span>Licensed trekking guide</span></li>
-          <li><span>Based in Pokhara</span></li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="fbot">
-      <div class="row">
-        <span>© 2026 Mountain Whisper</span>
-        <span>Design preview — placeholder copy</span>
-      </div>
-      <p class="cr">Stills: Mangalam Bhargava, Bibek Adhikari Chhetri, shiva rijal, Anil Prasad Shrestha,
-        Ivan S / Pexels. Film excerpts: Sajal Niraula, Saugatt Bastakotii, SHVETS production,
-        Shital Khadgi, TheHybriddesigner.np, Peter Smit, Tanita Lupa / Pexels. Used under the Pexels
-        Licence, which does not require credit — we give it anyway. Imagery is atmospheric: it does not
-        show a specific room, homestay or host family, and no one pictured is connected with
-        Mountain Whisper.</p>
-    </div>
+<section class="close pad"><div class="wrap">
+  <div class="mark rv">
+    <svg viewBox="0 0 220 150" fill="none" stroke="currentColor" stroke-width="7"
+         stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Mountain Whisper">
+      <path d="M14 120 L78 36 L112 80 L140 50 L206 120"/>
+      <path d="M30 140 C 70 122, 110 150, 150 132 S 200 128, 210 136" stroke-width="5" opacity="0.75"/>
+    </svg>
   </div>
-</footer>
+  <h2 class="rv d1">Work remotely<em>from Nepal.</em></h2>
+  <p class="rv d2">One, three or five months in Pokhara — or three to five with a village family.
+    Tell us your month and we'll take it from there.</p>
+  <a class="btn light rv d2" href="#enquire">Start an enquiry</a>
+  <p class="handle rv d2">1 · 3 · 5 month stays</p>
+</div></section>
+
+<footer class="pad"><div class="wrap">
+  <div class="fgrid">
+    <div class="fcol">
+      <span class="mk">
+        <svg viewBox="0 0 220 150" fill="none" stroke="currentColor" stroke-width="9"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M14 120 L78 36 L112 80 L140 50 L206 120"/>
+          <path d="M30 140 C 70 122, 110 150, 150 132 S 200 128, 210 136" stroke-width="6" opacity="0.75"/>
+        </svg>
+        <span>Mountain Whisper</span>
+      </span>
+      <p class="blurb">All-inclusive remote-work stays in Nepal. Lakeside in Pokhara for one, three or
+        five months, or with a village family for three or five.</p>
+    </div>
+    <div class="fcol"><h5>The stays</h5><ul>
+      <li><a href="#stays">Village or city</a></li><li><a href="#village">The Village Edition</a></li>
+      <li><a href="#pricing">How long, and what it costs</a></li><li><a href="#faq">Questions</a></li></ul></div>
+    <div class="fcol"><h5>Talk to us</h5><ul>
+      <li><span class="sel">hello@mountainwhisper.com</span></li>
+      <li><span class="sel">WhatsApp · +977 number to add</span></li>
+      <li><span class="sel">@mountainwhisper</span></li>
+      <li><a href="#enquire">Send an enquiry</a></li></ul></div>
+    <div class="fcol"><h5>The company</h5><ul>
+      <li><span>Registered travel agency, Nepal</span></li><li><span>Registration no. to add</span></li>
+      <li><span>Licensed trekking guide</span></li><li><span>Based in Pokhara</span></li></ul></div>
+  </div>
+  <div class="fbot">
+    <div class="row"><span>© 2026 Mountain Whisper</span><span>Design preview — placeholder copy</span></div>
+    <p class="cr">Stills: Mangalam Bhargava, Bibek Adhikari Chhetri, shiva rijal, Anil Prasad Shrestha,
+      Ivan S / Pexels. Film excerpts: Sajal Niraula, Saugatt Bastakotii, SHVETS production, Shital Khadgi,
+      TheHybriddesigner.np, Peter Smit, Tanita Lupa / Pexels. Used under the Pexels Licence, which does
+      not require credit — we give it anyway. Imagery is atmospheric: it does not show a specific room,
+      homestay or host family, and no one pictured is connected with Mountain Whisper.</p>
+  </div>
+</div></footer>
 
 <script>
 (function(){
   document.documentElement.classList.add('anim');
-
-  /* bar goes solid once the hero is behind you */
-  var bar=document.getElementById('bar'), hero=document.getElementById('top');
-  if(bar&&hero&&'IntersectionObserver' in window){
-    new IntersectionObserver(function(es){
-      es.forEach(function(e){ bar.classList.toggle('solid', !e.isIntersecting); });
-    },{rootMargin:'-70% 0px 0px 0px'}).observe(hero);
-  } else if(bar){ bar.classList.add('solid'); }
-  var els = document.querySelectorAll('.rv');
+  var els=document.querySelectorAll('.rv');
   if('IntersectionObserver' in window){
-    var io = new IntersectionObserver(function(es){
+    var io=new IntersectionObserver(function(es){
       es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-    },{threshold:.14,rootMargin:'0px 0px -6% 0px'});
+    },{threshold:.12,rootMargin:'0px 0px -5% 0px'});
     els.forEach(function(e){ io.observe(e); });
   } else { els.forEach(function(e){ e.classList.add('in'); }); }
 
-  /* day toggle */
   var tabs=[document.getElementById('tab-city'),document.getElementById('tab-village')];
   var panels=[document.getElementById('day-city'),document.getElementById('day-village')];
   function select(i){
@@ -845,43 +772,28 @@ footer{background:#141F29;padding-block:clamp(2.8rem,6vw,4.5rem) 2rem}
     });
   });
 
-  /* films: play only while on screen, and only if motion is welcome */
-  var calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var vids = document.querySelectorAll('.phone video');
-  if(!calm && 'IntersectionObserver' in window){
-    var vio = new IntersectionObserver(function(es){
-      es.forEach(function(e){
-        var v=e.target;
-        if(e.isIntersecting){ var p=v.play(); if(p&&p.catch){ p.catch(function(){}); } }
-        else { v.pause(); }
+  var calm=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var vids=document.querySelectorAll('.phone video');
+  if(!calm&&'IntersectionObserver' in window){
+    var vio=new IntersectionObserver(function(es){
+      es.forEach(function(e){ var v=e.target;
+        if(e.isIntersecting){ var p=v.play(); if(p&&p.catch){ p.catch(function(){}); } } else { v.pause(); }
       });
     },{threshold:.45});
     vids.forEach(function(v){ vio.observe(v); });
-  } else {
-    vids.forEach(function(v){ v.setAttribute('controls',''); });
-  }
+  } else { vids.forEach(function(v){ v.setAttribute('controls',''); }); }
 
-  /* enquiry */
   var form=document.getElementById('enquiry'), sent=document.getElementById('sent'),
       err=document.getElementById('f-err');
   form.addEventListener('submit',function(e){
     e.preventDefault();
-    var name=document.getElementById('f-name'), email=document.getElementById('f-email');
-    var problems=[];
-    if(!name.value.trim()) problems.push('your name');
-    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) problems.push('an email we can reply to');
-    if(problems.length){
-      err.textContent='We still need '+problems.join(' and ')+'.';
-      err.hidden=false;
-      (problems[0]==='your name'?name:email).focus();
-      return;
-    }
-    err.hidden=true;
-    form.hidden=true;
-    sent.hidden=false;
-    sent.classList.add('in');
-    sent.setAttribute('tabindex','-1');
-    sent.focus();
+    var name=document.getElementById('f-name'), email=document.getElementById('f-email'), bad=[];
+    if(!name.value.trim()) bad.push('your name');
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) bad.push('an email we can reply to');
+    if(bad.length){ err.textContent='We still need '+bad.join(' and ')+'.'; err.hidden=false;
+      (bad[0]==='your name'?name:email).focus(); return; }
+    err.hidden=true; form.hidden=true; sent.hidden=false;
+    sent.classList.add('in'); sent.setAttribute('tabindex','-1'); sent.focus();
   });
 })();
 </script>
