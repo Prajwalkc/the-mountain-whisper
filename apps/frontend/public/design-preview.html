@@ -87,11 +87,10 @@ a{color:inherit} strong{font-weight:600;color:var(--cream)}
 .bar .go:hover{background:var(--blue-mid)}
 
 /* shared */
-.kicker{display:flex;align-items:center;gap:clamp(10px,1.4vw,22px);margin-bottom:clamp(.9rem,1.8vw,1.4rem)}
+.kicker{display:flex;align-items:center;gap:clamp(10px,1.4vw,22px);
+  margin-bottom:clamp(1.1rem,2.1vw,1.7rem)}
 .kicker .r{width:clamp(26px,3.4vw,52px);height:1px;background:var(--mist);flex:none;opacity:.7}
 .kicker .t{font-size:var(--label);font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:var(--mist)}
-.chapter{font-family:var(--serif);font-style:italic;font-size:clamp(.86rem,1.1vw,1rem);
-  color:var(--softer);margin-bottom:.55rem}
 .anim .rv{opacity:0;transform:translateY(16px)}
 .anim .rv.in{opacity:1;transform:none;
   transition:opacity .95s cubic-bezier(.16,1,.3,1),transform .95s cubic-bezier(.16,1,.3,1)}
@@ -114,10 +113,6 @@ a{color:inherit} strong{font-weight:600;color:var(--cream)}
 .rail{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;
   padding-bottom:clamp(.8rem,1.6vw,1.1rem);border-bottom:1px solid var(--line);
   font-size:.72rem;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:var(--softer)}
-.rail .mid{display:none}
-@media (min-width:720px){.rail .mid{display:inline}}
-.rail .num{font-family:var(--serif);font-style:italic;letter-spacing:0;
-  text-transform:none;font-size:.95rem;color:var(--mist)}
 
 .hmain{display:grid;gap:clamp(1.6rem,3.4vw,3rem);align-items:start;
   padding-block:clamp(1.6rem,3.4vh,2.6rem) clamp(1.4rem,2.8vh,2.2rem)}
@@ -155,14 +150,16 @@ a{color:inherit} strong{font-weight:600;color:var(--cream)}
 .fr img{width:100%;height:100%;object-fit:cover;
   filter:saturate(.55) contrast(1.02);transform:scale(1.01);
   transition:filter .6s cubic-bezier(.16,1,.3,1),transform 6s linear}
-.fr .im::after{content:"";position:absolute;inset:0;z-index:2;
-  background:linear-gradient(to top,rgba(26,39,51,.82) 0%,rgba(26,39,51,.25) 46%,rgba(26,39,51,0) 78%)}
-.fr .lb{position:absolute;left:0;right:0;bottom:0;z-index:3;padding:.65rem .75rem;
-  display:flex;gap:.5rem;align-items:baseline;flex-wrap:wrap;
-  font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
-  color:rgba(245,241,234,.45);transition:color .4s}
-.fr .lb i{font-family:var(--serif);font-style:italic;letter-spacing:0;text-transform:none;
-  font-size:.88rem;color:rgba(220,229,236,.5);transition:color .4s}
+/* a caption shade, not a band: it was reaching 78% up the frame, which on top
+   of the dim veil made the lower two-thirds read as dead padding */
+.fr .im::after{content:"";position:absolute;inset:auto 0 0 0;height:48%;z-index:2;
+  background:linear-gradient(to top,rgba(20,31,41,.78) 0%,rgba(20,31,41,.3) 52%,rgba(20,31,41,0) 100%)}
+.fr .lb{position:absolute;left:0;right:0;bottom:0;z-index:3;padding:.7rem .8rem;
+  display:grid;gap:.12rem;transition:opacity .4s;opacity:.62}
+.fr .lb i{font-family:var(--serif);font-style:normal;font-size:1.02rem;line-height:1.1;
+  color:var(--cream)}
+.fr .lb b{font-size:.68rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(220,229,236,.78)}
 /* the live frame is marked by a bar that fills across the hold, so the strip
    also shows that it is advancing on its own */
 .fr .pg{position:absolute;left:0;right:0;bottom:0;height:2px;z-index:5;
@@ -170,15 +167,16 @@ a{color:inherit} strong{font-weight:600;color:var(--cream)}
 .fr[aria-selected="true"] .pg{animation:fill 6000ms linear forwards}
 @keyframes fill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 .fr[aria-selected="true"] img{filter:saturate(1) contrast(1.05) brightness(1);transform:scale(1.07)}
-.fr[aria-selected="true"] .lb{color:var(--cream)}
-.fr[aria-selected="true"] .lb i{color:var(--cream)}
+.fr[aria-selected="true"] .lb{opacity:1}
+
 .fr:hover img{filter:saturate(.8) contrast(1.02)}
 /* On a phone the hero must still show the ask. The timetable is the first
-   thing to go: section N° 03 carries the same day in full. */
+   thing to go: the day section carries the same timetable in full. */
 @media (max-width:760px){.hday{display:none}}
 @media (max-width:620px){
   .strip{grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem}
-  .fr .lb{font-size:.68rem;letter-spacing:.14em}
+  .fr .lb i{font-size:.92rem}
+  .fr .lb b{font-size:.62rem;letter-spacing:.14em}
 }
 @media (prefers-reduced-motion:reduce){
   .fr img{transition:filter .2s linear;transform:none}
@@ -450,8 +448,7 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
   <div class="wrap hwrap">
     <div class="rail">
       <span>Pokhara · Nepal</span>
-      <span class="mid">Remote-work stays · est. 2026</span>
-      <span class="num" id="h-num">N° 01</span>
+      <span>Remote-work stays · est. 2026</span>
     </div>
 
     <div class="hmain">
@@ -489,7 +486,6 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
 
 <section class="ch band pad" id="editions"><div class="wrap">
   <div class="head">
-    <p class="chapter rv">N° 01</p>
     <div class="kicker rv"><span class="r"></span><span class="t">One promise, a few ways to live it</span></div>
     <h2 class="rv d1">Choose your edition.</h2>
   </div>
@@ -541,7 +537,6 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
 
 <section class="ch pad"><div class="wrap">
   <div class="head">
-    <p class="chapter rv">N° 02</p>
     <div class="kicker rv"><span class="r"></span><span class="t">Every edition includes</span></div>
     <h2 class="rv d1">You bring the laptop. We arrange everything else.</h2>
   </div>
@@ -576,7 +571,6 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
 
 <section class="ch band pad"><div class="wrap">
   <div class="head">
-    <p class="chapter rv">N° 03</p>
     <div class="kicker rv"><span class="r"></span><span class="t">First light to lamplight</span></div>
     <h2 class="rv d1">A day, either way.</h2>
   </div>
@@ -602,7 +596,6 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
 
 <section class="ch dark pad" id="village"><div class="wrap">
   <div class="head">
-    <p class="chapter rv">N° 04</p>
     <div class="kicker rv"><span class="r"></span><span class="t">The Village Edition</span></div>
     <h2 class="rv d1">Live with<em>a local family.</em></h2>
     <p class="lede rv d2" style="max-width:52ch">A private room in a Himalayan village home, for three
@@ -635,7 +628,6 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
 
 <section class="ch pad"><div class="wrap">
   <div class="head">
-    <p class="chapter rv">N° 05</p>
     <div class="kicker rv"><span class="r"></span><span class="t">Honest answers</span></div>
     <h2 class="rv d1">Yes, the wifi works. Here is the proof.</h2>
   </div>
@@ -655,7 +647,6 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
 
 <section class="ch band pad"><div class="wrap">
   <div class="head">
-    <p class="chapter rv">N° 06</p>
     <div class="kicker rv"><span class="r"></span><span class="t">See it for yourself</span></div>
     <h2 class="rv d1">We film it as it is.</h2>
   </div>
@@ -675,7 +666,6 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
 
 <section class="ch pad"><div class="wrap">
   <div class="head">
-    <p class="chapter rv">N° 07</p>
     <div class="kicker rv"><span class="r"></span><span class="t">Honestly</span></div>
     <h2 class="rv d1">Is it for you?</h2>
   </div>
@@ -691,7 +681,6 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
 
 <section class="ch band pad" id="pricing"><div class="wrap">
   <div class="head">
-    <p class="chapter rv">N° 08</p>
     <div class="kicker rv"><span class="r"></span><span class="t">How long you stay</span></div>
     <h2 class="rv d1">One season, or most of a year.</h2>
   </div>
@@ -703,14 +692,13 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
     <div class="len rv d2"><p class="num">5</p><p class="u">Months</p><span class="r"></span>
       <p class="n">The visa extension, built in</p><p class="ed-tag">Lake · Village</p></div>
   </div>
-  <p class="note rv d2">Stays start from <strong>$1,490 a month</strong>, with everything in N° 02 included.
+  <p class="note rv d2">Stays start from <strong>$1,490 a month</strong>, with everything we arrange included.
     Final pricing is confirmed by email once we have your dates and your edition — we quote on real
     supplier costs rather than a number on a page.</p>
 </div></section>
 
 <section class="ch pad"><div class="wrap">
   <div class="head">
-    <p class="chapter rv">N° 09</p>
     <div class="kicker rv"><span class="r"></span><span class="t">Who you'll meet</span></div>
     <h2 class="rv d1">People, not a booking system.</h2>
   </div>
@@ -730,7 +718,6 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
 
 <section class="ch band pad" id="faq"><div class="wrap">
   <div class="head">
-    <p class="chapter rv">N° 10</p>
     <div class="kicker rv"><span class="r"></span><span class="t">Before you ask</span></div>
     <h2 class="rv d1">The questions everybody asks.</h2>
   </div>
@@ -752,7 +739,6 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
 
 <section class="ch enq pad" id="enquire"><div class="wrap">
   <div class="head">
-    <p class="chapter rv">Enquire</p>
     <div class="kicker rv"><span class="r"></span><span class="t">No deposit, no obligation</span></div>
     <h2 class="rv d1">Tell us your month.<em>We'll do the rest.</em></h2>
   </div>
@@ -930,22 +916,21 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
     var strip=document.getElementById('strip'); if(!strip) return;
     var swap=document.getElementById('h-swap'), dayEl=document.getElementById('h-day');
     var A=document.getElementById('h-a'), B=document.getElementById('h-b'),
-        L=document.getElementById('h-l'), K=document.getElementById('h-kick'),
-        N=document.getElementById('h-num');
+        L=document.getElementById('h-l'), K=document.getElementById('h-kick');
     var scenes=[
-      {img:'fr-trail', n:'N° 01', lab:'The trail', sub:'Above Pokhara',
+      {img:'fr-trail', lab:'The trail', sub:'Above Pokhara',
        k:'The Lake Edition · 1, 3 or 5 months', a:'Some offices', b:'have a view.',
        l:'Lakeside in Pokhara: a private room on fibre, a coworking desk that is yours, and the Annapurnas at the end of the street.',
        day:[['06:30','First light.'],['09:30','Open the laptop.'],['13:00','Paragliders at lunch.'],['17:30','Log off. Row out.']]},
-      {img:'fr-ridge', n:'N° 02', lab:'The ridge', sub:'Annapurna',
+      {img:'fr-ridge', lab:'The ridge', sub:'Annapurna',
        k:'Every edition · a licensed guide', a:'Weekends', b:'above the clouds.',
        l:'Four or five days to Poon Hill with our guide, permits included, over a long weekend — so you do not lose a week of work.',
        day:[['Thu','Log off early.'],['Fri','Walk to Ghorepani.'],['Sat','Poon Hill at dawn.'],['Mon','Back at the desk.']]},
-      {img:'fr-village', n:'N° 03', lab:'The village', sub:'3 or 5 months',
+      {img:'fr-village', lab:'The village', sub:'Above the clouds',
        k:'The Village Edition · homestay', a:'Live with', b:'a local family.',
        l:'A private room in a hill village home, with internet we test ourselves and a backup line — and Pokhara whenever you want the city back.',
        day:[['06:00','Sunrise over the peaks.'],['07:00','Tea by the fire.'],['09:00','Deep work.'],['20:00','Dal bhat and lamplight.']]},
-      {img:'fr-lake', n:'N° 04', lab:'The lake', sub:'Phewa, dusk',
+      {img:'fr-lake', lab:'The lake', sub:'Phewa, dusk',
        k:'Every edition · arranged end to end', a:'Arrive, plug in,', b:'we handle the rest.',
        l:'Stay, workspace, SIM, visa help, airport welcome and someone to call. You choose the kind of life you want around it.',
        day:[['Day 1','Met at Kathmandu.'],['Day 1','Driven to Pokhara.'],['Day 2','Desk, SIM, keys.'],['Day 3','Welcome dinner.']]}
@@ -957,9 +942,9 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
       var b=document.createElement('button');
       b.className='fr'; b.type='button'; b.setAttribute('role','tab');
       b.setAttribute('aria-selected', k===0?'true':'false');
-      b.setAttribute('aria-label', s.n+' '+s.lab+': '+s.a+' '+s.b);
+      b.setAttribute('aria-label', s.lab+', '+s.sub+': '+s.a+' '+s.b);
       b.innerHTML='<span class="im"><img src="img/'+s.img+'.jpg" alt="" loading="'+(k?'lazy':'eager')+'">'+
-                  '<span class="lb">'+s.n+' <i>'+s.lab+'</i></span></span><span class="pg"></span>';
+                  '<span class="lb"><i>'+s.lab+'</i><b>'+s.sub+'</b></span></span><span class="pg"></span>';
       b.addEventListener('click',function(){ show(k); restart(); });
       strip.appendChild(b); return b;
     });
@@ -980,7 +965,7 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
       setTimeout(function(){
         var s=scenes[i];
         K.textContent=s.k; A.textContent=s.a; B.textContent=s.b; L.textContent=s.l;
-        N.textContent=s.n; paintDay(s);
+        paintDay(s);
         swap.classList.remove('fade');
       },380);
     }
