@@ -4,239 +4,328 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,400;1,500&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-/* Layout: a graded photograph opens, then chaptered editorial bands on ink.
+/* Layout: sticky mark + ask, a graded photograph, then chaptered editorial bands on ink.
    The Village Edition takes the brand-blue band so the two products read apart.
-   Tokens lifted from video-factory/premium/premium.css; copy from the films. */
+   Tokens from video-factory/premium/premium.css; copy from the films. */
 :root{
-  --ink:#1A2733;
-  --ink-2:#1E2C39;
-  --blue:#3E5C76;
-  --blue-light:#4A6B88;
-  --blue-deep:#2C4358;
-  --cream:#F5F1EA;
-  --pale:#DCE5EC;
+  --ink:#1A2733; --ink-2:#1E2C39;
+  --blue:#3E5C76; --blue-light:#4A6B88; --blue-deep:#2C4358;
+  --cream:#F5F1EA; --pale:#DCE5EC;
   --rule:rgba(245,241,234,.45);
-  --rule-soft:rgba(245,241,234,.22);
+  --rule-soft:rgba(245,241,234,.2);
   --rule-strong:rgba(245,241,234,.75);
-  --flag:#D98324;               /* prayer-flag accent, used once */
 
   --serif:"Playfair Display",Georgia,"Times New Roman",serif;
   --sans:"Montserrat",system-ui,-apple-system,"Helvetica Neue",sans-serif;
 
-  --h1:clamp(2.3rem,5.6vw,5.1rem);
-  --h2:clamp(1.9rem,4.1vw,3.5rem);
-  --h3:clamp(1.35rem,2.4vw,2.1rem);
-  --li-t:clamp(1.15rem,2.1vw,1.85rem);
-  --label:clamp(.63rem,.79vw,.75rem);
-  --body:clamp(.84rem,.97vw,.94rem);
+  --h1:clamp(2.25rem,5.5vw,5rem);
+  --h2:clamp(1.85rem,4vw,3.4rem);
+  --h3:clamp(1.3rem,2.3vw,2rem);
+  --li-t:clamp(1.12rem,2vw,1.8rem);
+  --label:clamp(.63rem,.78vw,.74rem);
+  --body:clamp(.84rem,.96vw,.93rem);
 
   --gut:clamp(1.25rem,5vw,5.5rem);
+  --bar:clamp(52px,6vh,66px);
   --grade:saturate(.88) contrast(1.08) brightness(.98);
   color-scheme:dark;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:var(--ink);color:var(--cream);font-family:var(--sans);font-weight:500;
   -webkit-font-smoothing:antialiased;overflow-x:hidden}
-img,svg{display:block;max-width:100%}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);
+  z-index:60;background:rgba(21,32,42,.96)}
+img,svg,video{display:block;max-width:100%}
 h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.05;letter-spacing:-.015em;text-wrap:balance}
 h1{font-size:var(--h1)} h2{font-size:var(--h2)} h3{font-size:var(--h3)}
 em{font-style:italic;font-weight:400;color:var(--pale);display:block}
-a{color:inherit}
+a{color:inherit} strong{font-weight:600}
 :focus-visible{outline:2px solid var(--cream);outline-offset:3px}
-strong{font-weight:600}
 
 .pad{padding-left:max(var(--gut),env(safe-area-inset-left,0px));
      padding-right:max(var(--gut),env(safe-area-inset-right,0px))}
 .wrap{max-width:1460px;margin:0 auto;min-width:0}
 
-/* ---------- devices from the films ---------- */
+/* ---------- sticky bar ---------- */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;height:var(--bar);
+  display:flex;align-items:center;background:rgba(21,32,42,.9);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  border-bottom:1.5px solid var(--rule-soft)}
+.bar .in{display:flex;align-items:center;justify-content:space-between;gap:1rem;width:100%}
+.bar .id{display:flex;align-items:center;gap:.7rem;min-width:0}
+.bar .id svg{width:clamp(26px,2.6vw,34px);height:auto;stroke:var(--cream);flex:none}
+.bar .id span{font-size:var(--label);letter-spacing:.28em;text-transform:uppercase;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar .go{flex:none;padding:.6rem 1.3rem;border:1.5px solid rgba(245,241,234,.75);text-decoration:none;
+  font-size:.6rem;font-weight:600;letter-spacing:.26em;text-transform:uppercase;
+  transition:background .4s,color .4s}
+.bar .go:hover{background:var(--cream);color:var(--blue-deep)}
+
+/* ---------- devices ---------- */
 .corner{position:absolute;width:clamp(26px,3.2vw,56px);height:clamp(26px,3.2vw,56px);
   border-color:rgba(245,241,234,.55);border-style:solid;border-width:0;pointer-events:none;z-index:4}
 .corner.tl{left:var(--gut);top:var(--gut);border-left-width:2px;border-top-width:2px}
 .corner.tr{right:var(--gut);top:var(--gut);border-right-width:2px;border-top-width:2px}
 .corner.bl{left:var(--gut);bottom:var(--gut);border-left-width:2px;border-bottom-width:2px}
 .corner.br{right:var(--gut);bottom:var(--gut);border-right-width:2px;border-bottom-width:2px}
-
-.masthead{position:absolute;left:0;right:0;top:calc(var(--gut) + clamp(10px,1.6vw,26px));z-index:5;
-  display:flex;justify-content:space-between;align-items:baseline;gap:1rem;
-  font-size:var(--label);letter-spacing:.32em;text-transform:uppercase}
-.masthead .r{opacity:.8;letter-spacing:.1em}
-
 .kicker{display:flex;align-items:center;gap:clamp(11px,1.5vw,26px);margin-bottom:clamp(1rem,2vw,1.8rem)}
 .kicker .r{width:clamp(30px,4.4vw,70px);height:1.5px;background:rgba(245,241,234,.7);flex:none}
 .kicker .t{font-size:var(--label);letter-spacing:.34em;text-transform:uppercase;opacity:.9}
-.chapter{font-family:var(--serif);font-style:italic;font-size:clamp(.88rem,1.2vw,1.1rem);
-  opacity:.6;margin-bottom:.8rem}
-
+.chapter{font-family:var(--serif);font-style:italic;font-size:clamp(.86rem,1.15vw,1.05rem);
+  opacity:.6;margin-bottom:.75rem}
 .anim .rv{opacity:0;transform:translateY(18px)}
 .anim .rv.in{opacity:1;transform:none;
   transition:opacity 1.05s cubic-bezier(.16,1,.3,1),transform 1.05s cubic-bezier(.16,1,.3,1)}
 .anim .rv.d1.in{transition-delay:.08s}
 .anim .rv.d2.in{transition-delay:.16s}
 .anim .rv.d3.in{transition-delay:.24s}
-@media (prefers-reduced-motion:reduce){
-  .anim .rv{opacity:1;transform:none}.anim .rv.in{transition:none}
-}
+@media (prefers-reduced-motion:reduce){.anim .rv{opacity:1;transform:none}.anim .rv.in{transition:none}}
 .grain{position:absolute;inset:0;pointer-events:none;opacity:.1;mix-blend-mode:overlay;z-index:3;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
 
 /* ---------- hero ---------- */
-.hero{position:relative;min-height:clamp(530px,82svh,860px);display:flex;align-items:flex-end;overflow:hidden}
+.hero{position:relative;min-height:clamp(500px,76svh,820px);display:flex;align-items:flex-end;overflow:hidden}
 .hero .shot{position:absolute;inset:0;z-index:0}
 .hero .shot img{width:100%;height:100%;object-fit:cover;filter:var(--grade);transform:scale(1.03)}
 .hero .tint{position:absolute;inset:0;z-index:1;background:linear-gradient(to bottom,
   rgba(26,39,51,.55) 0%,rgba(26,39,51,.12) 28%,rgba(62,92,118,.18) 55%,rgba(26,39,51,.82) 100%)}
 .hero .vig{position:absolute;inset:0;z-index:2;
   background:radial-gradient(ellipse 120% 95% at 50% 45%,transparent 38%,rgba(12,20,28,.22) 100%)}
-.hero .inner{position:relative;z-index:5;width:100%;padding-block:0 clamp(2.8rem,6.5vh,5.5rem)}
+.hero .inner{position:relative;z-index:5;width:100%;padding-block:clamp(3rem,8vh,5rem) clamp(2.6rem,6vh,5rem)}
 .hero h1{max-width:18ch;text-shadow:0 2px 30px rgba(10,18,26,.35)}
-.lede{margin-top:clamp(1.2rem,2.2vw,1.9rem);max-width:48ch;font-size:clamp(.92rem,1.08vw,1.06rem);
+.lede{margin-top:clamp(1.1rem,2.1vw,1.8rem);max-width:48ch;font-size:clamp(.91rem,1.06vw,1.04rem);
   font-weight:400;line-height:1.75;opacity:.9}
-.actions{margin-top:clamp(1.6rem,3vw,2.5rem);display:flex;align-items:center;
+.actions{margin-top:clamp(1.5rem,2.9vw,2.4rem);display:flex;align-items:center;
   gap:clamp(.9rem,2.2vw,2rem);flex-wrap:wrap}
 .btn{display:inline-block;padding:1rem 2.4rem;border:1.5px solid rgba(245,241,234,.8);
-  text-decoration:none;font-size:var(--label);font-weight:600;letter-spacing:.3em;text-transform:uppercase;
+  background:none;color:var(--cream);font-family:var(--sans);cursor:pointer;text-decoration:none;
+  font-size:var(--label);font-weight:600;letter-spacing:.3em;text-transform:uppercase;
   transition:background .5s cubic-bezier(.16,1,.3,1),color .5s}
 .btn:hover{background:var(--cream);color:var(--blue-deep)}
-.price{font-family:var(--serif);font-style:italic;font-size:clamp(.96rem,1.3vw,1.24rem);opacity:.85}
+.price{font-family:var(--serif);font-style:italic;font-size:clamp(.95rem,1.28vw,1.22rem);opacity:.85}
 
 /* ---------- chapters ---------- */
-.ch{padding-block:clamp(4rem,11vh,8.5rem)}
+.ch{padding-block:clamp(3.6rem,10vh,8rem)}
 .ch.blue{position:relative;background:linear-gradient(180deg,var(--blue-deep),var(--blue) 45%,var(--blue-deep))}
 .ch.blue>*{position:relative;z-index:2}
 .head{max-width:22ch}
-.ridge{display:block;width:100%;height:auto;opacity:.3;margin-block:clamp(2.5rem,6vw,4.5rem)}
-.ridge path{stroke:var(--cream);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
 
-/* two editions */
-.editions{margin-top:clamp(2.2rem,5vw,3.8rem);display:grid;gap:clamp(1.5px,.3vw,1.5px);
+.editions{margin-top:clamp(2rem,4.6vw,3.6rem);display:grid;gap:1.5px;
   grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));background:var(--rule)}
 .ed{background:var(--ink);min-width:0;display:flex;flex-direction:column}
 .ed .pic{position:relative;aspect-ratio:9/13;overflow:hidden}
 .ed .pic img{width:100%;height:100%;object-fit:cover;filter:var(--grade)}
-.ed .pic .sh{position:absolute;inset:0;background:linear-gradient(180deg,rgba(26,39,51,.18),rgba(26,39,51,.72))}
+.ed .pic .sh{position:absolute;inset:0;background:linear-gradient(180deg,rgba(26,39,51,.18),rgba(26,39,51,.74))}
 .ed .pic .cap{position:absolute;left:0;right:0;bottom:0;padding:clamp(1.1rem,2vw,1.8rem)}
 .ed .pic .cap .t{font-family:var(--serif);font-size:var(--h3);line-height:1.1}
-.ed .pic .cap .s{margin-top:.4rem;font-size:var(--label);letter-spacing:.28em;text-transform:uppercase;opacity:.8}
+.ed .pic .cap .s{margin-top:.35rem;font-size:var(--label);letter-spacing:.26em;text-transform:uppercase;opacity:.8}
 .ed .body{padding:clamp(1.3rem,2.3vw,2rem);flex:1}
-.ed ul{list-style:none;display:grid;gap:.75rem}
+.ed ul{list-style:none;display:grid;gap:.7rem}
 .ed li{display:grid;grid-template-columns:auto 1fr;gap:.7rem;align-items:baseline;
   font-size:var(--body);font-weight:400;line-height:1.6;opacity:.85}
 .ed li::before{content:"";width:16px;height:1.5px;background:var(--rule-strong);transform:translateY(-.35em)}
-.ed .meta{margin-top:1.3rem;padding-top:1rem;border-top:1.5px solid var(--rule-soft);
+.ed .meta{margin-top:1.2rem;padding-top:.9rem;border-top:1.5px solid var(--rule-soft);
   font-size:var(--label);letter-spacing:.24em;text-transform:uppercase;opacity:.72}
-/* portrait strip — 9:16 frames shown at their native aspect, never cropped wide */
-.vpics{margin-top:clamp(1.5px,.3vw,1.5px);display:grid;gap:1.5px;background:var(--rule);
+.statement{margin-top:clamp(2rem,4.6vw,3.4rem);text-align:center}
+.statement h3{font-size:clamp(1.45rem,3vw,2.7rem)}
+
+.vpics{margin-top:1.5px;display:grid;gap:1.5px;background:var(--rule);
   grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr))}
 .vpic{position:relative;aspect-ratio:9/13;overflow:hidden;background:var(--blue-deep);min-width:0}
 .vpic img{width:100%;height:100%;object-fit:cover;filter:var(--grade)}
-.vpic .sh{position:absolute;inset:0;background:linear-gradient(180deg,rgba(26,39,51,.10),rgba(26,39,51,.68))}
+.vpic .sh{position:absolute;inset:0;background:linear-gradient(180deg,rgba(26,39,51,.1),rgba(26,39,51,.68))}
 .vpic .cp{position:absolute;left:0;right:0;bottom:0;padding:clamp(1rem,1.8vw,1.5rem);
   font-size:var(--label);letter-spacing:.26em;text-transform:uppercase;opacity:.9}
-.statement{margin-top:clamp(2.2rem,5vw,3.6rem);text-align:center}
-.statement h3{font-size:clamp(1.5rem,3.2vw,2.8rem)}
 
-/* editorial numbered list */
-.list{margin-top:clamp(2.2rem,5vw,3.8rem);border-top:1.5px solid var(--rule)}
+.list{margin-top:clamp(2rem,4.6vw,3.6rem);border-top:1.5px solid var(--rule)}
 .li{display:grid;grid-template-columns:clamp(2.4rem,4.6vw,5rem) 1fr;gap:clamp(.5rem,2vw,2rem);
-  align-items:baseline;padding-block:clamp(1.05rem,2.2vw,1.8rem);border-bottom:1.5px solid var(--rule)}
+  align-items:baseline;padding-block:clamp(1rem,2.1vw,1.7rem);border-bottom:1.5px solid var(--rule)}
 .li .n{font-size:var(--label);letter-spacing:.2em;opacity:.75;padding-top:.5em;font-variant-numeric:tabular-nums}
 .li .b{min-width:0}
 .li .t{font-family:var(--serif);font-size:var(--li-t);line-height:1.22}
-.li .d{margin-top:.4rem;font-size:var(--body);font-weight:400;line-height:1.7;opacity:.72;max-width:54ch}
-.li .tag{display:inline-block;margin-left:.6rem;font-family:var(--sans);font-size:.58rem;
+.li .d{margin-top:.38rem;font-size:var(--body);font-weight:400;line-height:1.7;opacity:.72;max-width:54ch}
+.li .tag{display:inline-block;margin-left:.55rem;font-family:var(--sans);font-size:.57rem;
   letter-spacing:.22em;text-transform:uppercase;opacity:.75;border:1px solid var(--rule);
   padding:.25em .6em;vertical-align:.25em;white-space:nowrap}
 
+/* not included */
+.excl{margin-top:clamp(2rem,4.4vw,3.2rem);border:1.5px solid var(--rule-soft);
+  padding:clamp(1.3rem,2.4vw,2.1rem)}
+.excl h4{font-family:var(--serif);font-weight:500;font-size:var(--h3);margin-bottom:1.1rem}
+.excl ul{list-style:none;display:grid;gap:.7rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr))}
+.excl li{display:grid;grid-template-columns:1.3em 1fr;gap:.5rem;align-items:baseline;
+  font-size:var(--body);font-weight:400;line-height:1.6;opacity:.78}
+.excl li::before{content:"✕";opacity:.45}
+
 /* day toggle */
-.tabs{margin-top:clamp(1.8rem,4vw,3rem);display:flex;gap:1.5px;background:var(--rule);width:fit-content;max-width:100%}
+.tabs{margin-top:clamp(1.7rem,3.6vw,2.8rem);display:flex;gap:1.5px;background:var(--rule);width:fit-content;max-width:100%}
 .tab{background:var(--ink);border:0;color:var(--cream);cursor:pointer;font-family:var(--sans);
-  padding:.95rem clamp(1.1rem,2.6vw,2.2rem);font-size:var(--label);font-weight:600;
-  letter-spacing:.26em;text-transform:uppercase;opacity:.55;transition:opacity .4s,background .4s}
+  padding:.9rem clamp(1rem,2.4vw,2.1rem);font-size:var(--label);font-weight:600;
+  letter-spacing:.24em;text-transform:uppercase;opacity:.55;transition:opacity .4s,background .4s}
 .tab[aria-selected="true"]{opacity:1;background:var(--blue)}
-.day{margin-top:clamp(1.8rem,4vw,3rem);border-top:1.5px solid var(--rule)}
-.beat{display:grid;grid-template-columns:clamp(5rem,13vw,11rem) 1fr;gap:clamp(.8rem,2.5vw,2.5rem);
-  align-items:baseline;padding-block:clamp(1rem,2.2vw,1.7rem);border-bottom:1.5px solid var(--rule)}
+.day{margin-top:clamp(1.7rem,3.6vw,2.8rem);border-top:1.5px solid var(--rule)}
+.beat{display:grid;grid-template-columns:clamp(4.6rem,12vw,10rem) 1fr;gap:clamp(.8rem,2.4vw,2.4rem);
+  align-items:baseline;padding-block:clamp(.95rem,2.1vw,1.6rem);border-bottom:1.5px solid var(--rule)}
 .beat .tm{font-family:var(--serif);font-style:italic;font-weight:400;
-  font-size:clamp(1.7rem,3.6vw,3.1rem);line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+  font-size:clamp(1.6rem,3.4vw,3rem);line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
 .beat .tx{font-family:var(--serif);font-size:var(--li-t);line-height:1.25;min-width:0}
 
-/* proof cards */
-.cards{margin-top:clamp(2.2rem,5vw,3.8rem);display:grid;gap:1.5px;background:var(--rule);
+/* cards */
+.cards{margin-top:clamp(2rem,4.6vw,3.6rem);display:grid;gap:1.5px;background:var(--rule);
   grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr))}
-.card{background:var(--ink);padding:clamp(1.4rem,2.5vw,2.2rem);min-width:0}
+.card{background:var(--ink);padding:clamp(1.4rem,2.4vw,2.1rem);min-width:0}
 .ch.blue .card{background:var(--blue-deep)}
-.card .q{font-size:var(--label);letter-spacing:.26em;text-transform:uppercase;opacity:.7;margin-bottom:.9rem}
-.card .a{font-family:var(--serif);font-size:clamp(1.1rem,1.55vw,1.4rem);line-height:1.3;margin-bottom:.8rem}
+.card .q{font-size:var(--label);letter-spacing:.26em;text-transform:uppercase;opacity:.7;margin-bottom:.85rem}
+.card .a{font-family:var(--serif);font-size:clamp(1.08rem,1.5vw,1.36rem);line-height:1.3;margin-bottom:.75rem}
 .card p{font-size:var(--body);font-weight:400;line-height:1.7;opacity:.74}
-.ph{margin-top:1rem;border:1.5px dashed rgba(245,241,234,.3);padding:.9rem;
-  font-size:.59rem;letter-spacing:.2em;text-transform:uppercase;opacity:.55;text-align:center}
+.ph{margin-top:.95rem;border:1.5px dashed rgba(245,241,234,.3);padding:.85rem;
+  font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;opacity:.55;text-align:center}
 
-/* stay lengths */
-.lengths{margin-top:clamp(2.2rem,5vw,3.8rem);display:grid;gap:1.5px;background:var(--rule);
-  grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr))}
-.len{background:var(--ink);padding:clamp(1.6rem,2.8vw,2.6rem) clamp(1rem,2vw,1.8rem);text-align:center;min-width:0}
-.len .num{font-family:var(--serif);font-style:italic;font-weight:400;
-  font-size:clamp(3.2rem,6.6vw,6rem);line-height:.95;letter-spacing:-.02em}
-.len .u{margin-top:.4rem;font-size:var(--label);letter-spacing:.3em;text-transform:uppercase;opacity:.75}
-.len .r{width:clamp(40px,4.8vw,80px);height:1.5px;background:var(--rule-strong);margin:1.2rem auto}
-.len .n{font-family:var(--serif);font-size:clamp(.9rem,1.1vw,1.05rem);opacity:.85}
-.len .ed-tag{margin-top:.8rem;font-size:.58rem;letter-spacing:.24em;text-transform:uppercase;opacity:.6}
-.note{margin-top:clamp(1.7rem,3.4vw,2.6rem);padding-left:clamp(.9rem,1.5vw,1.3rem);
-  border-left:1.5px solid var(--rule);max-width:58ch;
-  font-size:var(--body);font-weight:400;line-height:1.75;opacity:.74}
+/* films in phone frames */
+.films{margin-top:clamp(2rem,4.6vw,3.6rem);display:grid;gap:clamp(1.6rem,3.4vw,3rem);
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));justify-items:center}
+.phone{width:100%;max-width:290px}
+.phone .screen{position:relative;aspect-ratio:9/16;border:2px solid rgba(245,241,234,.5);
+  border-radius:22px;overflow:hidden;background:#0D161E}
+.phone video{width:100%;height:100%;object-fit:cover}
+.phone .cap{margin-top:.95rem;text-align:center}
+.phone .cap .t{font-family:var(--serif);font-size:clamp(1rem,1.3vw,1.2rem)}
+.phone .cap .s{margin-top:.3rem;font-size:.58rem;letter-spacing:.24em;text-transform:uppercase;opacity:.6}
 
-/* progression strip */
-.steps{margin-top:clamp(2.2rem,5vw,3.8rem);display:grid;gap:1.5px;background:var(--rule);
+/* steps */
+.steps{margin-top:clamp(2rem,4.6vw,3.6rem);display:grid;gap:1.5px;background:var(--rule);
   grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr))}
-.step{background:var(--ink);padding:clamp(1.5rem,2.6vw,2.3rem);min-width:0}
-.step .w{font-size:var(--label);letter-spacing:.28em;text-transform:uppercase;opacity:.65;margin-bottom:.9rem}
-.step .l{font-family:var(--serif);font-size:clamp(1.15rem,1.8vw,1.6rem);line-height:1.2}
+.step{background:var(--ink);padding:clamp(1.4rem,2.4vw,2.2rem);min-width:0}
+.ch.blue .step{background:var(--blue-deep)}
+.step .w{font-size:var(--label);letter-spacing:.28em;text-transform:uppercase;opacity:.65;margin-bottom:.85rem}
+.step .l{font-family:var(--serif);font-size:clamp(1.1rem,1.7vw,1.5rem);line-height:1.2}
 .step .l em{display:inline}
 
-/* for you / not for you */
-.fit{margin-top:clamp(2.2rem,5vw,3.8rem);display:grid;gap:1.5px;background:var(--rule);
+/* fit */
+.fit{margin-top:clamp(2rem,4.6vw,3.6rem);display:grid;gap:1.5px;background:var(--rule);
   grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr))}
-.col{background:var(--ink);padding:clamp(1.5rem,2.6vw,2.3rem);min-width:0}
-.col h4{font-family:var(--serif);font-weight:500;font-size:var(--h3);margin-bottom:1.2rem;line-height:1.2}
-.col ul{list-style:none;display:grid;gap:.85rem}
-.col li{display:grid;grid-template-columns:1.4em 1fr;gap:.6rem;align-items:baseline;
-  font-size:clamp(.9rem,1.05vw,1rem);font-weight:400;line-height:1.6;opacity:.86}
+.col{background:var(--ink);padding:clamp(1.4rem,2.4vw,2.2rem);min-width:0}
+.col h4{font-family:var(--serif);font-weight:500;font-size:var(--h3);margin-bottom:1.1rem;line-height:1.2}
+.col ul{list-style:none;display:grid;gap:.8rem}
+.col li{display:grid;grid-template-columns:1.4em 1fr;gap:.55rem;align-items:baseline;
+  font-size:clamp(.88rem,1.02vw,.98rem);font-weight:400;line-height:1.6;opacity:.86}
 .col .yes li::before{content:"✓";opacity:.85}
 .col .no li::before{content:"✕";opacity:.5}
 
-footer{padding-block:2.2rem;border-top:1.5px solid rgba(245,241,234,.14);
-  display:grid;gap:1rem;font-size:.63rem;letter-spacing:.14em;text-transform:uppercase;opacity:.5;line-height:1.9}
-footer .row{display:flex;justify-content:space-between;gap:.75rem;flex-wrap:wrap}
-footer .cr{text-transform:none;letter-spacing:.04em;opacity:.8;max-width:80ch}
+/* lengths */
+.lengths{margin-top:clamp(2rem,4.6vw,3.6rem);display:grid;gap:1.5px;background:var(--rule);
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr))}
+.len{background:var(--ink);padding:clamp(1.5rem,2.6vw,2.4rem) clamp(1rem,2vw,1.8rem);text-align:center;min-width:0}
+.len .num{font-family:var(--serif);font-style:italic;font-weight:400;
+  font-size:clamp(3rem,6.2vw,5.6rem);line-height:.95;letter-spacing:-.02em}
+.len .u{margin-top:.35rem;font-size:var(--label);letter-spacing:.3em;text-transform:uppercase;opacity:.75}
+.len .r{width:clamp(40px,4.6vw,78px);height:1.5px;background:var(--rule-strong);margin:1.1rem auto}
+.len .n{font-family:var(--serif);font-size:clamp(.88rem,1.08vw,1.02rem);opacity:.85}
+.len .ed-tag{margin-top:.7rem;font-size:.57rem;letter-spacing:.24em;text-transform:uppercase;opacity:.6}
+.note{margin-top:clamp(1.6rem,3.2vw,2.4rem);padding-left:clamp(.9rem,1.5vw,1.3rem);
+  border-left:1.5px solid var(--rule);max-width:58ch;
+  font-size:var(--body);font-weight:400;line-height:1.75;opacity:.74}
 
-/* end card */
-.end{position:relative;padding-block:clamp(4.5rem,12vh,9rem);text-align:center;overflow:hidden}
+/* people */
+.people{margin-top:clamp(2rem,4.6vw,3.6rem);display:grid;gap:1.5px;background:var(--rule);
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr))}
+.person{background:var(--ink);padding:clamp(1.4rem,2.4vw,2.2rem);min-width:0}
+.person .slot{aspect-ratio:1;border:1.5px dashed rgba(245,241,234,.3);display:grid;place-items:center;
+  text-align:center;padding:1rem;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;
+  opacity:.5;margin-bottom:1.2rem;max-width:160px}
+.person .nm{font-family:var(--serif);font-size:var(--h3);line-height:1.2}
+.person .ro{margin-top:.35rem;font-size:var(--label);letter-spacing:.26em;text-transform:uppercase;opacity:.7}
+.person p{margin-top:.85rem;font-size:var(--body);font-weight:400;line-height:1.7;opacity:.74}
+
+/* faq */
+.faq{margin-top:clamp(2rem,4.6vw,3.6rem);border-top:1.5px solid var(--rule)}
+.faq details{border-bottom:1.5px solid var(--rule)}
+.faq summary{list-style:none;cursor:pointer;padding-block:clamp(1rem,2.1vw,1.6rem);
+  display:flex;justify-content:space-between;align-items:baseline;gap:1.5rem;
+  font-family:var(--serif);font-size:var(--li-t);line-height:1.25}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-family:var(--sans);font-weight:500;opacity:.6;flex:none;
+  font-size:1.1rem;transition:transform .35s cubic-bezier(.16,1,.3,1)}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq .ans{padding-bottom:clamp(1.1rem,2.2vw,1.7rem);max-width:62ch;
+  font-size:var(--body);font-weight:400;line-height:1.8;opacity:.76}
+
+/* enquiry form */
+.enq{position:relative;background:var(--ink-2);padding-block:clamp(3.6rem,10vh,7.5rem)}
+.enq .grid{margin-top:clamp(2rem,4.4vw,3.4rem);display:grid;gap:clamp(1.8rem,4vw,3.5rem);
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));align-items:start}
+.form{display:grid;gap:1.15rem;min-width:0}
+.field{display:grid;gap:.5rem;min-width:0}
+.field label{font-size:var(--label);letter-spacing:.24em;text-transform:uppercase;opacity:.75}
+.field input,.field select,.field textarea{width:100%;background:rgba(10,18,26,.45);color:var(--cream);
+  border:1.5px solid var(--rule-soft);padding:.85rem 1rem;font-family:var(--sans);
+  font-size:var(--body);font-weight:400;transition:border-color .35s}
+.field textarea{resize:vertical;min-height:110px;line-height:1.6}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--rule-strong);outline:none}
+.field .hint{font-size:.68rem;font-weight:400;opacity:.55;letter-spacing:.02em;text-transform:none}
+.two{display:grid;gap:1.15rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr))}
+.check{display:grid;grid-template-columns:auto 1fr;gap:.7rem;align-items:start;
+  font-size:var(--body);font-weight:400;line-height:1.6;opacity:.85;cursor:pointer}
+.check input{width:1.05rem;height:1.05rem;margin-top:.2rem;accent-color:var(--blue-light)}
+.err{font-size:.72rem;font-weight:400;letter-spacing:.02em;opacity:.95;color:#F0C987}
+.sent{border:1.5px solid var(--rule);padding:clamp(1.4rem,2.6vw,2.2rem)}
+.sent h3{margin-bottom:.8rem}
+.sent p{font-size:var(--body);font-weight:400;line-height:1.75;opacity:.8}
+.aside{min-width:0}
+.aside h3{margin-bottom:1rem}
+.aside p{font-size:var(--body);font-weight:400;line-height:1.8;opacity:.78;max-width:46ch}
+.aside .direct{margin-top:1.6rem;padding-top:1.3rem;border-top:1.5px solid var(--rule-soft);display:grid;gap:.85rem}
+.aside .direct .k{font-size:var(--label);letter-spacing:.24em;text-transform:uppercase;opacity:.65}
+.aside .direct .v{font-family:var(--serif);font-size:clamp(1rem,1.3vw,1.2rem);
+  user-select:all;-webkit-user-select:all;word-break:break-word}
+
+/* end */
+.end{position:relative;padding-block:clamp(4rem,11vh,8.5rem);text-align:center;overflow:hidden}
 .end .wash{position:absolute;inset:0;z-index:0;
   background:radial-gradient(circle at 50% 42%,var(--blue-light) 0%,var(--blue) 45%,var(--blue-deep) 100%)}
 .end .inner{position:relative;z-index:2}
-.end .mark{width:clamp(88px,9.5vw,160px);margin:0 auto clamp(1.4rem,2.6vw,2.2rem)}
+.end .mark{width:clamp(84px,9vw,152px);margin:0 auto clamp(1.3rem,2.4vw,2.1rem)}
 .end .mark svg{width:100%;height:auto;stroke:var(--cream)}
-.end .name{font-family:var(--serif);font-size:clamp(1.9rem,4.2vw,3.8rem);letter-spacing:-.01em}
-.end .r{width:clamp(64px,7vw,120px);height:1.5px;background:var(--rule-strong);
-  margin:clamp(1.2rem,2.3vw,2rem) auto}
-.end .line{font-family:var(--serif);font-style:italic;font-size:clamp(1rem,1.75vw,1.55rem);opacity:.95}
-.end .cta{margin-top:clamp(1.8rem,3.6vw,2.7rem)}
-.end .handle{margin-top:clamp(2rem,4.2vw,3rem);font-size:var(--label);font-weight:600;letter-spacing:.3em}
+.end .name{font-family:var(--serif);font-size:clamp(1.85rem,4vw,3.6rem);letter-spacing:-.01em}
+.end .r{width:clamp(62px,6.8vw,118px);height:1.5px;background:var(--rule-strong);
+  margin:clamp(1.1rem,2.2vw,1.9rem) auto}
+.end .line{font-family:var(--serif);font-style:italic;font-size:clamp(.98rem,1.7vw,1.5rem);opacity:.95}
+.end .handle{margin-top:clamp(1.9rem,4vw,2.8rem);font-size:var(--label);font-weight:600;letter-spacing:.3em}
+
+footer{padding-block:2.1rem;border-top:1.5px solid rgba(245,241,234,.14);
+  display:grid;gap:.9rem;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;opacity:.5;line-height:1.9}
+footer .row{display:flex;justify-content:space-between;gap:.75rem;flex-wrap:wrap}
+footer .cr{text-transform:none;letter-spacing:.04em;opacity:.8;max-width:82ch}
 </style>
 
+<nav class="bar pad" aria-label="Primary">
+  <div class="in wrap">
+    <span class="id">
+      <svg viewBox="0 0 220 150" fill="none" stroke="currentColor" stroke-width="9"
+           stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M14 120 L78 36 L112 80 L140 50 L206 120"/>
+        <path d="M30 140 C 70 122, 110 150, 150 132 S 200 128, 210 136" stroke-width="6" opacity="0.75"/>
+      </svg>
+      <span>Mountain Whisper</span>
+    </span>
+    <a class="go" href="#enquire">Enquire</a>
+  </div>
+</nav>
+
 <header class="hero">
-  <div class="shot"><img src="img/wide.jpg" alt="Himalayan peaks above Pokhara at first light"></div>
+  <div class="shot">
+    <img src="img/wide.jpg" alt="Himalayan peaks above Pokhara at first light"
+         srcset="img/wide-800.jpg 800w, img/wide-1600.jpg 1600w, img/wide.jpg 3840w"
+         sizes="100vw" fetchpriority="high">
+  </div>
   <div class="tint"></div><div class="vig"></div><div class="grain"></div>
   <span class="corner tl"></span><span class="corner tr"></span>
   <span class="corner bl"></span><span class="corner br"></span>
   <div class="inner pad"><div class="wrap">
-    <div class="masthead pad"><span>Mountain Whisper</span><span class="r">Pokhara · Nepal</span></div>
     <div class="kicker rv"><span class="r"></span><span class="t">Pokhara, Nepal</span></div>
     <h1 class="rv d1">Some offices<em>have a view.</em></h1>
-    <p class="lede rv d2">Live and work from the Himalayas — lakeside in Pokhara, or with a
-      village family in the hills. Room, desk, internet, visa and trek arranged end to end,
-      before you land.</p>
+    <p class="lede rv d2">Live and work from the Himalayas — lakeside in Pokhara, or with a village
+      family in the hills. Room, desk, internet, visa and trek arranged end to end, before you land.</p>
     <div class="actions rv d2">
       <a class="btn" href="#enquire">Enquire</a>
       <span class="price">from $1,490 a month</span>
@@ -244,54 +333,33 @@ footer .cr{text-transform:none;letter-spacing:.04em;opacity:.8;max-width:80ch}
   </div></div>
 </header>
 
-<!-- N° 01 — the choice -->
 <section class="ch pad"><div class="wrap">
   <div class="head">
     <p class="chapter rv">N° 01</p>
     <div class="kicker rv"><span class="r"></span><span class="t">Choosing your stay</span></div>
     <h2 class="rv d1">Village<em>or city?</em></h2>
   </div>
-
   <div class="editions">
     <article class="ed rv">
-      <div class="pic">
-        <img src="img/cowork.jpg" alt="A desk and laptop by a window">
-        <span class="sh"></span>
-        <div class="cap"><p class="t">The city</p><p class="s">Pokhara · 1, 3 or 5 months</p></div>
-      </div>
-      <div class="body">
-        <ul>
-          <li>Cafés and coworking</li>
-          <li>Everything close by</li>
-          <li>Busier and louder</li>
-          <li>Lakeside, with the Annapurnas next door</li>
-        </ul>
-        <p class="meta">From $1,490 a month</p>
-      </div>
+      <div class="pic"><img src="img/cowork.jpg" alt="A desk and laptop by a window"><span class="sh"></span>
+        <div class="cap"><p class="t">The city</p><p class="s">Pokhara · 1, 3 or 5 months</p></div></div>
+      <div class="body"><ul>
+        <li>Cafés and coworking</li><li>Everything close by</li><li>Busier and louder</li>
+        <li>Lakeside, with the Annapurnas next door</li>
+      </ul><p class="meta">From $1,490 a month</p></div>
     </article>
-
     <article class="ed rv d1">
-      <div class="pic">
-        <img src="img/village-alley.jpg" alt="A stone village lane hung with prayer flags, mountains beyond">
-        <span class="sh"></span>
-        <div class="cap"><p class="t">The Village Edition</p><p class="s">Homestay · 3 or 5 months</p></div>
-      </div>
-      <div class="body">
-        <ul>
-          <li>Silence and space</li>
-          <li>Deep focus</li>
-          <li>Real local life, with a host family</li>
-          <li>Pokhara breaks whenever you want the city</li>
-        </ul>
-        <p class="meta">Limited homestays · First group</p>
-      </div>
+      <div class="pic"><img src="img/village-alley.jpg" alt="A stone village lane hung with prayer flags, mountains beyond"><span class="sh"></span>
+        <div class="cap"><p class="t">The Village Edition</p><p class="s">Homestay · 3 or 5 months</p></div></div>
+      <div class="body"><ul>
+        <li>Silence and space</li><li>Deep focus</li><li>Real local life, with a host family</li>
+        <li>Pokhara breaks whenever you want the city</li>
+      </ul><p class="meta">Limited homestays · First group</p></div>
     </article>
   </div>
-
   <div class="statement rv d2"><h3>Have both.<em>Village and lake.</em></h3></div>
 </div></section>
 
-<!-- N° 02 — what we arrange -->
 <section class="ch pad"><div class="wrap">
   <div class="head">
     <p class="chapter rv">N° 02</p>
@@ -301,15 +369,13 @@ footer .cr{text-transform:none;letter-spacing:.04em;opacity:.8;max-width:80ch}
   <div class="list">
     <div class="li rv"><span class="n">01</span><div class="b">
       <p class="t">Private room, fibre wifi</p>
-      <p class="d">Your own room, on a wired connection — not shared hostel wifi. Tested for video
-        calls before you arrive.</p></div></div>
+      <p class="d">Your own room, on a wired connection — not shared hostel wifi. Tested for video calls before you arrive.</p></div></div>
     <div class="li rv"><span class="n">02</span><div class="b">
       <p class="t">Coworking desk <span class="tag">City</span></p>
       <p class="d">A reserved seat at a Pokhara coworking space, so you are not working from the bed.</p></div></div>
     <div class="li rv"><span class="n">03</span><div class="b">
       <p class="t">A home-cooked table <span class="tag">Village</span></p>
-      <p class="d">Dal bhat, vegetables picked that morning, handmade roti, and chiya all day —
-        eaten with the family you stay with.</p></div></div>
+      <p class="d">Dal bhat, vegetables picked that morning, handmade roti and chiya all day — eaten with the family you stay with.</p></div></div>
     <div class="li rv"><span class="n">04</span><div class="b">
       <p class="t">Local SIM, ready on arrival</p>
       <p class="d">Handed to you at pickup. It is also your backup when the power goes.</p></div></div>
@@ -321,24 +387,32 @@ footer .cr{text-transform:none;letter-spacing:.04em;opacity:.8;max-width:80ch}
       <p class="d">Met at Kathmandu, taken on to Pokhara. No haggling at arrivals after a long flight.</p></div></div>
     <div class="li rv"><span class="n">07</span><div class="b">
       <p class="t">Guided Himalayan trek</p>
-      <p class="d">Four to five days to Poon Hill with our licensed guide, permits included, over a
-        long weekend — so you do not lose a week of work.</p></div></div>
+      <p class="d">Four to five days to Poon Hill with our licensed guide, permits included, over a long weekend — so you do not lose a week of work.</p></div></div>
+  </div>
+
+  <div class="excl rv">
+    <h4>What is not included</h4>
+    <ul>
+      <li>International flights</li>
+      <li>Travel insurance — required, and you must have it before you arrive</li>
+      <li>The Nepal visa fee itself, paid on arrival</li>
+      <li>Food and drink on city stays, beyond the welcome dinner</li>
+      <li>Personal spending, laundry and anything you book yourself</li>
+      <li>Extra treks or safaris beyond the one in your stay</li>
+    </ul>
   </div>
 </div></section>
 
-<!-- N° 03 — a day -->
 <section class="ch pad"><div class="wrap">
   <div class="head">
     <p class="chapter rv">N° 03</p>
     <div class="kicker rv"><span class="r"></span><span class="t">A day, either way</span></div>
     <h2 class="rv d1">Same work.<em>Different life.</em></h2>
   </div>
-
   <div class="tabs rv" role="tablist" aria-label="Choose a day">
     <button class="tab" id="tab-city" role="tab" aria-selected="true" aria-controls="day-city" type="button">In Pokhara</button>
     <button class="tab" id="tab-village" role="tab" aria-selected="false" aria-controls="day-village" type="button">In the village</button>
   </div>
-
   <div class="day" id="day-city" role="tabpanel" aria-labelledby="tab-city">
     <div class="beat"><span class="tm">06:30</span><p class="tx">First light.</p></div>
     <div class="beat"><span class="tm">08:00</span><p class="tx">Chiya by the lake.</p></div>
@@ -346,7 +420,6 @@ footer .cr{text-transform:none;letter-spacing:.04em;opacity:.8;max-width:80ch}
     <div class="beat"><span class="tm">13:00</span><p class="tx">Paragliders at lunch.</p></div>
     <div class="beat"><span class="tm">17:30</span><p class="tx">Log off. Row out.</p></div>
   </div>
-
   <div class="day" id="day-village" role="tabpanel" aria-labelledby="tab-village" hidden>
     <div class="beat"><span class="tm">06:00</span><p class="tx">Sunrise over the peaks.</p></div>
     <div class="beat"><span class="tm">07:00</span><p class="tx">Tea by the fire.</p></div>
@@ -356,41 +429,11 @@ footer .cr{text-transform:none;letter-spacing:.04em;opacity:.8;max-width:80ch}
   </div>
 </div></section>
 
-<!-- N° 04 — honest answers -->
-<section class="ch pad"><div class="wrap">
-  <div class="head">
-    <p class="chapter rv">N° 04</p>
-    <div class="kicker rv"><span class="r"></span><span class="t">Honest answers</span></div>
-    <h2 class="rv d1">Yes, the wifi works.<em>Here is the proof.</em></h2>
-  </div>
-  <div class="cards">
-    <div class="card rv"><p class="q">How we test it</p>
-      <p class="a">Speed tests, morning and evening</p>
-      <p>Before any room or homestay joins the programme we test it at both ends of the day, then
-        keep testing while you are there. If it drops, you hear it from us first.</p>
-      <div class="ph">Speed test — to shoot on site</div></div>
-    <div class="card rv d1"><p class="q">When it fails</p>
-      <p class="a">A backup on a second network</p>
-      <p>Every stay has a second connection on a different mobile network, plus power backup that
-        carries a full call. In the village, your biggest calls can move to a town day.</p>
-      <div class="ph">Backup router — to photograph</div></div>
-    <div class="card rv d2"><p class="q">Power cuts</p>
-      <p class="a">They happen. We plan for them.</p>
-      <p>Nepal still has cuts. We would rather tell you that now than have you discover it ten
-        minutes before a client call.</p></div>
-    <div class="card rv d2"><p class="q">The visa</p>
-      <p class="a">150 days a calendar year</p>
-      <p>Nepal's tourist visa allows up to 150 days per calendar year. That is why stays are one,
-        three or five months — and why the longest is arranged across New Year.</p></div>
-  </div>
-</div></section>
-
-<!-- N° 05 — village edition, on the brand blue -->
 <section class="ch blue pad">
   <div class="grain"></div>
   <div class="wrap">
     <div class="head">
-      <p class="chapter rv">N° 05</p>
+      <p class="chapter rv">N° 04</p>
       <div class="kicker rv"><span class="r"></span><span class="t">New from Mountain Whisper</span></div>
       <h2 class="rv d1">Live with<em>a local family.</em></h2>
       <p class="lede rv d2" style="max-width:52ch">A private room in a Himalayan village home, for three
@@ -398,53 +441,72 @@ footer .cr{text-transform:none;letter-spacing:.04em;opacity:.8;max-width:80ch}
         at the stove, or walking between villages.</p>
     </div>
     <div class="cards">
-      <div class="card rv"><p class="q">Your mornings</p>
-        <p class="a">Mountain views, dal bhat, fresh air</p>
-        <p>You wake where the family wakes. Tea by the fire before the day starts.</p></div>
-      <div class="card rv d1"><p class="q">Work, uninterrupted</p>
-        <p class="a">Tested internet, backup connection</p>
-        <p>The same checklist as the city stays, applied to a village — plus town days in Pokhara
-          whenever the calls matter most.</p></div>
-      <div class="card rv d2"><p class="q">After work</p>
-        <p class="a">Farming, festivals, long walks</p>
+      <div class="card rv"><p class="q">Your mornings</p><p class="a">Mountain views, dal bhat, fresh air</p>
+        <p>You wake when the family wakes. Tea by the fire before the day starts.</p></div>
+      <div class="card rv d1"><p class="q">Work, uninterrupted</p><p class="a">Tested internet, backup connection</p>
+        <p>The same checklist as the city stays, applied to a village — plus town days in Pokhara whenever the calls matter most.</p></div>
+      <div class="card rv d2"><p class="q">After work</p><p class="a">Farming, festivals, long walks</p>
         <p>Cooking, the harvest, Dashain and Tihar, and the paths between one village and the next.</p></div>
-      <div class="card rv d2"><p class="q">Travel that gives back</p>
-        <p class="a">Fair to families. True to the village.</p>
-        <p>Host families are paid fairly and agree the terms up front. We ask guests to arrive as
-          guests: shoes off indoors, ask before photographing anyone, and accept the tea.</p></div>
+      <div class="card rv d2"><p class="q">Travel that gives back</p><p class="a">Fair to families. True to the village.</p>
+        <p>Host families are paid fairly and agree the terms up front. We ask guests to arrive as guests: shoes off indoors, ask before photographing anyone, and accept the tea.</p></div>
     </div>
     <div class="vpics">
-      <figure class="vpic rv">
-        <img src="img/fire-cooking.jpg" alt="Cooking over an open fire outside a village house">
-        <span class="sh"></span><figcaption class="cp">Tea by the fire · 07:00</figcaption>
-      </figure>
-      <figure class="vpic rv d1">
-        <img src="img/rice-harvest.jpg" alt="Carrying cut grass along a path through green rice terraces">
-        <span class="sh"></span><figcaption class="cp">Out in the fields · 16:00</figcaption>
-      </figure>
+      <figure class="vpic rv"><img src="img/rice-harvest.jpg" alt="Carrying cut grass along a path through green rice terraces">
+        <span class="sh"></span><figcaption class="cp">Out in the fields · 16:00</figcaption></figure>
+      <figure class="vpic rv d1"><img src="img/lamps.jpg" alt="Rows of lit butter lamps on blackened stone shelves">
+        <span class="sh"></span><figcaption class="cp">Lamplight · 20:00</figcaption></figure>
+    </div>
+    <div class="steps">
+      <div class="step rv"><p class="w">Week one</p><p class="l">Up with <em>the sun.</em></p></div>
+      <div class="step rv d1"><p class="w">Month one</p><p class="l">Deeper work. <em>Fewer tabs.</em></p></div>
+      <div class="step rv d2"><p class="w">Month two</p><p class="l">Strangers <em>become family.</em></p></div>
+      <div class="step rv d3"><p class="w">Month three</p><p class="l">You won't <em>want to leave.</em></p></div>
     </div>
   </div>
 </section>
 
-<!-- N° 06 — what it does to you -->
+<section class="ch pad"><div class="wrap">
+  <div class="head">
+    <p class="chapter rv">N° 05</p>
+    <div class="kicker rv"><span class="r"></span><span class="t">Honest answers</span></div>
+    <h2 class="rv d1">Yes, the wifi works.<em>Here is the proof.</em></h2>
+  </div>
+  <div class="cards">
+    <div class="card rv"><p class="q">How we test it</p><p class="a">Speed tests, morning and evening</p>
+      <p>Before any room or homestay joins the programme we test it at both ends of the day, then keep testing while you are there. If it drops, you hear it from us first.</p>
+      <div class="ph">Speed test — to shoot on site</div></div>
+    <div class="card rv d1"><p class="q">When it fails</p><p class="a">A backup on a second network</p>
+      <p>Every stay has a second connection on a different mobile network, plus power backup that carries a full call. In the village, your biggest calls can move to a town day.</p>
+      <div class="ph">Backup router — to photograph</div></div>
+    <div class="card rv d2"><p class="q">Power cuts</p><p class="a">They happen. We plan for them.</p>
+      <p>Nepal still has cuts. We would rather tell you now than have you discover it ten minutes before a client call.</p></div>
+    <div class="card rv d2"><p class="q">The visa</p><p class="a">150 days a calendar year</p>
+      <p>Nepal's tourist visa allows up to 150 days per calendar year. That is why stays are one, three or five months — and why the longest is arranged across New Year.</p></div>
+  </div>
+</div></section>
+
 <section class="ch pad"><div class="wrap">
   <div class="head">
     <p class="chapter rv">N° 06</p>
-    <div class="kicker rv"><span class="r"></span><span class="t">Slow living</span></div>
-    <h2 class="rv d1">Three months<em>in a village.</em></h2>
+    <div class="kicker rv"><span class="r"></span><span class="t">See it for yourself</span></div>
+    <h2 class="rv d1">We film it<em>as it is.</em></h2>
   </div>
-  <div class="steps">
-    <div class="step rv"><p class="w">Week one</p><p class="l">Up with <em>the sun.</em></p></div>
-    <div class="step rv d1"><p class="w">Month one</p><p class="l">Deeper work. <em>Fewer tabs.</em></p></div>
-    <div class="step rv d2"><p class="w">Month two</p><p class="l">Strangers <em>become family.</em></p></div>
-    <div class="step rv d3"><p class="w">Month three</p><p class="l">You won't <em>want to leave.</em></p></div>
+  <div class="films">
+    <figure class="phone rv">
+      <div class="screen"><video src="video/film-city.mp4" muted loop playsinline preload="metadata"
+        poster="img/wide-800.jpg" aria-label="Film: the view from Pokhara"></video></div>
+      <figcaption class="cap"><p class="t">The View</p><p class="s">Pokhara · N° 01</p></figcaption>
+    </figure>
+    <figure class="phone rv d1">
+      <div class="screen"><video src="video/film-village.mp4" muted loop playsinline preload="metadata"
+        poster="img/village-alley.jpg" aria-label="Film: the Village Edition"></video></div>
+      <figcaption class="cap"><p class="t">The Village Edition</p><p class="s">Homestay · N° 14</p></figcaption>
+    </figure>
   </div>
-  <svg class="ridge rv" viewBox="0 0 1200 90" preserveAspectRatio="none" aria-hidden="true">
-    <path d="M0 76 L120 44 L210 62 L330 20 L430 58 L540 34 L660 70 L780 38 L900 64 L1010 28 L1110 56 L1200 40"/>
-  </svg>
+  <p class="note rv d2">Short, silent excerpts. The full films, with sound, are on Instagram and TikTok —
+    there are twenty-four of them, covering the visa, the internet, the food, the festivals and the trek.</p>
 </div></section>
 
-<!-- N° 07 — is it for you -->
 <section class="ch pad"><div class="wrap">
   <div class="head">
     <p class="chapter rv">N° 07</p>
@@ -452,24 +514,15 @@ footer .cr{text-transform:none;letter-spacing:.04em;opacity:.8;max-width:80ch}
     <h2 class="rv d1">Is it<em>for you?</em></h2>
   </div>
   <div class="fit">
-    <div class="col rv"><h4>It's for you if</h4>
-      <ul class="yes">
-        <li>You love deep work</li>
-        <li>You love nature</li>
-        <li>You want real culture, not a view of it</li>
-      </ul></div>
-    <div class="col rv d1"><h4>Not for you if</h4>
-      <ul class="no">
-        <li>You need nightlife</li>
-        <li>You want luxury</li>
-        <li>You love a fast pace</li>
-      </ul></div>
+    <div class="col rv"><h4>It's for you if</h4><ul class="yes">
+      <li>You love deep work</li><li>You love nature</li><li>You want real culture, not a view of it</li></ul></div>
+    <div class="col rv d1"><h4>Not for you if</h4><ul class="no">
+      <li>You need nightlife</li><li>You want luxury</li><li>You love a fast pace</li></ul></div>
   </div>
   <p class="note rv d2">Not sure? Start with a month in Pokhara and visit a village from there.
     Nobody should commit five months to a way of living they have not tried.</p>
 </div></section>
 
-<!-- N° 08 — how long -->
 <section class="ch pad"><div class="wrap">
   <div class="head">
     <p class="chapter rv">N° 08</p>
@@ -477,19 +530,158 @@ footer .cr{text-transform:none;letter-spacing:.04em;opacity:.8;max-width:80ch}
     <h2 class="rv d1">One season,<em>or most of a year.</em></h2>
   </div>
   <div class="lengths">
-    <div class="len rv"><p class="num">1</p><p class="u">Month</p>
-      <span class="r"></span><p class="n">A long test drive</p><p class="ed-tag">City only</p></div>
-    <div class="len rv d1"><p class="num">3</p><p class="u">Months</p>
-      <span class="r"></span><p class="n">Long enough to settle in</p><p class="ed-tag">City or village</p></div>
-    <div class="len rv d2"><p class="num">5</p><p class="u">Months</p>
-      <span class="r"></span><p class="n">The visa extension, built in</p><p class="ed-tag">City or village</p></div>
+    <div class="len rv"><p class="num">1</p><p class="u">Month</p><span class="r"></span>
+      <p class="n">A long test drive</p><p class="ed-tag">City only</p></div>
+    <div class="len rv d1"><p class="num">3</p><p class="u">Months</p><span class="r"></span>
+      <p class="n">Long enough to settle in</p><p class="ed-tag">City or village</p></div>
+    <div class="len rv d2"><p class="num">5</p><p class="u">Months</p><span class="r"></span>
+      <p class="n">The visa extension, built in</p><p class="ed-tag">City or village</p></div>
   </div>
-  <p class="note rv d2">All stays start from <strong>$1,490 a month</strong>, everything above included.
-    Final pricing is confirmed by email once we have your dates — we quote on real supplier costs
-    rather than a number on a page. Village homestays are limited, and the first group is forming now.</p>
+  <p class="note rv d2">All stays start from <strong>$1,490 a month</strong>, with everything in N° 02 included.
+    Final pricing is confirmed by email once we have your dates — we quote on real supplier costs rather
+    than a number on a page. Village homestays are limited, and the first group is forming now.</p>
 </div></section>
 
-<section class="end pad" id="enquire">
+<section class="ch pad"><div class="wrap">
+  <div class="head">
+    <p class="chapter rv">N° 09</p>
+    <div class="kicker rv"><span class="r"></span><span class="t">Who you'll meet</span></div>
+    <h2 class="rv d1">People, not<em>a booking system.</em></h2>
+  </div>
+  <div class="people">
+    <div class="person rv">
+      <div class="slot">Founder portrait<br>to add</div>
+      <p class="nm">Prajwal</p><p class="ro">Founder</p>
+      <p>Runs Mountain Whisper day to day, and answers the enquiries himself. Nepali, and a remote
+        software engineer — which is why the internet checklist exists.</p></div>
+    <div class="person rv d1">
+      <div class="slot">Guide portrait<br>to add</div>
+      <p class="nm">Our guide</p><p class="ro">Licensed trekking guide</p>
+      <p>Government-licensed, and the person who walks you to Poon Hill. Name and licence number
+        to be added here.</p></div>
+    <div class="person rv d2">
+      <div class="slot">Registration<br>certificate</div>
+      <p class="nm">Registered in Nepal</p><p class="ro">Travel agency</p>
+      <p>A registered Nepali travel agency, not an intermediary. Registration number to be published
+        here so you can check it before you pay anyone anything.</p></div>
+  </div>
+</div></section>
+
+<section class="ch pad"><div class="wrap">
+  <div class="head">
+    <p class="chapter rv">N° 10</p>
+    <div class="kicker rv"><span class="r"></span><span class="t">Before you ask</span></div>
+    <h2 class="rv d1">The questions<em>everybody asks.</em></h2>
+  </div>
+  <div class="faq rv">
+    <details><summary>Will I be lonely?</summary>
+      <p class="ans">Honestly, it depends on the month. We are starting out, so early groups are small —
+        you may be the only guest for a while. There is a welcome dinner, a coworking space full of
+        other remote workers in Pokhara, and a host family in the village. If a busy social scene is
+        what you need, Pokhara in high season suits you better than a village in winter.</p></details>
+    <details><summary>What if I get sick or have an accident?</summary>
+      <p class="ans">Pokhara has hospitals and clinics used to treating travellers. From a village,
+        we plan the route to the nearest clinic before anyone stays there. Travel insurance that covers
+        trekking is required — we will ask to see it, because a helicopter evacuation from the
+        mountains is not something you want to discover you are paying for.</p></details>
+    <details><summary>Can I extend, or leave early?</summary>
+      <p class="ans">Extending is usually possible within the 150-day visa limit, and we handle the
+        immigration side. Leaving early is always allowed — it is your life — but the refund depends on
+        what we have already paid out to the room, the homestay and the guide. We will put the exact
+        terms in writing before you pay.</p></details>
+    <details><summary>Is it safe, including for women travelling alone?</summary>
+      <p class="ans">Nepal is generally safe for solo travellers, and Pokhara particularly so. In a
+        village you are living inside a family home, which is safer than a hotel in most respects and
+        less private in others. We will be straight with you about both, and you can speak to the host
+        family before you commit.</p></details>
+    <details><summary>Do I really need to trek?</summary>
+      <p class="ans">No. The trek is included, not compulsory. Poon Hill is four to five days over a
+        long weekend and is suitable for most reasonably fit people with no mountaineering experience.
+        If you would rather not, say so and we will arrange something else.</p></details>
+    <details><summary>Who is this not for?</summary>
+      <p class="ans">Anyone who needs guaranteed uninterrupted power, same-day deliveries, a gym chain,
+        or a nightlife scene. Also anyone whose work cannot survive an occasional outage. We would
+        rather lose the booking than have you arrive disappointed.</p></details>
+  </div>
+</div></section>
+
+<section class="enq pad" id="enquire"><div class="wrap">
+  <div class="head">
+    <p class="chapter rv">Enquire</p>
+    <div class="kicker rv"><span class="r"></span><span class="t">No deposit, no obligation</span></div>
+    <h2 class="rv d1">Tell us your month.<em>We'll do the rest.</em></h2>
+  </div>
+
+  <div class="grid">
+    <form class="form rv" id="enquiry" novalidate>
+      <div class="field">
+        <label for="f-name">Your name</label>
+        <input id="f-name" name="name" type="text" autocomplete="name" required>
+      </div>
+      <div class="field">
+        <label for="f-email">Email</label>
+        <input id="f-email" name="email" type="email" autocomplete="email" required>
+      </div>
+      <div class="two">
+        <div class="field">
+          <label for="f-edition">Which stay</label>
+          <select id="f-edition" name="edition">
+            <option>Not sure yet</option>
+            <option>The city — Pokhara</option>
+            <option>The Village Edition</option>
+            <option>Both, if that's possible</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-length">How long</label>
+          <select id="f-length" name="length">
+            <option>Not sure yet</option>
+            <option>1 month</option>
+            <option>3 months</option>
+            <option>5 months</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label for="f-when">Roughly when</label>
+        <input id="f-when" name="when" type="month">
+        <span class="hint">An approximate month is fine — nothing is booked by sending this.</span>
+      </div>
+      <div class="field">
+        <label for="f-note">Anything we should know</label>
+        <textarea id="f-note" name="note" placeholder="Your work hours and timezone, dietary needs, whether you'd trek, anything you're worried about."></textarea>
+      </div>
+      <label class="check" for="f-wait">
+        <input id="f-wait" name="waitlist" type="checkbox">
+        <span>I'm not ready to book — just tell me when the first village group opens.</span>
+      </label>
+      <p class="err" id="f-err" hidden></p>
+      <button class="btn" type="submit" style="justify-self:start">Send enquiry</button>
+    </form>
+
+    <div class="sent rv" id="sent" hidden>
+      <h3>Thank you.<em>We'll write back.</em></h3>
+      <p>Prajwal answers enquiries himself, usually within a day. You'll get a real reply from a
+        person — what's included, what it costs for your dates, and anything we can't promise yet.
+        No deposit is taken until you've seen all of that in writing.</p>
+    </div>
+
+    <aside class="aside rv d1">
+      <h3>Or just write to us.</h3>
+      <p>A form is not everybody's way of starting a conversation. Mail or message directly and you'll
+        reach the same person.</p>
+      <div class="direct">
+        <div><p class="k">Email</p><p class="v">hello@mountainwhisper.com</p></div>
+        <div><p class="k">WhatsApp</p><p class="v">+977 ·  number to add</p></div>
+        <div><p class="k">Instagram · TikTok</p><p class="v">@mountainwhisper</p></div>
+      </div>
+      <p class="note" style="margin-top:1.6rem">Contact details above are placeholders for this preview
+        and need confirming before launch.</p>
+    </aside>
+  </div>
+</div></section>
+
+<section class="end pad">
   <div class="wash"></div><div class="grain"></div>
   <div class="inner wrap">
     <div class="mark rv">
@@ -502,7 +694,6 @@ footer .cr{text-transform:none;letter-spacing:.04em;opacity:.8;max-width:80ch}
     <p class="name rv d1">Mountain Whisper</p>
     <span class="r rv d1"></span>
     <p class="line rv d2">Work remotely from Nepal</p>
-    <div class="cta rv d2"><a class="btn" href="#enquire">Start an enquiry</a></div>
     <p class="handle rv d2">1 · 3 · 5 month stays</p>
   </div>
 </section>
@@ -512,8 +703,11 @@ footer .cr{text-transform:none;letter-spacing:.04em;opacity:.8;max-width:80ch}
     <span>Mountain Whisper · Registered travel agency, Nepal</span>
     <span>Design preview — placeholder copy</span>
   </div>
-  <p class="cr">Photography: Mangalam Bhargava, Bibek Adhikari Chhetri, Peter Smit, shiva rijal, Ivan S / Pexels.
-    Stills taken from the film library; atmospheric only, not photographs of a specific room or homestay.</p>
+  <p class="cr">Stills: Mangalam Bhargava, Bibek Adhikari Chhetri, shiva rijal, Anil Prasad Shrestha,
+    Ivan S / Pexels. Film excerpts: Sajal Niraula, Saugatt Bastakotii, SHVETS production, Shital Khadgi,
+    TheHybriddesigner.np, Peter Smit, Tanita Lupa / Pexels. Used under the Pexels Licence, which does not
+    require credit — we give it anyway. Imagery is atmospheric: it does not show a specific room, homestay
+    or host family, and no one pictured is connected with Mountain Whisper.</p>
 </footer>
 
 <script>
@@ -521,31 +715,64 @@ footer .cr{text-transform:none;letter-spacing:.04em;opacity:.8;max-width:80ch}
   document.documentElement.classList.add('anim');
   var els = document.querySelectorAll('.rv');
   if('IntersectionObserver' in window){
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(en){
-        if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
-      });
-    },{threshold:.15,rootMargin:'0px 0px -6% 0px'});
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    },{threshold:.14,rootMargin:'0px 0px -6% 0px'});
     els.forEach(function(e){ io.observe(e); });
-  } else {
-    els.forEach(function(e){ e.classList.add('in'); });
-  }
+  } else { els.forEach(function(e){ e.classList.add('in'); }); }
 
-  var tabs = [document.getElementById('tab-city'), document.getElementById('tab-village')];
-  var panels = [document.getElementById('day-city'), document.getElementById('day-village')];
+  /* day toggle */
+  var tabs=[document.getElementById('tab-city'),document.getElementById('tab-village')];
+  var panels=[document.getElementById('day-city'),document.getElementById('day-village')];
   function select(i){
-    tabs.forEach(function(t,k){ t.setAttribute('aria-selected', k===i ? 'true':'false'); });
-    panels.forEach(function(p,k){ p.hidden = (k!==i); });
+    tabs.forEach(function(t,k){ t.setAttribute('aria-selected',k===i?'true':'false'); });
+    panels.forEach(function(p,k){ p.hidden=(k!==i); });
   }
   tabs.forEach(function(t,i){
-    t.addEventListener('click', function(){ select(i); });
-    t.addEventListener('keydown', function(e){
-      if(e.key==='ArrowRight'||e.key==='ArrowLeft'){
-        e.preventDefault();
-        var n = (i + (e.key==='ArrowRight'?1:tabs.length-1)) % tabs.length;
-        select(n); tabs[n].focus();
-      }
+    t.addEventListener('click',function(){ select(i); });
+    t.addEventListener('keydown',function(e){
+      if(e.key==='ArrowRight'||e.key==='ArrowLeft'){ e.preventDefault();
+        var n=(i+(e.key==='ArrowRight'?1:tabs.length-1))%tabs.length; select(n); tabs[n].focus(); }
     });
+  });
+
+  /* films: play only while on screen, and only if motion is welcome */
+  var calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var vids = document.querySelectorAll('.phone video');
+  if(!calm && 'IntersectionObserver' in window){
+    var vio = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        var v=e.target;
+        if(e.isIntersecting){ var p=v.play(); if(p&&p.catch){ p.catch(function(){}); } }
+        else { v.pause(); }
+      });
+    },{threshold:.45});
+    vids.forEach(function(v){ vio.observe(v); });
+  } else {
+    vids.forEach(function(v){ v.setAttribute('controls',''); });
+  }
+
+  /* enquiry */
+  var form=document.getElementById('enquiry'), sent=document.getElementById('sent'),
+      err=document.getElementById('f-err');
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var name=document.getElementById('f-name'), email=document.getElementById('f-email');
+    var problems=[];
+    if(!name.value.trim()) problems.push('your name');
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) problems.push('an email we can reply to');
+    if(problems.length){
+      err.textContent='We still need '+problems.join(' and ')+'.';
+      err.hidden=false;
+      (problems[0]==='your name'?name:email).focus();
+      return;
+    }
+    err.hidden=true;
+    form.hidden=true;
+    sent.hidden=false;
+    sent.classList.add('in');
+    sent.setAttribute('tabindex','-1');
+    sent.focus();
   });
 })();
 </script>
