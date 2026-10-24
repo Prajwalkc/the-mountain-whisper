@@ -128,22 +128,25 @@ a{color:inherit} strong{font-weight:600;color:var(--cream)}
 .slides{position:absolute;inset:0}
 .slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;
   filter:var(--grade);opacity:0;transform:scale(1.02);
-  transition:opacity .9s cubic-bezier(.4,0,.2,1),transform 3.8s linear}
+  transition:opacity 1.15s cubic-bezier(.4,0,.2,1),transform 5.2s linear}
 .slide.on{opacity:1;transform:scale(1.09)}
 @media (prefers-reduced-motion:reduce){
   .slide{transition:opacity .35s linear;transform:none}
   .slide.on{transform:none}
 }
-.dots{position:absolute;left:0;right:0;bottom:clamp(.9rem,2vw,1.4rem);z-index:5;
-  display:flex;justify-content:center;gap:.5rem}
-.dot{width:26px;height:2px;border:0;padding:0;cursor:pointer;background:rgba(245,241,234,.35);
+/* caption and dots live inside the frame, on the dark foot of the wash */
+.capbar{position:absolute;left:0;right:0;bottom:0;z-index:5;display:flex;align-items:center;
+  justify-content:space-between;gap:1rem;flex-wrap:wrap;
+  padding:clamp(.9rem,2.2vw,1.5rem)}
+.hero .pic figcaption{font-size:clamp(.6rem,.75vw,.7rem);font-weight:600;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--cream);min-width:0;
+  text-shadow:0 1px 14px rgba(10,18,26,.7);transition:opacity .5s ease}
+.hero .pic figcaption.fade{opacity:0}
+.dots{display:flex;gap:.45rem;flex:none}
+.dot{width:24px;height:2px;border:0;padding:0;cursor:pointer;background:rgba(245,241,234,.4);
   transition:background .4s}
 .dot[aria-selected="true"]{background:var(--cream)}
-.dot:hover{background:rgba(245,241,234,.7)}
-.hero .pic figcaption{margin-top:.65rem;font-size:.64rem;font-weight:500;letter-spacing:.2em;
-  text-transform:uppercase;color:var(--softer);min-height:1.4em;
-  transition:opacity .5s ease}
-.hero .pic figcaption.fade{opacity:0}
+.dot:hover{background:rgba(245,241,234,.75)}
 
 /* sections — blue is the contrast band inside the ink */
 .ch{padding-block:clamp(3.2rem,8vw,6.5rem)}
@@ -421,9 +424,11 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
              alt="Painted wooden boats on Phewa Lake at sunset">
       </div>
       <span class="grain"></span>
-      <div class="dots" role="tablist" aria-label="Choose a scene"></div>
+      <div class="capbar">
+        <figcaption id="cap">A hut on the ridge, facing the Annapurnas</figcaption>
+        <div class="dots" role="tablist" aria-label="Choose a scene"></div>
+      </div>
     </div>
-    <figcaption id="cap">A hut on the ridge, facing the Annapurnas</figcaption>
   </figure>
 </div></header>
 
@@ -817,7 +822,7 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
     if(slides.length<2){ if(dotsBox) dotsBox.remove(); return; }
     var i=0, timer=null, paused=false;
     var still=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var HOLD=2800;
+    var HOLD=3900;
 
     var dots=slides.map(function(s,k){
       var b=document.createElement('button');
