@@ -250,6 +250,29 @@ a{color:inherit} strong{font-weight:600;color:var(--cream)}
 .ch.dark .step .w{margin-bottom:.4rem}
 .ch.dark .step .l{font-size:clamp(1rem,1.35vw,1.2rem)}
 
+
+/* Why-us grid, the process columns, and the Reset Week legal line */
+.why{margin-top:var(--s6);display:grid;gap:var(--s4) var(--s7);
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr))}
+.wy{min-width:0;padding-top:var(--s2);border-top:1px solid var(--line)}
+.wy .t{font-family:var(--serif);font-size:clamp(1.05rem,1.4vw,1.28rem);line-height:1.25;margin-bottom:.35rem}
+.wy p{font-size:var(--body);line-height:1.7;color:var(--soft);max-width:42ch}
+.two-col{margin-top:var(--s6);display:grid;gap:var(--s6) var(--s7);
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr))}
+.sublab{font-size:var(--label);font-weight:500;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--mist);padding-bottom:var(--s2);border-bottom:1px solid var(--line)}
+.steps-n{list-style:none;counter-reset:n;margin-top:var(--s2)}
+.steps-n li{counter-increment:n;display:grid;grid-template-columns:2.2rem 1fr;gap:var(--s2);
+  align-items:baseline;padding-block:var(--s2);border-bottom:1px solid var(--line);
+  font-size:var(--body);line-height:1.7;color:var(--soft)}
+.steps-n li::before{content:counter(n);font-family:var(--serif);font-style:italic;
+  font-size:1.15rem;color:var(--mist)}
+.steps-n b{font-weight:600;color:var(--cream)}
+.arrive{margin-top:var(--s4);font-family:var(--serif);font-style:italic;
+  font-size:clamp(1.05rem,1.5vw,1.35rem);color:var(--mist)}
+.legal{margin-top:var(--s4);padding:var(--pad-box);border:1px solid var(--line);
+  max-width:66ch;font-size:.82rem;line-height:1.7;color:var(--softer)}
+
 /* sections — blue is the contrast band inside the ink */
 .ch{padding-block:var(--s8)}
 .ch.band{background:var(--ink-2)}
@@ -276,10 +299,11 @@ a{color:inherit} strong{font-weight:600;color:var(--cream)}
 .edc .meta{margin-top:auto;padding-top:1rem;border-top:1px solid var(--line);
   font-size:.74rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--mist)}
 
-.more{margin-top:clamp(1.2rem,2.6vw,2rem);display:grid;gap:1px;background:var(--line);
-  border:1px solid var(--line);grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr))}
-.mi{background:var(--ink);padding:var(--pad-box);min-width:0}
-.ch.band .mi{background:var(--ink-2)}
+/* Hairlines, not a 1px-gap grid: with three items in a two-column layout the
+   grid's own background showed through the empty fourth cell as a grey block. */
+.more{margin-top:var(--s4);display:grid;gap:0 var(--s7);border-top:1px solid var(--line);
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr))}
+.mi{background:none;padding:var(--s3) 0 var(--s4);min-width:0;border-bottom:1px solid var(--line)}
 .mi .st{font-size:.72rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
   color:var(--softer);margin-bottom:.6rem}
 .mi h4{font-family:var(--serif);font-weight:500;font-size:clamp(1.08rem,1.5vw,1.35rem);line-height:1.2}
@@ -489,7 +513,7 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
     <a href="#editions">Editions</a><a href="#village">Village</a>
     <a href="#pricing">How long</a><a href="#faq">Questions</a>
   </nav>
-  <a class="go" href="#enquire">Enquire</a>
+  <a class="go" href="#enquire">Plan my stay</a>
 </div></div>
 
 <header class="hero pad" id="top">
@@ -521,8 +545,8 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
 
     <div class="hbar">
       <div class="actions">
-        <a class="btn" href="#enquire">Enquire</a>
-        <a class="btn ghost-btn" href="#editions">See the editions</a>
+        <a class="btn" href="#enquire">Plan my stay</a>
+        <a class="btn ghost-btn" href="#enquire">Chat on WhatsApp</a>
         <span class="price">from $1,490 a month</span>
       </div>
       <p class="trust">A registered Nepali travel agency. Every enquiry answered by a person,
@@ -578,7 +602,28 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
 
   <div class="addons rv d2">
     <span class="lbl">Add a week</span>
-    <span class="chip">Wellness</span><span class="chip">Adventure</span><span class="chip">Jungle · Chitwan</span>
+    <span class="chip">Wellness</span><span class="chip">Village Reset</span><span class="chip">Adventure</span><span class="chip">Jungle · Chitwan</span>
+  </div>
+</div></section>
+
+<section class="ch pad"><div class="wrap">
+  <div class="head">
+    <div class="kicker rv"><span class="r"></span><span class="t">Why Nepal, why us</span></div>
+    <h2 class="rv d1">Six reasons this works.</h2>
+  </div>
+  <div class="why">
+    <div class="wy rv"><p class="t">The Himalayas on your doorstep</p>
+      <p>No other nomad hub has this. The Annapurnas are at the end of the street, not a flight away.</p></div>
+    <div class="wy rv"><p class="t">Work that actually works</p>
+      <p>Internet we test ourselves, a backup connection on a second network, and backup power.</p></div>
+    <div class="wy rv d1"><p class="t">Real Nepal, not a resort</p>
+      <p>Host families, festivals, village life. You live in the country, not beside it.</p></div>
+    <div class="wy rv d1"><p class="t">Better value than Bali or Chiang Mai</p>
+      <p>Calmer, greener, and a guided trek included rather than sold to you on arrival.</p></div>
+    <div class="wy rv d2"><p class="t">Licensed and registered</p>
+      <p>A registered Nepali travel agency with licensed trekking guides, not an intermediary.</p></div>
+    <div class="wy rv d2"><p class="t">A person, not an app</p>
+      <p>One number, answered in Pokhara, from the airport to your last day.</p></div>
   </div>
 </div></section>
 
@@ -676,6 +721,28 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
 </div></section>
 
 <section class="ch pad"><div class="wrap">
+  <div class="vhead">
+    <div>
+      <div class="kicker rv"><span class="r"></span><span class="t">Add a week · Village Reset</span></div>
+      <h2 class="rv d1">One quiet week to reset.<em>Then back to work, lighter.</em></h2>
+    </div>
+    <p class="vlede rv d1" style="color:var(--soft)">For tired remote workers, first-timers settling in, and long
+      stays that need a pause. Shorter workdays, no calls before ten, and a walk in the hills every afternoon.</p>
+  </div>
+  <div class="day">
+    <div class="beat"><span class="tm">06:30</span><p class="tx">Sunrise, and slow breathing.</p></div>
+    <div class="beat"><span class="tm">07:30</span><p class="tx">Tea with your host family.</p></div>
+    <div class="beat"><span class="tm">10:00</span><p class="tx">Focused work. No calls before ten.</p></div>
+    <div class="beat"><span class="tm">15:00</span><p class="tx">A slow walk in the hills.</p></div>
+    <div class="beat"><span class="tm">19:00</span><p class="tx">Screens off, fire on.</p></div>
+  </div>
+  <p class="note rv">Once in the week: cooking with the host family, a day trip to a viewpoint or monastery, and a
+    journal to keep. Around $250–400 on top of your stay, to be confirmed.</p>
+  <p class="legal rv">The Reset Week is a calm lifestyle week. It is not therapy or medical care. If you need
+    support, please talk to a professional before you travel.</p>
+</div></section>
+
+<section class="ch pad"><div class="wrap">
   <div class="head">
     <div class="kicker rv"><span class="r"></span><span class="t">Honest answers</span></div>
     <h2 class="rv d1">Yes, the wifi works. Here is the proof.</h2>
@@ -711,6 +778,38 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
   </div>
   <p class="note rv d2">Short, silent excerpts. The full films, with sound, are on Instagram and TikTok —
     covering the visa, the internet, the food, the festivals and the trek.</p>
+</div></section>
+
+<section class="ch band pad"><div class="wrap">
+  <div class="head">
+    <div class="kicker rv"><span class="r"></span><span class="t">From enquiry to arrival</span></div>
+    <h2 class="rv d1">How it works.</h2>
+  </div>
+  <div class="two-col">
+    <div>
+      <p class="sublab rv">Before you come</p>
+      <ol class="steps-n">
+        <li class="rv"><b>Tell us about you.</b> When you would like to come, how long, and what work you do.</li>
+        <li class="rv"><b>A quick video call.</b> Fifteen minutes to answer your questions and check what your work needs.</li>
+        <li class="rv d1"><b>Your plan and quote.</b> Dates, room, workspace, what is included, the price and the cancellation terms — in writing.</li>
+        <li class="rv d1"><b>Secure your dates.</b> A deposit by card through Stripe.</li>
+        <li class="rv d2"><b>We prepare everything.</b> Room, workspace, SIM, visa guidance, pickup, trek dates.</li>
+      </ol>
+      <p class="note rv d2">Suggested terms, to be confirmed: 25% deposit to hold your dates, balance due 30 days
+        before arrival, deposit refundable up to 60 days before minus anything already paid to partners.</p>
+    </div>
+    <div>
+      <p class="sublab rv">Your first 24 hours</p>
+      <ol class="steps-n">
+        <li class="rv"><b>We meet you at arrivals</b> in Kathmandu.</li>
+        <li class="rv"><b>Your SIM is set up</b> on the spot.</li>
+        <li class="rv d1"><b>Transfer to Pokhara</b>, or on to your village.</li>
+        <li class="rv d1"><b>Check in</b> to your room.</li>
+        <li class="rv d2"><b>Welcome dinner</b>, and you meet the team.</li>
+      </ol>
+      <p class="arrive rv d2">From the airport to your desk. We have got you.</p>
+    </div>
+  </div>
 </div></section>
 
 <section class="ch pad"><div class="wrap">
@@ -798,6 +897,14 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
       <div class="field"><label for="f-email">Email</label>
         <input id="f-email" name="email" type="email" autocomplete="email" required></div>
       <div class="two">
+        <div class="field"><label for="f-country">Where you're based</label>
+          <input id="f-country" name="country" type="text" autocomplete="country-name"></div>
+        <div class="field"><label for="f-wa">WhatsApp <span style="text-transform:none;letter-spacing:0">(optional)</span></label>
+          <input id="f-wa" name="whatsapp" type="tel" autocomplete="tel"></div>
+      </div>
+      <div class="field"><label for="f-work">What work you do</label>
+        <input id="f-work" name="work" type="text" placeholder="Developer, designer, writer…"></div>
+      <div class="two">
         <div class="field"><label for="f-edition">Which edition</label>
           <select id="f-edition" name="edition">
             <option>Not sure yet — help me choose</option><option>Lake Edition</option>
@@ -815,17 +922,22 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
         <span class="hint">An approximate month is fine — nothing is booked by sending this.</span></div>
       <div class="field"><label for="f-note">Anything we should know</label>
         <textarea id="f-note" name="note" placeholder="Your work hours and timezone, dietary needs, whether you'd trek, anything you're worried about."></textarea></div>
+      <div class="field"><label for="f-heard">How did you hear about us</label>
+        <select id="f-heard" name="heard">
+          <option>Instagram</option><option>TikTok</option><option>Facebook</option>
+          <option>A friend</option><option>Search</option><option>Somewhere else</option>
+        </select></div>
       <label class="check" for="f-wait">
         <input id="f-wait" name="waitlist" type="checkbox">
         <span>I'm not ready to book — just tell me when the next group opens.</span></label>
       <p class="err" id="f-err" hidden></p>
-      <button class="btn" type="submit" style="justify-self:start">Send enquiry</button>
+      <button class="btn" type="submit" style="justify-self:start">Plan my stay</button>
     </form>
     <div class="sent rv" id="sent" hidden>
-      <h3>Thank you. We'll write back.</h3>
+      <h3>Namaste. We'll write back.</h3>
       <p>Prajwal answers enquiries himself, usually within a day. You'll get a real reply from a person —
-        what's included, what it costs for your dates, and anything we can't promise yet. No deposit is
-        taken until you've seen all of that in writing.</p>
+        your plan, what's included, what it costs for your dates, and anything we can't promise yet. No
+        deposit is taken until you've seen all of that in writing. Prefer to talk now? Message us on WhatsApp.</p>
     </div>
     <aside class="aside rv d1">
       <h3>Or just write to us.</h3>
@@ -852,7 +964,7 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
   <h2 class="rv d1">Work remotely<em>from Nepal.</em></h2>
   <p class="rv d2">Lake, Village, Trek or Festival — one promise, your choice of life around it.
     Tell us your month and we'll take it from there.</p>
-  <a class="btn rv d2" href="#enquire">Start an enquiry</a>
+  <a class="btn rv d2" href="#enquire">Plan my stay</a>
   <p class="handle rv d2">1 · 3 · 5 month stays</p>
 </div></section>
 
@@ -877,7 +989,7 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
       <li><span class="sel">hello@mountainwhisper.com</span></li>
       <li><span class="sel">WhatsApp · +977 number to add</span></li>
       <li><span class="sel">@mountainwhisper</span></li>
-      <li><a href="#enquire">Send an enquiry</a></li></ul></div>
+      <li><a href="#enquire">Plan my stay</a></li></ul></div>
     <div class="fcol"><h5>The company</h5><ul>
       <li><span>Registered travel agency, Nepal</span></li><li><span>Registration no. to add</span></li>
       <li><span>Licensed trekking guide</span></li><li><span>Based in Pokhara</span></li></ul></div>
