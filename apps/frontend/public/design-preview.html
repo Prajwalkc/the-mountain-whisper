@@ -147,14 +147,13 @@ a{color:inherit} strong{font-weight:600;color:var(--cream)}
   border-top:1px solid var(--line)}
 .fr{position:relative;display:block;padding:0;border:0;background:none;cursor:pointer;
   min-width:0;text-align:left;font-family:var(--sans)}
-.fr .im{position:relative;overflow:hidden;aspect-ratio:16/10;background:var(--ink);
-  box-shadow:inset 0 0 0 1px rgba(245,241,234,0);transition:box-shadow .5s ease}
+.fr .im{position:relative;overflow:hidden;aspect-ratio:16/10;background:var(--ink)}
 .fr .im::before{content:"";position:absolute;inset:0;z-index:1;background:var(--ink);
-  opacity:.66;transition:opacity .55s cubic-bezier(.16,1,.3,1)}
-.fr:hover .im::before{opacity:.42}
+  opacity:.42;transition:opacity .55s cubic-bezier(.16,1,.3,1)}
+.fr:hover .im::before{opacity:.2}
 .fr[aria-selected="true"] .im::before{opacity:0}
 .fr img{width:100%;height:100%;object-fit:cover;
-  filter:saturate(.25) contrast(1.02);transform:scale(1.01);
+  filter:saturate(.55) contrast(1.02);transform:scale(1.01);
   transition:filter .6s cubic-bezier(.16,1,.3,1),transform 6s linear}
 .fr .im::after{content:"";position:absolute;inset:0;z-index:2;
   background:linear-gradient(to top,rgba(26,39,51,.82) 0%,rgba(26,39,51,.25) 46%,rgba(26,39,51,0) 78%)}
@@ -164,15 +163,16 @@ a{color:inherit} strong{font-weight:600;color:var(--cream)}
   color:rgba(245,241,234,.45);transition:color .4s}
 .fr .lb i{font-family:var(--serif);font-style:italic;letter-spacing:0;text-transform:none;
   font-size:.88rem;color:rgba(220,229,236,.5);transition:color .4s}
-.fr::after{content:"";position:absolute;left:0;right:0;top:-2px;height:3px;z-index:4;
-  background:var(--cream);transform:scaleX(0);transform-origin:left center;
-  transition:transform .6s cubic-bezier(.16,1,.3,1)}
-.fr[aria-selected="true"]::after{transform:scaleX(1)}
+/* the live frame is marked by a bar that fills across the hold, so the strip
+   also shows that it is advancing on its own */
+.fr .pg{position:absolute;left:0;right:0;bottom:0;height:2px;z-index:5;
+  background:var(--cream);transform:scaleX(0);transform-origin:left center}
+.fr[aria-selected="true"] .pg{animation:fill 6000ms linear forwards}
+@keyframes fill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 .fr[aria-selected="true"] img{filter:saturate(1) contrast(1.05) brightness(1);transform:scale(1.07)}
-.fr[aria-selected="true"] .im{box-shadow:inset 0 0 0 1px rgba(245,241,234,.55)}
 .fr[aria-selected="true"] .lb{color:var(--cream)}
 .fr[aria-selected="true"] .lb i{color:var(--cream)}
-.fr:hover img{filter:saturate(.65) contrast(1.02)}
+.fr:hover img{filter:saturate(.8) contrast(1.02)}
 /* On a phone the hero must still show the ask. The timetable is the first
    thing to go: section N° 03 carries the same day in full. */
 @media (max-width:760px){.hday{display:none}}
@@ -183,6 +183,7 @@ a{color:inherit} strong{font-weight:600;color:var(--cream)}
 @media (prefers-reduced-motion:reduce){
   .fr img{transition:filter .2s linear;transform:none}
   .fr[aria-selected="true"] img{transform:none}
+  .fr[aria-selected="true"] .pg{animation:none;transform:scaleX(1)}
   .hcopy{transition:none}
 }
 
@@ -958,7 +959,7 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
       b.setAttribute('aria-selected', k===0?'true':'false');
       b.setAttribute('aria-label', s.n+' '+s.lab+': '+s.a+' '+s.b);
       b.innerHTML='<span class="im"><img src="img/'+s.img+'.jpg" alt="" loading="'+(k?'lazy':'eager')+'">'+
-                  '<span class="lb">'+s.n+' <i>'+s.lab+'</i></span></span>';
+                  '<span class="lb">'+s.n+' <i>'+s.lab+'</i></span></span><span class="pg"></span>';
       b.addEventListener('click',function(){ show(k); restart(); });
       strip.appendChild(b); return b;
     });
@@ -973,6 +974,8 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
       btns[i].setAttribute('aria-selected','false');
       i=n;
       btns[i].setAttribute('aria-selected','true');
+      var pg=btns[i].querySelector('.pg');
+      if(pg){ pg.style.animation='none'; void pg.offsetWidth; pg.style.animation=''; }
       swap.classList.add('fade');
       setTimeout(function(){
         var s=scenes[i];
