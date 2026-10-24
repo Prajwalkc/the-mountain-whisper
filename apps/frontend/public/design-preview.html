@@ -1,0 +1,302 @@
+<title>Mountain Whisper Site Design</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,400;1,500&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout: full-bleed graded photograph, then chaptered editorial bands on ink,
+   closing on the solid brand-blue end card the films sign off with.
+   Tokens lifted verbatim from video-factory/premium/premium.css. */
+:root{
+  --ink:#1A2733;            /* page ground */
+  --blue:#3E5C76;           /* brand */
+  --blue-light:#4A6B88;
+  --blue-deep:#2C4358;
+  --cream:#F5F1EA;          /* type on dark */
+  --pale:#DCE5EC;           /* the italic second voice */
+  --rule:rgba(245,241,234,.45);
+  --rule-strong:rgba(245,241,234,.75);
+
+  --serif:"Playfair Display",Georgia,"Times New Roman",serif;
+  --sans:"Montserrat",system-ui,-apple-system,"Helvetica Neue",sans-serif;
+
+  --h1:clamp(2.35rem,5.7vw,5.25rem);
+  --h2:clamp(1.95rem,4.2vw,3.6rem);
+  --li-t:clamp(1.2rem,2.2vw,1.95rem);
+  --label:clamp(.64rem,.8vw,.76rem);
+
+  --gut:clamp(1.25rem,5vw,5.5rem);
+  --grade:saturate(.88) contrast(1.08) brightness(.98);
+
+  color-scheme:dark;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--ink);color:var(--cream);font-family:var(--sans);font-weight:500;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,svg{display:block;max-width:100%}
+h1,h2{font-family:var(--serif);font-weight:500;line-height:1.04;letter-spacing:-.015em;text-wrap:balance}
+h1{font-size:var(--h1)}
+h2{font-size:var(--h2)}
+em{font-style:italic;font-weight:400;color:var(--pale);display:block}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--cream);outline-offset:3px}
+
+.pad{padding-left:max(var(--gut),env(safe-area-inset-left,0px));
+     padding-right:max(var(--gut),env(safe-area-inset-right,0px))}
+.wrap{max-width:1460px;margin:0 auto;min-width:0}
+
+/* ---------- devices ---------- */
+.corner{position:absolute;width:clamp(26px,3.2vw,56px);height:clamp(26px,3.2vw,56px);
+  border-color:rgba(245,241,234,.55);border-style:solid;border-width:0;pointer-events:none;z-index:4}
+.corner.tl{left:var(--gut);top:var(--gut);border-left-width:2px;border-top-width:2px}
+.corner.tr{right:var(--gut);top:var(--gut);border-right-width:2px;border-top-width:2px}
+.corner.bl{left:var(--gut);bottom:var(--gut);border-left-width:2px;border-bottom-width:2px}
+.corner.br{right:var(--gut);bottom:var(--gut);border-right-width:2px;border-bottom-width:2px}
+
+.masthead{position:absolute;left:0;right:0;top:calc(var(--gut) + clamp(10px,1.6vw,26px));z-index:5;
+  display:flex;justify-content:space-between;align-items:baseline;gap:1rem;
+  font-size:var(--label);letter-spacing:.32em;text-transform:uppercase}
+.masthead .r{opacity:.8;letter-spacing:.1em}
+
+.kicker{display:flex;align-items:center;gap:clamp(11px,1.5vw,26px);margin-bottom:clamp(1.1rem,2.2vw,2rem)}
+.kicker .r{width:clamp(32px,4.6vw,70px);height:1.5px;background:rgba(245,241,234,.7);flex:none}
+.kicker .t{font-size:var(--label);letter-spacing:.34em;text-transform:uppercase;opacity:.9}
+.chapter{font-family:var(--serif);font-style:italic;font-size:clamp(.9rem,1.25vw,1.15rem);
+  opacity:.6;margin-bottom:.85rem}
+
+/* reveals: visible at rest; only animate once the script arms them */
+.anim .rv{opacity:0;transform:translateY(18px)}
+.anim .rv.in{opacity:1;transform:none;
+  transition:opacity 1.1s cubic-bezier(.16,1,.3,1),transform 1.1s cubic-bezier(.16,1,.3,1)}
+.anim .rv.d1.in{transition-delay:.09s}
+.anim .rv.d2.in{transition-delay:.18s}
+@media (prefers-reduced-motion:reduce){
+  .anim .rv{opacity:1;transform:none}
+  .anim .rv.in{transition:none}
+}
+
+.grain{position:absolute;inset:0;pointer-events:none;opacity:.1;mix-blend-mode:overlay;z-index:3;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:clamp(540px,84svh,880px);display:flex;align-items:flex-end;overflow:hidden}
+.hero .shot{position:absolute;inset:0;z-index:0}
+.hero .shot img{width:100%;height:100%;object-fit:cover;filter:var(--grade);transform:scale(1.03)}
+.hero .tint{position:absolute;inset:0;z-index:1;background:linear-gradient(to bottom,
+  rgba(26,39,51,.55) 0%,rgba(26,39,51,.12) 28%,rgba(62,92,118,.18) 55%,rgba(26,39,51,.80) 100%)}
+.hero .vig{position:absolute;inset:0;z-index:2;
+  background:radial-gradient(ellipse 120% 95% at 50% 45%,transparent 38%,rgba(12,20,28,.22) 100%)}
+.hero .inner{position:relative;z-index:5;width:100%;padding-block:0 clamp(3rem,7vh,6rem)}
+.hero h1{max-width:19ch;text-shadow:0 2px 30px rgba(10,18,26,.35)}
+.lede{margin-top:clamp(1.3rem,2.4vw,2rem);max-width:46ch;font-size:clamp(.92rem,1.1vw,1.08rem);
+  font-weight:400;line-height:1.75;opacity:.9}
+.actions{margin-top:clamp(1.7rem,3.2vw,2.6rem);display:flex;align-items:center;
+  gap:clamp(.9rem,2.2vw,2rem);flex-wrap:wrap}
+.btn{display:inline-block;padding:1rem 2.4rem;border:1.5px solid rgba(245,241,234,.8);
+  text-decoration:none;font-size:var(--label);font-weight:600;letter-spacing:.3em;text-transform:uppercase;
+  transition:background .5s cubic-bezier(.16,1,.3,1),color .5s}
+.btn:hover{background:var(--cream);color:var(--blue-deep)}
+.price{font-family:var(--serif);font-style:italic;font-size:clamp(.98rem,1.35vw,1.28rem);opacity:.85}
+
+/* ---------- chapters ---------- */
+.ch{padding-block:clamp(4.5rem,12vh,9rem)}
+.head{max-width:22ch}
+
+.list{margin-top:clamp(2.4rem,5.5vw,4.2rem);border-top:1.5px solid var(--rule)}
+.li{display:grid;grid-template-columns:clamp(2.6rem,5vw,5.5rem) 1fr;gap:clamp(.5rem,2vw,2rem);
+  align-items:baseline;padding-block:clamp(1.2rem,2.5vw,2rem);border-bottom:1.5px solid var(--rule)}
+.li .n{font-size:var(--label);letter-spacing:.2em;opacity:.75;padding-top:.5em;font-variant-numeric:tabular-nums}
+.li .b{min-width:0}
+.li .t{font-family:var(--serif);font-size:var(--li-t);line-height:1.22}
+.li .d{margin-top:.45rem;font-size:clamp(.83rem,.98vw,.93rem);font-weight:400;line-height:1.7;
+  opacity:.72;max-width:52ch}
+
+.proof{margin-top:clamp(2.4rem,5.5vw,4.2rem);display:grid;gap:1.5px;background:var(--rule);
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr))}
+.card{background:var(--ink);padding:clamp(1.5rem,2.6vw,2.3rem);min-width:0}
+.card .q{font-size:var(--label);letter-spacing:.26em;text-transform:uppercase;opacity:.7;margin-bottom:1rem}
+.card .a{font-family:var(--serif);font-size:clamp(1.12rem,1.6vw,1.45rem);line-height:1.3;margin-bottom:.85rem}
+.card p{font-size:clamp(.82rem,.95vw,.9rem);font-weight:400;line-height:1.7;opacity:.72}
+.ph{margin-top:1.1rem;border:1.5px dashed rgba(245,241,234,.3);padding:1rem;
+  font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;opacity:.55;text-align:center}
+
+.lengths{margin-top:clamp(2.4rem,5.5vw,4.2rem);display:grid;gap:1.5px;background:var(--rule);
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr))}
+.len{background:var(--ink);padding:clamp(1.7rem,3vw,2.8rem) clamp(1rem,2vw,2rem);text-align:center;min-width:0}
+.len .num{font-family:var(--serif);font-style:italic;font-weight:400;
+  font-size:clamp(3.4rem,7vw,6.5rem);line-height:.95;letter-spacing:-.02em}
+.len .u{margin-top:.45rem;font-size:var(--label);letter-spacing:.3em;text-transform:uppercase;opacity:.75}
+.len .r{width:clamp(42px,5vw,80px);height:1.5px;background:var(--rule-strong);margin:1.3rem auto}
+.len .n{font-family:var(--serif);font-size:clamp(.93rem,1.15vw,1.08rem);opacity:.85}
+
+.note{margin-top:clamp(1.9rem,3.8vw,2.8rem);padding-left:clamp(.9rem,1.5vw,1.3rem);
+  border-left:1.5px solid var(--rule);max-width:56ch;
+  font-size:clamp(.82rem,.95vw,.9rem);font-weight:400;line-height:1.75;opacity:.72}
+
+/* ---------- end card ---------- */
+.end{position:relative;padding-block:clamp(5rem,13vh,9.5rem);text-align:center;overflow:hidden}
+.end .wash{position:absolute;inset:0;z-index:0;
+  background:radial-gradient(circle at 50% 42%,var(--blue-light) 0%,var(--blue) 45%,var(--blue-deep) 100%)}
+.end .inner{position:relative;z-index:2}
+.end .mark{width:clamp(92px,10vw,165px);margin:0 auto clamp(1.5rem,2.8vw,2.3rem)}
+.end .mark svg{width:100%;height:auto;stroke:var(--cream)}
+.end .name{font-family:var(--serif);font-size:clamp(1.95rem,4.3vw,3.9rem);letter-spacing:-.01em}
+.end .r{width:clamp(66px,7.5vw,120px);height:1.5px;background:var(--rule-strong);
+  margin:clamp(1.3rem,2.4vw,2.1rem) auto}
+.end .line{font-family:var(--serif);font-style:italic;font-size:clamp(1.02rem,1.8vw,1.6rem);opacity:.95}
+.end .cta{margin-top:clamp(1.9rem,3.8vw,2.8rem)}
+.end .handle{margin-top:clamp(2.2rem,4.4vw,3.2rem);font-size:var(--label);font-weight:600;letter-spacing:.3em}
+
+footer{padding-block:2rem;border-top:1.5px solid rgba(245,241,234,.14);
+  display:flex;justify-content:space-between;gap:.75rem;flex-wrap:wrap;
+  font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;opacity:.5}
+</style>
+
+<header class="hero">
+  <div class="shot"><img src="img/wide.jpg" alt="Himalayan peaks above Pokhara at first light"></div>
+  <div class="tint"></div><div class="vig"></div><div class="grain"></div>
+  <span class="corner tl"></span><span class="corner tr"></span>
+  <span class="corner bl"></span><span class="corner br"></span>
+
+  <div class="inner pad">
+    <div class="wrap">
+      <div class="masthead pad"><span>Mountain Whisper</span><span class="r">Pokhara · Nepal</span></div>
+      <div class="kicker rv"><span class="r"></span><span class="t">Pokhara, Nepal</span></div>
+      <h1 class="rv d1">Some offices<em>have a view.</em></h1>
+      <p class="lede rv d2">Live and work from the Himalayas for one, three or five months.
+        Room, desk, SIM, visa and trek — arranged end to end, before you land.</p>
+      <div class="actions rv d2">
+        <a class="btn" href="#enquire">Enquire</a>
+        <span class="price">from $1,490 a month</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="ch pad">
+  <div class="wrap">
+    <div class="head">
+      <p class="chapter rv">N° 01</p>
+      <div class="kicker rv"><span class="r"></span><span class="t">Stay · Workspace · Trek</span></div>
+      <h2 class="rv d1">Arrive, plug in,<em>we handle the rest.</em></h2>
+    </div>
+    <div class="list">
+      <div class="li rv"><span class="n">01</span><div class="b">
+        <p class="t">A private room, on fibre</p>
+        <p class="d">Your own room in Pokhara with a wired fibre connection — not shared hostel wifi.
+          Tested for video calls before you arrive.</p></div></div>
+      <div class="li rv"><span class="n">02</span><div class="b">
+        <p class="t">A desk that is yours</p>
+        <p class="d">A reserved seat at a Pokhara coworking space, so you are not working from the bed.</p></div></div>
+      <div class="li rv"><span class="n">03</span><div class="b">
+        <p class="t">SIM and data, ready on arrival</p>
+        <p class="d">A tourist SIM handed to you at pickup. It is also your backup when the power goes.</p></div></div>
+      <div class="li rv"><span class="n">04</span><div class="b">
+        <p class="t">Visa help, start to finish</p>
+        <p class="d">We prepare the paperwork and walk the extension through immigration with you.</p></div></div>
+      <div class="li rv"><span class="n">05</span><div class="b">
+        <p class="t">Airport pickup and transfer</p>
+        <p class="d">Met at Kathmandu, taken to Pokhara. No haggling at arrivals after a long flight.</p></div></div>
+      <div class="li rv"><span class="n">06</span><div class="b">
+        <p class="t">A guided trek, permits included</p>
+        <p class="d">Four to five days to Poon Hill with our licensed guide, over a long weekend — so you
+          do not lose a week of work.</p></div></div>
+      <div class="li rv"><span class="n">07</span><div class="b">
+        <p class="t">Welcome dinner and city tour</p>
+        <p class="d">You meet the team, and the others staying, on your first evening.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="ch pad">
+  <div class="wrap">
+    <div class="head">
+      <p class="chapter rv">N° 02</p>
+      <div class="kicker rv"><span class="r"></span><span class="t">Honest answers</span></div>
+      <h2 class="rv d1">Yes, the wifi works.<em>Here is the proof.</em></h2>
+    </div>
+    <div class="proof">
+      <div class="card rv"><p class="q">The internet</p>
+        <p class="a">Fibre, tested weekly</p>
+        <p>We run a speed test from the room and from the coworking desk, and publish it. If it drops,
+          you hear it from us first.</p>
+        <div class="ph">Speed test — to shoot on site</div></div>
+      <div class="card rv d1"><p class="q">Power cuts</p>
+        <p class="a">They happen. We plan for them.</p>
+        <p>Nepal still has cuts. Every workspace has battery backup that carries a full call, and your
+          SIM is the fallback. We would rather say so than surprise you.</p>
+        <div class="ph">Battery backup — to photograph</div></div>
+      <div class="card rv d2"><p class="q">The visa</p>
+        <p class="a">150 days a calendar year</p>
+        <p>Nepal's tourist visa allows up to 150 days per calendar year. That is why we sell one, three
+          and five months — and why the longest stay is arranged across New Year.</p></div>
+      <div class="card rv d2"><p class="q">If something goes wrong</p>
+        <p class="a">A local team, one call away</p>
+        <p>A registered Nepali travel agency with a licensed trekking guide. One number, answered in
+          Pokhara, not a chatbot in another timezone.</p>
+        <div class="ph">Registration number — to add</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="ch pad">
+  <div class="wrap">
+    <div class="head">
+      <p class="chapter rv">N° 03</p>
+      <div class="kicker rv"><span class="r"></span><span class="t">How long you stay</span></div>
+      <h2 class="rv d1">One season,<em>or most of a year.</em></h2>
+    </div>
+    <div class="lengths">
+      <div class="len rv"><p class="num">1</p><p class="u">Month</p>
+        <span class="r"></span><p class="n">A long test drive</p></div>
+      <div class="len rv d1"><p class="num">3</p><p class="u">Months</p>
+        <span class="r"></span><p class="n">Long enough to settle in</p></div>
+      <div class="len rv d2"><p class="num">5</p><p class="u">Months</p>
+        <span class="r"></span><p class="n">The visa extension, built in</p></div>
+    </div>
+    <p class="note rv">All stays start from <strong>$1,490 a month</strong>, everything above included.
+      Final pricing is confirmed by email once we have your dates — we quote on real supplier costs
+      rather than a number on a page.</p>
+  </div>
+</section>
+
+<section class="end pad" id="enquire">
+  <div class="wash"></div><div class="grain"></div>
+  <div class="inner wrap">
+    <div class="mark rv">
+      <svg viewBox="0 0 220 150" fill="none" stroke="currentColor" stroke-width="7"
+           stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Mountain Whisper">
+        <path d="M14 120 L78 36 L112 80 L140 50 L206 120"/>
+        <path d="M30 140 C 70 122, 110 150, 150 132 S 200 128, 210 136" stroke-width="5" opacity="0.75"/>
+      </svg>
+    </div>
+    <p class="name rv d1">Mountain Whisper</p>
+    <span class="r rv d1"></span>
+    <p class="line rv d2">Work remotely from Nepal</p>
+    <div class="cta rv d2"><a class="btn" href="#enquire">Start an enquiry</a></div>
+    <p class="handle rv d2">1 · 3 · 5 month stays</p>
+  </div>
+</section>
+
+<footer class="pad">
+  <span>Mountain Whisper · Registered travel agency, Nepal</span>
+  <span>Design preview — placeholder copy</span>
+</footer>
+
+<script>
+(function(){
+  var r = document.documentElement;
+  r.classList.add('anim');
+  var els = document.querySelectorAll('.rv');
+  if(!('IntersectionObserver' in window)){
+    els.forEach(function(e){ e.classList.add('in'); }); return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+    });
+  },{threshold:.15,rootMargin:'0px 0px -6% 0px'});
+  els.forEach(function(e){ io.observe(e); });
+})();
+</script>
