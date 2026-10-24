@@ -2,10 +2,9 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "mw-frontend",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev", "--", "--port", "5273"],
-      "cwd": "apps/frontend",
+      "name": "mw-site",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["--yes", "serve@14.2.4", "-l", "5273", "apps/frontend/public"],
       "port": 5273
     }
   ]

@@ -163,7 +163,10 @@ a{color:inherit} strong{font-weight:600;color:var(--cream)}
 .hcopy.fade{opacity:0}
 .hkick{font-size:var(--label);font-weight:500;letter-spacing:.3em;text-transform:uppercase;
   color:var(--mist);margin-bottom:clamp(1rem,2vw,1.5rem)}
-.hero h1{max-width:13ch;font-size:clamp(2.3rem,5.2vw,4.5rem);line-height:1.04}
+/* Sized to the longest line in the rotation ("we handle the rest."), which
+   needed 612px against the old 13ch / 576px and broke onto a third line. Each
+   voice already gets its own line from the markup; nothing should wrap further. */
+.hero h1{max-width:19ch;font-size:clamp(2.1rem,4.7vw,4.2rem);line-height:1.04}
 .lede{margin-top:clamp(.9rem,1.7vw,1.3rem);max-width:46ch;
   font-size:clamp(.9rem,1.02vw,1rem);line-height:1.75;color:var(--soft)}
 
@@ -306,7 +309,12 @@ a{color:inherit} strong{font-weight:600;color:var(--cream)}
       rgba(26,39,51,1) 0%, rgba(26,39,51,0) 20%,
       rgba(26,39,51,0) 80%, rgba(26,39,51,1) 100%),
     linear-gradient(180deg,var(--blue-deep),var(--blue) 50%,var(--blue-deep))}
-.head{max-width:21ch}
+/* .head used to cap at 21ch, which at display size broke every section
+   heading across three to seven lines -- "You bring the laptop. We arrange
+   everything else." was running to seven. The cap belongs on the heading
+   itself, at a measure that suits display type, not on the whole block. */
+.head{max-width:none}
+.ch h2,.vhead h2{max-width:26ch}
 
 .core{margin-top:var(--s6);display:grid;gap:var(--s4);
   grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
