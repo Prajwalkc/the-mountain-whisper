@@ -344,6 +344,15 @@ a{color:inherit} strong{font-weight:600;color:var(--cream)}
   max-width:66ch;font-size:.82rem;line-height:1.7;color:var(--softer)}
 
 /* sections — blue is the contrast band inside the ink */
+/* The bar is sticky, so an anchor jump puts the target's top underneath it:
+   54px lost on desktop, and 110px on a phone, where the kicker and the
+   heading both disappeared and you landed mid-section on body copy. The
+   script below keeps this exact against the measured bar; these are the
+   no-JS fallbacks. */
+html{scroll-padding-top:calc(var(--bar) + 1.5rem)}
+@media (max-width:1180px){html{scroll-padding-top:7.5rem}}
+@media (max-width:760px){html{scroll-padding-top:8.5rem}}
+
 .ch{padding-block:var(--s8)}
 /* Two levels of section, not fifteen at one volume. The spine — editions,
    the village, how long you stay, the enquiry — keeps the full headline and
@@ -1262,6 +1271,18 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
     addEventListener('scroll',onScroll,{passive:true});
     addEventListener('resize',onScroll,{passive:true});
     spy();
+  })();
+
+  /* keep the anchor offset matched to whatever the bar actually measures */
+  (function(){
+    var bar=document.getElementById('bar'); if(!bar) return;
+    function sync(){
+      document.documentElement.style.scrollPaddingTop=
+        Math.round(bar.getBoundingClientRect().height+24)+'px';
+    }
+    sync();
+    addEventListener('resize',sync,{passive:true});
+    addEventListener('load',sync);
   })();
 
   /* hero: scene and words change together */
