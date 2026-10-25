@@ -473,13 +473,44 @@ a{color:inherit} strong{font-weight:600;color:var(--cream)}
   grid-template-columns:repeat(2,minmax(0,1fr))}
 @media (min-width:560px){.films{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (min-width:1080px){.films{grid-template-columns:repeat(6,minmax(0,1fr))}}
-.phone{width:100%;max-width:162px}
-.phone .screen{position:relative;aspect-ratio:9/16;overflow:hidden;background:#141f29;
+/* These were <figure> tiles wrapping 11-second silent 270px clips with no
+   audio track and nothing to click — so neither "open it" nor "hear it" was
+   ever possible. They are now stills lifted from each reel's title card, so a
+   visitor can tell what each one is, and every tile links to the real thing. */
+.phone{width:100%;max-width:188px;display:block;text-decoration:none;color:inherit}
+.phone .screen{transition:border-color .35s}
+.phone img{width:100%;height:100%;object-fit:cover;display:block}
+.phone:hover .screen,.phone:focus-visible .screen{border-color:var(--line-2)}
+.pv{position:absolute;right:.5rem;bottom:.5rem;z-index:2;display:grid;place-items:center;
+  width:26px;height:26px;border:1px solid rgba(245,241,234,.5);color:var(--cream);
+  background:rgba(20,31,41,.55);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+  opacity:.9;transition:opacity .3s,background .3s}
+.phone:hover .pv,.phone:focus-visible .pv{opacity:1;background:var(--blue)}
+.pv svg{width:12px;height:12px}
+.cap{display:block}
+
+/* the ask: go and watch them where they actually are */
+.sbar{margin-top:var(--s6);padding-top:var(--s5);border-top:1px solid var(--line);
+  display:grid;gap:var(--s4) var(--s7);align-items:center;
+  grid-template-columns:minmax(0,1fr) auto}
+@media (max-width:900px){.sbar{grid-template-columns:1fr}}
+.sbt{font-size:var(--body);line-height:1.8;color:var(--soft);max-width:60ch}
+.sbtns{display:flex;flex-wrap:wrap;gap:var(--s2)}
+.sbtn{display:flex;align-items:center;gap:var(--s2);text-decoration:none;color:var(--cream);
+  border:1px solid var(--line-2);padding:.72rem 1.05rem;transition:background .3s,border-color .3s}
+.sbtn:hover{background:rgba(245,241,234,.07);border-color:var(--mist)}
+.sbtn > svg{width:19px;height:19px;flex:none;color:var(--mist)}
+.sb{display:grid;gap:.1rem;min-width:0}
+.sn{font-size:.74rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;white-space:nowrap}
+.sh{font-size:.74rem;color:var(--softer);white-space:nowrap}
+/* display:block is load-bearing: .screen is a <span>, and on an inline box
+   overflow, aspect-ratio and absolute-positioning geometry are all ignored —
+   the same trap that broke the hero filmstrip's clip. */
+.phone .screen{display:block;position:relative;aspect-ratio:9/16;overflow:hidden;background:#141f29;
   border:1px solid var(--line-2)}
-.phone video{width:100%;height:100%;object-fit:cover}
-.phone figcaption{margin-top:.55rem;text-align:center}
-.phone figcaption .t{font-family:var(--serif);font-size:clamp(.86rem,.98vw,.96rem);line-height:1.25}
-.phone figcaption .s{margin-top:.18rem;font-size:.7rem;font-weight:600;letter-spacing:.22em;
+.phone .cap{margin-top:.55rem;text-align:center}
+.phone .cap .t{display:block;font-family:var(--serif);font-size:clamp(.86rem,.98vw,.96rem);line-height:1.25}
+.phone .cap .s{display:block;margin-top:.18rem;font-size:.7rem;font-weight:600;letter-spacing:.14em;
   text-transform:uppercase;color:var(--softer)}
 
 /* Simplified Chinese. Playfair and Montserrat carry no CJK glyphs, so without
@@ -497,8 +528,8 @@ html[lang^="zh"]{
 html[lang^="zh"] h1,html[lang^="zh"] h2,html[lang^="zh"] h3{letter-spacing:0;line-height:1.24}
 html[lang^="zh"] .label,html[lang^="zh"] .kicker .t,html[lang^="zh"] .bar .id span,
 html[lang^="zh"] .bar nav a,html[lang^="zh"] .bar .go,html[lang^="zh"] .fr .lb b,
-html[lang^="zh"] .phone figcaption .s,html[lang^="zh"] .hkick{letter-spacing:.06em}
-html[lang^="zh"] .fr .lb b,html[lang^="zh"] .phone figcaption .s{font-size:.76rem}
+html[lang^="zh"] .phone .cap .s,html[lang^="zh"] .hkick{letter-spacing:.06em}
+html[lang^="zh"] .fr .lb b,html[lang^="zh"] .phone .cap .s{display:block;font-size:.76rem}
 html[lang^="zh"] .label,html[lang^="zh"] .kicker .t{font-size:.78rem}
 /* A heading measured in ch units runs on the "0" glyph, which is about half
    the width of a Hanzi character — so the English 26ch was allowing only ~10
@@ -902,31 +933,76 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
 
 <section class="ch band pad"><div class="wrap">
   <div class="head">
-    <div class="kicker rv"><span class="r"></span><span class="t">我们为你拍的短片</span></div>
-    <h2 class="rv d1">六部短片。<em>每个问题各一部。</em></h2>
+    <div class="kicker rv"><span class="r"></span><span class="t">关注我们</span></div>
+    <h2 class="rv d1">我们把答案拍成短片。<em>完整内容在 Instagram 上。</em></h2>
   </div>
   <div class="films">
-    <figure class="phone rv"><div class="screen">
-      <video src="/video/f-lake.mp4" muted loop playsinline preload="none" poster="/img/fr-trail.jpg" aria-label="影片：湖畔方案"></video></div>
-      <figcaption><p class="t">湖畔方案 Lake Edition</p><p class="s">Pokhara</p></figcaption></figure>
-    <figure class="phone rv"><div class="screen">
-      <video src="/video/f-village.mp4" muted loop playsinline preload="none" poster="/img/fr-village.jpg" aria-label="影片：乡村方案"></video></div>
-      <figcaption><p class="t">乡村方案 Village Edition</p><p class="s">寄宿家庭</p></figcaption></figure>
-    <figure class="phone rv d1"><div class="screen">
-      <video src="/video/f-trek.mp4" muted loop playsinline preload="none" poster="/img/fr-ridge.jpg" aria-label="影片：徒步方案"></video></div>
-      <figcaption><p class="t">徒步方案 Trek Edition</p><p class="s">长周末</p></figcaption></figure>
-    <figure class="phone rv d1"><div class="screen">
-      <video src="/video/f-wifi.mp4" muted loop playsinline preload="none" poster="/img/fr-lake.jpg" aria-label="影片：网络到底行不行"></video></div>
-      <figcaption><p class="t">网络到底行不行？</p><p class="s">实测过，另有备份</p></figcaption></figure>
-    <figure class="phone rv d2"><div class="screen">
-      <video src="/video/f-visa.mp4" muted loop playsinline preload="none" poster="/img/fr-trail.jpg" aria-label="影片：签证"></video></div>
-      <figcaption><p class="t">签证</p><p class="s">每年 150 天</p></figcaption></figure>
-    <figure class="phone rv d2"><div class="screen">
-      <video src="/video/f-arrival.mp4" muted loop playsinline preload="none" poster="/img/fr-village.jpg" aria-label="影片：最初的 24 小时"></video></div>
-      <figcaption><p class="t">最初的 24 小时</p><p class="s">从机场到书桌</p></figcaption></figure>
+    <a class="phone rv" href="https://www.instagram.com/mountainwhisper.nepal/" target="_blank" rel="noopener"
+       aria-label="湖畔方案 — 在 Instagram 上观看这条短片">
+      <span class="screen"><img src="/img/reel-lake.jpg" alt="" loading="lazy" width="270" height="480">
+        <span class="pv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+      </span>
+      <span class="cap"><span class="t">湖畔方案 Lake Edition</span><span class="s">Pokhara</span></span>
+    </a>
+    <a class="phone rv" href="https://www.instagram.com/mountainwhisper.nepal/" target="_blank" rel="noopener"
+       aria-label="乡村方案 — 在 Instagram 上观看这条短片">
+      <span class="screen"><img src="/img/reel-village.jpg" alt="" loading="lazy" width="270" height="480">
+        <span class="pv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+      </span>
+      <span class="cap"><span class="t">乡村方案 Village Edition</span><span class="s">寄宿家庭</span></span>
+    </a>
+    <a class="phone rv d1" href="https://www.instagram.com/mountainwhisper.nepal/" target="_blank" rel="noopener"
+       aria-label="徒步方案 — 在 Instagram 上观看这条短片">
+      <span class="screen"><img src="/img/reel-trek.jpg" alt="" loading="lazy" width="270" height="480">
+        <span class="pv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+      </span>
+      <span class="cap"><span class="t">徒步方案 Trek Edition</span><span class="s">长周末</span></span>
+    </a>
+    <a class="phone rv d1" href="https://www.instagram.com/mountainwhisper.nepal/" target="_blank" rel="noopener"
+       aria-label="网络到底行不行？ — 在 Instagram 上观看这条短片">
+      <span class="screen"><img src="/img/reel-wifi.jpg" alt="" loading="lazy" width="270" height="480">
+        <span class="pv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+      </span>
+      <span class="cap"><span class="t">网络到底行不行？</span><span class="s">实测过，另有备份</span></span>
+    </a>
+    <a class="phone rv d2" href="https://www.instagram.com/mountainwhisper.nepal/" target="_blank" rel="noopener"
+       aria-label="签证 — 在 Instagram 上观看这条短片">
+      <span class="screen"><img src="/img/reel-visa.jpg" alt="" loading="lazy" width="270" height="480">
+        <span class="pv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+      </span>
+      <span class="cap"><span class="t">签证</span><span class="s">每年 150 天</span></span>
+    </a>
+    <a class="phone rv d2" href="https://www.instagram.com/mountainwhisper.nepal/" target="_blank" rel="noopener"
+       aria-label="最初的 24 小时 — 在 Instagram 上观看这条短片">
+      <span class="screen"><img src="/img/reel-arrival.jpg" alt="" loading="lazy" width="270" height="480">
+        <span class="pv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+      </span>
+      <span class="cap"><span class="t">最初的 24 小时</span><span class="s">从机场到书桌</span></span>
+    </a>
   </div>
-  <p class="note rv d2">这些是无声短片。完整影片（含声音）在 <a href="https://www.instagram.com/mountainwhisper.nepal/" target="_blank" rel="noopener">Instagram</a> 和
-    <a href="https://www.tiktok.com/@mountainwhisper.nepal" target="_blank" rel="noopener">TikTok</a>.</p>
+  <div class="sbar rv d2">
+    <p class="sbt">短而实用的视频：网速实测、签证规则、乡村的清晨，以及从机场到你书桌的路。每周更新。</p>
+    <div class="sbtns">
+      <a class="sbtn" href="https://www.instagram.com/mountainwhisper.nepal/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/>
+          <circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg>
+        <span class="sb"><span class="sn">Instagram</span><span class="sh">@mountainwhisper.nepal</span></span>
+      </a>
+      <a class="sbtn" href="https://www.tiktok.com/@mountainwhisper.nepal" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M14 4v10.5a3.5 3.5 0 1 1-3-3.46"/><path d="M14 4c.4 2.6 2 4.2 4.6 4.5"/></svg>
+        <span class="sb"><span class="sn">TikTok</span><span class="sh">@mountainwhisper.nepal</span></span>
+      </a>
+    </div>
+  </div>
 </div></section>
 
 <section class="ch band pad"><div class="wrap">
@@ -1334,17 +1410,6 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
       show(n); btns[n].focus(); restart(); });
     start();
   })();
-
-  var calm=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var vids=document.querySelectorAll('.phone video');
-  if(!calm&&'IntersectionObserver' in window){
-    var vio=new IntersectionObserver(function(es){
-      es.forEach(function(e){ var v=e.target;
-        if(e.isIntersecting){ var p=v.play(); if(p&&p.catch){ p.catch(function(){}); } } else { v.pause(); }
-      });
-    },{threshold:.45});
-    vids.forEach(function(v){ vio.observe(v); });
-  } else { vids.forEach(function(v){ v.setAttribute('controls',''); }); }
 
   var form=document.getElementById('enquiry'), sent=document.getElementById('sent'),
       err=document.getElementById('f-err');
