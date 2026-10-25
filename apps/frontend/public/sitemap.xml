@@ -4,26 +4,26 @@
   <url>
     <loc>https://www.themountainwhisper.com/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.themountainwhisper.com/"/>
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://www.themountainwhisper.com/zh/"/>
-    <xhtml:link rel="alternate" hreflang="nl" href="https://www.themountainwhisper.com/nl/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://www.themountainwhisper.com/zh"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://www.themountainwhisper.com/nl"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.themountainwhisper.com/"/>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.themountainwhisper.com/zh/</loc>
+    <loc>https://www.themountainwhisper.com/zh</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.themountainwhisper.com/"/>
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://www.themountainwhisper.com/zh/"/>
-    <xhtml:link rel="alternate" hreflang="nl" href="https://www.themountainwhisper.com/nl/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://www.themountainwhisper.com/zh"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://www.themountainwhisper.com/nl"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.themountainwhisper.com/"/>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.themountainwhisper.com/nl/</loc>
+    <loc>https://www.themountainwhisper.com/nl</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.themountainwhisper.com/"/>
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://www.themountainwhisper.com/zh/"/>
-    <xhtml:link rel="alternate" hreflang="nl" href="https://www.themountainwhisper.com/nl/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://www.themountainwhisper.com/zh"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://www.themountainwhisper.com/nl"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.themountainwhisper.com/"/>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>

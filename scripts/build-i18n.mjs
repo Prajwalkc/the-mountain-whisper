@@ -116,10 +116,10 @@ function localiseHead(html, lang) {
   const base = 'https://www.themountainwhisper.com';
   return html
     .replace(/<html lang="en"/, `<html lang="${LANGS[lang].tag}" dir="${LANGS[lang].dir}"`)
-    .replace(/(<meta property="og:url" content=")[^"]*(")/, `$1${base}/${lang}/$2`)
-    .replace(/(<link rel="canonical" href=")[^"]*(")/, `$1${base}/${lang}/$2`)
+    .replace(/(<meta property="og:url" content=")[^"]*(")/, `$1${base}/${lang}$2`)
+    .replace(/(<link rel="canonical" href=")[^"]*(")/, `$1${base}/${lang}$2`)
     // Mark the current language, and turn EN back into a plain link home.
-    .replace(`<a class="lang-opt" href="/${lang}/"`, `<a class="lang-opt on" aria-current="true" href="/${lang}/"`)
+    .replace(`<a class="lang-opt" href="/${lang}"`, `<a class="lang-opt on" aria-current="true" href="/${lang}"`)
     .replace('<a class="lang-opt on" href="/" aria-current="true">EN</a>', '<a class="lang-opt" href="/">EN</a>');
 }
 
