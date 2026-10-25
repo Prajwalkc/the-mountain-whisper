@@ -363,9 +363,17 @@ a{color:inherit} strong{font-weight:600;color:var(--cream)}
 .core{margin-top:var(--s6);display:grid;gap:var(--s4);
   grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
 .edc{min-width:0;border:1px solid var(--line);background:var(--surface);display:flex;flex-direction:column}
-/* the photo was 57% of the card — these cards exist to explain two offers,
-   and the imagery is upscaled video frames that read better small than large */
+/* The photo was 57% of the card. Trimming the crop only went so far: a
+   banner across the top forces the image to buy its height from the card.
+   Beside the text instead, it stretches to whatever height the copy already
+   needs and costs nothing — and a portrait crop suits these frames better
+   than a letterbox. Stacked below 1100px, where there is no width to split. */
 .edc .shot{aspect-ratio:2/1}
+@media (min-width:1100px){
+  .edc{flex-direction:row;align-items:stretch}
+  .edc .shot{flex:0 0 40%;aspect-ratio:auto;min-height:100%}
+  .edc .in{flex:1;min-width:0}
+}
 .edc .in{padding:var(--pad-box);flex:1;display:flex;flex-direction:column}
 .edc .k{color:var(--mist);margin-bottom:.5rem}
 .edc p.d{margin-top:.7rem;font-size:var(--body);line-height:1.75;color:var(--soft)}
@@ -467,27 +475,35 @@ a{color:inherit} strong{font-weight:600;color:var(--cream)}
 .step .l{font-family:var(--serif);font-size:clamp(1.05rem,1.55vw,1.4rem);line-height:1.2}
 .step .l em{display:inline}
 
-/* Fixed column counts rather than auto-fit: auto-fit was fitting five across
-   and orphaning the sixth on a row of its own. */
-.films{margin-top:var(--s6);display:grid;gap:var(--s4);justify-items:center;
-  grid-template-columns:repeat(2,minmax(0,1fr))}
-@media (min-width:560px){.films{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media (min-width:1080px){.films{grid-template-columns:repeat(6,minmax(0,1fr))}}
-/* These were <figure> tiles wrapping 11-second silent 270px clips with no
-   audio track and nothing to click — so neither "open it" nor "hear it" was
-   ever possible. They are now stills lifted from each reel's title card, so a
-   visitor can tell what each one is, and every tile links to the real thing. */
-.phone{width:100%;max-width:188px;display:block;text-decoration:none;color:inherit}
-.phone .screen{transition:border-color .35s}
-.phone img{width:100%;height:100%;object-fit:cover;display:block}
-.phone:hover .screen,.phone:focus-visible .screen{border-color:var(--line-2)}
-.pv{position:absolute;right:.5rem;bottom:.5rem;z-index:2;display:grid;place-items:center;
-  width:26px;height:26px;border:1px solid rgba(245,241,234,.5);color:var(--cream);
-  background:rgba(20,31,41,.55);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
-  opacity:.9;transition:opacity .3s,background .3s}
-.phone:hover .pv,.phone:focus-visible .pv{opacity:1;background:var(--blue)}
-.pv svg{width:12px;height:12px}
-.cap{display:block}
+/* The wall. Every reel we have made, shown as a cover and nothing more:
+   these are not links, because there is no per-reel URL to link to — the ask
+   is the pair of buttons underneath. Two rows drift in opposite directions so
+   the whole set passes by without the section being six rows tall. The set is
+   duplicated in each track and the animation runs to -50%, which is what makes
+   the loop seamless. */
+.wall{margin-top:var(--s6);display:grid;gap:var(--s2);overflow:hidden;
+  -webkit-mask-image:linear-gradient(to right,transparent,#000 5%,#000 95%,transparent);
+  mask-image:linear-gradient(to right,transparent,#000 5%,#000 95%,transparent)}
+.wrow{display:block;overflow:hidden}
+.wtrack{display:flex;gap:var(--s2);width:max-content;
+  animation:wslide 150s linear infinite;will-change:transform}
+.wrow.rev .wtrack{animation-direction:reverse}
+.wall:hover .wtrack{animation-play-state:paused}
+/* height:auto matters: the width/height attributes on the img are a
+   presentational hint, and with both definite the aspect-ratio is ignored —
+   every tile was rendering at its full 427px intrinsic height. */
+.wtrack img{width:clamp(104px,11.6vw,168px);height:auto;aspect-ratio:9/16;object-fit:cover;
+  flex:none;display:block;border:1px solid var(--line);background:#141f29;
+  filter:saturate(.88) contrast(1.02)}
+@keyframes wslide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+/* no drifting for anyone who asked for less motion — the rows become
+   something you can push along yourself instead */
+@media (prefers-reduced-motion:reduce){
+  .wall{-webkit-mask-image:none;mask-image:none}
+  .wtrack{animation:none}
+  .wrow{overflow-x:auto;scrollbar-width:none}
+  .wrow::-webkit-scrollbar{display:none}
+}
 
 /* the ask: go and watch them where they actually are */
 .sbar{margin-top:var(--s6);padding-top:var(--s5);border-top:1px solid var(--line);
@@ -503,15 +519,6 @@ a{color:inherit} strong{font-weight:600;color:var(--cream)}
 .sb{display:grid;gap:.1rem;min-width:0}
 .sn{font-size:.74rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;white-space:nowrap}
 .sh{font-size:.74rem;color:var(--softer);white-space:nowrap}
-/* display:block is load-bearing: .screen is a <span>, and on an inline box
-   overflow, aspect-ratio and absolute-positioning geometry are all ignored —
-   the same trap that broke the hero filmstrip's clip. */
-.phone .screen{display:block;position:relative;aspect-ratio:9/16;overflow:hidden;background:#141f29;
-  border:1px solid var(--line-2)}
-.phone .cap{margin-top:.55rem;text-align:center}
-.phone .cap .t{display:block;font-family:var(--serif);font-size:clamp(.86rem,.98vw,.96rem);line-height:1.25}
-.phone .cap .s{display:block;margin-top:.18rem;font-size:.7rem;font-weight:600;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--softer)}
 
 /* Simplified Chinese. Playfair and Montserrat carry no CJK glyphs, so without
    this every character fell back to an OS default that differs on every
@@ -528,8 +535,8 @@ html[lang^="zh"]{
 html[lang^="zh"] h1,html[lang^="zh"] h2,html[lang^="zh"] h3{letter-spacing:0;line-height:1.24}
 html[lang^="zh"] .label,html[lang^="zh"] .kicker .t,html[lang^="zh"] .bar .id span,
 html[lang^="zh"] .bar nav a,html[lang^="zh"] .bar .go,html[lang^="zh"] .fr .lb b,
-html[lang^="zh"] .phone .cap .s,html[lang^="zh"] .hkick{letter-spacing:.06em}
-html[lang^="zh"] .fr .lb b,html[lang^="zh"] .phone .cap .s{display:block;font-size:.76rem}
+html[lang^="zh"] .hkick{letter-spacing:.06em}
+html[lang^="zh"] .fr .lb b{font-size:.76rem}
 html[lang^="zh"] .label,html[lang^="zh"] .kicker .t{font-size:.78rem}
 /* A heading measured in ch units runs on the "0" glyph, which is about half
    the width of a Hanzi character — so the English 26ch was allowing only ~10
@@ -934,60 +941,14 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
 <section class="ch band pad"><div class="wrap">
   <div class="head">
     <div class="kicker rv"><span class="r"></span><span class="t">关注我们</span></div>
-    <h2 class="rv d1">我们把答案拍成短片。<em>完整内容在 Instagram 上。</em></h2>
+    <h2 class="rv d1">我们把答案拍成短片。<em>来看看吧。</em></h2>
   </div>
-  <div class="films">
-    <a class="phone rv" href="https://www.instagram.com/mountainwhisper.nepal/" target="_blank" rel="noopener"
-       aria-label="湖畔方案 — 在 Instagram 上观看这条短片">
-      <span class="screen"><img src="/img/reel-lake.jpg" alt="" loading="lazy" width="270" height="480">
-        <span class="pv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
-      </span>
-      <span class="cap"><span class="t">湖畔方案 Lake Edition</span><span class="s">Pokhara</span></span>
-    </a>
-    <a class="phone rv" href="https://www.instagram.com/mountainwhisper.nepal/" target="_blank" rel="noopener"
-       aria-label="乡村方案 — 在 Instagram 上观看这条短片">
-      <span class="screen"><img src="/img/reel-village.jpg" alt="" loading="lazy" width="270" height="480">
-        <span class="pv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
-      </span>
-      <span class="cap"><span class="t">乡村方案 Village Edition</span><span class="s">寄宿家庭</span></span>
-    </a>
-    <a class="phone rv d1" href="https://www.instagram.com/mountainwhisper.nepal/" target="_blank" rel="noopener"
-       aria-label="徒步方案 — 在 Instagram 上观看这条短片">
-      <span class="screen"><img src="/img/reel-trek.jpg" alt="" loading="lazy" width="270" height="480">
-        <span class="pv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
-      </span>
-      <span class="cap"><span class="t">徒步方案 Trek Edition</span><span class="s">长周末</span></span>
-    </a>
-    <a class="phone rv d1" href="https://www.instagram.com/mountainwhisper.nepal/" target="_blank" rel="noopener"
-       aria-label="网络到底行不行？ — 在 Instagram 上观看这条短片">
-      <span class="screen"><img src="/img/reel-wifi.jpg" alt="" loading="lazy" width="270" height="480">
-        <span class="pv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
-      </span>
-      <span class="cap"><span class="t">网络到底行不行？</span><span class="s">实测过，另有备份</span></span>
-    </a>
-    <a class="phone rv d2" href="https://www.instagram.com/mountainwhisper.nepal/" target="_blank" rel="noopener"
-       aria-label="签证 — 在 Instagram 上观看这条短片">
-      <span class="screen"><img src="/img/reel-visa.jpg" alt="" loading="lazy" width="270" height="480">
-        <span class="pv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
-      </span>
-      <span class="cap"><span class="t">签证</span><span class="s">每年 150 天</span></span>
-    </a>
-    <a class="phone rv d2" href="https://www.instagram.com/mountainwhisper.nepal/" target="_blank" rel="noopener"
-       aria-label="最初的 24 小时 — 在 Instagram 上观看这条短片">
-      <span class="screen"><img src="/img/reel-arrival.jpg" alt="" loading="lazy" width="270" height="480">
-        <span class="pv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
-      </span>
-      <span class="cap"><span class="t">最初的 24 小时</span><span class="s">从机场到书桌</span></span>
-    </a>
+  <div class="wall rv" role="presentation" aria-hidden="true">
+    <span class="wrow"><span class="wtrack"><img src="/img/reels/01-wifi.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/02-nepal-vs-bali.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/03-workday-pokhara.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/05-myths.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/06-visa.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/07-trek-without-missing-work.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/08-first-24-hours.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/09-pov-3pm-break.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/10-food.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/11-nepal-in-numbers.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/13-kathmandu-to-pokhara.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/15-packing-list.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/mountain-whisper-intro.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/p1-the-view.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/p2-a-day.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/p3-arranged.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/r01-village-reset-week.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/r02-burned-out.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/r03-five-ways-to-slow-down.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/r04-whats-in-the-week.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/r05-is-and-isnt.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/v01-when-to-come.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/v02-weekend-escapes.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/v03-nepali-phrases.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/01-wifi.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/02-nepal-vs-bali.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/03-workday-pokhara.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/05-myths.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/06-visa.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/07-trek-without-missing-work.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/08-first-24-hours.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/09-pov-3pm-break.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/10-food.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/11-nepal-in-numbers.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/13-kathmandu-to-pokhara.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/15-packing-list.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/mountain-whisper-intro.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/p1-the-view.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/p2-a-day.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/p3-arranged.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/r01-village-reset-week.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/r02-burned-out.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/r03-five-ways-to-slow-down.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/r04-whats-in-the-week.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/r05-is-and-isnt.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/v01-when-to-come.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/v02-weekend-escapes.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/v03-nepali-phrases.jpg" alt="" loading="lazy" width="240" height="427"></span></span>
+    <span class="wrow rev"><span class="wtrack"><img src="/img/reels/v04-temple-etiquette.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/v05-festivals.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/v06-kathmandu-in-a-day.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/v07-pokhara-adventures.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/v08-stay-healthy.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/v09-pokhara-or-kathmandu.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/v10-one-three-five.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/v11-village-edition.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/w01-a-day-in-the-village.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/w02-your-homestay.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/w03-village-food.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/w04-how-we-test-internet.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/w05-village-or-city.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/w06-village-etiquette.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/w07-what-youll-learn.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/w08-village-seasons.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/w09-three-months-changes-you.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/w10-is-it-for-you.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/x01-lake-edition.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/x02-trek-edition.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/x03-festival-edition.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/x04-team-retreat.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/x05-add-on-weeks.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/v04-temple-etiquette.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/v05-festivals.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/v06-kathmandu-in-a-day.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/v07-pokhara-adventures.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/v08-stay-healthy.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/v09-pokhara-or-kathmandu.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/v10-one-three-five.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/v11-village-edition.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/w01-a-day-in-the-village.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/w02-your-homestay.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/w03-village-food.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/w04-how-we-test-internet.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/w05-village-or-city.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/w06-village-etiquette.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/w07-what-youll-learn.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/w08-village-seasons.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/w09-three-months-changes-you.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/w10-is-it-for-you.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/x01-lake-edition.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/x02-trek-edition.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/x03-festival-edition.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/x04-team-retreat.jpg" alt="" loading="lazy" width="240" height="427"><img src="/img/reels/x05-add-on-weeks.jpg" alt="" loading="lazy" width="240" height="427"></span></span>
   </div>
   <div class="sbar rv d2">
-    <p class="sbt">短而实用的视频：网速实测、签证规则、乡村的清晨，以及从机场到你书桌的路。每周更新。</p>
+    <p class="sbt">短而实用的视频：网速实测、签证规则、尼泊尔语常用语、乡村的清晨到底是什么样，以及从机场到你书桌的那段路。Instagram 和 TikTok 上都会发布，每周更新。</p>
     <div class="sbtns">
       <a class="sbtn" href="https://www.instagram.com/mountainwhisper.nepal/" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">

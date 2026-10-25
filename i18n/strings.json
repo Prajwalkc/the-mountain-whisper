@@ -285,6 +285,10 @@
   "zh": "十至十一月、三至五月视野最清澈",
   "nl": "Helderste uitzicht okt–nov en mrt–mei"
  },
+ "Come and have a look.": {
+  "zh": "来看看吧。",
+  "nl": "Kom gerust kijken."
+ },
  "Cooking, the harvest, Dashain and Tihar, and the paths between one village and the next.": {
   "zh": "做饭、收割、德赛节与堤哈节，还有村与村之间的小路。",
   "nl": "Koken, de oogst, Dashain en Tihar, en de paden van het ene dorp naar het andere."
@@ -909,9 +913,9 @@
   "zh": "锁定你的日期。",
   "nl": "Leg je data vast."
  },
- "Short, informative reels — the internet test, the visa rule, a village morning, the walk from the airport to your desk. New ones every week.": {
-  "zh": "短而实用的视频：网速实测、签证规则、乡村的清晨，以及从机场到你书桌的路。每周更新。",
-  "nl": "Korte, informatieve reels — de internettest, de visumregel, een ochtend in het dorp, de weg van de luchthaven naar je bureau. Elke week nieuwe."
+ "Short, informative reels — the internet test, the visa rule, Nepali phrases, what a village morning is actually like, the walk from the airport to your desk. We post them on both Instagram and TikTok, and there are new ones every week.": {
+  "zh": "短而实用的视频：网速实测、签证规则、尼泊尔语常用语、乡村的清晨到底是什么样，以及从机场到你书桌的那段路。Instagram 和 TikTok 上都会发布，每周更新。",
+  "nl": "Korte, informatieve reels — de internettest, de visumregel, Nepalese uitdrukkingen, hoe een ochtend in het dorp er echt uitziet, de weg van de luchthaven naar je bureau. We plaatsen ze op zowel Instagram als TikTok, en er komen elke week nieuwe bij."
  },
  "Six reasons this works.": {
   "zh": "六个理由。",
@@ -1088,10 +1092,6 @@
  "They happen. We plan for them.": {
   "zh": "确实会停。我们为此做了准备。",
   "nl": "Het gebeurt. Wij houden er rekening mee."
- },
- "They live on Instagram.": {
-  "zh": "完整内容在 Instagram 上。",
-  "nl": "Ze staan op Instagram."
  },
  "Thu": {
   "zh": "周四",
