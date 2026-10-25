@@ -381,7 +381,7 @@ a{color:inherit} strong{font-weight:600;color:var(--cream)}
 .edc .shot{aspect-ratio:2/1}
 @media (min-width:1100px){
   .edc{flex-direction:row;align-items:stretch}
-  .edc .shot{flex:0 0 40%;aspect-ratio:auto;min-height:100%}
+  .edc .shot{flex:0 0 33%;aspect-ratio:auto;min-height:100%}  /* 40% left the copy on a 36ch measure */
   .edc .in{flex:1;min-width:0}
 }
 .edc .in{padding:var(--pad-box);flex:1;display:flex;flex-direction:column}
@@ -460,9 +460,14 @@ a{color:inherit} strong{font-weight:600;color:var(--cream)}
   .day.flow .tm{margin-bottom:0}
 }
 
+/* 250px minima meant four columns at desktop, which put this copy on a
+   28-character measure — roughly half what comfortable reading wants (45-75).
+   A 420px minimum gives two columns and about 70 characters. */
 .cards{margin-top:var(--s6);display:grid;gap:var(--s4);
-  grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr))}
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr))}
 .card{background:var(--surface);border:1px solid var(--line);padding:var(--pad-box);min-width:0}
+/* two columns took these from 28ch to 76, just past the comfortable top end */
+.card p{max-width:66ch}
 .card .q{font-size:var(--label);font-weight:500;letter-spacing:.26em;text-transform:uppercase;
   color:var(--mist);margin-bottom:.7rem}
 .card .a{font-family:var(--serif);font-size:clamp(1.05rem,1.42vw,1.3rem);line-height:1.3;margin-bottom:.65rem}
@@ -592,8 +597,17 @@ html[lang^="zh"] .hero h1{max-width:24ch}
   .rwfoot .legal{margin-top:0}
 }
 
-.people{margin-top:var(--s6);display:grid;gap:var(--s4);
-  grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr))}
+/* Three across gave these bios a 28-character measure too. One per row with
+   the portrait beside the copy reads properly, and the paragraph is capped so
+   a full-width row does not swing the other way. */
+.people{margin-top:var(--s6);display:grid;gap:var(--s3)}
+@media (min-width:720px){
+  .person{display:grid;grid-template-columns:140px minmax(0,1fr);
+    gap:var(--s4);align-items:start}
+  .person .slot{margin-bottom:0}
+}
+.pbody{min-width:0}
+.pbody p{max-width:62ch}
 .person{background:var(--surface);border:1px solid var(--line);padding:var(--pad-box);min-width:0}
 .person .slot{aspect-ratio:1;max-width:140px;border:1px dashed var(--line-2);display:grid;
   place-items:center;text-align:center;padding:1rem;font-size:.7rem;font-weight:600;
@@ -1044,14 +1058,14 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
   </div>
   <div class="people">
     <div class="person rv"><div class="slot">创办人照片<br>待补充</div>
-      <p class="nm">Prajwal</p><p class="ro">创办人</p>
-      <p>他负责 Mountain Whisper 的日常运营，也亲自回复每一条咨询。尼泊尔人，远程软件工程师——那份网络检查清单就是因此而来的。</p></div>
+      <div class="pbody"><p class="nm">Prajwal</p><p class="ro">创办人</p>
+      <p>他负责 Mountain Whisper 的日常运营，也亲自回复每一条咨询。尼泊尔人，远程软件工程师——那份网络检查清单就是因此而来的。</p></div></div>
     <div class="person rv d1"><div class="slot">向导照片<br>待补充</div>
-      <p class="nm">我们的向导</p><p class="ro">持证徒步向导</p>
-      <p>政府颁发执照，也是真正带你进山的人。姓名与执照编号稍后补上。</p></div>
+      <div class="pbody"><p class="nm">我们的向导</p><p class="ro">持证徒步向导</p>
+      <p>政府颁发执照，也是真正带你进山的人。姓名与执照编号稍后补上。</p></div></div>
     <div class="person rv d2"><div class="slot">注册<br>证书</div>
-      <p class="nm">在尼泊尔注册</p><p class="ro">旅行社</p>
-      <p>在尼泊尔注册的旅行社，不是中介。注册编号会公布在这里，方便你在付钱之前先核实。</p></div>
+      <div class="pbody"><p class="nm">在尼泊尔注册</p><p class="ro">旅行社</p>
+      <p>在尼泊尔注册的旅行社，不是中介。注册编号会公布在这里，方便你在付钱之前先核实。</p></div></div>
   </div>
 </div></section>
 
