@@ -45,7 +45,7 @@
   --mist:#DCE5EC;         /* soft accent · the italic second voice */
   --stone:#6B7785;        /* muted · struck-through, secondary marks */
   --soft:rgba(245,241,234,.72);
-  --softer:rgba(245,241,234,.5);
+  --softer:rgba(245,241,234,.56);   /* .5 measured 4.47:1 on ink — just under AA */
   --line:rgba(245,241,234,.16);
   --line-2:rgba(245,241,234,.3);
   --surface:rgba(245,241,234,.045);
@@ -345,6 +345,16 @@ a{color:inherit} strong{font-weight:600;color:var(--cream)}
 
 /* sections — blue is the contrast band inside the ink */
 .ch{padding-block:var(--s8)}
+/* Two levels of section, not fifteen at one volume. The spine — editions,
+   the village, how long you stay, the enquiry — keeps the full headline and
+   rhythm; the sections that support them step down a size and sit closer
+   together, so the eye can tell which is which. Measured before this: every
+   section between 0.6 and 1.4 screens, 14 of 15 opening identically. */
+.ch.sub{padding-block:var(--s7)}
+.ch.sub h2{font-size:clamp(1.45rem,2.45vw,2.05rem);letter-spacing:-.01em}
+.ch.sub .head{margin-bottom:0}
+.ch.sub .kicker{margin-bottom:clamp(.7rem,1.3vw,1rem)}
+.ch.sub .kicker .t{color:var(--soft)}
 .ch.band{background:var(--ink-2)}
 /* same treatment for the Village Edition band: ink at both edges, blue in the body */
 .ch.dark{padding-block:var(--s8);
@@ -416,7 +426,7 @@ a{color:inherit} strong{font-weight:600;color:var(--cream)}
 
 .excl{margin-top:var(--s6);border:1px solid var(--line);
   padding:var(--pad-box);background:var(--surface)}
-.excl h4{font-family:var(--serif);font-weight:500;font-size:var(--h3);margin-bottom:1rem}
+.excl h3{font-family:var(--serif);font-weight:500;font-size:var(--h3);margin-bottom:1rem}
 .excl ul{list-style:none;display:grid;gap:var(--s2);grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr))}
 .excl li{font-size:var(--body);line-height:1.6;color:var(--softer);text-decoration:line-through;
   text-decoration-color:var(--stone)}
@@ -550,7 +560,7 @@ html[lang^="zh"] .hero h1{max-width:24ch}
 .fit{margin-top:var(--s6);display:grid;gap:var(--s4);
   grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr))}
 .col{border:1px solid var(--line);padding:var(--pad-box);min-width:0;background:var(--surface)}
-.col h4{font-family:var(--serif);font-weight:500;font-size:var(--h3);margin-bottom:1rem;line-height:1.2}
+.col h3{font-family:var(--serif);font-weight:500;font-size:var(--h3);margin-bottom:1rem;line-height:1.2}
 .col ul{list-style:none;display:grid;gap:var(--s2)}
 .col li{font-size:clamp(.89rem,1.02vw,.98rem);line-height:1.6}
 .col.yes li{color:var(--cream);display:grid;grid-template-columns:1.3em 1fr;gap:var(--s1);align-items:baseline}
@@ -662,8 +672,8 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
 .fcol .mk svg{width:27px;height:auto;stroke:var(--cream);flex:none}
 .fcol .mk span{font-size:var(--label);font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--cream)}
 .fcol .blurb{font-size:var(--body);line-height:1.8;max-width:34ch}
-.fcol h5{font-size:.73rem;font-weight:600;letter-spacing:.26em;text-transform:uppercase;
-  color:var(--softer);margin-bottom:.95rem}
+.fcol h3{font-family:var(--sans);font-size:.73rem;font-weight:600;letter-spacing:.26em;
+  text-transform:uppercase;line-height:1.4;color:var(--softer);margin-bottom:.95rem}
 .fcol ul{list-style:none;display:grid;gap:var(--s2)}
 .fcol li a,.fcol li span{font-size:var(--body);text-decoration:none;line-height:1.5;transition:color .3s}
 .fcol li a:hover{color:var(--cream)}
@@ -672,7 +682,7 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
   display:grid;gap:var(--s2)}
 .fbot .row{display:flex;justify-content:space-between;gap:var(--s2);flex-wrap:wrap;
   font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--softer)}
-.fbot .cr{font-size:.75rem;line-height:1.75;color:rgba(245,241,234,.42);max-width:86ch}
+.fbot .cr{font-size:.78rem;line-height:1.75;color:rgba(245,241,234,.58);max-width:86ch}
 .aside .direct .v a,.fcol a[href^="mailto"],.sent a{color:inherit;text-decoration:underline;text-underline-offset:.2em;text-decoration-thickness:1px}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
 </style>
@@ -782,7 +792,7 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
   </div>
 </div></section>
 
-<section class="ch pad"><div class="wrap">
+<section class="ch pad sub"><div class="wrap">
   <div class="head">
     <div class="kicker rv"><span class="r"></span><span class="t">Waarom Nepal, waarom wij</span></div>
     <h2 class="rv d1">Zes redenen waarom dit werkt.</h2>
@@ -803,7 +813,7 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
   </div>
 </div></section>
 
-<section class="ch pad"><div class="wrap">
+<section class="ch pad sub"><div class="wrap">
   <div class="head">
     <div class="kicker rv"><span class="r"></span><span class="t">Elke editie bevat</span></div>
     <h2 class="rv d1">Jij neemt de laptop mee. Wij regelen de rest.</h2>
@@ -825,7 +835,7 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
       <p class="d">Eén nummer, in Pokhara opgenomen, je hele verblijf lang.</p></div></div>
   </div>
   <div class="excl rv">
-    <h4>Wat niet is inbegrepen</h4>
+    <h3>Wat niet is inbegrepen</h3>
     <ul>
       <li>Internationale vluchten</li>
       <li>Reisverzekering, verplicht vóór aankomst</li>
@@ -837,7 +847,7 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
   </div>
 </div></section>
 
-<section class="ch band pad"><div class="wrap">
+<section class="ch band pad sub"><div class="wrap">
   <div class="head">
     <div class="kicker rv"><span class="r"></span><span class="t">Van eerste licht tot lamplicht</span></div>
     <h2 class="rv d1">Een dag, hoe dan ook.</h2>
@@ -898,7 +908,7 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
   </div>
 </div></section>
 
-<section class="ch pad"><div class="wrap">
+<section class="ch pad sub"><div class="wrap">
   <div class="vhead">
     <div>
       <div class="kicker rv"><span class="r"></span><span class="t">Voeg een week toe · Village Reset</span></div>
@@ -919,7 +929,7 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
   </div>
 </div></section>
 
-<section class="ch pad"><div class="wrap">
+<section class="ch pad sub"><div class="wrap">
   <div class="head">
     <div class="kicker rv"><span class="r"></span><span class="t">Eerlijke antwoorden</span></div>
     <h2 class="rv d1">Ja, de wifi werkt. Hier is het bewijs.</h2>
@@ -938,7 +948,7 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
   </div>
 </div></section>
 
-<section class="ch band pad"><div class="wrap">
+<section class="ch band pad sub"><div class="wrap">
   <div class="head">
     <div class="kicker rv"><span class="r"></span><span class="t">Volg ons</span></div>
     <h2 class="rv d1">We filmen de antwoorden.<em>Kom gerust kijken.</em></h2>
@@ -966,7 +976,7 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
   </div>
 </div></section>
 
-<section class="ch band pad"><div class="wrap">
+<section class="ch band pad sub"><div class="wrap">
   <div class="head">
     <div class="kicker rv"><span class="r"></span><span class="t">Van aanvraag tot aankomst</span></div>
     <h2 class="rv d1">Zo werkt het.</h2>
@@ -997,15 +1007,15 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
   </div>
 </div></section>
 
-<section class="ch pad"><div class="wrap">
+<section class="ch pad sub"><div class="wrap">
   <div class="head">
     <div class="kicker rv"><span class="r"></span><span class="t">Eerlijk gezegd</span></div>
     <h2 class="rv d1">Is dit iets voor jou?</h2>
   </div>
   <div class="fit">
-    <div class="col yes rv"><h4>Dit is iets voor jou als</h4><ul>
+    <div class="col yes rv"><h3>Dit is iets voor jou als</h3><ul>
       <li>Je houdt van deep work</li><li>Je houdt van de natuur</li><li>Je wilt echte cultuur, niet alleen het uitzicht erop</li></ul></div>
-    <div class="col no rv d1"><h4>Niet iets voor jou als</h4><ul>
+    <div class="col no rv d1"><h3>Niet iets voor jou als</h3><ul>
       <li>Je hebt nachtleven nodig</li><li>Je wilt luxe</li><li>Je houdt van een hoog tempo</li></ul></div>
   </div>
   <p class="note rv d2">Twijfel je? Begin met een maand Lake Edition en bezoek van daaruit een dorp. Niemand zou zich vijf maanden moeten vastleggen op een manier van leven die hij nog niet heeft geprobeerd.</p>
@@ -1027,7 +1037,7 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
   <p class="note rv d2">Verblijven vanaf <strong>$1.490 per maand</strong>, met alles wat wij regelen inbegrepen. De definitieve prijs bevestigen we per e-mail zodra we je data en je editie hebben — we rekenen met echte leverancierskosten, niet met een getal op een pagina.</p>
 </div></section>
 
-<section class="ch pad"><div class="wrap">
+<section class="ch pad sub"><div class="wrap">
   <div class="head">
     <div class="kicker rv"><span class="r"></span><span class="t">Wie je ontmoet</span></div>
     <h2 class="rv d1">Mensen, geen boekingssysteem.</h2>
@@ -1045,7 +1055,7 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
   </div>
 </div></section>
 
-<section class="ch band pad" id="faq"><div class="wrap">
+<section class="ch band pad sub" id="faq"><div class="wrap">
   <div class="head">
     <div class="kicker rv"><span class="r"></span><span class="t">Voordat je het vraagt</span></div>
     <h2 class="rv d1">De vragen die iedereen stelt.</h2>
@@ -1159,17 +1169,17 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
       </span>
       <p class="blurb">All-inclusive remote-werkverblijven in Nepal. Eén belofte — verblijf, werkplek, simkaart, visumhulp, ontvangst op de luchthaven en een gediplomeerde gids — en een paar heldere edities om uit te kiezen.</p>
     </div>
-    <div class="fcol"><h5>Edities</h5><ul>
+    <div class="fcol"><h3>Edities</h3><ul>
       <li><a href="#editions">Lake Edition</a></li><li><a href="#village">Village Edition</a></li>
       <li><a href="#editions">Trek Edition</a></li><li><a href="#editions">Festival Edition</a></li>
       <li><a href="#editions">Team Retreat</a></li></ul></div>
-    <div class="fcol"><h5>Praat met ons</h5><ul>
+    <div class="fcol"><h3>Praat met ons</h3><ul>
       <li><a href="mailto:prajwalkc1994@gmail.com">prajwalkc1994@gmail.com</a></li>
       <li><a href="https://wa.me/9779702037055?text=Namaste%2C%20I%27m%20interested%20in%20a%20Mountain%20Whisper%20stay." target="_blank" rel="noopener">WhatsApp · +977 970-203-7055</a></li>
       <li><a href="https://www.instagram.com/mountainwhisper.nepal/" target="_blank" rel="noopener">Instagram · @mountainwhisper.nepal</a></li>
       <li><a href="https://www.tiktok.com/@mountainwhisper.nepal" target="_blank" rel="noopener">TikTok · @mountainwhisper.nepal</a></li>
       <li><a href="#enquire">Plan mijn verblijf</a></li></ul></div>
-    <div class="fcol"><h5>Het bedrijf</h5><ul>
+    <div class="fcol"><h3>Het bedrijf</h3><ul>
       <li><span>Geregistreerd reisbureau, Nepal</span></li><li><span>Registratienummer volgt</span></li>
       <li><span>Gediplomeerde trekkinggids</span></li><li><span>Gevestigd in Pokhara, actief in heel Nepal</span></li></ul></div>
   </div>

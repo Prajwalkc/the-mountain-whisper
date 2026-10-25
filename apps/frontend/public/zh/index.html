@@ -45,7 +45,7 @@
   --mist:#DCE5EC;         /* soft accent · the italic second voice */
   --stone:#6B7785;        /* muted · struck-through, secondary marks */
   --soft:rgba(245,241,234,.72);
-  --softer:rgba(245,241,234,.5);
+  --softer:rgba(245,241,234,.56);   /* .5 measured 4.47:1 on ink — just under AA */
   --line:rgba(245,241,234,.16);
   --line-2:rgba(245,241,234,.3);
   --surface:rgba(245,241,234,.045);
@@ -345,6 +345,16 @@ a{color:inherit} strong{font-weight:600;color:var(--cream)}
 
 /* sections — blue is the contrast band inside the ink */
 .ch{padding-block:var(--s8)}
+/* Two levels of section, not fifteen at one volume. The spine — editions,
+   the village, how long you stay, the enquiry — keeps the full headline and
+   rhythm; the sections that support them step down a size and sit closer
+   together, so the eye can tell which is which. Measured before this: every
+   section between 0.6 and 1.4 screens, 14 of 15 opening identically. */
+.ch.sub{padding-block:var(--s7)}
+.ch.sub h2{font-size:clamp(1.45rem,2.45vw,2.05rem);letter-spacing:-.01em}
+.ch.sub .head{margin-bottom:0}
+.ch.sub .kicker{margin-bottom:clamp(.7rem,1.3vw,1rem)}
+.ch.sub .kicker .t{color:var(--soft)}
 .ch.band{background:var(--ink-2)}
 /* same treatment for the Village Edition band: ink at both edges, blue in the body */
 .ch.dark{padding-block:var(--s8);
@@ -416,7 +426,7 @@ a{color:inherit} strong{font-weight:600;color:var(--cream)}
 
 .excl{margin-top:var(--s6);border:1px solid var(--line);
   padding:var(--pad-box);background:var(--surface)}
-.excl h4{font-family:var(--serif);font-weight:500;font-size:var(--h3);margin-bottom:1rem}
+.excl h3{font-family:var(--serif);font-weight:500;font-size:var(--h3);margin-bottom:1rem}
 .excl ul{list-style:none;display:grid;gap:var(--s2);grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr))}
 .excl li{font-size:var(--body);line-height:1.6;color:var(--softer);text-decoration:line-through;
   text-decoration-color:var(--stone)}
@@ -550,7 +560,7 @@ html[lang^="zh"] .hero h1{max-width:24ch}
 .fit{margin-top:var(--s6);display:grid;gap:var(--s4);
   grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr))}
 .col{border:1px solid var(--line);padding:var(--pad-box);min-width:0;background:var(--surface)}
-.col h4{font-family:var(--serif);font-weight:500;font-size:var(--h3);margin-bottom:1rem;line-height:1.2}
+.col h3{font-family:var(--serif);font-weight:500;font-size:var(--h3);margin-bottom:1rem;line-height:1.2}
 .col ul{list-style:none;display:grid;gap:var(--s2)}
 .col li{font-size:clamp(.89rem,1.02vw,.98rem);line-height:1.6}
 .col.yes li{color:var(--cream);display:grid;grid-template-columns:1.3em 1fr;gap:var(--s1);align-items:baseline}
@@ -662,8 +672,8 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
 .fcol .mk svg{width:27px;height:auto;stroke:var(--cream);flex:none}
 .fcol .mk span{font-size:var(--label);font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--cream)}
 .fcol .blurb{font-size:var(--body);line-height:1.8;max-width:34ch}
-.fcol h5{font-size:.73rem;font-weight:600;letter-spacing:.26em;text-transform:uppercase;
-  color:var(--softer);margin-bottom:.95rem}
+.fcol h3{font-family:var(--sans);font-size:.73rem;font-weight:600;letter-spacing:.26em;
+  text-transform:uppercase;line-height:1.4;color:var(--softer);margin-bottom:.95rem}
 .fcol ul{list-style:none;display:grid;gap:var(--s2)}
 .fcol li a,.fcol li span{font-size:var(--body);text-decoration:none;line-height:1.5;transition:color .3s}
 .fcol li a:hover{color:var(--cream)}
@@ -672,7 +682,7 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
   display:grid;gap:var(--s2)}
 .fbot .row{display:flex;justify-content:space-between;gap:var(--s2);flex-wrap:wrap;
   font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--softer)}
-.fbot .cr{font-size:.75rem;line-height:1.75;color:rgba(245,241,234,.42);max-width:86ch}
+.fbot .cr{font-size:.78rem;line-height:1.75;color:rgba(245,241,234,.58);max-width:86ch}
 .aside .direct .v a,.fcol a[href^="mailto"],.sent a{color:inherit;text-decoration:underline;text-underline-offset:.2em;text-decoration-thickness:1px}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
 </style>
@@ -782,7 +792,7 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
   </div>
 </div></section>
 
-<section class="ch pad"><div class="wrap">
+<section class="ch pad sub"><div class="wrap">
   <div class="head">
     <div class="kicker rv"><span class="r"></span><span class="t">为什么是尼泊尔，为什么是我们</span></div>
     <h2 class="rv d1">六个理由。</h2>
@@ -803,7 +813,7 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
   </div>
 </div></section>
 
-<section class="ch pad"><div class="wrap">
+<section class="ch pad sub"><div class="wrap">
   <div class="head">
     <div class="kicker rv"><span class="r"></span><span class="t">每个方案都包含</span></div>
     <h2 class="rv d1">你带上电脑，其余由我们安排。</h2>
@@ -825,7 +835,7 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
       <p class="d">一个号码，在博卡拉由真人接听，整段行程都在。</p></div></div>
   </div>
   <div class="excl rv">
-    <h4>不包含的部分</h4>
+    <h3>不包含的部分</h3>
     <ul>
       <li>国际机票</li>
       <li>旅行保险（抵达前必须办妥）</li>
@@ -837,7 +847,7 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
   </div>
 </div></section>
 
-<section class="ch band pad"><div class="wrap">
+<section class="ch band pad sub"><div class="wrap">
   <div class="head">
     <div class="kicker rv"><span class="r"></span><span class="t">从天亮到灯火</span></div>
     <h2 class="rv d1">两种选择，各有一天。</h2>
@@ -898,7 +908,7 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
   </div>
 </div></section>
 
-<section class="ch pad"><div class="wrap">
+<section class="ch pad sub"><div class="wrap">
   <div class="vhead">
     <div>
       <div class="kicker rv"><span class="r"></span><span class="t">加一周 · 乡村重启</span></div>
@@ -919,7 +929,7 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
   </div>
 </div></section>
 
-<section class="ch pad"><div class="wrap">
+<section class="ch pad sub"><div class="wrap">
   <div class="head">
     <div class="kicker rv"><span class="r"></span><span class="t">老实说</span></div>
     <h2 class="rv d1">网络是可以用的。这是证据。</h2>
@@ -938,7 +948,7 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
   </div>
 </div></section>
 
-<section class="ch band pad"><div class="wrap">
+<section class="ch band pad sub"><div class="wrap">
   <div class="head">
     <div class="kicker rv"><span class="r"></span><span class="t">关注我们</span></div>
     <h2 class="rv d1">我们把答案拍成短片。<em>来看看吧。</em></h2>
@@ -966,7 +976,7 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
   </div>
 </div></section>
 
-<section class="ch band pad"><div class="wrap">
+<section class="ch band pad sub"><div class="wrap">
   <div class="head">
     <div class="kicker rv"><span class="r"></span><span class="t">从咨询到抵达</span></div>
     <h2 class="rv d1">流程是这样的。</h2>
@@ -997,15 +1007,15 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
   </div>
 </div></section>
 
-<section class="ch pad"><div class="wrap">
+<section class="ch pad sub"><div class="wrap">
   <div class="head">
     <div class="kicker rv"><span class="r"></span><span class="t">说实话</span></div>
     <h2 class="rv d1">这适合你吗？</h2>
   </div>
   <div class="fit">
-    <div class="col yes rv"><h4>适合你，如果</h4><ul>
+    <div class="col yes rv"><h3>适合你，如果</h3><ul>
       <li>你享受专注的工作</li><li>你喜欢自然</li><li>你想真正走进当地生活，而不只是远远看着</li></ul></div>
-    <div class="col no rv d1"><h4>不适合你，如果</h4><ul>
+    <div class="col no rv d1"><h3>不适合你，如果</h3><ul>
       <li>你离不开夜生活</li><li>你想要奢华享受</li><li>你喜欢快节奏</li></ul></div>
   </div>
   <p class="note rv d2">还拿不定主意？先用一个月体验湖畔方案，再从那里去村里看看。没有人该在没试过的生活方式上，一口气投入五个月。</p>
@@ -1027,7 +1037,7 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
   <p class="note rv d2">起价 <strong>每月 1,490 美元</strong>，包含我们安排的全部内容。最终价格会在确认你的日期与方案后通过邮件告知——我们按供应商的真实成本报价，而不是照搬网页上的数字。</p>
 </div></section>
 
-<section class="ch pad"><div class="wrap">
+<section class="ch pad sub"><div class="wrap">
   <div class="head">
     <div class="kicker rv"><span class="r"></span><span class="t">你会遇到谁</span></div>
     <h2 class="rv d1">是人，不是订房系统。</h2>
@@ -1045,7 +1055,7 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
   </div>
 </div></section>
 
-<section class="ch band pad" id="faq"><div class="wrap">
+<section class="ch band pad sub" id="faq"><div class="wrap">
   <div class="head">
     <div class="kicker rv"><span class="r"></span><span class="t">在你开口之前</span></div>
     <h2 class="rv d1">大家都会问的问题。</h2>
@@ -1159,17 +1169,17 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
       </span>
       <p class="blurb">尼泊尔的全包式远程工作长住。一个承诺——住宿、工作空间、电话卡、签证协助、机场接机和持证向导——以及几个清晰的方案供你选择。</p>
     </div>
-    <div class="fcol"><h5>方案</h5><ul>
+    <div class="fcol"><h3>方案</h3><ul>
       <li><a href="#editions">湖畔方案 Lake Edition</a></li><li><a href="#village">乡村方案 Village Edition</a></li>
       <li><a href="#editions">徒步方案 Trek Edition</a></li><li><a href="#editions">节庆方案 Festival Edition</a></li>
       <li><a href="#editions">团队静修 Team Retreat</a></li></ul></div>
-    <div class="fcol"><h5>联系我们</h5><ul>
+    <div class="fcol"><h3>联系我们</h3><ul>
       <li><a href="mailto:prajwalkc1994@gmail.com">prajwalkc1994@gmail.com</a></li>
       <li><a href="https://wa.me/9779702037055?text=Namaste%2C%20I%27m%20interested%20in%20a%20Mountain%20Whisper%20stay." target="_blank" rel="noopener">WhatsApp · +977 970-203-7055</a></li>
       <li><a href="https://www.instagram.com/mountainwhisper.nepal/" target="_blank" rel="noopener">Instagram · @mountainwhisper.nepal</a></li>
       <li><a href="https://www.tiktok.com/@mountainwhisper.nepal" target="_blank" rel="noopener">TikTok · @mountainwhisper.nepal</a></li>
       <li><a href="#enquire">规划我的行程</a></li></ul></div>
-    <div class="fcol"><h5>关于公司</h5><ul>
+    <div class="fcol"><h3>关于公司</h3><ul>
       <li><span>尼泊尔注册旅行社</span></li><li><span>注册编号待补充</span></li>
       <li><span>持证徒步向导</span></li><li><span>总部在博卡拉，接待遍及尼泊尔</span></li></ul></div>
   </div>
