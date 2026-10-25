@@ -1,0 +1,1356 @@
+{
+ "_meta": {
+  "note": "English is the source of truth. Edit apps/frontend/public/index.html, add any new string here, then run `node scripts/build-i18n.mjs` to regenerate /zh/ and /nl/. The script reports any string that fell back to English, so a half-translated page is visible rather than silent. Vercel runs the same command on deploy.",
+  "reviewed": {
+   "zh": false,
+   "nl": false
+  },
+  "reviewedNote": "Translated and self-audited for accuracy and consistency, but not yet read by a native speaker. The rows that most need a human eye are the Reset Week disclaimer and the 150-day visa rule.",
+  "reviewUrl": "https://claude.ai/artifact/6iUeL2qhvvaZCHGFHioQDM",
+  "keptUntranslated": "Names, handles and platform names are listed in KEEP in scripts/build-i18n.mjs. Form <option> values stay English so enquiries arrive readable."
+ },
+ "$1,490 a month": {
+  "zh": "每月 1,490 美元",
+  "nl": "$1.490 per maand"
+ },
+ "(optional)": {
+  "zh": "（选填）",
+  "nl": "(optioneel)"
+ },
+ ", and you meet the team.": {
+  "zh": "，你会见到团队。",
+  "nl": ", en je ontmoet het team."
+ },
+ ", or on to your village.": {
+  "zh": "，或直接去你的村子。",
+  "nl": ", of door naar je dorp."
+ },
+ ", with everything we arrange included. Final pricing is confirmed by email once we have your dates and your edition — we quote on real supplier costs rather than a number on a page.": {
+  "zh": "，包含我们安排的全部内容。最终价格会在确认你的日期与方案后通过邮件告知——我们按供应商的真实成本报价，而不是照搬网页上的数字。",
+  "nl": ", met alles wat wij regelen inbegrepen. De definitieve prijs bevestigen we per e-mail zodra we je data en je editie hebben — we rekenen met echte leverancierskosten, niet met een getal op een pagina."
+ },
+ "1 month": {
+  "zh": "一个月",
+  "nl": "1 maand"
+ },
+ "1 to 4 weeks": {
+  "zh": "一至四周",
+  "nl": "1 tot 4 weken"
+ },
+ "1 · 3 months": {
+  "zh": "一 / 三个月",
+  "nl": "1 · 3 maanden"
+ },
+ "1 · 3 · 5 month stays": {
+  "zh": "一 / 三 / 五个月的停留",
+  "nl": "Verblijven van 1 · 3 · 5 maanden"
+ },
+ "1 · 3 · 5 months — from $1,490": {
+  "zh": "一 / 三 / 五个月 —— 1,490 美元起",
+  "nl": "1 · 3 · 5 maanden — vanaf $1.490"
+ },
+ "1, 3 or 5 month stays in Nepal for remote workers. Everything arranged.": {
+  "zh": "为远程工作者提供的尼泊尔一个月、三个月或五个月长住。一切都已安排好。",
+  "nl": "Verblijven van 1, 3 of 5 maanden in Nepal voor remote workers. Alles geregeld."
+ },
+ "1, 3 or 5 month stays in Nepal for remote workers. Room, workspace, SIM, visa help, airport pickup and a guided trek, all arranged by a registered Nepal travel agency.": {
+  "zh": "为远程工作者提供的尼泊尔一个月、三个月或五个月长住。房间、工作空间、电话卡、签证协助、机场接机和持证向导带领的徒步，全部由在尼泊尔注册的旅行社安排。",
+  "nl": "Verblijven van 1, 3 of 5 maanden in Nepal voor remote workers. Kamer, werkplek, simkaart, visumhulp, ophalen op de luchthaven en een begeleide trek, alles geregeld door een geregistreerd Nepalees reisbureau."
+ },
+ "1, 3 or 5 month stays in Nepal for remote workers. Room, workspace, SIM, visa help, airport pickup and a guided trek, all arranged.": {
+  "zh": "为远程工作者提供的尼泊尔一个月、三个月或五个月长住。房间、工作空间、电话卡、签证协助、机场接机和向导带领的徒步，全部安排妥当。",
+  "nl": "Verblijven van 1, 3 of 5 maanden in Nepal voor remote workers. Kamer, werkplek, simkaart, visumhulp, ophalen op de luchthaven en een begeleide trek, alles geregeld."
+ },
+ "150 days a calendar year": {
+  "zh": "每个日历年 150 天",
+  "nl": "150 dagen per kalenderjaar"
+ },
+ "150 days a year": {
+  "zh": "每年 150 天",
+  "nl": "150 dagen per jaar"
+ },
+ "3 months": {
+  "zh": "三个月",
+  "nl": "3 maanden"
+ },
+ "3 · 5 months — limited homestays": {
+  "zh": "三 / 五个月 —— 寄宿家庭名额有限",
+  "nl": "3 · 5 maanden — beperkt aantal homestays"
+ },
+ "5 months": {
+  "zh": "五个月",
+  "nl": "5 maanden"
+ },
+ "A backup on a second network": {
+  "zh": "第二张网做备份",
+  "nl": "Een back-up op een tweede netwerk"
+ },
+ "A day, either way.": {
+  "zh": "两种选择，各有一天。",
+  "nl": "Een dag, hoe dan ook."
+ },
+ "A day, roughly": {
+  "zh": "大致的一天",
+  "nl": "Een dag, ongeveer"
+ },
+ "A deposit by card through Stripe.": {
+  "zh": "通过 Stripe 用银行卡支付定金。",
+  "nl": "Een aanbetaling per kaart via Stripe."
+ },
+ "A form is not everybody's way of starting a conversation. Mail or message directly and you'll reach the same person.": {
+  "zh": "不是每个人都喜欢从表单开始。直接发邮件或消息，联系到的是同一个人。",
+  "nl": "Een formulier is niet voor iedereen de manier om een gesprek te beginnen. Mail of app direct en je bereikt dezelfde persoon."
+ },
+ "A friend": {
+  "zh": "朋友介绍",
+  "nl": "Een vriend"
+ },
+ "A licensed guide": {
+  "zh": "持证向导",
+  "nl": "Een gediplomeerde gids"
+ },
+ "A long test drive": {
+  "zh": "一次长一点的试住",
+  "nl": "Een lange proefrit"
+ },
+ "A person, not an app": {
+  "zh": "是人，不是一个 App",
+  "nl": "Een mens, geen app"
+ },
+ "A private room in a Himalayan village home, for three or five months. Mornings of mountain views and home-cooked dal bhat; afternoons in the fields, at the stove, or walking between villages.": {
+  "zh": "在喜马拉雅山村人家里拥有一间独立房间，住三个月或五个月。早晨是雪山与家常达八饭；下午在田间、灶边，或走在村与村之间的小路上。",
+  "nl": "Een eigen kamer in een Himalaya-dorpshuis, voor drie of vijf maanden. Ochtenden met bergzicht en zelfgemaakte dal bhat; middagen in de velden, bij het fornuis, of wandelend tussen dorpen."
+ },
+ "A private room in a hill village home, with internet we test ourselves and a backup line — and Pokhara whenever you want the city back.": {
+  "zh": "山村人家里的一间独立房间，网络由我们亲自测试并配备用线路——想回到城市时，博卡拉随时都在。",
+  "nl": "Een eigen kamer in een bergdorpshuis, met internet dat we zelf testen en een back-uplijn — en Pokhara wanneer je de stad weer wilt."
+ },
+ "A quick video call.": {
+  "zh": "一次简短的视频通话。",
+  "nl": "Een kort videogesprek."
+ },
+ "A registered Nepali travel agency with licensed trekking guides, not an intermediary.": {
+  "zh": "在尼泊尔注册的旅行社，配持证徒步向导，而不是中介。",
+  "nl": "Een geregistreerd Nepalees reisbureau met gediplomeerde trekkinggidsen, geen tussenpersoon."
+ },
+ "A registered Nepali travel agency, not an intermediary. Registration number to be published here so you can check it before paying anyone anything.": {
+  "zh": "在尼泊尔注册的旅行社，不是中介。注册编号会公布在这里，方便你在付钱之前先核实。",
+  "nl": "Een geregistreerd Nepalees reisbureau, geen tussenpersoon. Het registratienummer komt hier te staan, zodat je het kunt controleren voordat je iemand iets betaalt."
+ },
+ "A registered Nepali travel agency. Every enquiry answered by a person, usually within a day.": {
+  "zh": "我们是在尼泊尔注册的旅行社。每一条咨询都由真人回复，通常一天之内。",
+  "nl": "Een geregistreerd Nepalees reisbureau. Elke aanvraag wordt door een mens beantwoord, meestal binnen een dag."
+ },
+ "A reserved coworking desk on the Lake Edition; a quiet room set up for work in a village home.": {
+  "zh": "湖畔方案含一个固定的共享办公位；乡村方案则在家中布置一间安静的工作房。",
+  "nl": "Een gereserveerde coworkingplek bij de Lake Edition; een rustige werkkamer in een dorpshuis."
+ },
+ "A slow walk in the hills.": {
+  "zh": "在山里慢慢走一段。",
+  "nl": "Een rustige wandeling in de heuvels."
+ },
+ "A stone village lane hung with prayer flags": {
+  "zh": "挂着经幡的石砌村巷",
+  "nl": "Een stenen dorpssteeg behangen met gebedsvlaggen"
+ },
+ "A wired connection with backup power — not shared hostel wifi. Tested for video calls before you arrive.": {
+  "zh": "有线连接并配备用电源——不是青旅的共用 Wi-Fi。在你到达之前，我们会测它能否撑住视频会议。",
+  "nl": "Een bekabelde verbinding met noodstroom — geen gedeelde hostelwifi. Vóór je aankomst getest op videobellen."
+ },
+ "A workspace that is yours": {
+  "zh": "一张属于你的办公桌",
+  "nl": "Een werkplek die van jou is"
+ },
+ "Above Pokhara": {
+  "zh": "博卡拉之上",
+  "nl": "Boven Pokhara"
+ },
+ "Above the clouds": {
+  "zh": "云层之上",
+  "nl": "Boven de wolken"
+ },
+ "Add a week": {
+  "zh": "加一周",
+  "nl": "Voeg een week toe"
+ },
+ "Add a week · Village Reset": {
+  "zh": "加一周 · 乡村重启",
+  "nl": "Voeg een week toe · Village Reset"
+ },
+ "Adventure": {
+  "zh": "户外探险周",
+  "nl": "Avontuur"
+ },
+ "After work": {
+  "zh": "下班之后",
+  "nl": "Na het werk"
+ },
+ "Airport to desk": {
+  "zh": "从机场到书桌",
+  "nl": "Van luchthaven tot bureau"
+ },
+ "Airport welcome": {
+  "zh": "机场接机",
+  "nl": "Ontvangst op de luchthaven"
+ },
+ "All-inclusive remote-work stays in Nepal. One promise — stay, workspace, SIM, visa help, airport welcome and a licensed guide — and a few clear editions to choose between.": {
+  "zh": "尼泊尔的全包式远程工作长住。一个承诺——住宿、工作空间、电话卡、签证协助、机场接机和持证向导——以及几个清晰的方案供你选择。",
+  "nl": "All-inclusive remote-werkverblijven in Nepal. Eén belofte — verblijf, werkplek, simkaart, visumhulp, ontvangst op de luchthaven en een gediplomeerde gids — en een paar heldere edities om uit te kiezen."
+ },
+ "An approximate month is fine — nothing is booked by sending this.": {
+  "zh": "写个大致月份就行——提交并不构成预订。",
+  "nl": "Een maand bij benadering is prima — hiermee boek je nog niets."
+ },
+ "Annapurna": {
+  "zh": "安纳普尔纳",
+  "nl": "Annapurna"
+ },
+ "Anyone who needs guaranteed uninterrupted power, same-day deliveries, a gym chain or a nightlife scene — and anyone whose work cannot survive an occasional outage. We would rather lose the booking than have you arrive disappointed.": {
+  "zh": "需要绝对不断电、当日送达、连锁健身房或热闹夜生活的人——以及工作完全经不起偶尔断网的人。与其让你到了之后失望，我们宁可少做这一单。",
+  "nl": "Wie gegarandeerd ononderbroken stroom, bezorging op dezelfde dag, een sportschoolketen of uitgaansleven nodig heeft — en wie zijn werk geen enkele storing kan hebben. Liever missen we de boeking dan dat je teleurgesteld aankomt."
+ },
+ "Anything we should know": {
+  "zh": "还有什么需要我们知道的",
+  "nl": "Iets wat we moeten weten"
+ },
+ "Arrive, plug in,": {
+  "zh": "你只管抵达、开工，",
+  "nl": "Kom aan, log in,"
+ },
+ "Back at the desk.": {
+  "zh": "回到书桌前。",
+  "nl": "Terug aan het bureau."
+ },
+ "Backup router — to photograph": {
+  "zh": "备用路由器 —— 待拍照",
+  "nl": "Back-uprouter — nog te fotograferen"
+ },
+ "Based in Pokhara, hosting across Nepal": {
+  "zh": "总部在博卡拉，接待遍及尼泊尔",
+  "nl": "Gevestigd in Pokhara, actief in heel Nepal"
+ },
+ "Before any room or homestay joins the programme we test it at both ends of the day, then keep testing while you are there. If it drops, you hear it from us first.": {
+  "zh": "任何房间或寄宿家庭加入之前，我们都会在一天的两头各测一次，你住下之后也会持续测。如果网速掉了，你会先从我们这里听到。",
+  "nl": "Voordat een kamer of homestay meedoet, testen we die aan beide uiteinden van de dag, en we blijven testen zolang je er bent. Valt het terug, dan hoor je het als eerste van ons."
+ },
+ "Before you ask": {
+  "zh": "在你开口之前",
+  "nl": "Voordat je het vraagt"
+ },
+ "Before you come": {
+  "zh": "出发之前",
+  "nl": "Voordat je komt"
+ },
+ "Better value than Bali or Chiang Mai": {
+  "zh": "比巴厘岛或清迈更值",
+  "nl": "Betere waarde dan Bali of Chiang Mai"
+ },
+ "Calmer, greener, and a guided trek included rather than sold to you on arrival.": {
+  "zh": "更安静、更绿，徒步是包含在内的，而不是到了之后再卖给你。",
+  "nl": "Rustiger, groener, en een begeleide trektocht inbegrepen in plaats van bij aankomst verkocht."
+ },
+ "Can I extend, or leave early?": {
+  "zh": "可以延长或提前离开吗？",
+  "nl": "Kan ik verlengen of eerder vertrekken?"
+ },
+ "Carrying cut grass through green rice terraces": {
+  "zh": "背着割下的青草穿过绿色的梯田",
+  "nl": "Gesneden gras dragend door groene rijstterrassen"
+ },
+ "Chat on WhatsApp": {
+  "zh": "用 WhatsApp 联系我们",
+  "nl": "Chat via WhatsApp"
+ },
+ "Check in": {
+  "zh": "入住",
+  "nl": "Inchecken"
+ },
+ "Chiya by the lake.": {
+  "zh": "湖边一杯 chiya 奶茶。",
+  "nl": "Chiya aan het meer."
+ },
+ "Choose a day": {
+  "zh": "选择一天",
+  "nl": "Kies een dag"
+ },
+ "Choose a scene": {
+  "zh": "选择一个场景",
+  "nl": "Kies een scène"
+ },
+ "Choose your edition.": {
+  "zh": "选择你的方案。",
+  "nl": "Kies je editie."
+ },
+ "Clearest views Oct–Nov and Mar–May": {
+  "zh": "十至十一月、三至五月视野最清澈",
+  "nl": "Helderste uitzicht okt–nov en mrt–mei"
+ },
+ "Cooking, the harvest, Dashain and Tihar, and the paths between one village and the next.": {
+  "zh": "做饭、收割、德赛节与堤哈节，还有村与村之间的小路。",
+  "nl": "Koken, de oogst, Dashain en Tihar, en de paden van het ene dorp naar het andere."
+ },
+ "Core · available now": {
+  "zh": "核心方案 · 现已开放",
+  "nl": "Kern · nu beschikbaar"
+ },
+ "Core · first group forming": {
+  "zh": "核心方案 · 首批成行中",
+  "nl": "Kern · eerste groep wordt gevormd"
+ },
+ "Coworking desk": {
+  "zh": "共享办公桌",
+  "nl": "Vaste werkplek"
+ },
+ "Dal bhat and lamplight.": {
+  "zh": "达八饭（Dal Bhat），还有灯火。",
+  "nl": "Dal bhat en lamplicht."
+ },
+ "Dates, room, workspace, what is included, the price and the cancellation terms — in writing.": {
+  "zh": "日期、房间、工作空间、包含内容、价格与取消条款——全部书面确认。",
+  "nl": "Data, kamer, werkplek, wat is inbegrepen, de prijs en de annuleringsvoorwaarden — op papier."
+ },
+ "Day 1": {
+  "zh": "第 1 天",
+  "nl": "Dag 1"
+ },
+ "Day 2": {
+  "zh": "第 2 天",
+  "nl": "Dag 2"
+ },
+ "Day 3": {
+  "zh": "第 3 天",
+  "nl": "Dag 3"
+ },
+ "Deep work.": {
+  "zh": "专注工作。",
+  "nl": "Deep work."
+ },
+ "Deeper work.": {
+  "zh": "更专注的工作。",
+  "nl": "Dieper werk."
+ },
+ "Desk, SIM, keys.": {
+  "zh": "办公桌、电话卡、钥匙。",
+  "nl": "Bureau, simkaart, sleutels."
+ },
+ "Developer, designer, writer…": {
+  "zh": "开发、设计、写作……",
+  "nl": "Developer, designer, schrijver…"
+ },
+ "Does the wifi work?": {
+  "zh": "网络到底行不行？",
+  "nl": "Werkt de wifi?"
+ },
+ "Don't just see Nepal's festivals. Celebrate Dashain, Tihar or Holi with a family.": {
+  "zh": "不只是看尼泊尔的节日，而是和一家人一起过德赛节、堤哈节或洒红节。",
+  "nl": "Bekijk Nepals feesten niet alleen. Vier Dashain, Tihar of Holi met een gezin."
+ },
+ "Driven to Pokhara.": {
+  "zh": "驱车前往博卡拉。",
+  "nl": "Naar Pokhara gereden."
+ },
+ "Editions": {
+  "zh": "方案",
+  "nl": "Edities"
+ },
+ "Email": {
+  "zh": "邮箱",
+  "nl": "E-mail"
+ },
+ "Enquiry to arrival": {
+  "zh": "从咨询到抵达",
+  "nl": "Van aanvraag tot aankomst"
+ },
+ "Every edition includes": {
+  "zh": "每个方案都包含",
+  "nl": "Elke editie bevat"
+ },
+ "Every edition · a licensed guide": {
+  "zh": "每个方案 · 均配持证向导",
+  "nl": "Elke editie · een gediplomeerde gids"
+ },
+ "Every edition · arranged end to end": {
+  "zh": "每个方案 · 全程安排妥当",
+  "nl": "Elke editie · van begin tot eind geregeld"
+ },
+ "Every stay has a second connection on a different mobile network, plus power backup that carries a full call. In a village, your biggest calls can move to a town day.": {
+  "zh": "每一处住所都有另一家运营商的第二条线路，另配备用电源，足以撑完一整通会议。在村里，最重要的会议可以安排到进城日。",
+  "nl": "Elk verblijf heeft een tweede verbinding via een ander mobiel netwerk, plus noodstroom die een heel gesprek doorstaat. In een dorp kunnen je belangrijkste gesprekken naar een stadsdag."
+ },
+ "Extending is usually possible within the 150-day visa limit, and we handle the immigration side. Leaving early is always allowed — it is your life — but the refund depends on what we have already paid out to the room, the homestay and the guide. We will put the exact terms in writing before you pay.": {
+  "zh": "在 150 天签证上限之内通常可以延长，移民局那边由我们处理。提前离开随时可以——这是你的生活——但退款要看我们已经付给房东、寄宿家庭和向导多少。具体条款会在你付款之前书面写明。",
+  "nl": "Verlengen kan meestal binnen de visumlimiet van 150 dagen, en wij regelen de immigratiekant. Eerder vertrekken mag altijd — het is jouw leven — maar de terugbetaling hangt af van wat we al hebben uitbetaald aan de kamer, het gastgezin en de gids. We zetten de exacte voorwaarden op papier voordat je betaalt."
+ },
+ "Extra treks beyond those in your edition": {
+  "zh": "方案之外的额外徒步",
+  "nl": "Extra trektochten buiten je editie"
+ },
+ "Fair pay to host families": {
+  "zh": "寄宿家庭获得合理报酬",
+  "nl": "Eerlijke betaling aan gastgezinnen"
+ },
+ "Fair to families. True to the village.": {
+  "zh": "善待家庭，尊重乡村。",
+  "nl": "Eerlijk voor gezinnen. Trouw aan het dorp."
+ },
+ "Farming, festivals, long walks": {
+  "zh": "农活、节日、长长的散步",
+  "nl": "Landwerk, feesten, lange wandelingen"
+ },
+ "Festival Edition": {
+  "zh": "节庆方案 Festival Edition",
+  "nl": "Festival Edition"
+ },
+ "Fewer tabs.": {
+  "zh": "更少的标签页。",
+  "nl": "Minder tabbladen."
+ },
+ "Fifteen minutes to answer your questions and check what your work needs.": {
+  "zh": "十五分钟，回答你的问题，确认你的工作需要什么条件。",
+  "nl": "Vijftien minuten om je vragen te beantwoorden en te kijken wat je werk nodig heeft."
+ },
+ "Film: does the wifi work": {
+  "zh": "影片：网络到底行不行",
+  "nl": "Film: werkt de wifi"
+ },
+ "Film: the Lake Edition": {
+  "zh": "影片：湖畔方案",
+  "nl": "Film: de Lake Edition"
+ },
+ "Film: the Trek Edition": {
+  "zh": "影片：徒步方案",
+  "nl": "Film: de Trek Edition"
+ },
+ "Film: the Village Edition": {
+  "zh": "影片：乡村方案",
+  "nl": "Film: de Village Edition"
+ },
+ "Film: the visa": {
+  "zh": "影片：签证",
+  "nl": "Film: het visum"
+ },
+ "Film: your first 24 hours": {
+  "zh": "影片：最初的 24 小时",
+  "nl": "Film: je eerste 24 uur"
+ },
+ "First light to lamplight": {
+  "zh": "从天亮到灯火",
+  "nl": "Van eerste licht tot lamplicht"
+ },
+ "First light.": {
+  "zh": "天刚亮。",
+  "nl": "Eerste licht."
+ },
+ "Focused work. No calls before ten.": {
+  "zh": "专注工作。十点前不开会。",
+  "nl": "Geconcentreerd werken. Geen gesprekken vóór tienen."
+ },
+ "Food and drink on the Lake Edition, beyond the welcome dinner": {
+  "zh": "湖畔方案的日常餐饮（欢迎晚餐除外）",
+  "nl": "Eten en drinken bij de Lake Edition, behalve het welkomstdiner"
+ },
+ "For teams · by enquiry": {
+  "zh": "团队专属 · 需咨询",
+  "nl": "Voor teams · op aanvraag"
+ },
+ "For tired remote workers, first-timers settling in, and long stays that need a pause. Shorter workdays, no calls before ten, and a walk in the hills every afternoon.": {
+  "zh": "适合疲惫的远程工作者、刚到需要适应的人，以及长住中途想喘口气的人。更短的工作日，十点前不开会，每天下午去山里走一走。",
+  "nl": "Voor vermoeide remote workers, nieuwkomers die moeten wennen, en lange verblijven die een pauze nodig hebben. Kortere werkdagen, geen gesprekken vóór tienen, en elke middag een wandeling in de heuvels."
+ },
+ "Founder": {
+  "zh": "创办人",
+  "nl": "Oprichter"
+ },
+ "Founder portrait": {
+  "zh": "创办人照片",
+  "nl": "Portret oprichter"
+ },
+ "Four or five days to Poon Hill with our guide, permits included, over a long weekend — so you do not lose a week of work.": {
+  "zh": "跟着我们的向导走四到五天到布恩山，含许可证，安排在一个长周末——不必为此丢掉一整周的工作。",
+  "nl": "Vier of vijf dagen naar Poon Hill met onze gids, vergunningen inbegrepen, in een lang weekend — zodat je geen werkweek verliest."
+ },
+ "Fri": {
+  "zh": "周五",
+  "nl": "vr"
+ },
+ "From the airport to your desk. We have got you.": {
+  "zh": "从机场到你的书桌，一路有我们。",
+  "nl": "Van de luchthaven tot je bureau. Wij regelen het."
+ },
+ "Government-licensed, and the person who walks you into the mountains. Name and licence number to be added here.": {
+  "zh": "政府颁发执照，也是真正带你进山的人。姓名与执照编号稍后补上。",
+  "nl": "Door de overheid gediplomeerd, en degene die je de bergen in loopt. Naam en licentienummer worden hier nog toegevoegd."
+ },
+ "Guide portrait": {
+  "zh": "向导照片",
+  "nl": "Portret gids"
+ },
+ "Handed to you at pickup. It is also your backup when the power goes.": {
+  "zh": "接机时交到你手上。停电时，它也是你的备用网络。",
+  "nl": "Je krijgt hem bij het ophalen. Het is ook je back-up als de stroom uitvalt."
+ },
+ "Homestay": {
+  "zh": "寄宿家庭",
+  "nl": "Homestay"
+ },
+ "Honest answers": {
+  "zh": "老实说",
+  "nl": "Eerlijke antwoorden"
+ },
+ "Honestly": {
+  "zh": "说实话",
+  "nl": "Eerlijk gezegd"
+ },
+ "Honestly, it depends on the month. We are starting out, so early groups are small — you may be the only guest for a while. There is a welcome dinner, a coworking space full of other remote workers in Pokhara, and a host family in the village. If a busy social scene is what you need, Pokhara in high season suits you better than a village in winter.": {
+  "zh": "老实说，要看月份。我们刚起步，早期的小组很小——有一段时间你可能是唯一的客人。会有欢迎晚餐，博卡拉的共享办公里有不少远程工作者，村里则有寄宿家庭。如果你需要热闹的社交，旺季的博卡拉比冬天的村子更适合你。",
+  "nl": "Eerlijk gezegd hangt het van de maand af. We beginnen net, dus vroege groepen zijn klein — je kunt een tijdje de enige gast zijn. Er is een welkomstdiner, een coworkingruimte vol andere remote workers in Pokhara, en een gastgezin in het dorp. Heb je een druk sociaal leven nodig, dan past Pokhara in het hoogseizoen beter bij je dan een dorp in de winter."
+ },
+ "Host families are paid fairly and agree the terms up front. We ask guests to arrive as guests: shoes off indoors, ask before photographing anyone, and accept the tea.": {
+  "zh": "寄宿家庭获得合理报酬，条件事先谈妥。我们也请客人以客人的方式到来：进屋脱鞋，拍人之前先问一句，别人递来的茶要接。",
+  "nl": "Gastgezinnen worden eerlijk betaald en stemmen vooraf in met de voorwaarden. We vragen gasten als gast te komen: schoenen uit binnen, vraag het voordat je iemand fotografeert, en neem de thee aan."
+ },
+ "Host families, festivals, village life. You live in the country, not beside it.": {
+  "zh": "寄宿家庭、节日、乡村生活。你住在这个国家里，而不是旁边。",
+  "nl": "Gastgezinnen, feesten, dorpsleven. Je woont ín het land, niet ernaast."
+ },
+ "How did you hear about us": {
+  "zh": "你是怎么知道我们的",
+  "nl": "Hoe heb je ons gevonden"
+ },
+ "How it works.": {
+  "zh": "流程是这样的。",
+  "nl": "Zo werkt het."
+ },
+ "How long": {
+  "zh": "停留时长",
+  "nl": "Hoe lang"
+ },
+ "How long you stay": {
+  "zh": "你住多久",
+  "nl": "Hoe lang je blijft"
+ },
+ "How we test it": {
+  "zh": "我们怎么测",
+  "nl": "Hoe we het testen"
+ },
+ "I'm not ready to book — just tell me when the next group opens.": {
+  "zh": "我还没打算预订——只想在下一批名额开放时收到通知。",
+  "nl": "Ik wil nog niet boeken — laat me weten wanneer de volgende groep opengaat."
+ },
+ "If you have not been to Nepal before, the Lake Edition. It is the easy yes: a city base, coworking, people around you, and a village is a day trip away if you want to try one. Choose the Village Edition when you already know you want quiet and depth rather than convenience.": {
+  "zh": "如果你没来过尼泊尔，就选湖畔方案。它最容易上手：以城市为据点、有共享办公、身边有人，想体验乡村的话，一日往返就能去。当你已经确定自己要的是安静和深度，而不是便利，再选乡村方案。",
+  "nl": "Als je nog nooit in Nepal bent geweest: de Lake Edition. Dat is de makkelijke keuze: een stadsbasis, coworking, mensen om je heen, en een dorp ligt op een dagtrip afstand als je het wilt proberen. Kies de Village Edition als je al weet dat je rust en diepte wilt in plaats van gemak."
+ },
+ "International flights": {
+  "zh": "国际机票",
+  "nl": "Internationale vluchten"
+ },
+ "Internet we test ourselves, a backup connection on a second network, and backup power.": {
+  "zh": "网络由我们亲自测试，另有第二家运营商的备用线路和备用电源。",
+  "nl": "Internet dat we zelf testen, een back-upverbinding via een tweede netwerk, en noodstroom."
+ },
+ "Is it for you?": {
+  "zh": "这适合你吗？",
+  "nl": "Is dit iets voor jou?"
+ },
+ "Is it safe, including for women travelling alone?": {
+  "zh": "安全吗？独自出行的女性也安全吗？",
+  "nl": "Is het veilig, ook voor vrouwen die alleen reizen?"
+ },
+ "It's for you if": {
+  "zh": "适合你，如果",
+  "nl": "Dit is iets voor jou als"
+ },
+ "Jungle · Chitwan": {
+  "zh": "丛林周 · 奇特旺",
+  "nl": "Jungle · Chitwan"
+ },
+ "Lake Edition": {
+  "zh": "湖畔方案 Lake Edition",
+  "nl": "Lake Edition"
+ },
+ "Lake · Trek · Festival": {
+  "zh": "湖畔 · 徒步 · 节庆",
+  "nl": "Lake · Trek · Festival"
+ },
+ "Lake · Village": {
+  "zh": "湖畔 · 乡村",
+  "nl": "Lake · Village"
+ },
+ "Lake · Village · Trek": {
+  "zh": "湖畔 · 乡村 · 徒步",
+  "nl": "Lake · Village · Trek"
+ },
+ "Lake, Village, Trek or Festival — one promise, your choice of life around it. Tell us your month and we'll take it from there.": {
+  "zh": "湖畔、乡村、徒步或节庆——同一个承诺，由你选择围绕它的生活方式。告诉我们你的月份，剩下的交给我们。",
+  "nl": "Lake, Village, Trek of Festival — één belofte, jouw keuze van leven eromheen. Vertel ons je maand en wij pakken het op."
+ },
+ "Lakeside Pokhara: cafés, coworking, mountains in view. The easy yes, and the right first stay if you have not been to Nepal before.": {
+  "zh": "博卡拉湖区：咖啡馆、共享办公，抬头就是雪山。最容易上手的选择，也最适合第一次来尼泊尔的人。",
+  "nl": "Pokhara aan het meer: cafés, coworking, bergen in zicht. De makkelijke keuze, en het juiste eerste verblijf als je nog nooit in Nepal bent geweest."
+ },
+ "Lakeside in Pokhara: a private room on fibre, a coworking desk that is yours, and the Annapurnas at the end of the street.": {
+  "zh": "博卡拉湖畔：光纤入户的独立房间、一张属于你的办公桌，街道尽头就是安纳普尔纳雪山。",
+  "nl": "Aan het meer in Pokhara: een eigen kamer met glasvezel, een vaste werkplek, en de Annapurna's aan het eind van de straat."
+ },
+ "Lamplight · 20:00": {
+  "zh": "灯火 · 20:00",
+  "nl": "Lamplicht · 20:00"
+ },
+ "Language": {
+  "zh": "语言",
+  "nl": "Taal"
+ },
+ "Licensed and registered": {
+  "zh": "持证并已注册",
+  "nl": "Gediplomeerd en geregistreerd"
+ },
+ "Licensed trekking guide": {
+  "zh": "持证徒步向导",
+  "nl": "Gediplomeerde trekkinggids"
+ },
+ "Live with": {
+  "zh": "住进",
+  "nl": "Woon bij"
+ },
+ "Live with a host family in a quiet hill village above the clouds. The one thing no other nomad programme offers.": {
+  "zh": "住进云层之上的宁静山村，成为寄宿家庭的一员。这是其他数字游民项目都给不了的。",
+  "nl": "Woon bij een gastgezin in een stil bergdorp boven de wolken. Het enige wat geen ander nomadenprogramma biedt."
+ },
+ "Local SIM, ready on arrival": {
+  "zh": "当地电话卡，落地即用",
+  "nl": "Lokale simkaart, klaar bij aankomst"
+ },
+ "Log off early.": {
+  "zh": "提早下班。",
+  "nl": "Vroeg uitloggen."
+ },
+ "Log off. Row out.": {
+  "zh": "下班。划船出去。",
+  "nl": "Uitloggen. Het water op."
+ },
+ "Long enough to settle in": {
+  "zh": "足够住出生活感",
+  "nl": "Lang genoeg om te settelen"
+ },
+ "Long weekends": {
+  "zh": "长周末",
+  "nl": "Lange weekenden"
+ },
+ "Message us on WhatsApp": {
+  "zh": "用 WhatsApp 给我们留言",
+  "nl": "Stuur ons een bericht op WhatsApp"
+ },
+ "Met at Kathmandu, taken on to Pokhara. No haggling at arrivals after a long flight.": {
+  "zh": "在加德满都接你，再送往博卡拉。长途飞行之后，不用在到达厅跟人讲价。",
+  "nl": "Opgehaald in Kathmandu, verder naar Pokhara. Geen gesjacher bij aankomst na een lange vlucht."
+ },
+ "Met at Kathmandu.": {
+  "zh": "在加德满都接机。",
+  "nl": "Opgehaald in Kathmandu."
+ },
+ "Mon": {
+  "zh": "周一",
+  "nl": "ma"
+ },
+ "Month": {
+  "zh": "个月",
+  "nl": "Maand"
+ },
+ "Month one": {
+  "zh": "第一个月",
+  "nl": "Maand één"
+ },
+ "Month three": {
+  "zh": "第三个月",
+  "nl": "Maand drie"
+ },
+ "Month two": {
+  "zh": "第二个月",
+  "nl": "Maand twee"
+ },
+ "Months": {
+  "zh": "个月",
+  "nl": "Maanden"
+ },
+ "Mountain Whisper: work remotely from the Himalayas": {
+  "zh": "Mountain Whisper：在喜马拉雅远程工作",
+  "nl": "Mountain Whisper: werk op afstand vanuit de Himalaya"
+ },
+ "Mountain views, dal bhat, fresh air": {
+  "zh": "雪山、达八饭、清新的空气",
+  "nl": "Bergzicht, dal bhat, frisse lucht"
+ },
+ "Namaste. We'll write back.": {
+  "zh": "Namaste，你好。我们会回复你。",
+  "nl": "Namaste. We schrijven je terug."
+ },
+ "Nepal is generally safe for solo travellers, and Pokhara particularly so. In a village you are living inside a family home, which is safer than a hotel in most respects and less private in others. We will be straight with you about both, and you can speak to the host family before you commit.": {
+  "zh": "对独自旅行的人来说，尼泊尔总体是安全的，博卡拉尤其如此。在村里你住在一户人家中，多数方面比住酒店更安全，但私密性会少一些。这两点我们都会跟你说清楚，你也可以在决定之前先和寄宿家庭聊聊。",
+  "nl": "Nepal is over het algemeen veilig voor alleenreizigers, en Pokhara in het bijzonder. In een dorp woon je in een gezinshuis, wat in de meeste opzichten veiliger is dan een hotel en in andere opzichten minder privé. We zijn daar eerlijk over, en je kunt vóór je besluit met het gastgezin spreken."
+ },
+ "Nepal still has cuts. We would rather tell you now than have you discover it ten minutes before a client call.": {
+  "zh": "尼泊尔目前仍会停电。与其让你在客户会议前十分钟才发现，不如现在就说清楚。",
+  "nl": "In Nepal valt de stroom nog steeds uit. Liever zeggen we het nu dan dat je het tien minuten voor een klantgesprek ontdekt."
+ },
+ "Nepal's tourist visa allows up to 150 days per calendar year. That is why stays are one, three or five months — and why the longest is arranged across New Year.": {
+  "zh": "尼泊尔旅游签证每个日历年最多可停留 150 天。因此方案是一个月、三个月或五个月；最长的一种会安排成跨年。",
+  "nl": "Het Nepalese toeristenvisum staat maximaal 150 dagen per kalenderjaar toe. Daarom duren verblijven één, drie of vijf maanden — en wordt het langste over de jaarwisseling gepland."
+ },
+ "Next · autumn and spring": {
+  "zh": "即将推出 · 秋季与春季",
+  "nl": "Binnenkort · herfst en lente"
+ },
+ "No deposit, no obligation": {
+  "zh": "无需定金，无任何义务",
+  "nl": "Geen aanbetaling, geen verplichting"
+ },
+ "No other nomad hub has this. The Annapurnas are at the end of the street, not a flight away.": {
+  "zh": "没有哪个数字游民据点有这个。安纳普尔纳就在街道尽头，不用再坐一趟飞机。",
+  "nl": "Geen enkele andere nomadenplek heeft dit. De Annapurna's liggen aan het eind van de straat, niet een vlucht verderop."
+ },
+ "Not for you if": {
+  "zh": "不适合你，如果",
+  "nl": "Niet iets voor jou als"
+ },
+ "Not sure yet": {
+  "zh": "还没想好",
+  "nl": "Weet ik nog niet"
+ },
+ "Not sure yet — help me choose": {
+  "zh": "还没想好 —— 请帮我选",
+  "nl": "Weet ik nog niet — help me kiezen"
+ },
+ "Not sure? Start with a month on the Lake Edition and visit a village from there. Nobody should commit five months to a way of living they have not tried.": {
+  "zh": "还拿不定主意？先用一个月体验湖畔方案，再从那里去村里看看。没有人该在没试过的生活方式上，一口气投入五个月。",
+  "nl": "Twijfel je? Begin met een maand Lake Edition en bezoek van daaruit een dorp. Niemand zou zich vijf maanden moeten vastleggen op een manier van leven die hij nog niet heeft geprobeerd."
+ },
+ "Once in the week: cooking with the host family, a day trip to a viewpoint or monastery, and a journal to keep. Around $250–400 on top of your stay, to be confirmed.": {
+  "zh": "一周之内各安排一次：和寄宿家庭一起做饭、去观景点或寺院一日游，还有一本可以留下的手账。在住宿费之外约需 250–400 美元，具体待确认。",
+  "nl": "Eén keer in de week: koken met het gastgezin, een dagtrip naar een uitzichtpunt of klooster, en een dagboek om te houden. Ongeveer $250–400 bovenop je verblijf, nog te bevestigen."
+ },
+ "One guided Poon Hill trek a month": {
+  "zh": "每月一次有向导带队的布恩山徒步",
+  "nl": "Eén begeleide Poon Hill-trektocht per maand"
+ },
+ "One number, answered in Pokhara, for the whole of your stay.": {
+  "zh": "一个号码，在博卡拉由真人接听，整段行程都在。",
+  "nl": "Eén nummer, in Pokhara opgenomen, je hele verblijf lang."
+ },
+ "One number, answered in Pokhara, from the airport to your last day.": {
+  "zh": "一个号码，在博卡拉由真人接听，从落地到最后一天。",
+  "nl": "Eén nummer, in Pokhara opgenomen, van de luchthaven tot je laatste dag."
+ },
+ "One promise, a few ways to live it": {
+  "zh": "一个承诺，几种过法",
+  "nl": "Eén belofte, een paar manieren om die te leven"
+ },
+ "One quiet week to reset.": {
+  "zh": "安静的一周，重新调整。",
+  "nl": "Eén rustige week om te resetten."
+ },
+ "One season, or most of a year.": {
+  "zh": "一个季节，或者大半年。",
+  "nl": "Eén seizoen, of het grootste deel van een jaar."
+ },
+ "Open the laptop.": {
+  "zh": "打开电脑。",
+  "nl": "Laptop open."
+ },
+ "Or just write to us.": {
+  "zh": "或者直接写信给我们。",
+  "nl": "Of schrijf ons gewoon."
+ },
+ "Our guide": {
+  "zh": "我们的向导",
+  "nl": "Onze gids"
+ },
+ "Out in the fields · 16:00": {
+  "zh": "田间 · 16:00",
+  "nl": "De velden in · 16:00"
+ },
+ "Out in the fields.": {
+  "zh": "到田里去。",
+  "nl": "De velden in."
+ },
+ "Painted boats moored on Phewa Lake, hills behind": {
+  "zh": "停泊在费瓦湖上的彩绘小船，背后是群山",
+  "nl": "Beschilderde boten aangemeerd op het Phewameer, heuvels erachter"
+ },
+ "Paragliders at lunch.": {
+  "zh": "午饭时，天上有滑翔伞。",
+  "nl": "Paragliders tijdens de lunch."
+ },
+ "People, not a booking system.": {
+  "zh": "是人，不是订房系统。",
+  "nl": "Mensen, geen boekingssysteem."
+ },
+ "Personal spending and laundry": {
+  "zh": "个人消费与洗衣",
+  "nl": "Persoonlijke uitgaven en was"
+ },
+ "Phewa, dusk": {
+  "zh": "费瓦湖，黄昏",
+  "nl": "Phewa, schemering"
+ },
+ "Photography and film from Pexels, used under its licence. Imagery is atmospheric: it does not show a specific room, homestay or host family, and no one pictured is connected with Mountain Whisper.": {
+  "zh": "图片与影像来自 Pexels，依其授权使用。这些画面用于营造氛围：并不代表某一间具体的房间、寄宿家庭，画面中的人也与 Mountain Whisper 无关。",
+  "nl": "Foto's en film van Pexels, gebruikt onder die licentie. Beeld is sfeerbeeld: het toont geen specifieke kamer, homestay of gastgezin, en niemand in beeld heeft een band met Mountain Whisper."
+ },
+ "Plan my stay": {
+  "zh": "规划我的行程",
+  "nl": "Plan mijn verblijf"
+ },
+ "Pokhara has hospitals and clinics used to treating travellers. From a village, we plan the route to the nearest clinic before anyone stays there. Travel insurance that covers trekking is required — we will ask to see it, because a helicopter evacuation is not something you want to discover you are paying for.": {
+  "zh": "博卡拉有医院和诊所，习惯接诊外国旅行者。在村里，我们会在有人入住之前就规划好去最近诊所的路线。必须购买涵盖徒步的旅行保险——我们会要求查看，因为直升机救援的账单，你不会想事后才发现要自己付。",
+  "nl": "Pokhara heeft ziekenhuizen en klinieken die gewend zijn aan reizigers. Vanuit een dorp plannen we de route naar de dichtstbijzijnde kliniek voordat er iemand verblijft. Een reisverzekering die trekking dekt is verplicht — we vragen erom, want een helikopterevacuatie wil je niet achteraf zelf blijken te betalen."
+ },
+ "Pokhara · the hill villages · Kathmandu Valley": {
+  "zh": "博卡拉 · 山村 · 加德满都谷地",
+  "nl": "Pokhara · de bergdorpen · Kathmanduvallei"
+ },
+ "Poon Hill at dawn.": {
+  "zh": "黎明的布恩山。",
+  "nl": "Poon Hill bij dageraad."
+ },
+ "Poon Hill over a long weekend, permits included — and more treks on the Trek Edition.": {
+  "zh": "一个长周末走布恩山，含许可证——徒步方案还有更多路线。",
+  "nl": "Poon Hill in een lang weekend, vergunningen inbegrepen — en meer tochten bij de Trek Edition."
+ },
+ "Power cuts": {
+  "zh": "停电",
+  "nl": "Stroomuitval"
+ },
+ "Prajwal answers enquiries himself, usually within a day. You'll get a real reply from a person — your plan, what's included, what it costs for your dates, and anything we can't promise yet. No deposit is taken until you've seen all of that in writing. Prefer to talk now?": {
+  "zh": "Prajwal 会亲自回复，通常一天之内。你收到的是真人写的回信——你的方案、包含什么、你那段日期的价格，以及我们目前还不能保证的事。在你看到全部书面说明之前，我们不会收取任何定金。想现在就聊？",
+  "nl": "Prajwal beantwoordt aanvragen zelf, meestal binnen een dag. Je krijgt een echt antwoord van een mens — je plan, wat is inbegrepen, wat het kost voor jouw data, en alles wat we nog niet kunnen beloven. Er wordt geen aanbetaling gevraagd voordat je dit alles op papier hebt gezien. Liever nu even praten?"
+ },
+ "Private room with a family, meals included": {
+  "zh": "寄宿家庭中的独立房间，含餐食",
+  "nl": "Eigen kamer bij een gezin, maaltijden inbegrepen"
+ },
+ "Private room, fibre wifi": {
+  "zh": "独立房间，光纤网络",
+  "nl": "Eigen kamer, glasvezel-wifi"
+ },
+ "Private room, fibre wifi, backup power": {
+  "zh": "独立房间、光纤网络、备用电源",
+  "nl": "Eigen kamer, glasvezel-wifi, noodstroom"
+ },
+ "Questions": {
+  "zh": "常见问题",
+  "nl": "Vragen"
+ },
+ "Real Nepal, not a resort": {
+  "zh": "真实的尼泊尔，不是度假村",
+  "nl": "Het echte Nepal, geen resort"
+ },
+ "Registered in Nepal": {
+  "zh": "在尼泊尔注册",
+  "nl": "Geregistreerd in Nepal"
+ },
+ "Registered travel agency, Nepal": {
+  "zh": "尼泊尔注册旅行社",
+  "nl": "Geregistreerd reisbureau, Nepal"
+ },
+ "Registration": {
+  "zh": "注册",
+  "nl": "Registratie"
+ },
+ "Registration no. to add": {
+  "zh": "注册编号待补充",
+  "nl": "Registratienummer volgt"
+ },
+ "Room, workspace, SIM, visa guidance, pickup, trek dates.": {
+  "zh": "房间、工作空间、电话卡、签证指导、接机、徒步日期。",
+  "nl": "Kamer, werkplek, simkaart, visumadvies, ophalen, trekdata."
+ },
+ "Roughly when": {
+  "zh": "大概什么时候",
+  "nl": "Ongeveer wanneer"
+ },
+ "Rows of lit butter lamps on stone shelves": {
+  "zh": "石架上一排排点亮的酥油灯",
+  "nl": "Rijen brandende boterlampen op stenen schappen"
+ },
+ "Runs Mountain Whisper day to day and answers the enquiries himself. Nepali, and a remote software engineer — which is why the internet checklist exists.": {
+  "zh": "他负责 Mountain Whisper 的日常运营，也亲自回复每一条咨询。尼泊尔人，远程软件工程师——那份网络检查清单就是因此而来的。",
+  "nl": "Runt Mountain Whisper van dag tot dag en beantwoordt de aanvragen zelf. Nepalees, en remote software engineer — daarom bestaat die internetchecklist."
+ },
+ "Sat": {
+  "zh": "周六",
+  "nl": "za"
+ },
+ "Screens off, fire on.": {
+  "zh": "关掉屏幕，生起炉火。",
+  "nl": "Schermen uit, vuur aan."
+ },
+ "Search": {
+  "zh": "搜索引擎",
+  "nl": "Zoekmachine"
+ },
+ "Seasonal · limited spots": {
+  "zh": "季节限定 · 名额有限",
+  "nl": "Seizoensgebonden · beperkt aantal plekken"
+ },
+ "Sections": {
+  "zh": "章节导航",
+  "nl": "Secties"
+ },
+ "Secure your dates.": {
+  "zh": "锁定你的日期。",
+  "nl": "Leg je data vast."
+ },
+ "See it for yourself": {
+  "zh": "自己看看",
+  "nl": "Zie het zelf"
+ },
+ "Short, silent excerpts. The full films, with sound, are on Instagram and TikTok — on": {
+  "zh": "这些是无声短片。完整影片（含声音）在",
+  "nl": "Korte, stille fragmenten. De volledige films, met geluid, staan op"
+ },
+ "Six reasons this works.": {
+  "zh": "六个理由。",
+  "nl": "Zes redenen waarom dit werkt."
+ },
+ "Some offices": {
+  "zh": "有些办公室",
+  "nl": "Sommige kantoren"
+ },
+ "Someone to call": {
+  "zh": "随时有人可找",
+  "nl": "Iemand om te bellen"
+ },
+ "Somewhere else": {
+  "zh": "其他渠道",
+  "nl": "Ergens anders"
+ },
+ "Speed test — to shoot on site": {
+  "zh": "网速测试图 —— 待实地拍摄",
+  "nl": "Snelheidstest — nog ter plaatse te maken"
+ },
+ "Speed tests, morning and evening": {
+  "zh": "早晚各测一次网速",
+  "nl": "Snelheidstests, 's ochtends en 's avonds"
+ },
+ "Stay, workspace, SIM, visa help, airport welcome and someone to call. You choose the kind of life you want around it.": {
+  "zh": "住宿、工作空间、电话卡、签证协助、机场接机，还有随时能找到的人。围绕这些，你选择自己想要的生活。",
+  "nl": "Verblijf, werkplek, simkaart, visumhulp, ontvangst op de luchthaven en iemand om te bellen. Jij kiest wat voor leven je daaromheen wilt."
+ },
+ "Stays start from": {
+  "zh": "起价",
+  "nl": "Verblijven vanaf"
+ },
+ "Strangers": {
+  "zh": "陌生人",
+  "nl": "Vreemden"
+ },
+ "Suggested terms, to be confirmed: 25% deposit to hold your dates, balance due 30 days before arrival, deposit refundable up to 60 days before minus anything already paid to partners.": {
+  "zh": "建议条款（待确认）：支付 25% 定金锁定日期，余款在抵达前 30 天结清；抵达前 60 天以上可退定金，扣除已支付给合作方的费用。",
+  "nl": "Voorgestelde voorwaarden, nog te bevestigen: 25% aanbetaling om je data vast te leggen, restant 30 dagen vóór aankomst, aanbetaling terugbetaalbaar tot 60 dagen vooraf minus wat al aan partners is betaald."
+ },
+ "Sunrise over the peaks.": {
+  "zh": "日出越过群峰。",
+  "nl": "Zonsopkomst boven de toppen."
+ },
+ "Sunrise, and slow breathing.": {
+  "zh": "日出，慢慢呼吸。",
+  "nl": "Zonsopkomst, en rustig ademhalen."
+ },
+ "Talk to us": {
+  "zh": "联系我们",
+  "nl": "Praat met ons"
+ },
+ "Tea by the fire.": {
+  "zh": "火边喝茶。",
+  "nl": "Thee bij het vuur."
+ },
+ "Tea with your host family.": {
+  "zh": "和寄宿家庭喝茶。",
+  "nl": "Thee met je gastgezin."
+ },
+ "Team Retreat": {
+  "zh": "团队静修 Team Retreat",
+  "nl": "Team Retreat"
+ },
+ "Tell us about you.": {
+  "zh": "先聊聊你的情况。",
+  "nl": "Vertel ons over jezelf."
+ },
+ "Tell us your month.": {
+  "zh": "告诉我们你的月份。",
+  "nl": "Vertel ons je maand."
+ },
+ "Tested internet with a backup line": {
+  "zh": "经过实测的网络，另有备用线路",
+  "nl": "Geteste internetverbinding met een back-uplijn"
+ },
+ "Tested internet, backup connection": {
+  "zh": "实测过的网络，备用线路",
+  "nl": "Geteste internetverbinding, back-upverbinding"
+ },
+ "Tested, with a backup": {
+  "zh": "实测过，另有备份",
+  "nl": "Getest, met back-up"
+ },
+ "The Himalayas on your doorstep": {
+  "zh": "喜马拉雅就在家门口",
+  "nl": "De Himalaya op je stoep"
+ },
+ "The Lake Edition": {
+  "zh": "湖畔方案 Lake Edition",
+  "nl": "De Lake Edition"
+ },
+ "The Lake Edition · 1, 3 or 5 months": {
+  "zh": "湖畔方案 Lake Edition · 一 / 三 / 五个月",
+  "nl": "De Lake Edition · 1, 3 of 5 maanden"
+ },
+ "The Nepal visa fee itself, paid on arrival": {
+  "zh": "尼泊尔签证费本身（落地时缴纳）",
+  "nl": "De Nepalese visumkosten zelf, bij aankomst te betalen"
+ },
+ "The Reset Week is a calm lifestyle week. It is not therapy or medical care. If you need support, please talk to a professional before you travel.": {
+  "zh": "重启周是一段放慢节奏的生活体验，并非心理治疗，也不是医疗服务。如果你需要专业支持，请在出行前咨询专业人士。",
+  "nl": "De Reset Week is een rustige leefstijlweek. Het is geen therapie en geen medische zorg. Heb je ondersteuning nodig, bespreek dat dan vóór je reis met een professional."
+ },
+ "The Trek Edition": {
+  "zh": "徒步方案 Trek Edition",
+  "nl": "De Trek Edition"
+ },
+ "The Village Edition": {
+  "zh": "乡村方案 Village Edition",
+  "nl": "De Village Edition"
+ },
+ "The Village Edition · homestay": {
+  "zh": "乡村方案 · 寄宿家庭",
+  "nl": "De Village Edition · homestay"
+ },
+ "The company": {
+  "zh": "关于公司",
+  "nl": "Het bedrijf"
+ },
+ "The lake": {
+  "zh": "湖",
+  "nl": "Het meer"
+ },
+ "The questions everybody asks.": {
+  "zh": "大家都会问的问题。",
+  "nl": "De vragen die iedereen stelt."
+ },
+ "The ridge": {
+  "zh": "山脊",
+  "nl": "De bergkam"
+ },
+ "The same checklist as the Lake Edition, applied to a village — plus town days in Pokhara whenever the calls matter most.": {
+  "zh": "和湖畔方案一样的检查清单，只是搬到了村里——重要会议还可以安排到博卡拉的进城日。",
+  "nl": "Dezelfde checklist als bij de Lake Edition, toegepast op een dorp — plus stadsdagen in Pokhara wanneer de gesprekken er het meest toe doen."
+ },
+ "The trail": {
+  "zh": "山路",
+  "nl": "Het pad"
+ },
+ "The village": {
+  "zh": "村子",
+  "nl": "Het dorp"
+ },
+ "The visa": {
+  "zh": "签证",
+  "nl": "Het visum"
+ },
+ "The visa extension, built in": {
+  "zh": "签证延期已包含在内",
+  "nl": "De visumverlenging zit erin"
+ },
+ "Then back to work, lighter.": {
+  "zh": "然后带着轻松的状态回到工作。",
+  "nl": "Daarna lichter terug aan het werk."
+ },
+ "They happen. We plan for them.": {
+  "zh": "确实会停。我们为此做了准备。",
+  "nl": "Het gebeurt. Wij houden er rekening mee."
+ },
+ "Thu": {
+  "zh": "周四",
+  "nl": "do"
+ },
+ "Town days in Pokhara for big calls": {
+  "zh": "重要会议可安排到博卡拉的“进城日”",
+  "nl": "Stadsdagen in Pokhara voor belangrijke gesprekken"
+ },
+ "Transfer to Pokhara": {
+  "zh": "送你前往博卡拉",
+  "nl": "Transfer naar Pokhara"
+ },
+ "Travel agency": {
+  "zh": "旅行社",
+  "nl": "Reisbureau"
+ },
+ "Travel insurance, required before you arrive": {
+  "zh": "旅行保险（抵达前必须办妥）",
+  "nl": "Reisverzekering, verplicht vóór aankomst"
+ },
+ "Travel that gives back": {
+  "zh": "有回馈的旅行",
+  "nl": "Reizen dat iets teruggeeft"
+ },
+ "Trek Edition": {
+  "zh": "徒步方案 Trek Edition",
+  "nl": "Trek Edition"
+ },
+ "Up with": {
+  "zh": "和太阳",
+  "nl": "Op met"
+ },
+ "Village": {
+  "zh": "乡村",
+  "nl": "Dorp"
+ },
+ "Village Edition": {
+  "zh": "乡村方案 Village Edition",
+  "nl": "Village Edition"
+ },
+ "Village Reset": {
+  "zh": "乡村重启周",
+  "nl": "Village Reset"
+ },
+ "Visa assistance": {
+  "zh": "签证协助",
+  "nl": "Hulp bij het visum"
+ },
+ "Walk to Ghorepani.": {
+  "zh": "走到戈雷帕尼。",
+  "nl": "Lopen naar Ghorepani."
+ },
+ "We film it as it is.": {
+  "zh": "我们如实拍下来。",
+  "nl": "We filmen het zoals het is."
+ },
+ "We meet you at arrivals": {
+  "zh": "我们在到达大厅接你",
+  "nl": "We halen je op bij aankomst"
+ },
+ "We prepare everything.": {
+  "zh": "我们把一切准备好。",
+  "nl": "Wij regelen alles."
+ },
+ "We prepare the paperwork and walk the extension through immigration with you.": {
+  "zh": "我们准备材料，并陪你去移民局办理延期。",
+  "nl": "Wij maken het papierwerk in orde en lopen de verlenging samen met je door bij immigratie."
+ },
+ "We'll do the rest.": {
+  "zh": "其余交给我们。",
+  "nl": "Wij doen de rest."
+ },
+ "Week one": {
+  "zh": "第一周",
+  "nl": "Week één"
+ },
+ "Weekends": {
+  "zh": "周末，",
+  "nl": "Weekenden"
+ },
+ "Welcome dinner": {
+  "zh": "欢迎晚餐",
+  "nl": "Welkomstdiner"
+ },
+ "Welcome dinner.": {
+  "zh": "欢迎晚餐。",
+  "nl": "Welkomstdiner."
+ },
+ "Wellness": {
+  "zh": "身心调养周",
+  "nl": "Wellness"
+ },
+ "What if I get sick or have an accident?": {
+  "zh": "万一生病或出意外怎么办？",
+  "nl": "Wat als ik ziek word of een ongeluk krijg?"
+ },
+ "What is not included": {
+  "zh": "不包含的部分",
+  "nl": "Wat niet is inbegrepen"
+ },
+ "What work you do": {
+  "zh": "你从事什么工作",
+  "nl": "Wat voor werk je doet"
+ },
+ "When it fails": {
+  "zh": "万一断了",
+  "nl": "Als het uitvalt"
+ },
+ "When you would like to come, how long, and what work you do.": {
+  "zh": "你想什么时候来、待多久、做什么工作。",
+  "nl": "Wanneer je wilt komen, hoe lang, en wat voor werk je doet."
+ },
+ "Where you're based": {
+  "zh": "你目前在哪里",
+  "nl": "Waar je woont"
+ },
+ "Which edition": {
+  "zh": "选择方案",
+  "nl": "Welke editie"
+ },
+ "Which edition should I pick?": {
+  "zh": "我该选哪个方案？",
+  "nl": "Welke editie past bij mij?"
+ },
+ "Who is this not for?": {
+  "zh": "什么人不适合？",
+  "nl": "Voor wie is dit niets?"
+ },
+ "Who you'll meet": {
+  "zh": "你会遇到谁",
+  "nl": "Wie je ontmoet"
+ },
+ "Why Nepal, why us": {
+  "zh": "为什么是尼泊尔，为什么是我们",
+  "nl": "Waarom Nepal, waarom wij"
+ },
+ "Will I be lonely?": {
+  "zh": "会不会很孤单？",
+  "nl": "Zal ik me eenzaam voelen?"
+ },
+ "Work Monday to Thursday. Trek the Himalayas by Sunday — two or three guided treks a month, planned around your calendar.": {
+  "zh": "周一到周四工作，周末走进喜马拉雅——每月两到三次有向导的徒步，按你的日程安排。",
+  "nl": "Werk van maandag tot donderdag. Trek zondag de Himalaya in — twee of drie begeleide tochten per maand, gepland rond jouw agenda."
+ },
+ "Work remotely": {
+  "zh": "远程工作，",
+  "nl": "Werk op afstand"
+ },
+ "Work that actually works": {
+  "zh": "真的能干活的工作环境",
+  "nl": "Werk dat echt werkt"
+ },
+ "Work, uninterrupted": {
+  "zh": "工作，不被打断",
+  "nl": "Werken, ononderbroken"
+ },
+ "Yes, the wifi works. Here is the proof.": {
+  "zh": "网络是可以用的。这是证据。",
+  "nl": "Ja, de wifi werkt. Hier is het bewijs."
+ },
+ "You bring the laptop. We arrange everything else.": {
+  "zh": "你带上电脑，其余由我们安排。",
+  "nl": "Jij neemt de laptop mee. Wij regelen de rest."
+ },
+ "You love a fast pace": {
+  "zh": "你喜欢快节奏",
+  "nl": "Je houdt van een hoog tempo"
+ },
+ "You love deep work": {
+  "zh": "你享受专注的工作",
+  "nl": "Je houdt van deep work"
+ },
+ "You love nature": {
+  "zh": "你喜欢自然",
+  "nl": "Je houdt van de natuur"
+ },
+ "You need nightlife": {
+  "zh": "你离不开夜生活",
+  "nl": "Je hebt nachtleven nodig"
+ },
+ "You wake when the family wakes. Tea by the fire before the day starts.": {
+  "zh": "你和这家人一起醒来。一天开始之前，先在火边喝杯茶。",
+  "nl": "Je wordt wakker wanneer het gezin wakker wordt. Thee bij het vuur voordat de dag begint."
+ },
+ "You want luxury": {
+  "zh": "你想要奢华享受",
+  "nl": "Je wilt luxe"
+ },
+ "You want real culture, not a view of it": {
+  "zh": "你想真正走进当地生活，而不只是远远看着",
+  "nl": "Je wilt echte cultuur, niet alleen het uitzicht erop"
+ },
+ "You won't": {
+  "zh": "你会舍不得",
+  "nl": "Je wilt niet"
+ },
+ "Your SIM is set up": {
+  "zh": "电话卡当场办好",
+  "nl": "Je simkaart wordt geregeld"
+ },
+ "Your first 24 hours": {
+  "zh": "最初的 24 小时",
+  "nl": "Je eerste 24 uur"
+ },
+ "Your mornings": {
+  "zh": "你的早晨",
+  "nl": "Je ochtenden"
+ },
+ "Your name": {
+  "zh": "你的姓名",
+  "nl": "Je naam"
+ },
+ "Your plan and quote.": {
+  "zh": "你的方案与报价。",
+  "nl": "Je plan en offerte."
+ },
+ "Your team, your work, the Himalayas. Group stay, private workspace, one team trek.": {
+  "zh": "你的团队、你的工作，在喜马拉雅。团体住宿、独立办公空间、一次团队徒步。",
+  "nl": "Jouw team, jouw werk, de Himalaya. Groepsverblijf, eigen werkruimte, één teamtrektocht."
+ },
+ "Your work hours and timezone, dietary needs, whether you'd trek, anything you're worried about.": {
+  "zh": "你的工作时间与时区、饮食需求、是否想徒步，以及任何让你担心的事。",
+  "nl": "Je werktijden en tijdzone, dieetwensen, of je wilt trekken, en alles waar je je zorgen over maakt."
+ },
+ "a local family.": {
+  "zh": "当地人家里。",
+  "nl": "een lokaal gezin."
+ },
+ "above the clouds.": {
+  "zh": "在云层之上。",
+  "nl": "boven de wolken."
+ },
+ "and": {
+  "zh": "和",
+  "nl": "en"
+ },
+ "become family.": {
+  "zh": "成了家人。",
+  "nl": "worden familie."
+ },
+ "certificate": {
+  "zh": "证书",
+  "nl": "certificaat"
+ },
+ "from $1,490 a month": {
+  "zh": "每月 1,490 美元起",
+  "nl": "vanaf $1.490 per maand"
+ },
+ "from Nepal.": {
+  "zh": "在尼泊尔。",
+  "nl": "vanuit Nepal."
+ },
+ "have a view.": {
+  "zh": "是有风景的。",
+  "nl": "hebben uitzicht."
+ },
+ "in Kathmandu.": {
+  "zh": "，在加德满都。",
+  "nl": "in Kathmandu."
+ },
+ "on the spot.": {
+  "zh": "。",
+  "nl": "ter plekke."
+ },
+ "the sun.": {
+  "zh": "一起起床。",
+  "nl": "de zon."
+ },
+ "to add": {
+  "zh": "待补充",
+  "nl": "nog toe te voegen"
+ },
+ "to your room.": {
+  "zh": "你的房间。",
+  "nl": "in je kamer."
+ },
+ "want to leave.": {
+  "zh": "离开。",
+  "nl": "meer weg."
+ },
+ "we handle the rest.": {
+  "zh": "其余交给我们。",
+  "nl": "wij regelen de rest."
+ }
+}
