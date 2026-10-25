@@ -349,9 +349,9 @@ a{color:inherit} strong{font-weight:600;color:var(--cream)}
    heading both disappeared and you landed mid-section on body copy. The
    script below keeps this exact against the measured bar; these are the
    no-JS fallbacks. */
-html{scroll-padding-top:calc(var(--bar) + 1.5rem)}
-@media (max-width:1180px){html{scroll-padding-top:7.5rem}}
-@media (max-width:760px){html{scroll-padding-top:8.5rem}}
+html{scroll-padding-top:var(--bar)}
+@media (max-width:1180px){html{scroll-padding-top:5.4rem}}
+@media (max-width:760px){html{scroll-padding-top:7rem}}
 
 .ch{padding-block:var(--s8)}
 /* Two levels of section, not fifteen at one volume. The spine — editions,
@@ -1302,7 +1302,7 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
     var bar=document.getElementById('bar'); if(!bar) return;
     function sync(){
       document.documentElement.style.scrollPaddingTop=
-        Math.round(bar.getBoundingClientRect().height+24)+'px';
+        Math.round(bar.getBoundingClientRect().height)+'px';
     }
     sync();
     addEventListener('resize',sync,{passive:true});
