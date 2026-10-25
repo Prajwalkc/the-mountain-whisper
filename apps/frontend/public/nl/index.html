@@ -115,31 +115,48 @@ a{color:inherit} strong{font-weight:600;color:var(--cream)}
 .bar .id span{font-size:var(--label);font-weight:600;letter-spacing:.26em;text-transform:uppercase;
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .bar nav{display:flex;align-items:center;gap:var(--s4);margin-left:auto}
-.bar nav a{font-size:.74rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;
-  text-decoration:none;color:var(--soft);white-space:nowrap;transition:color .3s}
+.bar nav a{position:relative;font-size:.74rem;font-weight:500;letter-spacing:.2em;
+  text-transform:uppercase;text-decoration:none;color:var(--softer);white-space:nowrap;
+  padding-bottom:.3rem;transition:color .3s}
+.bar nav a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;
+  background:var(--mist);transform:scaleX(0);transform-origin:left center;
+  transition:transform .45s cubic-bezier(.16,1,.3,1)}
 .bar nav a:hover{color:var(--cream)}
+.bar nav a:hover::after{transform:scaleX(1)}
+/* the section you are actually looking at, set by the scroll-spy below */
+.bar nav a[aria-current="true"]{color:var(--cream)}
+.bar nav a[aria-current="true"]::after{transform:scaleX(1)}
 /* Below 900px the links used to vanish with nothing in their place, so a phone
    had no navigation at all. The bar becomes two rows instead: identity and the
    ask on top, the sections beneath as a strip that scrolls sideways. */
-@media (max-width:900px){
+@media (max-width:1100px){
   .bar{height:auto;padding-block:.6rem 0}
   .bar .in{flex-wrap:wrap;row-gap:var(--s1)}
   .bar .id{order:1}
   .bar .go{order:2;margin-left:auto}
-  .bar nav{order:3;flex-basis:100%;margin-left:0;gap:var(--s4);
+  /* last, so the identity, the language and the ask share the top row and the
+     section strip gets its own beneath — three rows made the bar too tall */
+  .bar nav{order:4;flex-basis:100%;margin-left:0;gap:var(--s4);
     overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;
     padding-bottom:.6rem;-webkit-overflow-scrolling:touch}
   .bar nav::-webkit-scrollbar{display:none}
 }
 /* Language. Three quiet options separated by hairlines — the bar already has
    its one emphasis in "Plan my stay", so this stays recessive until hovered. */
-.lang{display:flex;align-items:center;flex:none;gap:0}
-.lang-opt{font-size:.78rem;font-weight:500;text-decoration:none;color:var(--soft);
-  padding:.3rem .62rem;transition:color .3s;white-space:nowrap}
+.lang{display:flex;align-items:center;flex:none;gap:0;
+  border:1px solid var(--line)}
+.lang-opt{font-size:.78rem;font-weight:500;text-decoration:none;color:var(--softer);
+  padding:.32rem .62rem;transition:color .3s,background .3s;white-space:nowrap}
 .lang-opt + .lang-opt{border-left:1px solid var(--line)}
-.lang-opt:hover{color:var(--cream)}
-.lang-opt.on{color:var(--cream)}
-@media (max-width:900px){
+.lang-opt:hover{color:var(--cream);background:rgba(245,241,234,.07)}
+/* the current language is filled, not just brightened — a mist wash reads as
+   selected at a glance without becoming a second emphasis beside the CTA */
+.lang-opt.on{color:var(--cream);background:rgba(220,229,236,.15)}
+.lang-opt.on:hover{background:rgba(220,229,236,.15)}
+/* must match the bar's own stacking breakpoint above — when these two
+   disagreed, .lang kept its default order:0 in the gap between them and
+   jumped ahead of the wordmark. */
+@media (max-width:1100px){
   .lang{order:2;margin-left:auto}
   .bar .go{order:3;margin-left:var(--s3)}
   .lang-opt{padding:.3rem .5rem}
@@ -848,8 +865,8 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
 
 <section class="ch band pad"><div class="wrap">
   <div class="head">
-    <div class="kicker rv"><span class="r"></span><span class="t">Zie het zelf</span></div>
-    <h2 class="rv d1">We filmen het zoals het is.</h2>
+    <div class="kicker rv"><span class="r"></span><span class="t">Films die we voor je maakten</span></div>
+    <h2 class="rv d1">Zes korte films.<em>Eén voor elke vraag.</em></h2>
   </div>
   <div class="films">
     <figure class="phone rv"><div class="screen">
@@ -1098,6 +1115,56 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
     },{threshold:.12,rootMargin:'0px 0px -5% 0px'});
     els.forEach(function(e){ io.observe(e); });
   } else { els.forEach(function(e){ e.classList.add('in'); }); }
+
+  /* scroll-spy: mark the nav link for the section actually on screen, so the
+     bar says where you are rather than only where you can go. Tracks the
+     section nearest the top of the viewport below the sticky bar. */
+  (function(){
+    var links=[].slice.call(document.querySelectorAll('.bar nav a[href^="#"]'));
+    if(!links.length) return;
+    var pairs=links.map(function(a){
+      return { a:a, el:document.getElementById(a.getAttribute('href').slice(1)) };
+    }).filter(function(p){ return p.el; });
+    if(!pairs.length) return;
+
+    var current=null;
+    var nav=document.querySelector('.bar nav');
+    function mark(a){
+      if(a===current) return;
+      if(current) current.removeAttribute('aria-current');
+      if(a) a.setAttribute('aria-current','true');
+      current=a;
+      /* on a phone the strip scrolls sideways, so the marked link can sit off
+         screen where the indicator is no use. Bring it into view. */
+      if(a && nav && nav.scrollWidth>nav.clientWidth+1){
+        var n=nav.getBoundingClientRect(), r=a.getBoundingClientRect();
+        if(r.left<n.left || r.right>n.right){
+          nav.scrollTo({left:nav.scrollLeft+(r.left-n.left)-16,behavior:'smooth'});
+        }
+      }
+    }
+    function spy(){
+      var bar=document.getElementById('bar');
+      var line=(bar?bar.getBoundingClientRect().height:0)+8;
+      var best=null;
+      pairs.forEach(function(p){
+        /* the last linked section whose top has passed under the bar. Several
+           sections have no nav link of their own, so matching only the one
+           crossing the line would leave the bar blank while you scroll them. */
+        if(p.el.getBoundingClientRect().top<=line) best=p.a;
+      });
+      mark(best);
+    }
+    var ticking=false;
+    function onScroll(){
+      if(ticking) return;
+      ticking=true;
+      requestAnimationFrame(function(){ spy(); ticking=false; });
+    }
+    addEventListener('scroll',onScroll,{passive:true});
+    addEventListener('resize',onScroll,{passive:true});
+    spy();
+  })();
 
   /* hero: scene and words change together */
   (function(){

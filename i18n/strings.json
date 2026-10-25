@@ -433,6 +433,10 @@
   "zh": "影片：最初的 24 小时",
   "nl": "Film: je eerste 24 uur"
  },
+ "Films we've made for you": {
+  "zh": "我们为你拍的短片",
+  "nl": "Films die we voor je maakten"
+ },
  "First light to lamplight": {
   "zh": "从天亮到灯火",
   "nl": "Van eerste licht tot lamplicht"
@@ -729,6 +733,10 @@
   "zh": "一周之内各安排一次：和寄宿家庭一起做饭、去观景点或寺院一日游，还有一本可以留下的手账。在住宿费之外约需 250–400 美元，具体待确认。",
   "nl": "Eén keer in de week: koken met het gastgezin, een dagtrip naar een uitzichtpunt of klooster, en een dagboek om te houden. Ongeveer $250–400 bovenop je verblijf, nog te bevestigen."
  },
+ "One for each question.": {
+  "zh": "每个问题各一部。",
+  "nl": "Eén voor elke vraag."
+ },
  "One guided Poon Hill trek a month": {
   "zh": "每月一次有向导带队的布恩山徒步",
   "nl": "Eén begeleide Poon Hill-trektocht per maand"
@@ -901,10 +909,6 @@
   "zh": "锁定你的日期。",
   "nl": "Leg je data vast."
  },
- "See it for yourself": {
-  "zh": "自己看看",
-  "nl": "Zie het zelf"
- },
  "Short, silent excerpts. The full films, with sound, are on Instagram and TikTok — on": {
   "zh": "这些是无声短片。完整影片（含声音）在",
   "nl": "Korte, stille fragmenten. De volledige films, met geluid, staan op"
@@ -912,6 +916,10 @@
  "Six reasons this works.": {
   "zh": "六个理由。",
   "nl": "Zes redenen waarom dit werkt."
+ },
+ "Six short films.": {
+  "zh": "六部短片。",
+  "nl": "Zes korte films."
  },
  "Some offices": {
   "zh": "有些办公室",
@@ -1120,10 +1128,6 @@
  "Walk to Ghorepani.": {
   "zh": "走到戈雷帕尼。",
   "nl": "Lopen naar Ghorepani."
- },
- "We film it as it is.": {
-  "zh": "我们如实拍下来。",
-  "nl": "We filmen het zoals het is."
  },
  "We meet you at arrivals": {
   "zh": "我们在到达大厅接你",
