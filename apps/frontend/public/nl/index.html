@@ -112,23 +112,18 @@ a{color:inherit} strong{font-weight:600;color:var(--cream)}
 .bar .in{display:flex;align-items:center;gap:var(--s5);width:100%}
 .bar .id{display:flex;align-items:center;gap:var(--s2);min-width:0;text-decoration:none}
 .bar .id svg{width:clamp(24px,2.4vw,31px);height:auto;stroke:var(--cream);flex:none}
-/* The mark draws itself once on arrival, like the app's splash: the peaks as
-   one pen stroke, then the whisper line beneath. Hovering the logo plays it
-   all again. pathLength="1" lets one dash cover each whole path. */
+/* The logo plays the app's splash in miniature: the peaks draw as
+   one pen stroke, the whisper line beneath, then the name is written out.
+   It plays on every load and on hover, and always runs to the end: moving
+   away neither cuts it short nor starts it again (the script adds and
+   removes .play).
+   pathLength="1" lets one dash cover each whole path. */
 .bar .id path{stroke-dasharray:1 1}
-.bar .id .pk{animation:mw-draw 1s cubic-bezier(.65,0,.35,1) both}
-.bar .id .wh{animation:mw-draw .65s .7s cubic-bezier(.65,0,.35,1) both}
-/* Then the name is written out after it, left to right, as the line finishes. */
-.bar .id span{animation:mw-write .9s .85s cubic-bezier(.65,0,.35,1) both}
-@media (hover:hover){
-  .bar .id:hover .pk{animation-name:mw-redraw}
-  .bar .id:hover .wh{animation-name:mw-redraw}
-  .bar .id:hover span{animation-name:mw-rewrite}
-}
+.bar .id.play .pk{animation:mw-draw 1s cubic-bezier(.65,0,.35,1) both}
+.bar .id.play .wh{animation:mw-draw .65s .7s cubic-bezier(.65,0,.35,1) both}
+.bar .id.play span{animation:mw-write .9s .85s cubic-bezier(.65,0,.35,1) both}
 @keyframes mw-draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
-@keyframes mw-redraw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
 @keyframes mw-write{from{clip-path:inset(0 100% 0 0);opacity:.4}to{clip-path:inset(0 0 0 0);opacity:1}}
-@keyframes mw-rewrite{from{clip-path:inset(0 100% 0 0);opacity:.4}to{clip-path:inset(0 0 0 0);opacity:1}}
 @media (prefers-reduced-motion:reduce){.bar .id path,.bar .id span{animation:none!important}}
 .bar .id span{font-size:var(--label);font-weight:600;letter-spacing:.26em;text-transform:uppercase;
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -1235,6 +1230,19 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
 <script>
 (function(){
   document.documentElement.classList.add('anim');
+
+  /* the logo draws itself on every page load, and again on hover; each play
+     runs to the end whatever the pointer does, and it can start again only
+     after it has finished, so it never cuts off or doubles up */
+  (function(){
+    var id=document.querySelector('.bar .id'), name=id&&id.querySelector('span');
+    if(!id||!name) return;
+    if(window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+    name.addEventListener('animationend',function(){ id.classList.remove('play'); });
+    id.classList.add('play');
+    if(window.matchMedia('(hover:hover)').matches)
+      id.addEventListener('mouseenter',function(){ id.classList.add('play'); });
+  })();
   var els=document.querySelectorAll('.rv');
   if('IntersectionObserver' in window){
     var io=new IntersectionObserver(function(es){
