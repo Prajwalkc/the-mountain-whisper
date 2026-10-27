@@ -25,7 +25,7 @@ const english = readFileSync(SRC, 'utf8');
 const KEEP = new Set([
   'EN', 'NL',  // the switcher's own labels
   'Mountain Whisper', 'Prajwal', 'Pokhara', 'Instagram', 'TikTok', 'Facebook',
-  'WhatsApp', 'prajwalkc1994@gmail.com', '@mountainwhisper.nepal',
+  'WhatsApp', 'hello@themountainwhisper.com', '@mountainwhisper.nepal',
   'WhatsApp \u00b7 +977 970-203-7055',
   'Instagram \u00b7 @mountainwhisper.nepal',
   'TikTok \u00b7 @mountainwhisper.nepal',
