@@ -112,6 +112,19 @@ a{color:inherit} strong{font-weight:600;color:var(--cream)}
 .bar .in{display:flex;align-items:center;gap:var(--s5);width:100%}
 .bar .id{display:flex;align-items:center;gap:var(--s2);min-width:0;text-decoration:none}
 .bar .id svg{width:clamp(24px,2.4vw,31px);height:auto;stroke:var(--cream);flex:none}
+/* The mark draws itself once on arrival, like the app's splash: the peaks as
+   one pen stroke, then the whisper line beneath. Hovering the name draws it
+   again. pathLength="1" lets one dash cover each whole path. */
+.bar .id path{stroke-dasharray:1 1}
+.bar .id .pk{animation:mw-draw 1s cubic-bezier(.65,0,.35,1) both}
+.bar .id .wh{animation:mw-draw .65s .7s cubic-bezier(.65,0,.35,1) both}
+@media (hover:hover){
+  .bar .id:hover .pk{animation-name:mw-redraw}
+  .bar .id:hover .wh{animation-name:mw-redraw}
+}
+@keyframes mw-draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes mw-redraw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@media (prefers-reduced-motion:reduce){.bar .id path{animation:none!important}}
 .bar .id span{font-size:var(--label);font-weight:600;letter-spacing:.26em;text-transform:uppercase;
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .bar nav{display:flex;align-items:center;gap:var(--s4);margin-left:auto}
@@ -716,8 +729,8 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
   <a class="id" href="#top">
     <svg viewBox="0 0 220 150" fill="none" stroke="currentColor" stroke-width="9"
          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-      <path d="M14 120 L78 36 L112 80 L140 50 L206 120"/>
-      <path d="M30 140 C 70 122, 110 150, 150 132 S 200 128, 210 136" stroke-width="6" opacity="0.75"/>
+      <path class="pk" pathLength="1" d="M14 120 L78 36 L112 80 L140 50 L206 120"/>
+      <path class="wh" pathLength="1" d="M30 140 C 70 122, 110 150, 150 132 S 200 128, 210 136" stroke-width="6" opacity="0.75"/>
     </svg><span>Mountain Whisper</span>
   </a>
   <nav aria-label="Sections">
