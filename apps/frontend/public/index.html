@@ -1472,8 +1472,8 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
   var form=document.getElementById('enquiry'), sent=document.getElementById('sent'),
       err=document.getElementById('f-err');
   // Enquiries go to Web3Forms, which emails them to the inbox the access key was created with.
-  // Until a key is pasted in, the form falls back to opening the visitor's email app.
-  var W3F_KEY='', INBOX='hello@themountainwhisper.com';
+  // Until a key is pasted in, the form falls back to sending the enquiry on WhatsApp.
+  var W3F_KEY='', INBOX='hello@themountainwhisper.com', WA='9779702037055';
   var btn=form.querySelector('button[type=submit]');
   function field(id){ var el=document.getElementById(id); return el?(el.type==='checkbox'?(el.checked?'Yes':'No'):el.value.trim()):''; }
   function done(){ form.hidden=true; sent.hidden=false;
@@ -1493,8 +1493,10 @@ footer{background:var(--ink-3);color:var(--soft);padding-block:clamp(2.6rem,5.2v
       'Heard about us':field('f-heard'), 'Just tell me when the next group opens':field('f-wait') };
     var subject='New enquiry: '+data['Name']+' ('+data['Edition']+', '+data['How long']+')';
     if(!W3F_KEY){
-      var body=Object.keys(data).map(function(k){ return k+': '+(data[k]||'-'); }).join('\n');
-      location.href='mailto:'+INBOX+'?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+      var body=Object.keys(data).filter(function(k){ return data[k]; })
+        .map(function(k){ return k+': '+data[k]; }).join('\n');
+      done();
+      location.href='https://wa.me/'+WA+'?text='+encodeURIComponent('Namaste! '+subject+'\n\n'+body);
       return;
     }
     btn.disabled=true; btn.textContent='Sending…';
